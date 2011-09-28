@@ -1,4 +1,4 @@
-package locarrao.modelo;
+package modelo.dominio;
 
 import java.util.Calendar;
 
