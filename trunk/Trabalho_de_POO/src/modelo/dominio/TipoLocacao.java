@@ -1,4 +1,4 @@
-package locarrao.modelo;
+package modelo.dominio;
 
 public class TipoLocacao {
  
