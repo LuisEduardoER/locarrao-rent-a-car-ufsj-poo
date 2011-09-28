@@ -9,6 +9,9 @@ public class TipoLocacao {
 	private double precoPorQuilometro;
 	 
 	private String nomeTipo;
+        
+        private TipoVeiculo tipoVeiculo;
+        
 	 
 }
  
