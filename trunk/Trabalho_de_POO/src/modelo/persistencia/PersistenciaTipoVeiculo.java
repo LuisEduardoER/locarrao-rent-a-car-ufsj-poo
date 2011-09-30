@@ -15,6 +15,7 @@ public class PersistenciaTipoVeiculo {
         List<TipoVeiculo> listaTipoVeiculos = new ArrayList<TipoVeiculo>();
         
         File arquivo = new File("src/arquivos/TipoVeiculo.txt");
+        
         if(arquivo.exists()){
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
@@ -28,9 +29,19 @@ public class PersistenciaTipoVeiculo {
             }
             
         }
+        else{
+            System.out.println("Arquivo não encontrada");
+        }
         return listaTipoVeiculos;
     }
     
+    /* O tipo de veículo desejado virá a partir da escolha através de um menu.
+     * Então o número que o usuário passar, virá como indice para este método.
+     * 
+     * é .get(indice - 1), porque a lista começa do 0 e os indice para escolha
+     * começa do 1.
+     * 
+     */
     public TipoVeiculo retornaTipoVeiculo(int indice) throws FileNotFoundException, IOException {
         return retornarTodosTipoVeiculo().get(indice - 1);
     }
