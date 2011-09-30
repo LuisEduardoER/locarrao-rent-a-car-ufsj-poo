@@ -1,11 +1,22 @@
 package locarrao.visao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.TipoVeiculo;
+import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoVeiculo {
-    public int MenuTipoVeiculo(List<TipoVeiculo> listaTipoVeiculo){
+    
+    //Cria o menu a partir de uma lista de Veiculos
+    public int MenuTipoVeiculo() throws FileNotFoundException, IOException{
+        List<TipoVeiculo> listaTipoVeiculo = new ArrayList<TipoVeiculo>();
+        
+        PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
+        listaTipoVeiculo = persistenciaTipoVeiculo.retornarTodosTipoVeiculo();
+        
         Scanner entrada = new Scanner(System.in);
         int contador = 1;
         for(TipoVeiculo tipoVeiculo:listaTipoVeiculo){

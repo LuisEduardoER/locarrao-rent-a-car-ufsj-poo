@@ -57,9 +57,9 @@ public class VisaoTipoLocacao {
     public void pesquisaTipoVeiculo(TipoLocacao tipoLocacao){
         VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
         PersistenciaTipoVeiculo buscaTipoVeiculo = new PersistenciaTipoVeiculo();
+        
         try {
-            int itemMenu = visaoTipoVeiculo.MenuTipoVeiculo(buscaTipoVeiculo.
-                    retornarTodosTipoVeiculo());
+            int itemMenu = visaoTipoVeiculo.MenuTipoVeiculo();
             
             tipoLocacao.setTipoVeiculo(buscaTipoVeiculo.retornaTipoVeiculo(itemMenu));
         } catch (FileNotFoundException ex) {
