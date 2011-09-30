@@ -32,7 +32,7 @@ public class PersistenciaTipoVeiculo {
     }
     
     public TipoVeiculo retornaTipoVeiculo(int indice) throws FileNotFoundException, IOException {
-        return retornarTodosTipoVeiculo().get(indice);
+        return retornarTodosTipoVeiculo().get(indice - 1);
     }
     
 }

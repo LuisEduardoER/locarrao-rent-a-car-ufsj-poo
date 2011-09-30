@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.dominio.TipoLocacao;
+import modelo.dominio.TipoVeiculo;
 
 public class PersistenciaTipoLocacao {
     File arquivo = new File("src/arquivos/TipoLocacao.txt");
@@ -19,28 +20,35 @@ public class PersistenciaTipoLocacao {
         if(arquivo.exists()){
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
-            TipoLocacao tipoVeiculo = new TipoLocacao();
+            
+            TipoLocacao tipoLocacao = new TipoLocacao();
+            TipoVeiculo tipoVeiculo = new TipoVeiculo();
+            
             String linha = null;
             
             int contador = 0;
-            while(leitor.ready()){
-                if (contador == 0){
+            while(leitor.ready()) {
+                if (contador == 0) {
                     linha = leitor.readLine();
-                    tipoVeiculo.setNomeTipo(linha);
+                    tipoLocacao.setNomeTipo(linha);
                     contador ++;
                 }
-                else if (contador == 1){
+                else if (contador == 1) {
                     linha = leitor.readLine();
-                    tipoVeiculo.setTaxa(Double.valueOf(linha.trim()).doubleValue());
+                    tipoLocacao.setTaxa(Double.valueOf(linha.trim()).doubleValue());
                     contador++;
                 }
-                else{
+                else if (contador == 2) {
                     linha = leitor.readLine();
-                    tipoVeiculo.setPrecoPorQuilometro(Double.valueOf(linha.trim()).doubleValue());
-                    listaTipoLocacao.add(tipoVeiculo);
+                    tipoLocacao.setPrecoPorQuilometro(Double.valueOf(linha.trim()).doubleValue());
+                    contador++;
+                }
+                else {
+                    linha = leitor.readLine();
+                    tipoVeiculo.setTipo(linha);
+                    tipoLocacao.setTipoVeiculo(tipoVeiculo);
+                    listaTipoLocacao.add(tipoLocacao);
                     contador = 0;
-                    
-                    
                 }
                 
             }
@@ -58,20 +66,27 @@ public class PersistenciaTipoLocacao {
             PrintWriter dados = new PrintWriter(writer);
             
             listaTipoLocacao = retornaTodosTipoLocacao();
-            listaTipoLocacao.add(tipoLocacao);
             
-            int contador = 0;
+            boolean achou = false;
+            for(TipoLocacao tipo : listaTipoLocacao){
+                if(tipoLocacao.getTipoVeiculo().getTipo().
+                        equals(tipo.getTipoVeiculo().getTipo())){
+                    
+                    tipo = tipoLocacao;
+                    achou = true;
+                }
+            }
+            
+            if(!achou){
+                listaTipoLocacao.add(tipoLocacao);
+            }
+            
             for(TipoLocacao tipo: listaTipoLocacao){
-                if(contador == 3){
-                    contador = 0;
-                    dados.println();
-                }
-                else{
-                    dados.println(tipo.getNomeTipo());
-                    dados.println(tipo.getTaxa());
-                    dados.println(tipo.getPrecoPorQuilometro());
-                    dados.println(tipo.getTipoVeiculo().getTipo());
-                }
+                dados.println(tipo.getNomeTipo());
+                dados.println(tipo.getTaxa());
+                dados.println(tipo.getPrecoPorQuilometro());
+                dados.println(tipo.getTipoVeiculo().getTipo());
+                
             }
             return true;
         }
