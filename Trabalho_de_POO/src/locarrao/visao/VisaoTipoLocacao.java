@@ -2,8 +2,11 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.TipoLocacao;
+import modelo.persistencia.PersistenciaTipoLocacao;
 import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoLocacao {
@@ -28,10 +31,28 @@ public class VisaoTipoLocacao {
         /* ------- Fim ------- */
         
         /* Salvar no arquivo */
+        PersistenciaTipoLocacao persistenciaTiposLocacao = new PersistenciaTipoLocacao();
+        
+        try {
+            boolean operacao = persistenciaTiposLocacao.salvar(tipoLocacao);
+            
+            if(operacao){
+                System.out.println("Lista salva com sucesso");
+            }
+            else{
+                System.out.println("Erro ao salvar a lista");
+            }
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println("Erro: Arquivo nao encontrado");
+        } catch (IOException ex) {
+            System.out.println("Erro na escrita/leitura do arquivo");;
+        }
         
         
         
     }
+    
     
     public void pesquisaTipoVeiculo(TipoLocacao tipoLocacao){
         VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
@@ -48,7 +69,4 @@ public class VisaoTipoLocacao {
         }
     }
     
-
-    
-         
 }
