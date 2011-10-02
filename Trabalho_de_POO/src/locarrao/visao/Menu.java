@@ -8,16 +8,16 @@ public class Menu {
         menu();
     }
     static void menu(){
-        int opcao;
-        do{
-            opcao = Integer.parseInt(javax.swing.JOptionPane.showInputDialog("" +  
-                    "1 - Cadastro de veiculos..\n" +  
+        int opcao=1;
+        do{  
+                    System.out.println("1 - Cadastro de veiculos..\n" +  
                     "2 - Cadastro de clientes.\n" +  
                     "3 - Cadastro de motoristas.\n" +  
                     "4 - Cadastro de funcionarios.\n" +  
                     "5 - Cadastro de locacoes.\n" +  
                     "6 - Cadastro do tipo de locacao.\n" +  
-                    "7 - Sair."));  
+                    "7 - Sair.");  
+                    
             switch(opcao){
                 case 1:  
                      
