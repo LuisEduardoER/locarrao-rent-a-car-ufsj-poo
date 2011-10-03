@@ -37,7 +37,7 @@ public class VisaoTipoVeiculo {
     }
     
     //Cria o menu a partir de uma lista de Veiculos
-    public int MenuTipoVeiculo() throws FileNotFoundException, IOException{
+    public int menuTipoVeiculo() throws FileNotFoundException, IOException{
         List<TipoVeiculo> listaTipoVeiculo = new ArrayList<TipoVeiculo>();
         
         PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();

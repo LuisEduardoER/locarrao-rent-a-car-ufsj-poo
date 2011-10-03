@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 
@@ -33,34 +31,26 @@ public class PersistenciaTipoLocacao {
             String linha = null;
             
             /* Leitura do arquivo
-             * linha 0 = nome do tipo
+             * linha 0 = Tipo do Veiculo
              * linha 1 = taxa
-             * linha 3 = preço por km
-             * linha 4 = nome do tipo de veiculo
-             * 
+             * linha 2 = preço por km
              * Essa será a ordem da escrita no arquivo
              */
             int contador = 0;
             while(leitor.ready()) {
                 if (contador == 0) {
-                    linha = leitor.readLine();
-                    tipoLocacao.setNomeTipo(linha);
-                    contador ++;
+                    tipoVeiculo.setTipo(linha);
+                    tipoLocacao.setTipoVeiculo(tipoVeiculo);
+                    contador++;
                 }
                 else if (contador == 1) {
                     linha = leitor.readLine();
                     tipoLocacao.setTaxa(Double.valueOf(linha.trim()).doubleValue());
-                    contador++;
-                }
-                else if (contador == 2) {
-                    linha = leitor.readLine();
-                    tipoLocacao.setPrecoPorQuilometro(Double.valueOf(linha.trim()).doubleValue());
-                    contador++;
+                    contador++ ;
                 }
                 else {
                     linha = leitor.readLine();
-                    tipoVeiculo.setTipo(linha);
-                    tipoLocacao.setTipoVeiculo(tipoVeiculo);
+                    tipoLocacao.setPrecoPorQuilometro(Double.valueOf(linha.trim()).doubleValue());
                     listaTipoLocacao.add(tipoLocacao);
                     contador = 0;
                 }
@@ -113,10 +103,9 @@ public class PersistenciaTipoLocacao {
             }
             
             for(TipoLocacao tipo: listaTipoLocacao){
-                dados.println(tipo.getNomeTipo());
+                dados.println(tipo.getTipoVeiculo().getTipo());
                 dados.println(tipo.getTaxa());
                 dados.println(tipo.getPrecoPorQuilometro());
-                dados.println(tipo.getTipoVeiculo().getTipo());
                 
             }
             
@@ -139,15 +128,24 @@ public class PersistenciaTipoLocacao {
      * os dois tipos de locação
      */
     
-    public boolean verificaCadastroTipoLocacao(TipoVeiculo tipoVeiculo){
+    public boolean verificaCadastroTipoLocacao(TipoLocacao tipoLocacao){
         List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
         try {
             listaTipoLocacao = retornaTodosTipoLocacao();
+            boolean achou = false;
+            for(TipoLocacao tipo : listaTipoLocacao){
+                if(tipoLocacao.getTipoVeiculo().getTipo().
+                        equals(tipo.getTipoVeiculo().getTipo())){
+                    achou = true;
+                }
+            }
+            
+            return achou;
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersistenciaTipoLocacao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro: Arquivo nao encontrado");
         } catch (IOException ex) {
-            Logger.getLogger(PersistenciaTipoLocacao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro na escrita/leitura do arquivo");
         }
         
         return false;

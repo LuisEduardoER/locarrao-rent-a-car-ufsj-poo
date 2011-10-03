@@ -10,6 +10,7 @@ import modelo.persistencia.PersistenciaTipoVeiculo;
 public class VisaoTipoLocacao {
     public void cadastraTipoLocacao() {
         TipoLocacao tipoLocacao = new TipoLocacao();
+        
         /* digitar os dados */
         Scanner entrada = new Scanner(System.in);
         
@@ -17,24 +18,6 @@ public class VisaoTipoLocacao {
         pesquisaTipoVeiculo(tipoLocacao);
         
         //outros dados
-        do{
-            System.out.println("Tipo de Locaçao");
-            System.out.println("1 - Por quilometro");
-            System.out.println("2 - Quilometragem livre");
-            switch(entrada.nextInt()){
-                case 1:
-                    tipoLocacao.setNomeTipo("Por quilometro");
-                    break;
-                    
-                case 2:
-                    tipoLocacao.setNomeTipo("Quilometragem livre");
-                    break;
-                default:
-                    System.out.println("Opção Invalida");
-            }
-            
-        }while(entrada.nextInt() != 1 || entrada.nextInt() != 2);
-        
         System.out.println("Taxa base");
         tipoLocacao.setTaxa(entrada.nextDouble());
         
@@ -44,10 +27,9 @@ public class VisaoTipoLocacao {
         /* ------- Fim ------- */
         
         /* Salvar no arquivo */
-        PersistenciaTipoLocacao persistenciaTiposLocacao = new PersistenciaTipoLocacao();
-        
+        PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
         try {
-            boolean operacao = persistenciaTiposLocacao.salvar(tipoLocacao);
+            boolean operacao = persistenciaTipoLocacao.salvar(tipoLocacao);
             
             if(operacao){
                 System.out.println("Lista salva com sucesso");
@@ -70,7 +52,7 @@ public class VisaoTipoLocacao {
         PersistenciaTipoVeiculo buscaTipoVeiculo = new PersistenciaTipoVeiculo();
         
         try {
-            int itemMenu = visaoTipoVeiculo.MenuTipoVeiculo();
+            int itemMenu = visaoTipoVeiculo.menuTipoVeiculo();
             
             tipoLocacao.setTipoVeiculo(buscaTipoVeiculo.retornaTipoVeiculo(itemMenu));
         } catch (FileNotFoundException ex) {
