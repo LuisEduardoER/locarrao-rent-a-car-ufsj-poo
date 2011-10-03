@@ -7,12 +7,20 @@ import modelo.dominio.Pessoa;*/
 public class Clientes extends Pessoa {
  
 	private Endereco endereco;
-	private Motorista motorista;
-        public Clientes(Endereco endereco,Motorista motorista){
-            this.endereco=endereco;
-            this.motorista=motorista;
-        }
-        
-	 
+
+    /**
+     * @param endereco the endereco to set
+     */
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    /**
+     * @return the endereco
+     */
+    public Endereco getEndereco() {
+        return endereco;
+    }
 }
- 
+        
+	  
