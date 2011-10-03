@@ -6,8 +6,6 @@ public class TipoLocacao {
 
     private double precoPorQuilometro;
 
-    private String nomeTipo;
-
     private TipoVeiculo tipoVeiculo;
 
     
@@ -27,21 +25,10 @@ public class TipoLocacao {
         this.precoPorQuilometro = precoPorQuilometro;
     }
 
-    public String getNomeTipo() {
-        return nomeTipo;
-    }
-
-    public void setNomeTipo(String nomeTipo) {
-        this.nomeTipo = nomeTipo;
-    }
-
     public TipoVeiculo getTipoVeiculo() {
         return tipoVeiculo;
     }
 
-    /**
-     * @param tipoVeiculo the tipoVeiculo to set
-     */
     public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
         this.tipoVeiculo = tipoVeiculo;
     }
