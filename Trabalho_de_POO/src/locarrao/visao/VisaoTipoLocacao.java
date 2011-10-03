@@ -21,17 +21,19 @@ public class VisaoTipoLocacao {
             System.out.println("Tipo de Locaçao");
             System.out.println("1 - Por quilometro");
             System.out.println("2 - Quilometragem livre");
-
-            if(entrada.nextInt() == 1) {
-                tipoLocacao.setNomeTipo("Por quilometro");
+            switch(entrada.nextInt()){
+                case 1:
+                    tipoLocacao.setNomeTipo("Por quilometro");
+                    break;
+                    
+                case 2:
+                    tipoLocacao.setNomeTipo("Quilometragem livre");
+                    break;
+                default:
+                    System.out.println("Opção Invalida");
             }
-            else if(entrada.nextInt() == 2) {
-                tipoLocacao.setNomeTipo("Quilometragem livre");
-            }
-            else {
-                System.out.println("Opção inválida");
-            }
-        }while(entrada.nextInt() == 1 || entrada.nextInt() == 2);
+            
+        }while(entrada.nextInt() != 1 || entrada.nextInt() != 2);
         
         System.out.println("Taxa base");
         tipoLocacao.setTaxa(entrada.nextDouble());
@@ -59,8 +61,6 @@ public class VisaoTipoLocacao {
         } catch (IOException ex) {
             System.out.println("Erro na escrita/leitura do arquivo");;
         }
-        
-        
         
     }
     

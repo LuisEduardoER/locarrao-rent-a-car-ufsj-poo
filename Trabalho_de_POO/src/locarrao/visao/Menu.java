@@ -44,7 +44,8 @@ public class Menu {
                     break;  
                 case 7:  
                     
-                    System.out.println("Fim da execucao!");  
+                    System.out.println("Fim da execucao!");
+                    System.exit(1);
                     break;  
                 default:  
                     System.out.println("A opcao digitada e invalida");
