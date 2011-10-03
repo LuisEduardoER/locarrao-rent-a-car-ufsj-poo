@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 
@@ -127,6 +129,28 @@ public class PersistenciaTipoLocacao {
             return false;
         }
 
+    }
+    
+    
+    /* Verifica se ja foi cadastrado o custo da locação para um determinado tipo
+     * de veiculo.
+     * Caso tenha sido cadastrado, então sera feita uma escolha de qual tipo de
+     * locação a ser alterada, caso contrário sera obrigatorio o cadastro para
+     * os dois tipos de locação
+     */
+    
+    public boolean verificaCadastroTipoLocacao(TipoVeiculo tipoVeiculo){
+        List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
+        try {
+            listaTipoLocacao = retornaTodosTipoLocacao();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersistenciaTipoLocacao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PersistenciaTipoLocacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
     }
 
 }
