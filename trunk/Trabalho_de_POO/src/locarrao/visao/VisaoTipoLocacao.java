@@ -2,8 +2,6 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.TipoLocacao;
 import modelo.persistencia.PersistenciaTipoLocacao;

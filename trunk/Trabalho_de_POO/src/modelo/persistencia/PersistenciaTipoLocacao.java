@@ -65,6 +65,9 @@ public class PersistenciaTipoLocacao {
                 
             }
             
+            reader.close();
+            leitor.close();
+            
         }
         else{
             System.out.println("Arquivo não existe");
@@ -114,6 +117,9 @@ public class PersistenciaTipoLocacao {
                 dados.println(tipo.getTipoVeiculo().getTipo());
                 
             }
+            
+            writer.close();
+            dados.close();
             return true;
         }
         else{

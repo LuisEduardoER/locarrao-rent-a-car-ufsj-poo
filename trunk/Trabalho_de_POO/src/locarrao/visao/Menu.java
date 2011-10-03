@@ -1,6 +1,8 @@
 
 package locarrao.visao;
 
+import java.util.Scanner;
+
 
 public class Menu {
     
@@ -8,6 +10,7 @@ public class Menu {
         menu();
     }
     static void menu(){
+        Scanner entrada = new Scanner (System.in);
         int opcao=1;
         do{  
                     System.out.println("1 - Cadastro de veiculos..\n" +  
@@ -17,10 +20,11 @@ public class Menu {
                     "5 - Cadastro de locacoes.\n" +  
                     "6 - Cadastro do tipo de locacao.\n" +  
                     "7 - Sair.");  
-                    
+                    opcao = entrada.nextInt();
             switch(opcao){
                 case 1:  
-                     
+                    VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
+                    visaoTipoVeiculo.cadastraTipoVeiculo();
                     break;  
                 case 2:  
                       
@@ -35,7 +39,8 @@ public class Menu {
                     
                     break;  
                 case 6:  
-                    
+                    VisaoTipoLocacao visaoTipoLocacao = new VisaoTipoLocacao();
+                    visaoTipoLocacao.cadastraTipoLocacao();
                     break;  
                 case 7:  
                     

@@ -10,12 +10,38 @@ import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoVeiculo {
     
+    public void cadastraTipoVeiculo(){
+        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("Nome para o tipo");
+        tipoVeiculo.setTipo(entrada.nextLine());
+        
+        /* Salvar no arquivo */
+        PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
+        try {
+            boolean operacao = persistenciaTipoVeiculo.salvar(tipoVeiculo);
+            
+            if(operacao){
+                System.out.println("Lista salva com sucesso");
+            }
+            else{
+                System.out.println("Erro na gravação do arquivo");
+            }
+        } catch (IOException ex) {
+            System.out.println("Erro na leitura/escrita do arquivo");
+        }
+        
+        
+    }
+    
     //Cria o menu a partir de uma lista de Veiculos
     public int MenuTipoVeiculo() throws FileNotFoundException, IOException{
         List<TipoVeiculo> listaTipoVeiculo = new ArrayList<TipoVeiculo>();
         
         PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
-        listaTipoVeiculo = persistenciaTipoVeiculo.retornarTodosTipoVeiculo();
+        listaTipoVeiculo = persistenciaTipoVeiculo.retornaTodosTipoVeiculo();
         
         Scanner entrada = new Scanner(System.in);
         int contador = 1;
