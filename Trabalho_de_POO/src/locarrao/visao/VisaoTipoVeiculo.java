@@ -44,12 +44,12 @@ public class VisaoTipoVeiculo {
         listaTipoVeiculo = persistenciaTipoVeiculo.retornaTodosTipoVeiculo();
         
         Scanner entrada = new Scanner(System.in);
+        System.out.println("Selecione o tipo de veiculo");
         int contador = 1;
         for(TipoVeiculo tipoVeiculo:listaTipoVeiculo){
             System.out.println(contador + " - " + tipoVeiculo.getTipo());
             contador++;
         }
-        System.out.println();
         
         contador = entrada.nextInt();
         

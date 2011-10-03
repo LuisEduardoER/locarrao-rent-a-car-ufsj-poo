@@ -17,8 +17,21 @@ public class VisaoTipoLocacao {
         pesquisaTipoVeiculo(tipoLocacao);
         
         //outros dados
-        System.out.println("Tipo de Locaçao");
-        tipoLocacao.setNomeTipo(entrada.nextLine());
+        do{
+            System.out.println("Tipo de Locaçao");
+            System.out.println("1 - Por quilometro");
+            System.out.println("2 - Quilometragem livre");
+
+            if(entrada.nextInt() == 1) {
+                tipoLocacao.setNomeTipo("Por quilometro");
+            }
+            else if(entrada.nextInt() == 2) {
+                tipoLocacao.setNomeTipo("Quilometragem livre");
+            }
+            else {
+                System.out.println("Opção inválida");
+            }
+        }while(entrada.nextInt() == 1 || entrada.nextInt() == 2);
         
         System.out.println("Taxa base");
         tipoLocacao.setTaxa(entrada.nextDouble());
