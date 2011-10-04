@@ -14,39 +14,42 @@ import modelo.dominio.TipoVeiculo;
 public class PersistenciaTipoVeiculo {
     File arquivo = new File("src/arquivos/TipoVeiculo.txt");
     
+    
     public List<TipoVeiculo> retornaTodosTipoVeiculo() throws FileNotFoundException, IOException {
         List<TipoVeiculo> listaTipoVeiculos = new ArrayList<TipoVeiculo>();
         
         if(arquivo.exists()){
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
-            String linha = null;
             
-            while(leitor.ready()){
+            String linha = "";
+            
+            while((linha = leitor.readLine()) != null){
                 TipoVeiculo tipoVeiculo = new TipoVeiculo();
-                linha = leitor.readLine();
                 tipoVeiculo.setTipo(linha);
                 listaTipoVeiculos.add(tipoVeiculo);
             }
+            
             reader.close();
             leitor.close();
         }
         else{
-            System.out.println("Arquivo não encontrada");
+            System.out.println("Arquivo não encontrado");
         }
         return listaTipoVeiculos;
     }
     
     public boolean salvar(TipoVeiculo tipoVeiculo) throws IOException {
-        if(this.arquivo.exists()){
-            List<TipoVeiculo> listaTipoVeiculo = new ArrayList<TipoVeiculo>();
+        List<TipoVeiculo> listaTipoVeiculos = new ArrayList<TipoVeiculo>();
+        
+        if(arquivo.exists()){
             
             //Variáveis para escrita no arquivo
-            FileWriter writer = new FileWriter(arquivo); 
+            FileWriter writer = new FileWriter(arquivo,true); 
             PrintWriter dados = new PrintWriter(writer);
             
             //busca todos os tipos existentes
-            listaTipoVeiculo = retornaTodosTipoVeiculo();
+            listaTipoVeiculos = retornaTodosTipoVeiculo();
             
             /* Salva tipoVeiculo no arquivo
              * 
@@ -57,20 +60,14 @@ public class PersistenciaTipoVeiculo {
              */
             
             boolean achou = false;
-            for(TipoVeiculo tipo : listaTipoVeiculo){
+            for(TipoVeiculo tipo : listaTipoVeiculos){
                 if(tipo.getTipo().equals(tipoVeiculo.getTipo())){
-                    
-                    tipo = tipoVeiculo;
                     achou = true;
                 }
             }
             
-            if(!achou){
-                listaTipoVeiculo.add(tipoVeiculo);
-            }
-            
-            for(TipoVeiculo tipo: listaTipoVeiculo){
-                dados.println(tipo.getTipo());
+            if(achou == false){
+                dados.println(tipoVeiculo.getTipo());
             }
             
             writer.close();

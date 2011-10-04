@@ -24,18 +24,18 @@ public class PersistenciaTipoLocacao {
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
             
-            
-            String linha = null;
-            
             /* Leitura do arquivo
              * linha 0 = Tipo do Veiculo
              * linha 1 = taxa
              * linha 2 = preço por km
              * Essa será a ordem da escrita no arquivo
              */
+            String linha = "";
             int contador = 0;
+            
             while((linha = leitor.readLine()) != null) {
                 //objetos
+                System.out.println(linha);
                 TipoLocacao tipoLocacao = new TipoLocacao();
                 TipoVeiculo tipoVeiculo = new TipoVeiculo();
             
@@ -45,11 +45,11 @@ public class PersistenciaTipoLocacao {
                     contador++;
                 }
                 else if (contador == 1) {
-                    tipoLocacao.setTaxa(Double.valueOf(linha.trim()).doubleValue());
+                    tipoLocacao.setTaxa(Double.parseDouble(linha));
                     contador++ ;
                 }
-                else {
-                    tipoLocacao.setPrecoPorQuilometro(Double.valueOf(linha.trim()).doubleValue());
+                else if (contador == 2) {
+                    tipoLocacao.setPrecoPorQuilometro(Double.parseDouble(linha));
                     listaTipoLocacao.add(tipoLocacao);
                     contador = 0;
                 }
@@ -73,7 +73,7 @@ public class PersistenciaTipoLocacao {
             List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
             
             //Variáveis para escrita no arquivo
-            FileWriter writer = new FileWriter(arquivo); 
+            FileWriter writer = new FileWriter(arquivo,true); 
             PrintWriter dados = new PrintWriter(writer);
             
             //busca todos os tipos existentes
@@ -86,18 +86,11 @@ public class PersistenciaTipoLocacao {
              * 
              * Caso contrario será adicionado na lista.
              */
-            
             boolean achou = false;
             for(TipoLocacao tipo : listaTipoLocacao){
-                if(tipoLocacao.getTipoVeiculo().getTipo().
-                        equals(tipo.getTipoVeiculo().getTipo())){
-                    
-                    tipo = tipoLocacao;
-                    achou = true;
-                }
+                achou = alteraCadastroTipoLocacao(listaTipoLocacao, tipoLocacao);
             }
-            
-            if(!achou){
+            if(achou == false){
                 listaTipoLocacao.add(tipoLocacao);
             }
             
@@ -127,27 +120,16 @@ public class PersistenciaTipoLocacao {
      * os dois tipos de locação
      */
     
-    public boolean verificaCadastroTipoLocacao(TipoLocacao tipoLocacao){
-        List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
-        try {
-            listaTipoLocacao = retornaTodosTipoLocacao();
-            boolean achou = false;
-            for(TipoLocacao tipo : listaTipoLocacao){
-                if(tipoLocacao.getTipoVeiculo().getTipo().
-                        equals(tipo.getTipoVeiculo().getTipo())){
-                    achou = true;
-                }
+    public boolean alteraCadastroTipoLocacao(List<TipoLocacao> listaTipoLocacao,TipoLocacao tipoLocacao){
+        boolean achou = false;
+        for(TipoLocacao tipo : listaTipoLocacao){
+            if(tipo.getTipoVeiculo().getTipo().contains(tipoLocacao.getTipoVeiculo().getTipo())) {tipo.setPrecoPorQuilometro(tipoLocacao.getPrecoPorQuilometro());
+                tipo.setTaxa(tipoLocacao.getTaxa());
+                achou = true;
             }
-            
-            return achou;
-            
-        } catch (FileNotFoundException ex) {
-            System.out.println("Erro: Arquivo nao encontrado");
-        } catch (IOException ex) {
-            System.out.println("Erro na escrita/leitura do arquivo");
         }
-        
-        return false;
+
+        return achou;
     }
 
 }
