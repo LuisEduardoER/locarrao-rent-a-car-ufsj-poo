@@ -8,30 +8,30 @@ public class Motorista extends Pessoa {
     /**
      * @return the cnh
      */
-    protected long getCnh() {
+    public long getCnh() {
         return cnh;
     }
 
     /**
      * @param cnh the cnh to set
      */
-    protected void setCnh(long cnh) {
+    public void setCnh(long cnh) {
         this.cnh = cnh;
     }
 
     /**
      * @return the endereco
      */
-    protected Endereco getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
     /**
      * @param endereco the endereco to set
      */
-    protected void setEndereco(Endereco endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-	 
+
 }
  
