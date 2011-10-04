@@ -53,8 +53,8 @@ public class VisaoTipoLocacao {
         
         try {
             int itemMenu = visaoTipoVeiculo.menuTipoVeiculo();
-            
             tipoLocacao.setTipoVeiculo(buscaTipoVeiculo.retornaTipoVeiculo(itemMenu));
+            
         } catch (FileNotFoundException ex) {
             System.out.println("Erro: não achou o arquivo!");
         } catch (IOException ex) {

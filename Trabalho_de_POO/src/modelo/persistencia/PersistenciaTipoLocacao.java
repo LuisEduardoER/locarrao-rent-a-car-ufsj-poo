@@ -24,9 +24,6 @@ public class PersistenciaTipoLocacao {
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
             
-            //objetos
-            TipoLocacao tipoLocacao = new TipoLocacao();
-            TipoVeiculo tipoVeiculo = new TipoVeiculo();
             
             String linha = null;
             
@@ -37,19 +34,21 @@ public class PersistenciaTipoLocacao {
              * Essa será a ordem da escrita no arquivo
              */
             int contador = 0;
-            while(leitor.ready()) {
+            while((linha = leitor.readLine()) != null) {
+                //objetos
+                TipoLocacao tipoLocacao = new TipoLocacao();
+                TipoVeiculo tipoVeiculo = new TipoVeiculo();
+            
                 if (contador == 0) {
                     tipoVeiculo.setTipo(linha);
                     tipoLocacao.setTipoVeiculo(tipoVeiculo);
                     contador++;
                 }
                 else if (contador == 1) {
-                    linha = leitor.readLine();
                     tipoLocacao.setTaxa(Double.valueOf(linha.trim()).doubleValue());
                     contador++ ;
                 }
                 else {
-                    linha = leitor.readLine();
                     tipoLocacao.setPrecoPorQuilometro(Double.valueOf(linha.trim()).doubleValue());
                     listaTipoLocacao.add(tipoLocacao);
                     contador = 0;

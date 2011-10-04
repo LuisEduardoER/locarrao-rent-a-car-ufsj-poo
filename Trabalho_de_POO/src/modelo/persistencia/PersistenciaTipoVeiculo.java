@@ -20,10 +20,10 @@ public class PersistenciaTipoVeiculo {
         if(arquivo.exists()){
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
-            TipoVeiculo tipoVeiculo = new TipoVeiculo();
             String linha = null;
             
             while(leitor.ready()){
+                TipoVeiculo tipoVeiculo = new TipoVeiculo();
                 linha = leitor.readLine();
                 tipoVeiculo.setTipo(linha);
                 listaTipoVeiculos.add(tipoVeiculo);

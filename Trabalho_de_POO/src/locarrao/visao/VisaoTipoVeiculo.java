@@ -33,7 +33,6 @@ public class VisaoTipoVeiculo {
             System.out.println("Erro na leitura/escrita do arquivo");
         }
         
-        
     }
     
     //Cria o menu a partir de uma lista de Veiculos
