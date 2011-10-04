@@ -9,71 +9,71 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 
 public class PersistenciaTipoLocacao {
-    File arquivo = new File("src/arquivos/TipoLocacao.txt");
+    static File arquivo = new File("src/arquivos/TipoLocacao.txt");
         
-    public List<TipoLocacao> retornaTodosTipoLocacao() throws FileNotFoundException, IOException{
+    public static List<TipoLocacao> retornaTodosTipoLocacao() throws FileNotFoundException, IOException{
         List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
         
         //Verifico se o arquivo existe, se existir faz as ações
         if(arquivo.exists()){
+            
             //variaveis para leitura do arquivo
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
             
             /* Leitura do arquivo
-             * linha 0 = Tipo do Veiculo
-             * linha 1 = taxa
-             * linha 2 = preço por km
+             * linha 0 = taxa
+             * linha 1 = preço por km
+             * linha 2 = Tipo do Veiculo
              * Essa será a ordem da escrita no arquivo
              */
-            String linha = "";
+            String linha = null;
             int contador = 0;
-            
             while((linha = leitor.readLine()) != null) {
                 //objetos
-                System.out.println(linha);
                 TipoLocacao tipoLocacao = new TipoLocacao();
                 TipoVeiculo tipoVeiculo = new TipoVeiculo();
-            
+
                 if (contador == 0) {
-                    tipoVeiculo.setTipo(linha);
-                    tipoLocacao.setTipoVeiculo(tipoVeiculo);
+                    tipoLocacao.setTaxa(Double.parseDouble(linha));
                     contador++;
                 }
                 else if (contador == 1) {
-                    tipoLocacao.setTaxa(Double.parseDouble(linha));
+                    tipoLocacao.setPrecoPorQuilometro(Double.parseDouble(linha));
                     contador++ ;
                 }
                 else if (contador == 2) {
-                    tipoLocacao.setPrecoPorQuilometro(Double.parseDouble(linha));
+                    tipoVeiculo.setTipo(linha);
+                    tipoLocacao.setTipoVeiculo(tipoVeiculo);
                     listaTipoLocacao.add(tipoLocacao);
                     contador = 0;
                 }
-                
             }
-            
+
             reader.close();
             leitor.close();
+            
             
         }
         else{
             System.out.println("Arquivo não existe");
         }
-        
         return listaTipoLocacao;
     }
     
     //salvar
     public boolean salvar(TipoLocacao tipoLocacao) throws IOException {
-        if(this.arquivo.exists()){
+        if(arquivo.exists()){
             List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
             
             //Variáveis para escrita no arquivo
-            FileWriter writer = new FileWriter(arquivo,true); 
+            FileWriter writer = new FileWriter(arquivo); 
             PrintWriter dados = new PrintWriter(writer);
             
             //busca todos os tipos existentes
@@ -86,19 +86,13 @@ public class PersistenciaTipoLocacao {
              * 
              * Caso contrario será adicionado na lista.
              */
-            boolean achou = false;
-            for(TipoLocacao tipo : listaTipoLocacao){
-                achou = alteraCadastroTipoLocacao(listaTipoLocacao, tipoLocacao);
-            }
-            if(achou == false){
-                listaTipoLocacao.add(tipoLocacao);
-            }
+            
+            alteraCadastroTipoLocacao(listaTipoLocacao, tipoLocacao);
             
             for(TipoLocacao tipo: listaTipoLocacao){
-                dados.println(tipo.getTipoVeiculo().getTipo());
                 dados.println(tipo.getTaxa());
                 dados.println(tipo.getPrecoPorQuilometro());
-                
+                dados.println(tipo.getTipoVeiculo().getTipo());
             }
             
             writer.close();
@@ -120,16 +114,36 @@ public class PersistenciaTipoLocacao {
      * os dois tipos de locação
      */
     
-    public boolean alteraCadastroTipoLocacao(List<TipoLocacao> listaTipoLocacao,TipoLocacao tipoLocacao){
-        boolean achou = false;
-        for(TipoLocacao tipo : listaTipoLocacao){
-            if(tipo.getTipoVeiculo().getTipo().contains(tipoLocacao.getTipoVeiculo().getTipo())) {tipo.setPrecoPorQuilometro(tipoLocacao.getPrecoPorQuilometro());
-                tipo.setTaxa(tipoLocacao.getTaxa());
-                achou = true;
+    public void alteraCadastroTipoLocacao(List<TipoLocacao> listaTipoLocacao,TipoLocacao tipoLocacao){
+        try {
+            List<TipoLocacao> lista = new ArrayList<TipoLocacao>();
+            
+            lista = PersistenciaTipoLocacao.retornaTodosTipoLocacao();
+            boolean achou = false;
+            
+            TipoVeiculo tipoVeiculo = new TipoVeiculo();
+            tipoVeiculo.setTipo(tipoLocacao.getTipoVeiculo().getTipo());
+            
+            for(TipoLocacao tipo : lista){
+                System.out.println("passou no foreach");
+                System.out.println("tipo For: " + tipo.getTipoVeiculo().getTipo());
+                
+                if(tipo.getTipoVeiculo().getTipo().equals(tipoVeiculo.getTipo())){
+                    tipo.setTaxa(tipoLocacao.getTaxa());
+                    tipo.setPrecoPorQuilometro(tipoLocacao.getPrecoPorQuilometro());
+                    achou = true;
+                }
+                
             }
+            if(achou == false){
+                listaTipoLocacao.add(tipoLocacao);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Erro. Arquivo não localizado");
+        } catch (IOException ex) {
+            System.out.println("Erro na leitura/escrita do arquivo");
         }
-
-        return achou;
+            
     }
 
 }
