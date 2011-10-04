@@ -1,1 +1,13 @@
-passeio
+Basico
+Economico
+Compacto
+Luxo
+Minivan
+Esportivo
+Executivo
+Familiar
+Utilitario
+Automatico
+Pick Up
+Van
+Blindado
