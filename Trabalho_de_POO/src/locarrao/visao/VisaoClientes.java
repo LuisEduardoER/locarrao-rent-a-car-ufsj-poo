@@ -67,5 +67,17 @@ public class VisaoClientes {
         }
         
     }
+    
+    public void alteraCliente(){
+        
+    }
+    
+    public void pesquisaCliente(){
+        
+    }
+    
+    public void excluiCliente(){
+        
+    }
 }
 
