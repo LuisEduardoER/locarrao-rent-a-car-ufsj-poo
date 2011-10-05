@@ -11,6 +11,8 @@ import java.util.List;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 
+//deu erro no commit
+
 public class PersistenciaTipoLocacao {
     File arquivo = new File("src/arquivos/TipoLocacao.txt");
         
