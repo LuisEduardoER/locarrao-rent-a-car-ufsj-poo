@@ -11,9 +11,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
+import modelo.dominio.Motorista;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
+import modelo.dominio.Veiculos;
 
 /**
  *
@@ -46,7 +49,10 @@ public class PersistenciaLocacao {
                     Locacao locacao = new Locacao();
                     TipoLocacao tipoLocacao = new TipoLocacao();
                     TipoVeiculo tipoVeiculo = new TipoVeiculo();
-
+                    Motorista motorista = new Motorista();
+                    Veiculos veiculo = new Veiculos();
+                    Clientes cliente = new Clientes();
+                    
                     if (contador == 0) {
                         locacao.setQuilometragemDeSaida(Long.parseLong(linha));
                         contador++;
@@ -84,9 +90,25 @@ public class PersistenciaLocacao {
                         tipoVeiculo.setTipo(linha);
                         tipoLocacao.setTipoVeiculo(tipoVeiculo);
                         locacao.setTipoLocacao(tipoLocacao);
-                        listaLocacao.add(locacao);
-                        contador = 0;
+                        contador++;
                     }
+                    else if (contador == 9){
+                        cliente.setCodigo(Integer.parseInt(linha));
+                        locacao.setCliente(cliente);
+                        contador++;
+                    }
+                    else if (contador == 10){
+                        motorista.setCodigo(Integer.parseInt(linha));
+                        locacao.setMotorista(motorista);
+                        contador++;
+                    }
+                    else if (contador == 11){
+                        veiculo.setPlaca(linha);
+                        locacao.setVeiculo(veiculo);
+                        listaLocacao.add(locacao);
+                        contador=0;
+                    }
+                    
                 }
                 reader.close();
                 leitor.close();
@@ -99,5 +121,27 @@ public class PersistenciaLocacao {
         }
         return listaLocacao;
     }
+    /*
+    public void alteraCadastroLocacao(List<Locacao> listaLocacao,Locacao locacao){
+        boolean achou = false;
+
+        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        tipoVeiculo.setTipo(tipoLocacao.getTipoVeiculo().getTipo());
+
+        for(TipoLocacao tipo : listaTipoLocacao){
+            if(tipo.getTipoVeiculo().getTipo().equals(tipoVeiculo.getTipo())){
+                tipo.setTaxa(tipoLocacao.getTaxa());
+                tipo.setPrecoPorQuilometro(tipoLocacao.getPrecoPorQuilometro());
+                achou = true;
+            }
+
+        }
+        if(achou == false){
+            listaTipoLocacao.add(tipoLocacao);
+        }
+           
+    }
     
+     * 
+     */
 }

@@ -22,6 +22,12 @@ public class Locacao {
 	private boolean locacaoAberta;
 	 
 	private TipoLocacao tipoLocacao;
+        
+        private Clientes cliente;
+        
+        private Motorista motorista;
+        
+        private Veiculos veiculo;
 
     /**
      * @return the quilometragemDeSaida
@@ -150,6 +156,48 @@ public class Locacao {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the motorista
+     */
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    /**
+     * @param motorista the motorista to set
+     */
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
+    }
+
+    /**
+     * @return the veiculo
+     */
+    public Veiculos getVeiculo() {
+        return veiculo;
+    }
+
+    /**
+     * @param veiculo the veiculo to set
+     */
+    public void setVeiculo(Veiculos veiculo) {
+        this.veiculo = veiculo;
     }
 	 
 }
