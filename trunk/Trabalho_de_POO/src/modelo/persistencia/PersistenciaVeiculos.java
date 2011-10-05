@@ -144,10 +144,10 @@ public class PersistenciaVeiculos {
     }
     public boolean pesquisaVeiculo(Veiculos veiculo) throws FileNotFoundException, IOException{
         List<Veiculos> listaVeiculos = new ArrayList<Veiculos> ();
-        listaVeiculos=retornaTodosVeiculos();
+        listaVeiculos = retornaTodosVeiculos();
         boolean encontrou = false;
         for(Veiculos automoveis: listaVeiculos){
-            if (veiculo.getPlaca() == veiculo.getPlaca()){
+            if (automoveis.getPlaca().equals(veiculo.getPlaca())){
                 return encontrou=true;
             }
         }

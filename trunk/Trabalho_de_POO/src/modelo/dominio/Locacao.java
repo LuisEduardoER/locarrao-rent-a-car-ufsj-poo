@@ -1,6 +1,5 @@
 package modelo.dominio;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Locacao {
@@ -28,6 +27,8 @@ public class Locacao {
         private Motorista motorista;
         
         private Veiculos veiculo;
+        
+        private int codigo;
 
     /**
      * @return the quilometragemDeSaida
@@ -198,6 +199,20 @@ public class Locacao {
      */
     public void setVeiculo(Veiculos veiculo) {
         this.veiculo = veiculo;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public int getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 	 
 }
