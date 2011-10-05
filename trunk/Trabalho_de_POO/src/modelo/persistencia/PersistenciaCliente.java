@@ -33,77 +33,70 @@ public class PersistenciaCliente {
             try {
                 reader = new FileReader(arquivo);
                 BufferedReader leitor = new BufferedReader(reader);
+                
                 Clientes clientes = new Clientes();
                 Endereco endereco = new Endereco();
                 //percorre o arquivo...
                 String linha = null;
-                int contador=0;
+                int contador = 0;
                 try {
-                    while(leitor.ready()){
-                        if (contador==0){
-                            linha=leitor.readLine();
-                           
+                    while((linha=leitor.readLine()) != null){
+                        if (contador == 0){
+                            
                             //transformando string em inteiro...
                             clientes.setCodigo(Integer.valueOf(linha));
                             contador++;
                         }
-                        else if(contador==1){
-                            linha=leitor.readLine();
+                        else if(contador == 1){
                             clientes.setNome(linha);
                             contador++;
                         }
-                        else if (contador==2){
-                            linha=leitor.readLine();
+                        else if (contador == 2){
                             clientes.setCpf(linha);
                             contador++;
                         }
-                        else if (contador==3){
-                            linha=leitor.readLine();
+                        else if (contador == 3){
                             clientes.setTefefone(linha);
                             contador++;
                         }
-                        else if (contador==4){
-                            linha=leitor.readLine();
+                        else if (contador == 4){
                             endereco.setRua(linha);
                             contador++;
                         }
-                        else if (contador==5) {
-                            linha=leitor.readLine();
+                        else if (contador == 5) {
                             endereco.setNumero(Integer.valueOf(linha));
                             contador++;
                         }
-                        else if (contador==6){
-                            linha=leitor.readLine();
+                        else if (contador == 6){
                             endereco.setComplemento(linha);
                             contador++;
                         }
-                        else if (contador==7){
-                            linha=leitor.readLine();
+                        else if (contador == 7){
                             endereco.setBairro(linha);
                             contador++;
                         }
-                        else if (contador==8){
-                            linha=leitor.readLine();
+                        else if (contador == 8){
                             endereco.setCidade(linha);
                             contador++;
                         }
-                        else if (contador==9){
-                            linha=leitor.readLine();
+                        else if (contador == 9){
                             endereco.setUf(linha);
                             contador++;
                         }
-                        else if (contador==10){
-                            linha=leitor.readLine();
+                        else if (contador == 10){
                             endereco.setCep(linha);
                             clientes.setEndereco(endereco);
                             listaClientes.add(clientes);
                             contador=0;
                         }
-                        reader.close();
-                        leitor.close();
+                        
                     }
+                    
+                    reader.close();
+                    leitor.close();
                 } catch (IOException ex) {
                     System.out.println("Erro na leitura/escrita do arquivo");
+                    System.out.println(ex.getMessage());
                 }
             } catch (FileNotFoundException ex) {
                 System.out.println("Arquivo não encontrado");
@@ -168,7 +161,7 @@ public class PersistenciaCliente {
         boolean encontrou = false;
         for(Clientes pessoas: listaClientes){
             if (cliente.getCodigo() == pessoas.getCodigo()){
-                return encontrou=true;
+                return encontrou = true;
             }
         }
         return encontrou;

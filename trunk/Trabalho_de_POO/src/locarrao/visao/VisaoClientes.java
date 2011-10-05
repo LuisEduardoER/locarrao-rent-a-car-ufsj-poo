@@ -28,6 +28,7 @@ public class VisaoClientes {
         
         PersistenciaCliente persistenciaClientes = new PersistenciaCliente();
         listaClientes = persistenciaClientes.retornaTodosClientes();
+        
         System.out.println("Digite o codigo");
         clientes.setCodigo(cadastro.nextInt());
         cadastro.nextLine();
