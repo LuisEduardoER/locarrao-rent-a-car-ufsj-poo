@@ -23,10 +23,10 @@ import modelo.dominio.Endereco;
 public class PersistenciaCliente {
     File arquivo = new File("src/arquivos/Clientes.txt");
     public List<Clientes> retornaTodosClientes () {
-        
+       
         //criando a lista...
         List<Clientes> listaClientes = new ArrayList<Clientes> ();
-        
+       
         //verificando existencia do arquivo...
         if(arquivo.exists()){
             FileReader reader = null;
@@ -42,11 +42,11 @@ public class PersistenciaCliente {
                     while(leitor.ready()){
                         if (contador==0){
                             linha=leitor.readLine();
-                            
+                           
                             //transformando string em inteiro...
                             clientes.setCodigo(Integer.valueOf(linha));
                             contador++;
-                        } 
+                        }
                         else if(contador==1){
                             linha=leitor.readLine();
                             clientes.setNome(linha);
@@ -107,7 +107,7 @@ public class PersistenciaCliente {
                 }
             } catch (FileNotFoundException ex) {
                 System.out.println("Arquivo não encontrado");
-            } 
+            }
         }
         else {
             System.out.println("Arquivo não encontrado");
@@ -115,7 +115,7 @@ public class PersistenciaCliente {
         return listaClientes;    
    }
    public boolean salvar(List<Clientes> listaClientes,Clientes clientes) throws FileNotFoundException, IOException {
-        FileWriter writer = new FileWriter(arquivo); ;
+        FileWriter writer = new FileWriter(arquivo);
         PrintWriter cadastro = new PrintWriter(writer);
 
         boolean encontrou = pesquisaCliente(listaClientes,clientes);
@@ -123,7 +123,7 @@ public class PersistenciaCliente {
         if(!encontrou){
             listaClientes.add(clientes);
         }
-        
+       
         for(Clientes pessoas: listaClientes){
             cadastro.println(pessoas.getCodigo());
             cadastro.println(pessoas.getNome());
@@ -137,17 +137,17 @@ public class PersistenciaCliente {
             cadastro.println(pessoas.getEndereco().getUf());
             cadastro.println(pessoas.getEndereco().getCep());
         }
-        
+       
         writer.close();
         cadastro.close();
-        
+       
         return true;
-        
-            
+       
+           
     }
-    
+   
     public boolean alteraCliente(List<Clientes> listaClientes, Clientes clientes) throws FileNotFoundException, IOException{
-        
+       
         boolean existe = pesquisaCliente(listaClientes,clientes);
         boolean retorno = false;
         if (existe){
@@ -157,7 +157,7 @@ public class PersistenciaCliente {
                     retorno = true;
                 }
             }
-        } 
+        }
         else {
             System.out.println("Erro! Cliente não existe");
             retorno = false;
@@ -173,5 +173,6 @@ public class PersistenciaCliente {
         }
         return encontrou;
     }
-    
+   
 }
+
