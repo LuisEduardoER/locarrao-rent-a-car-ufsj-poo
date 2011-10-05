@@ -9,6 +9,7 @@ public class Menu {
     public static void main(String[] args){
         Menu entrada = new Menu();
         entrada.menu();
+        System.exit(0);
     }
     
     public void menu(){
