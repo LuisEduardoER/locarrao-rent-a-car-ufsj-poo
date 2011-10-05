@@ -23,62 +23,74 @@ import modelo.dominio.Endereco;
 public class PersistenciaMotorista{
     File arquivo = new File("src/arquivos/Motorista.txt");
     
-    public List<Motorista> retornaMotorista() throws FileNotFoundException, IOException{
+    public List<Motorista> retornaMotorista(){
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
         //verifica se o arquivo existe
         if(arquivo.exists()){
            // variaveis para leitura de arquivos
-            FileReader reader = new FileReader(arquivo);
-            BufferedReader leitor = new BufferedReader(reader);
-            //objeto
-            Motorista motorista = new Motorista();
-            Endereco endereco=new Endereco();
-            String linha = null;
-            int contador = 0;
-            /* leitura do arquivo 
-             * linha 0 = cnh
-             * linha 1 = endereco
-             * sera a ordem para escrita e leitura no arquivo
-             */
-            while(leitor.ready()){
-                if(contador==0){
-                    linha=leitor.readLine();
-                    motorista.setCnh(Long.valueOf(linha));
-                    contador ++;
-                }else if(contador ==1){
-                    linha=leitor.readLine();
-                    endereco.setRua(linha);
-                    contador ++;
-                }else if(contador == 2){
-                    linha=leitor.readLine();
-                    endereco.setNumero(Integer.valueOf(linha));
-                    contador ++;
-                }else if(contador == 3){
-                    linha=leitor.readLine();
-                    endereco.setComplemento(linha);
-                    contador ++;
-                }else if(contador == 4){
-                    linha=leitor.readLine();
-                    endereco.setBairro(linha);
-                    contador ++;
-                }else if(contador == 5){
-                    linha=leitor.readLine();
-                    endereco.setCidade(linha);
-                    contador ++;
-                }else if(contador == 6){
-                    linha=leitor.readLine();
-                    endereco.setUf(linha);
-                    contador ++;
-                }else if(contador == 7){
-                    linha=leitor.readLine();
-                    endereco.setCep(linha);
-                    motorista.setEndereco(endereco);
-                    listaMotorista.add(motorista);
-                    contador=0;
-            }   
+            FileReader reader;
+            try {
+                reader = new FileReader(arquivo);
+                BufferedReader leitor = new BufferedReader(reader);
+                //objeto
+                Motorista motorista = new Motorista();
+                Endereco endereco=new Endereco();
+                String linha = null;
+                int contador = 0;
+                
+                try {
+                    /* leitura do arquivo 
+                     * linha 0 = cnh
+                     * linha 1 = endereco
+                     * sera a ordem para escrita e leitura no arquivo
+                     */
+                    while(leitor.ready()){
+                        if(contador==0){
+                            linha=leitor.readLine();
+                            motorista.setCnh(Long.valueOf(linha));
+                            contador ++;
+                        }else if(contador ==1){
+                            linha=leitor.readLine();
+                            endereco.setRua(linha);
+                            contador ++;
+                        }else if(contador == 2){
+                            linha=leitor.readLine();
+                            endereco.setNumero(Integer.valueOf(linha));
+                            contador ++;
+                        }else if(contador == 3){
+                            linha=leitor.readLine();
+                            endereco.setComplemento(linha);
+                            contador ++;
+                        }else if(contador == 4){
+                            linha=leitor.readLine();
+                            endereco.setBairro(linha);
+                            contador ++;
+                        }else if(contador == 5){
+                            linha=leitor.readLine();
+                            endereco.setCidade(linha);
+                            contador ++;
+                        }else if(contador == 6){
+                            linha=leitor.readLine();
+                            endereco.setUf(linha);
+                            contador ++;
+                        }else if(contador == 7){
+                            linha=leitor.readLine();
+                            endereco.setCep(linha);
+                            motorista.setEndereco(endereco);
+                            listaMotorista.add(motorista);
+                            contador=0;
+                        }   
+                    }
+                    
+                    reader.close();
+                    leitor.close();
+                } catch (IOException ex) {
+                    System.out.println("Erro na escrita ou leitura do arquivo");
+                }
+            } catch (FileNotFoundException ex) {
+                System.out.println("Arquivo nao encontrado");
             }
-            reader.close();
-            leitor.close();
+            
         }else{
             System.out.println("Erro: Arquivo de Motoristas não encontrado");
         }

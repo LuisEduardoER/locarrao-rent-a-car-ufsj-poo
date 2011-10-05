@@ -6,7 +6,11 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
@@ -68,6 +72,26 @@ public class VisaoVeiculos {
     }
     
     public void alteraVeiculos(){
+        
+    }
+    
+    public boolean pesquisaVeiculo(Veiculos veiculo){
+        List<Veiculos> listaVeiculo = new ArrayList<Veiculos>();
+        boolean encontrou = false;
+        PersistenciaVeiculos persistenciaVeiculo = new PersistenciaVeiculos();
+        try {
+            listaVeiculo = persistenciaVeiculo.retornaTodosVeiculos();
+            
+            encontrou = persistenciaVeiculo.pesquisaVeiculo(veiculo);
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VisaoVeiculos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(VisaoVeiculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return encontrou;
+        
         
     }
     

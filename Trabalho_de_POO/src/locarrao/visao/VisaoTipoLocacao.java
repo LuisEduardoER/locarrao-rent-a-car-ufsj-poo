@@ -67,4 +67,35 @@ public class VisaoTipoLocacao {
         }
     }
     
+    public String retornaTipoDeLocacao(){
+        Scanner entrada = new Scanner(System.in);
+        String retorno = "";
+        
+        do{
+            System.out.println("Escolha o tipo de Locacao");
+            System.out.println();
+        
+            System.out.println("1 - Por Quilometro");
+            System.out.println("2 - Quilometragem livre");
+            
+            switch(entrada.nextInt()){
+                case 1:
+                    retorno = "Por Quilometro";
+                    break;
+                
+                case 2:
+                    retorno = "Quilometragem livre";
+                    break;
+                    
+                default:
+                    System.out.println("Opcao invalida");
+                   
+            }
+        }while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
+        
+        
+        return retorno;
+        
+    }
+    
 }
