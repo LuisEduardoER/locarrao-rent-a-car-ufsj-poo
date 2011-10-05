@@ -12,7 +12,6 @@ public class Menu {
     
     public static void menu(){
         Scanner entrada = new Scanner (System.in);
-        int menu = 0;
         int opcao = 0;
         do{
             System.out.println("Locarrão Rent a Car ");
@@ -194,43 +193,71 @@ public class Menu {
                     break;
                     
                 case 2:
+                    VisaoLocacao visaoLocacao = new VisaoLocacao();
+                    do{
+                        switch(menuRelatorios()){
+                            case 1:
+                                visaoLocacao.locacoesEmAberto();
+                                break;
+                            
+                            case 2:
+                                visaoLocacao.locacoesFinalizadas();
+                                break;
+                                
+                            case 3:
+                                visaoLocacao.veiculosDisponiveis();
+                                break;
+                                
+                            case 4:
+                                visaoLocacao.veiculosMaisProcurados();
+                                break;
+                               
+                            case 5:
+                                visaoLocacao.veiculosMaisRentaveis();
+                                break;
+                                
+                            case 6:
+                                VisaoClientes visaoClientes = new VisaoClientes();
+                                visaoClientes.buscaPorNome();
+                                break;
+                             
+                            case 7:
+                                visaoLocacao.disponibilidadePorTipo();
+                                break;
+                               
+                            default:
+                                System.out.println("Opçao Invalida");
+                        }
+                    }while(menuRelatorios()!= 8);
+                    break;
+                    
+                case 3:
+                    visaoLocacao = new VisaoLocacao();
+                    do{
+                        switch(menuLocacao()){
+                            case 1:
+                                visaoLocacao.cadastraLocacao();
+                                break;
+                                
+                            case 2:
+                                visaoLocacao.alteraLocacao();
+                                break;
+                                
+                            case 3:
+                                visaoLocacao.pesquisaLocacao();
+                                break;
+                                
+                            case 4:
+                                visaoLocacao.excluiLocacao();
+                                break;
+                                
+                            default:
+                                System.out.println("Opçao inválida");
+                        }
+                    }while(menuLocacao() != 5);
                     
             }
             
-            /*switch(opcao){
-                case 1:  
-                    VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
-                    visaoTipoVeiculo.cadastraTipoVeiculo();
-                    break;  
-                case 2:  
-                    VisaoClientes visaoClientes = new VisaoClientes();
-                    visaoClientes.cadastraClientes();
-                    break;  
-                case 3:  
-                      
-                    break;  
-                case 4:  
-                    VisaoFuncionarios visaoFuncionarios = new VisaoFuncionarios();
-                    visaoFuncionarios.cadastraFuncionarios();
-                    break;  
-                case 5:  
-                    
-                    break;  
-                case 6:  
-                    VisaoTipoLocacao visaoTipoLocacao = new VisaoTipoLocacao();
-                    visaoTipoLocacao.cadastraTipoLocacao();
-                    break;  
-                case 7:  
-                    
-                    System.out.println("Fim da execucao!");
-                    System.exit(1);
-                    break;  
-                default:  
-                    System.out.println("A opcao digitada e invalida");
-                    System.out.println("Escolha uma opcao valida para continuar."); 
-            }
-             * 
-             */
         }while (opcao !=7);
              
     }
@@ -351,14 +378,38 @@ public class Menu {
         System.out.println("----------------- Relatorios -----------------");
         System.out.println();
         
+        System.out.println("1 - Locacoes em aberto");
+        System.out.println("2 - Locacoes finalizadas");
+        System.out.println("3 - Veiculos disponiveis");
+        System.out.println("4 - Veiculos mais procurados");
+        System.out.println("5 - Veiculos mais rentaveis");
+        System.out.println("6 - Busca de clientes pelo nome");
+        System.out.println("7 - Disponibilidade por Tipo de Veiculo");
+        System.out.println("8 - Voltar ao menu anterior");
+        
+        
+        return entrada.nextInt();
+    }
+    
+    /* --------------------- fim métodos para o menu de cadastro --------------------- */
+    
+    /* --------------------- métodos para o menu de Locação --------------------- */
+    
+    public static int menuLocacao(){
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("----------------- Locação -----------------");
+        System.out.println();
+        
         System.out.println("1 - Cadastrar");
         System.out.println("2 - Alterar");
         System.out.println("3 - Pesquisar");
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
         
+        
         return entrada.nextInt();
     }
     
-    /* --------------------- fim métodos para o menu de cadastro --------------------- */
+    /* --------------------- fim métodos para o menu de Locação --------------------- */
 }

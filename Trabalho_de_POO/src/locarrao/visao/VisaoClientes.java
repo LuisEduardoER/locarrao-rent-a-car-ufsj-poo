@@ -79,5 +79,9 @@ public class VisaoClientes {
     public void excluiCliente(){
         
     }
+    
+    public void buscaPorNome(){
+        
+    }
 }
 
