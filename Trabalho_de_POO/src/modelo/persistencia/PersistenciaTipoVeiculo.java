@@ -22,7 +22,7 @@ public class PersistenciaTipoVeiculo {
             FileReader reader = new FileReader(arquivo);
             BufferedReader leitor = new BufferedReader(reader);
             
-            String linha = "";
+            String linha = null;
             
             while((linha = leitor.readLine()) != null){
                 TipoVeiculo tipoVeiculo = new TipoVeiculo();
@@ -39,40 +39,37 @@ public class PersistenciaTipoVeiculo {
         return listaTipoVeiculos;
     }
     
-    public boolean salvar(TipoVeiculo tipoVeiculo) throws IOException {
-        List<TipoVeiculo> listaTipoVeiculos = new ArrayList<TipoVeiculo>();
-        
+    public boolean salvar(List<TipoVeiculo> listaTipoVeiculo, TipoVeiculo tipoVeiculo) {
         if(arquivo.exists()){
-            
-            //Variáveis para escrita no arquivo
-            FileWriter writer = new FileWriter(arquivo,true); 
-            PrintWriter dados = new PrintWriter(writer);
-            
-            //busca todos os tipos existentes
-            listaTipoVeiculos = retornaTodosTipoVeiculo();
-            
-            /* Salva tipoVeiculo no arquivo
-             * 
-             * Caso já tenha sido feito o cadastro do tipo de veiculo
-             * não será feito nada no arquivo
-             * 
-             * Caso contrario será adicionado na lista.
-             */
-            
-            boolean achou = false;
-            for(TipoVeiculo tipo : listaTipoVeiculos){
-                if(tipo.getTipo().equals(tipoVeiculo.getTipo())){
-                    achou = true;
+            FileWriter writer = null;
+            try {
+                writer = new FileWriter(arquivo,true);
+                PrintWriter dados = new PrintWriter(writer);
+                //busca todos os tipos existentes
+                /* Salva tipoVeiculo no arquivo
+                 *
+                 * Caso já tenha sido feito o cadastro do tipo de veiculo
+                 * não será feito nada no arquivo
+                 *
+                 * Caso contrario será adicionado na lista.
+                 */
+                
+                boolean achou = false;
+                for(TipoVeiculo tipo : listaTipoVeiculo){
+                    if(tipo.getTipo().equals(tipoVeiculo.getTipo())){
+                        achou = true;
+                    }
                 }
+                if(achou == false){
+                    dados.println(tipoVeiculo.getTipo());
+                }
+                writer.close();
+                dados.close();
+                return true;
+            } catch (IOException ex) {
+                System.out.println("Erro na escrita/leitura do arquivo");
+                return false;
             }
-            
-            if(achou == false){
-                dados.println(tipoVeiculo.getTipo());
-            }
-            
-            writer.close();
-            dados.close();
-            return true;
         }
         else{
             System.out.println("Arquvo não encontrado");

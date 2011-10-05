@@ -10,8 +10,9 @@ import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoVeiculo {
     
-    public void cadastraTipoVeiculo(){
+    public void cadastraTipoVeiculo() {
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        List<TipoVeiculo> listaTipoVeiculo = new ArrayList<TipoVeiculo>();
         
         Scanner entrada = new Scanner(System.in);
         
@@ -21,17 +22,22 @@ public class VisaoTipoVeiculo {
         /* Salvar no arquivo */
         PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
         try {
-            boolean operacao = persistenciaTipoVeiculo.salvar(tipoVeiculo);
-            
-            if(operacao){
-                System.out.println("Lista salva com sucesso");
-            }
-            else{
-                System.out.println("Erro na gravação do arquivo");
-            }
-        } catch (IOException ex) {
-            System.out.println("Erro na leitura/escrita do arquivo");
+            listaTipoVeiculo = persistenciaTipoVeiculo.retornaTodosTipoVeiculo();
+            boolean operacao = persistenciaTipoVeiculo.salvar(listaTipoVeiculo,tipoVeiculo);
+
+        if(operacao){
+            System.out.println("Lista salva com sucesso");
         }
+        else{
+            System.out.println("Erro na gravação do arquivo");
+        }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Erro: Arquivo não encontrado");
+        } catch (IOException ex) {
+            System.out.println("Erro na escrita/leitura do arquivo");
+        }
+        
+        
         
     }
     

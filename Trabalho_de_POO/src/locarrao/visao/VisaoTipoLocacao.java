@@ -2,6 +2,8 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.TipoLocacao;
 import modelo.persistencia.PersistenciaTipoLocacao;
@@ -10,6 +12,7 @@ import modelo.persistencia.PersistenciaTipoVeiculo;
 public class VisaoTipoLocacao {
     public void cadastraTipoLocacao() {
         TipoLocacao tipoLocacao = new TipoLocacao();
+        List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
         
         /* digitar os dados */
         Scanner entrada = new Scanner(System.in);
@@ -28,8 +31,10 @@ public class VisaoTipoLocacao {
         
         /* Salvar no arquivo */
         PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
+        listaTipoLocacao = persistenciaTipoLocacao.retornaTodosTipoLocacao();
+        
         try {
-            boolean operacao = persistenciaTipoLocacao.salvar(tipoLocacao);
+            boolean operacao = persistenciaTipoLocacao.salvar(listaTipoLocacao,tipoLocacao);
             
             if(operacao){
                 System.out.println("Lista salva com sucesso");
