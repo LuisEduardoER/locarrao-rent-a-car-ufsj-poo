@@ -7,16 +7,14 @@ public class ModeloVeiculo {
     /**
      * @return the modelo
      */
-    protected String getModelo() {
+    public String getModelo() {
         return modelo;
     }
 
     /**
      * @param modelo the modelo to set
      */
-    protected void setModelo(String modelo) {
+    public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-	 
 }
- 

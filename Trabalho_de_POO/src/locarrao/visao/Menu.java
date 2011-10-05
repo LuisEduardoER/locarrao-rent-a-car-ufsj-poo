@@ -27,13 +27,15 @@ public class Menu {
                     visaoTipoVeiculo.cadastraTipoVeiculo();
                     break;  
                 case 2:  
-                      
+                    VisaoClientes visaoClientes = new VisaoClientes();
+                    visaoClientes.cadastraClientes();
                     break;  
                 case 3:  
                       
                     break;  
                 case 4:  
-                    
+                    VisaoFuncionarios visaoFuncionarios = new VisaoFuncionarios();
+                    visaoFuncionarios.cadastraFuncionarios();
                     break;  
                 case 5:  
                     
