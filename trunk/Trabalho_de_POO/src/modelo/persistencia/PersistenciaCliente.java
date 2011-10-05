@@ -22,101 +22,104 @@ import modelo.dominio.Endereco;
  */
 public class PersistenciaCliente {
     File arquivo = new File("src/arquivos/Clientes.txt");
-    public List<Clientes> retornaTodosClientes () throws FileNotFoundException, IOException {
+    public List<Clientes> retornaTodosClientes () {
         
         //criando a lista...
         List<Clientes> listaClientes = new ArrayList<Clientes> ();
         
         //verificando existencia do arquivo...
         if(arquivo.exists()){
-            
-            //variáveis para leitura do arquivo...
-            FileReader reader = new FileReader(arquivo);
-            BufferedReader leitor = new BufferedReader(reader);
-            
-            Clientes clientes = new Clientes();
-            Endereco endereco = new Endereco();
-            
-            //percorre o arquivo...
-            String linha = null;
-            
-            int contador=0;
-            
-            while(leitor.ready()){
-                if (contador==0){
-                    linha=leitor.readLine();
-                    
-                    //transformando string em inteiro...
-                    clientes.setCodigo(Integer.valueOf(linha));
-                    contador++;
-                } 
-                else if(contador==1){
-                    linha=leitor.readLine();
-                    clientes.setNome(linha);
-                    contador++;
+            FileReader reader = null;
+            try {
+                reader = new FileReader(arquivo);
+                BufferedReader leitor = new BufferedReader(reader);
+                Clientes clientes = new Clientes();
+                Endereco endereco = new Endereco();
+                //percorre o arquivo...
+                String linha = null;
+                int contador=0;
+                try {
+                    while(leitor.ready()){
+                        if (contador==0){
+                            linha=leitor.readLine();
+                            
+                            //transformando string em inteiro...
+                            clientes.setCodigo(Integer.valueOf(linha));
+                            contador++;
+                        } 
+                        else if(contador==1){
+                            linha=leitor.readLine();
+                            clientes.setNome(linha);
+                            contador++;
+                        }
+                        else if (contador==2){
+                            linha=leitor.readLine();
+                            clientes.setCpf(linha);
+                            contador++;
+                        }
+                        else if (contador==3){
+                            linha=leitor.readLine();
+                            clientes.setTefefone(linha);
+                            contador++;
+                        }
+                        else if (contador==4){
+                            linha=leitor.readLine();
+                            endereco.setRua(linha);
+                            contador++;
+                        }
+                        else if (contador==5) {
+                            linha=leitor.readLine();
+                            endereco.setNumero(Integer.valueOf(linha));
+                            contador++;
+                        }
+                        else if (contador==6){
+                            linha=leitor.readLine();
+                            endereco.setComplemento(linha);
+                            contador++;
+                        }
+                        else if (contador==7){
+                            linha=leitor.readLine();
+                            endereco.setBairro(linha);
+                            contador++;
+                        }
+                        else if (contador==8){
+                            linha=leitor.readLine();
+                            endereco.setCidade(linha);
+                            contador++;
+                        }
+                        else if (contador==9){
+                            linha=leitor.readLine();
+                            endereco.setUf(linha);
+                            contador++;
+                        }
+                        else if (contador==10){
+                            linha=leitor.readLine();
+                            endereco.setCep(linha);
+                            clientes.setEndereco(endereco);
+                            listaClientes.add(clientes);
+                            contador=0;
+                        }
+                        reader.close();
+                        leitor.close();
+                    }
+                } catch (IOException ex) {
+                    System.out.println("Erro na leitura/escrita do arquivo");
                 }
-                else if (contador==2){
-                    linha=leitor.readLine();
-                    clientes.setCpf(linha);
-                    contador++;
-                }
-                else if (contador==3){
-                    linha=leitor.readLine();
-                    clientes.setTefefone(linha);
-                    contador++;
-                }
-                else if (contador==4){
-                    linha=leitor.readLine();
-                    endereco.setRua(linha);
-                    contador++;
-                }
-                else if (contador==5) {
-                    linha=leitor.readLine();
-                    endereco.setNumero(Integer.valueOf(linha));
-                    contador++;
-                }
-                else if (contador==6){
-                    linha=leitor.readLine();
-                    endereco.setComplemento(linha);
-                    contador++;
-                }
-                else if (contador==7){
-                    linha=leitor.readLine();
-                    endereco.setBairro(linha);
-                    contador++;
-                }
-                else if (contador==8){
-                    linha=leitor.readLine();
-                    endereco.setCidade(linha);
-                    contador++;
-                }
-                else if (contador==9){
-                    linha=leitor.readLine();
-                    endereco.setUf(linha);
-                    contador++;
-                }
-                else if (contador==10){
-                    linha=leitor.readLine();
-                    endereco.setCep(linha);
-                    clientes.setEndereco(endereco);
-                    listaClientes.add(clientes);
-                    contador=0;
-                }
-                reader.close();
-                leitor.close();
-            }    
+            } catch (FileNotFoundException ex) {
+                System.out.println("Arquivo não encontrado");
+            } 
         }
         else {
             System.out.println("Arquivo não encontrado");
         }
         return listaClientes;    
    }
-    public boolean salvar(Clientes clientes) throws FileNotFoundException, IOException{
-        List<Clientes> listaClientes = new ArrayList<Clientes> ();
-        listaClientes=retornaTodosClientes();
-        FileWriter writer = new FileWriter(arquivo);
+   public boolean salvar(List<Clientes> listaClientes,Clientes clientes) throws FileNotFoundException, IOException {
+        FileWriter writer = new FileWriter(arquivo); ;
         PrintWriter cadastro = new PrintWriter(writer);
-        boolean encontrou = pesquisaCliente(clientes);
+
+        boolean encontrou = pesquisaCliente(listaClientes,clientes);
+
         if(!encontrou){
             for(Clientes pessoas: listaClientes){
                 cadastro.println(pessoas.getCodigo());
@@ -130,19 +133,23 @@ public class PersistenciaCliente {
                 cadastro.println(pessoas.getEndereco().getCidade());
                 cadastro.println(pessoas.getEndereco().getUf());
                 cadastro.println(pessoas.getEndereco().getCep());
-            } 
+            }
+            writer.close();
+            cadastro.close();
             return false;
         }
         else {
             return false;
         }
         
+        
+        
+            
     }
     
-    public boolean alteraCliente(Clientes clientes) throws FileNotFoundException, IOException{
-        List<Clientes> listaClientes = new ArrayList<Clientes> ();
-        listaClientes=retornaTodosClientes();
-        boolean existe = pesquisaCliente(clientes);
+    public boolean alteraCliente(List<Clientes> listaClientes, Clientes clientes) throws FileNotFoundException, IOException{
+        
+        boolean existe = pesquisaCliente(listaClientes,clientes);
         boolean retorno = false;
         if (existe){
             for(Clientes pessoas: listaClientes){
@@ -158,9 +165,7 @@ public class PersistenciaCliente {
         }
         return retorno;
     }
-    public boolean pesquisaCliente(Clientes cliente) throws FileNotFoundException, IOException{
-        List<Clientes> listaClientes = new ArrayList<Clientes> ();
-        listaClientes=retornaTodosClientes();
+    public boolean pesquisaCliente(List<Clientes> listaClientes,Clientes cliente) throws FileNotFoundException, IOException{
         boolean encontrou = false;
         for(Clientes pessoas: listaClientes){
             if (cliente.getCodigo() == pessoas.getCodigo()){

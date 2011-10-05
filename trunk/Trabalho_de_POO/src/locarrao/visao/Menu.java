@@ -7,10 +7,11 @@ import java.util.Scanner;
 public class Menu {
     
     public static void main(String[] args){
-        menu();
+        Menu entrada = new Menu();
+        entrada.menu();
     }
     
-    public static void menu(){
+    public void menu(){
         Scanner entrada = new Scanner (System.in);
         int opcao = 0;
         do{
@@ -262,7 +263,7 @@ public class Menu {
              
     }
     /* --------------------- métodos para o menu de cadastro --------------------- */
-    public static int menuCadastro(){
+    public int menuCadastro(){
         Scanner entrada = new Scanner(System.in);
         System.out.println("----------------- Cadastro -----------------");
         System.out.println();
@@ -278,7 +279,7 @@ public class Menu {
         return entrada.nextInt();
     }
     
-    public static int menuCadastroCliente(){
+    public int menuCadastroCliente(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Cadastro de Clientes -----------------");
@@ -293,7 +294,7 @@ public class Menu {
         return entrada.nextInt();
     }
     
-    public static int menuCadastroVeiculo(){
+    public int menuCadastroVeiculo(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Cadastro de Clientes -----------------");
@@ -308,7 +309,7 @@ public class Menu {
         return entrada.nextInt();
     }
     
-    public static int menuCadastroMotorista(){
+    public int menuCadastroMotorista(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Cadastro de Motoristas -----------------");
@@ -323,7 +324,7 @@ public class Menu {
         return entrada.nextInt();
     }
     
-    public static int menuCadastroTipoVeiculo(){
+    public int menuCadastroTipoVeiculo(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Cadastro de Tipos de Veiculos -----------------");
@@ -338,7 +339,7 @@ public class Menu {
         return entrada.nextInt();
     }
     
-    public static int menuCadastroMarcaVeiculo(){
+    public int menuCadastroMarcaVeiculo(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Cadastro de Tipos de Veiculos -----------------");
@@ -353,7 +354,7 @@ public class Menu {
         return entrada.nextInt();
     }
     
-    public static int menuCadastroModeloVeiculo(){
+    public int menuCadastroModeloVeiculo(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Cadastro de Tipos de Veiculos -----------------");
@@ -372,7 +373,7 @@ public class Menu {
     
     /* --------------------- métodos para o menu de Relatorios --------------------- */
     
-    public static int menuRelatorios(){
+    public int menuRelatorios(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Relatorios -----------------");
@@ -395,7 +396,7 @@ public class Menu {
     
     /* --------------------- métodos para o menu de Locação --------------------- */
     
-    public static int menuLocacao(){
+    public int menuLocacao(){
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("----------------- Locação -----------------");
