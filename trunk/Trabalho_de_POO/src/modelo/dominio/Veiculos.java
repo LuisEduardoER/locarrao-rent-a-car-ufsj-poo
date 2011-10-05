@@ -10,126 +10,125 @@ public class Veiculos {
 	 
 	private int ano;
 	 
-	private ArrayList opcionais;
+	private String opcionais;
 	 
 	private String observacao;
 	 
-	private TipoVeiculo[] tipoVeiculo;
+	private TipoVeiculo tipoVeiculo;
 
         private MarcaVeiculo marcaVeiculo;
         
         private ModeloVeiculo modeloVeiculo;
+
     /**
      * @return the placa
      */
-    protected String getPlaca() {
+    public String getPlaca() {
         return placa;
     }
 
     /**
      * @param placa the placa to set
      */
-    protected void setPlaca(String placa) {
+    public void setPlaca(String placa) {
         this.placa = placa;
     }
 
     /**
      * @return the cor
      */
-    protected String getCor() {
+    public String getCor() {
         return cor;
     }
 
     /**
      * @param cor the cor to set
      */
-    protected void setCor(String cor) {
+    public void setCor(String cor) {
         this.cor = cor;
     }
 
     /**
      * @return the ano
      */
-    protected int getAno() {
+    public int getAno() {
         return ano;
     }
 
     /**
      * @param ano the ano to set
      */
-    protected void setAno(int ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
     /**
      * @return the opcionais
      */
-    protected ArrayList getOpcionais() {
+    public String getOpcionais() {
         return opcionais;
     }
 
     /**
      * @param opcionais the opcionais to set
      */
-    protected void setOpcionais(ArrayList opcionais) {
+    public void setOpcionais(String opcionais) {
         this.opcionais = opcionais;
     }
 
     /**
      * @return the observacao
      */
-    protected String getObservacao() {
+    public String getObservacao() {
         return observacao;
     }
 
     /**
      * @param observacao the observacao to set
      */
-    protected void setObservacao(String observacao) {
+    public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
 
     /**
      * @return the tipoVeiculo
      */
-    protected TipoVeiculo[] getTipoVeiculo() {
+    public TipoVeiculo getTipoVeiculo() {
         return tipoVeiculo;
     }
 
     /**
      * @param tipoVeiculo the tipoVeiculo to set
      */
-    protected void setTipoVeiculo(TipoVeiculo[] tipoVeiculo) {
+    public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
         this.tipoVeiculo = tipoVeiculo;
     }
 
     /**
      * @return the marcaVeiculo
      */
-    protected MarcaVeiculo getMarcaVeiculo() {
+    public MarcaVeiculo getMarcaVeiculo() {
         return marcaVeiculo;
     }
 
     /**
      * @param marcaVeiculo the marcaVeiculo to set
      */
-    protected void setMarcaVeiculo(MarcaVeiculo marcaVeiculo) {
+    public void setMarcaVeiculo(MarcaVeiculo marcaVeiculo) {
         this.marcaVeiculo = marcaVeiculo;
     }
 
     /**
      * @return the modeloVeiculo
      */
-    protected ModeloVeiculo getModeloVeiculo() {
+    public ModeloVeiculo getModeloVeiculo() {
         return modeloVeiculo;
     }
 
     /**
      * @param modeloVeiculo the modeloVeiculo to set
      */
-    protected void setModeloVeiculo(ModeloVeiculo modeloVeiculo) {
+    public void setModeloVeiculo(ModeloVeiculo modeloVeiculo) {
         this.modeloVeiculo = modeloVeiculo;
     }
-	 
 }
- 
