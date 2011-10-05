@@ -260,7 +260,7 @@ public class Menu {
                     
             }
             
-        }while (opcao !=7);
+        }while (opcao !=4);
              
     }
     /* --------------------- métodos para o menu de cadastro --------------------- */

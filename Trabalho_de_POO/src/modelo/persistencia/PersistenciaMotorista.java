@@ -44,41 +44,44 @@ public class PersistenciaMotorista{
                      * linha 1 = endereco
                      * sera a ordem para escrita e leitura no arquivo
                      */
-                    while(leitor.ready()){
-                        if(contador==0){
-                            linha=leitor.readLine();
-                            motorista.setCnh(Long.valueOf(linha));
-                            contador ++;
-                        }else if(contador ==1){
-                            linha=leitor.readLine();
+                    while((linha=leitor.readLine()) != null){
+                        if(contador == 0){
+                            motorista.setCodigo(Integer.parseInt(linha));
+                            contador++;      
+                        }
+                        else if(contador == 1){
+                            motorista.setCnh(linha);
+                            contador++;
+                            
+                        }else if(contador == 2){
                             endereco.setRua(linha);
                             contador ++;
-                        }else if(contador == 2){
-                            linha=leitor.readLine();
-                            endereco.setNumero(Integer.valueOf(linha));
-                            contador ++;
+                            
                         }else if(contador == 3){
-                            linha=leitor.readLine();
-                            endereco.setComplemento(linha);
-                            contador ++;
+                            endereco.setNumero(Integer.valueOf(linha));
+                            contador++;
+                            
                         }else if(contador == 4){
-                            linha=leitor.readLine();
+                            endereco.setComplemento(linha);
+                            contador++;
+                            
+                        }else if(contador == 5){
                             endereco.setBairro(linha);
                             contador ++;
-                        }else if(contador == 5){
-                            linha=leitor.readLine();
+                            
+                        }else if(contador == 6){
                             endereco.setCidade(linha);
                             contador ++;
-                        }else if(contador == 6){
-                            linha=leitor.readLine();
+                            
+                        }else if(contador == 7){
                             endereco.setUf(linha);
                             contador ++;
-                        }else if(contador == 7){
-                            linha=leitor.readLine();
+                            
+                        }else if(contador == 8){
                             endereco.setCep(linha);
                             motorista.setEndereco(endereco);
                             listaMotorista.add(motorista);
-                            contador=0;
+                            contador = 0;
                         }   
                     }
                     
@@ -100,8 +103,8 @@ public class PersistenciaMotorista{
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
         listaMotorista=retornaMotorista();
         boolean encontrou = false;
-        for(Motorista motoristas:listaMotorista){
-            if(motorista.getCnh() == motoristas.getCnh()){
+        for(Motorista item:listaMotorista){
+            if(item.getCnh().equals(motorista.getCnh())){
                 return encontrou = true;
             }
         }
