@@ -12,4 +12,3 @@ Automatico
 Pick Up
 Van
 Blindado
-Carro

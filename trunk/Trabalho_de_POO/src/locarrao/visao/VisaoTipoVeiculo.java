@@ -41,6 +41,18 @@ public class VisaoTipoVeiculo {
         
     }
     
+    public void alteraTipoVeiculo(){
+        
+    }
+    
+    public void pesquisaTipoVeiculo(){
+        
+    }
+    
+    public void excluiTipoVeiculo(){
+        
+    }
+    
     //Cria o menu a partir de uma lista de Veiculos
     public int menuTipoVeiculo() throws FileNotFoundException, IOException{
         List<TipoVeiculo> listaTipoVeiculo = new ArrayList<TipoVeiculo>();

@@ -9,5 +9,20 @@ package locarrao.visao;
  * @author PATY
  */
 public class VisaoMotorista {
+    public void cadastraMotorista(){
+        
+    }
+    
+    public void alteraMotorista(){
+        
+    }
+    
+    public void pesquisaMotorista(){
+        
+    }
+    
+    public void excluiMotorista(){
+        
+    }
     
 }

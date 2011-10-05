@@ -66,5 +66,17 @@ public class VisaoVeiculos {
         }
         
     }
+    
+    public void alteraVeiculos(){
+        
+    }
+    
+    public void pesquisaVeiculo(){
+        
+    }
+    
+    public void excluiVeiculo(){
+        
+    }
 }
 
