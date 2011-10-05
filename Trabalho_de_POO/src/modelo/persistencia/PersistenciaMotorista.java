@@ -75,9 +75,10 @@ public class PersistenciaMotorista{
                     motorista.setEndereco(endereco);
                     listaMotorista.add(motorista);
                     contador=0;
+            }   
             }
-            }
-            
+            reader.close();
+            leitor.close();
         }else{
             System.out.println("Erro: Arquivo de Motoristas não encontrado");
         }
