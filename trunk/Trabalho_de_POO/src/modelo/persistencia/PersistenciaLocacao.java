@@ -6,7 +6,6 @@ package modelo.persistencia;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +26,7 @@ import modelo.dominio.Veiculos;
 public class PersistenciaLocacao {
     static File arquivo = new File("src/arquivos/Locacao.txt");
     
-    public List<Locacao> retornaTodasLocacoes () throws FileNotFoundException, IOException {
+    public List<Locacao> retornaTodasLocacoes () {
         
         //criando a lista...
         List<Locacao> listaLocacao = new ArrayList<Locacao> ();
@@ -178,10 +177,8 @@ public class PersistenciaLocacao {
             System.out.println("Arquvo não encontrado");
             return false;
         }
-
+    
     }
-    
-    
       
      
 }
