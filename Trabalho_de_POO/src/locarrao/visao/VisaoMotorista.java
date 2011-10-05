@@ -4,10 +4,6 @@
  */
 package locarrao.visao;
 
-/**
- *
- * @author PATY
- */
 public class VisaoMotorista {
     public void cadastraMotorista(){
         
