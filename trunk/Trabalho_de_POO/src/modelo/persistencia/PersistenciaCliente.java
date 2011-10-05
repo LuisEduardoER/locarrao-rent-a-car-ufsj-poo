@@ -121,28 +121,27 @@ public class PersistenciaCliente {
         boolean encontrou = pesquisaCliente(listaClientes,clientes);
 
         if(!encontrou){
-            for(Clientes pessoas: listaClientes){
-                cadastro.println(pessoas.getCodigo());
-                cadastro.println(pessoas.getNome());
-                cadastro.println(pessoas.getCpf());
-                cadastro.println(pessoas.getTefefone());
-                cadastro.println(pessoas.getEndereco().getRua());
-                cadastro.println(pessoas.getEndereco().getNumero());
-                cadastro.println(pessoas.getEndereco().getComplemento());
-                cadastro.println(pessoas.getEndereco().getBairro());
-                cadastro.println(pessoas.getEndereco().getCidade());
-                cadastro.println(pessoas.getEndereco().getUf());
-                cadastro.println(pessoas.getEndereco().getCep());
-            }
-            writer.close();
-            cadastro.close();
-            return false;
-        }
-        else {
-            return false;
+            listaClientes.add(clientes);
         }
         
+        for(Clientes pessoas: listaClientes){
+            cadastro.println(pessoas.getCodigo());
+            cadastro.println(pessoas.getNome());
+            cadastro.println(pessoas.getCpf());
+            cadastro.println(pessoas.getTefefone());
+            cadastro.println(pessoas.getEndereco().getRua());
+            cadastro.println(pessoas.getEndereco().getNumero());
+            cadastro.println(pessoas.getEndereco().getComplemento());
+            cadastro.println(pessoas.getEndereco().getBairro());
+            cadastro.println(pessoas.getEndereco().getCidade());
+            cadastro.println(pessoas.getEndereco().getUf());
+            cadastro.println(pessoas.getEndereco().getCep());
+        }
         
+        writer.close();
+        cadastro.close();
+        
+        return true;
         
             
     }

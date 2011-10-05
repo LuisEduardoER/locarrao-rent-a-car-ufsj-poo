@@ -30,6 +30,8 @@ public class VisaoClientes {
         listaClientes = persistenciaClientes.retornaTodosClientes();
         System.out.println("Digite o codigo");
         clientes.setCodigo(cadastro.nextInt());
+        cadastro.nextLine();
+        
         boolean existe = false;
         try {
             existe = persistenciaClientes.pesquisaCliente(listaClientes,clientes);
@@ -48,6 +50,7 @@ public class VisaoClientes {
                     
                     System.out.println("Digite o numero");
                     endereco.setNumero(cadastro.nextInt());
+                    cadastro.nextLine();
                     
                     System.out.println("Digite o complemento");
                     endereco.setComplemento(cadastro.nextLine());
