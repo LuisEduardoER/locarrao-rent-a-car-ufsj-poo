@@ -6,6 +6,8 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
@@ -16,17 +18,21 @@ import modelo.persistencia.PersistenciaFuncionarios;
  * @author PATY
  */
 public class VisaoFuncionarios {
-    public void cadastraFuncionarios(){
+    public void cadastraFuncionarios() throws FileNotFoundException, IOException{
         Funcionarios funcionarios = new Funcionarios();
         Endereco endereco = new Endereco();
+        List<Funcionarios> listaFuncionarios = new ArrayList<Funcionarios>();
        
         Scanner cadastro = new Scanner(System.in);
         PersistenciaFuncionarios persistenciaFuncionarios = new PersistenciaFuncionarios();
+        listaFuncionarios = persistenciaFuncionarios.retornaTodosFuncionarios();
+        
         System.out.println("Digite o codigo");
         funcionarios.setCodigo(cadastro.nextInt());
         boolean existe = false;
         try {
-            existe = persistenciaFuncionarios.pesquisaFuncionarios(funcionarios);
+            existe = persistenciaFuncionarios.pesquisaFuncionarios(listaFuncionarios, funcionarios);
+            
             if (existe){
                     System.out.println("Digite o nome");
                     funcionarios.setNome(cadastro.nextLine());
@@ -44,6 +50,7 @@ public class VisaoFuncionarios {
                     endereco.setRua(cadastro.nextLine());
                     System.out.println("Digite o numero");
                     endereco.setNumero(cadastro.nextInt());
+                    cadastro.nextLine();
                     System.out.println("Digite o complemento");
                     endereco.setComplemento(cadastro.nextLine());
                     System.out.println("Digite o bairro");
@@ -51,12 +58,12 @@ public class VisaoFuncionarios {
                     System.out.println("Digite a Cidade");
                     endereco.setCidade(cadastro.nextLine());
                     System.out.println("Digite uf");
-                    endereco.setUf(cadastro.next());
+                    endereco.setUf(cadastro.nextLine());
                     System.out.println("Digite cep");
                     endereco.setCep(cadastro.nextLine());
                     funcionarios.setEndereco(endereco);
                     
-                    boolean operacao = persistenciaFuncionarios.salvar(funcionarios);
+                    boolean operacao = persistenciaFuncionarios.salvar(listaFuncionarios, funcionarios);
                     if (operacao) {
                         System.out.println("Salvo com sucesso");
                     }

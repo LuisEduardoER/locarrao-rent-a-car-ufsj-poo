@@ -123,7 +123,7 @@ public class PersistenciaFuncionarios {
         }
         return listaFuncionarios;    
    }
-    public boolean salvar(Funcionarios funcionarios) throws FileNotFoundException, IOException{
+    public boolean salvar(List<Funcionarios> listaFuncionarios,Funcionarios funcionarios) throws FileNotFoundException, IOException{
         
         List<Funcionarios> listaClientes = new ArrayList<Funcionarios> ();
         listaClientes=retornaTodosFuncionarios();
@@ -131,7 +131,7 @@ public class PersistenciaFuncionarios {
         FileWriter writer = new FileWriter(arquivo);
         PrintWriter cadastro = new PrintWriter(writer);
         
-        boolean encontrou = pesquisaFuncionarios(funcionarios);
+        boolean encontrou = pesquisaFuncionarios(listaFuncionarios, funcionarios);
         if(!encontrou){
             for(Funcionarios cadastroFuncionarios: listaClientes){
                 cadastro.println(cadastroFuncionarios.getCodigo());
@@ -157,12 +157,11 @@ public class PersistenciaFuncionarios {
         
     }
     
-    public boolean alteraFuncionarios(Funcionarios funcionarios) throws FileNotFoundException, IOException{
+    public boolean alteraFuncionarios(List<Funcionarios> listaFuncionarios,Funcionarios funcionarios) throws FileNotFoundException, IOException{
         
-        List<Funcionarios> listaFuncionarios = new ArrayList<Funcionarios> ();
         listaFuncionarios=retornaTodosFuncionarios();
         
-        boolean existe = pesquisaFuncionarios(funcionarios);
+        boolean existe = pesquisaFuncionarios(listaFuncionarios, funcionarios);
         boolean retorno = false;
         if (existe){
             for(Funcionarios modificaFuncionarios: listaFuncionarios){
@@ -178,9 +177,8 @@ public class PersistenciaFuncionarios {
         }
         return retorno;
     }
-    public boolean pesquisaFuncionarios(Funcionarios funcionarios) throws FileNotFoundException, IOException{
+    public boolean pesquisaFuncionarios(List<Funcionarios> listaFuncionarios,Funcionarios funcionarios) throws FileNotFoundException, IOException{
         
-        List<Funcionarios> listaFuncionarios = new ArrayList<Funcionarios> ();
         listaFuncionarios=retornaTodosFuncionarios();
         
         boolean encontrou = false;
