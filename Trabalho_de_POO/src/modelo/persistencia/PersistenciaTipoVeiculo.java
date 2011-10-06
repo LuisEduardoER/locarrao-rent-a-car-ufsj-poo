@@ -15,23 +15,33 @@ public class PersistenciaTipoVeiculo {
     File arquivo = new File("src/arquivos/TipoVeiculo.txt");
    
    
-    public List<TipoVeiculo> retornaTodosTipoVeiculo() throws FileNotFoundException, IOException {
+    public List<TipoVeiculo> retornaTodosTipoVeiculo() {
         List<TipoVeiculo> listaTipoVeiculos = new ArrayList<TipoVeiculo>();
        
         if(arquivo.exists()){
-            FileReader reader = new FileReader(arquivo);
-            BufferedReader leitor = new BufferedReader(reader);
+            FileReader reader = null;
+            try{
+                reader = new FileReader(arquivo);
+                BufferedReader leitor = new BufferedReader(reader);
            
-            String linha = null;
-           
-            while((linha = leitor.readLine()) != null){
-                TipoVeiculo tipoVeiculo = new TipoVeiculo();
-                tipoVeiculo.setTipo(linha);
-                listaTipoVeiculos.add(tipoVeiculo);
+                String linha = null;
+                try{
+                    while((linha = leitor.readLine()) != null){
+                        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+                        tipoVeiculo.setTipo(linha);
+                        listaTipoVeiculos.add(tipoVeiculo);
+                    }
+
+                    reader.close();
+                    leitor.close();
+                } catch (IOException ex){
+                    System.out.println("Erro na leitura ou escrita do arquivo");
+                }
+                
+            } catch (IOException ex) {
+                System.out.println("Erro na leitura/escrita do arquivo");
             }
-           
-            reader.close();
-            leitor.close();
+            
         }
         else{
             System.out.println("Arquivo não encontrado");

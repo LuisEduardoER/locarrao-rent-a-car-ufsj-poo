@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package locarrao.visao;
 
 import java.io.FileNotFoundException;
@@ -18,11 +14,8 @@ import modelo.dominio.Veiculos;
 import modelo.persistencia.PersistenciaCliente;
 import modelo.persistencia.PersistenciaLocacao;
 import modelo.persistencia.PersistenciaMotorista;
+import modelo.persistencia.PersistenciaVeiculos;
 
-/**
- *
- * @author Magelinha
- */
 public class VisaoLocacao {
     public void cadastraLocacao(){
         try {
@@ -144,9 +137,15 @@ public class VisaoLocacao {
             
             //Dados do veiculo
             Veiculos veiculo = new Veiculos();
-            veiculo.setPlaca(entrada.nextLine());
             VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
-            boolean encontrouVeiculo = visaoVeiculo.pesquisaVeiculo(veiculo);
+            
+            veiculo.setPlaca(entrada.nextLine());
+            
+            PersistenciaVeiculos persistenciaVeiculo = new PersistenciaVeiculos();
+            List<Veiculos> listaVeiculos  = new ArrayList<Veiculos>();
+            listaVeiculos = persistenciaVeiculo.retornaTodosVeiculos();
+            
+            boolean encontrouVeiculo = visaoVeiculo.pesquisaVeiculo(listaVeiculos, veiculo);
             if(encontrouVeiculo){
                 locacao.setVeiculo(veiculo);
             }
