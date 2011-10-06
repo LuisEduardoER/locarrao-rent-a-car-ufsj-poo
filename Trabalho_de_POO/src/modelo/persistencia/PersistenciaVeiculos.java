@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
@@ -43,48 +41,39 @@ public class PersistenciaVeiculos {
                 int contador=0;
                 
                 try {
-                    while(leitor.ready()){
-                        if (contador==0){
-                            linha=leitor.readLine();
-                            
+                    while((linha=leitor.readLine()) != null){
+                        if (contador == 0){
                             veiculos.setPlaca(linha);
                             contador++;
                         } 
-                        else if(contador==1){
-                            linha=leitor.readLine();
+                        else if(contador == 1){
                             veiculos.setCor(linha);
                             contador++;
                         }
-                        else if (contador==2){
-                            linha=leitor.readLine();
+                        else if (contador == 2){
                             veiculos.setAno(Integer.valueOf(linha));
                             contador++;
                         }
-                        else if (contador==3){
-                            linha=leitor.readLine();
+                        else if (contador == 3){
                             veiculos.setOpcionais(linha);
                             contador++;
                         }
-                        else if (contador==4){
-                            linha=leitor.readLine();
+                        else if (contador == 4){
                             veiculos.setObservacao(linha);
                             contador++;
                         }
-                        else if (contador==5) {
-                            linha=leitor.readLine();
+                        else if (contador == 5){
                             tipoVeiculo.setTipo(linha);
-                            contador++;
-                        }
-                        else if (contador==6){
-                            linha=leitor.readLine();
-                            marcaVeiculo.setMarca(linha);
-                            contador++;
-                        }
-                        else if (contador==7){
-                            linha=leitor.readLine();
-                            modeloVeiculo.setModelo(linha);
                             veiculos.setTipoVeiculo(tipoVeiculo);
+                            contador++;
+                        }
+                        else if (contador == 6){
+                            marcaVeiculo.setMarca(linha);
                             veiculos.setMarcaVeiculo(marcaVeiculo);
+                            contador++;
+                        }
+                        else if (contador == 7){
+                            modeloVeiculo.setModelo(linha);
                             veiculos.setModeloVeiculo(modeloVeiculo);
                             listaVeiculos.add(veiculos);
                             contador=0;
