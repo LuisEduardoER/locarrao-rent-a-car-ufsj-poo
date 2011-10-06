@@ -24,7 +24,7 @@ import modelo.dominio.Veiculos;
  * @author User
  */
 public class PersistenciaLocacao {
-    static File arquivo = new File("src/arquivos/Locacao.txt");
+    File arquivo = new File("src/arquivos/Locacao.txt");
     
     public List<Locacao> retornaTodasLocacoes () {
         
@@ -46,6 +46,7 @@ public class PersistenciaLocacao {
                 String linha = null;
                 int contador = 0;
                 while((linha = leitor.readLine()) != null) {
+                    
                     //objetos
                     Locacao locacao = new Locacao();
                     TipoLocacao tipoLocacao = new TipoLocacao();
@@ -111,7 +112,7 @@ public class PersistenciaLocacao {
                         veiculo.setPlaca(linha);
                         locacao.setVeiculo(veiculo);
                         listaLocacao.add(locacao);
-                        contador=0;
+                        contador = 0;
                     }
                     
                 }
@@ -124,6 +125,7 @@ public class PersistenciaLocacao {
         else{
             System.out.println("Arquivo não existe");
         }
+        
         return listaLocacao;
     }
     
