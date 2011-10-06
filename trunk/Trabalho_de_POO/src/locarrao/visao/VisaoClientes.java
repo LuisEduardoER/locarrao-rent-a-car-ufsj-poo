@@ -63,7 +63,7 @@ public class VisaoClientes {
                     endereco.setCidade(cadastro.nextLine());
                     
                     System.out.println("Digite uf");
-                    endereco.setUf(cadastro.next());
+                    endereco.setUf(cadastro.nextLine());
                     
                     System.out.println("Digite cep");
                     endereco.setCep(cadastro.nextLine());

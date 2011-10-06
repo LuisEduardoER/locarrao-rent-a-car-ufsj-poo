@@ -98,12 +98,14 @@ public class PersistenciaVeiculos {
         }
         return listaVeiculos;    
    }
-    public boolean salvar(Veiculos veiculos) throws FileNotFoundException, IOException{
-        List<Veiculos> listaVeiculos = new ArrayList<Veiculos> ();
+    public boolean salvar(List<Veiculos> listaVeiculos,Veiculos veiculos) throws FileNotFoundException, IOException{
+
         listaVeiculos=retornaTodosVeiculos();
         FileWriter writer = new FileWriter(arquivo);
+        
         PrintWriter cadastro = new PrintWriter(writer);
-        boolean encontrou = pesquisaVeiculo(veiculos);
+        
+        boolean encontrou = pesquisaVeiculo(listaVeiculos, veiculos);
         if(!encontrou){
             for(Veiculos automoveis: listaVeiculos){
                 cadastro.println(automoveis.getPlaca());
@@ -123,10 +125,10 @@ public class PersistenciaVeiculos {
         
     }
     
-    public boolean alteraVeiculo(Veiculos veiculos) throws FileNotFoundException, IOException{
-        List<Veiculos> listaVeiculos = new ArrayList<Veiculos> ();
+    public boolean alteraVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos) throws FileNotFoundException, IOException{
+        
         listaVeiculos=retornaTodosVeiculos();
-        boolean existe = pesquisaVeiculo(veiculos);
+        boolean existe = pesquisaVeiculo(listaVeiculos, veiculos);
         boolean retorno = false;
         if (existe){
             for(Veiculos automoveis: listaVeiculos){
@@ -142,12 +144,12 @@ public class PersistenciaVeiculos {
         }
         return retorno;
     }
-    public boolean pesquisaVeiculo(Veiculos veiculo) throws FileNotFoundException, IOException{
-        List<Veiculos> listaVeiculos = new ArrayList<Veiculos> ();
+    public boolean pesquisaVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos) throws FileNotFoundException, IOException{
+        
         listaVeiculos = retornaTodosVeiculos();
         boolean encontrou = false;
         for(Veiculos automoveis: listaVeiculos){
-            if (automoveis.getPlaca().equals(veiculo.getPlaca())){
+            if (automoveis.getPlaca().equals(veiculos.getPlaca())){
                 return encontrou=true;
             }
         }
