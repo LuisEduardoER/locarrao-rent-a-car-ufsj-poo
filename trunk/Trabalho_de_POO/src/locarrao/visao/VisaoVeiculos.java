@@ -22,7 +22,7 @@ import modelo.persistencia.PersistenciaVeiculos;
  * @author PATY
  */
 public class VisaoVeiculos {
-    public void cadastraVeiculos() throws FileNotFoundException, IOException{
+    public void cadastraVeiculos() {
         Veiculos veiculos = new Veiculos();
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         MarcaVeiculo marcaVeiculo = new MarcaVeiculo();

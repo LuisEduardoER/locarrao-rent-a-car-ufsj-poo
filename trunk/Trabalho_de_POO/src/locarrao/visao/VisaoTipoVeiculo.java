@@ -21,9 +21,8 @@ public class VisaoTipoVeiculo {
         
         /* Salvar no arquivo */
         PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
-        try {
-            listaTipoVeiculo = persistenciaTipoVeiculo.retornaTodosTipoVeiculo();
-            boolean operacao = persistenciaTipoVeiculo.salvar(listaTipoVeiculo,tipoVeiculo);
+        listaTipoVeiculo = persistenciaTipoVeiculo.retornaTodosTipoVeiculo();
+        boolean operacao = persistenciaTipoVeiculo.salvar(listaTipoVeiculo,tipoVeiculo);
 
         if(operacao){
             System.out.println("Lista salva com sucesso");
@@ -31,11 +30,7 @@ public class VisaoTipoVeiculo {
         else{
             System.out.println("Erro na gravação do arquivo");
         }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Erro: Arquivo não encontrado");
-        } catch (IOException ex) {
-            System.out.println("Erro na escrita/leitura do arquivo");
-        }
+        
         
         
         

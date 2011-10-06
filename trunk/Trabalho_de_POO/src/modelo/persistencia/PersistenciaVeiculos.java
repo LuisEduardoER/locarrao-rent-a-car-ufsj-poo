@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
@@ -24,74 +26,79 @@ import modelo.dominio.Veiculos;
  */
 public class PersistenciaVeiculos {
     File arquivo = new File("src/arquivos/Veiculos.txt");
-    public List<Veiculos> retornaTodosVeiculos () throws FileNotFoundException, IOException {
+    public List<Veiculos> retornaTodosVeiculos () {
         
         List<Veiculos> listaVeiculos = new ArrayList<Veiculos> ();
         
         if(arquivo.exists()){
-            
-            FileReader reader = new FileReader(arquivo);
-            BufferedReader leitor = new BufferedReader(reader);
-            
-            Veiculos veiculos = new Veiculos();
-            TipoVeiculo tipoVeiculo = new TipoVeiculo();
-            MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
-            ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
-           
-            String linha = null;
-            
-            int contador=0;
-            
-            while(leitor.ready()){
-                if (contador==0){
-                    linha=leitor.readLine();
-                    
-                    veiculos.setPlaca(linha);
-                    contador++;
-                } 
-                else if(contador==1){
-                    linha=leitor.readLine();
-                    veiculos.setCor(linha);
-                    contador++;
-                }
-                else if (contador==2){
-                    linha=leitor.readLine();
-                    veiculos.setAno(Integer.valueOf(linha));
-                    contador++;
-                }
-                else if (contador==3){
-                    linha=leitor.readLine();
-                    veiculos.setOpcionais(linha);
-                    contador++;
-                }
-                else if (contador==4){
-                    linha=leitor.readLine();
-                    veiculos.setObservacao(linha);
-                    contador++;
-                }
-                else if (contador==5) {
-                    linha=leitor.readLine();
-                    tipoVeiculo.setTipo(linha);
-                    contador++;
-                }
-                else if (contador==6){
-                    linha=leitor.readLine();
-                    marcaVeiculo.setMarca(linha);
-                    contador++;
-                }
-                else if (contador==7){
-                    linha=leitor.readLine();
-                    modeloVeiculo.setModelo(linha);
-                    veiculos.setTipoVeiculo(tipoVeiculo);
-                    veiculos.setMarcaVeiculo(marcaVeiculo);
-                    veiculos.setModeloVeiculo(modeloVeiculo);
-                    listaVeiculos.add(veiculos);
-                    contador=0;
-                }
+            FileReader reader = null;
+            try {
+                reader = new FileReader(arquivo);
+                BufferedReader leitor = new BufferedReader(reader);
+                Veiculos veiculos = new Veiculos();
+                TipoVeiculo tipoVeiculo = new TipoVeiculo();
+                MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
+                ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
+                String linha = null;
+                int contador=0;
                 
-                reader.close();
-                leitor.close();
-            }    
+                try {
+                    while(leitor.ready()){
+                        if (contador==0){
+                            linha=leitor.readLine();
+                            
+                            veiculos.setPlaca(linha);
+                            contador++;
+                        } 
+                        else if(contador==1){
+                            linha=leitor.readLine();
+                            veiculos.setCor(linha);
+                            contador++;
+                        }
+                        else if (contador==2){
+                            linha=leitor.readLine();
+                            veiculos.setAno(Integer.valueOf(linha));
+                            contador++;
+                        }
+                        else if (contador==3){
+                            linha=leitor.readLine();
+                            veiculos.setOpcionais(linha);
+                            contador++;
+                        }
+                        else if (contador==4){
+                            linha=leitor.readLine();
+                            veiculos.setObservacao(linha);
+                            contador++;
+                        }
+                        else if (contador==5) {
+                            linha=leitor.readLine();
+                            tipoVeiculo.setTipo(linha);
+                            contador++;
+                        }
+                        else if (contador==6){
+                            linha=leitor.readLine();
+                            marcaVeiculo.setMarca(linha);
+                            contador++;
+                        }
+                        else if (contador==7){
+                            linha=leitor.readLine();
+                            modeloVeiculo.setModelo(linha);
+                            veiculos.setTipoVeiculo(tipoVeiculo);
+                            veiculos.setMarcaVeiculo(marcaVeiculo);
+                            veiculos.setModeloVeiculo(modeloVeiculo);
+                            listaVeiculos.add(veiculos);
+                            contador=0;
+                        }
+                        
+                        reader.close();
+                        leitor.close();
+                    }
+                } catch (IOException ex) {
+                    System.out.println("Erro na leitura ou escrita do arquivo");
+                }
+            } catch (FileNotFoundException ex) {
+                System.out.println("arquivo não encontrado");
+            }
         }
         else {
             System.out.println("Arquivo não encontrado");
@@ -132,7 +139,7 @@ public class PersistenciaVeiculos {
         boolean retorno = false;
         if (existe){
             for(Veiculos automoveis: listaVeiculos){
-                if(veiculos.getPlaca() == automoveis.getPlaca()){
+                if(automoveis.getPlaca().equals(veiculos.getPlaca())){
                     automoveis=veiculos;
                     retorno = true;
                 }
