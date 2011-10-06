@@ -12,14 +12,7 @@ public class Pessoa {
    
     private Endereco endereco;
    
-    //construtor para iniciar as variaves
-    public Pessoa(){
-        this.codigo = 0;
-        this.cpf = "";
-        this.nome = "";
-        this.tefefone = "";
-    }
-
+    
     public int getCodigo() {
         return codigo;
     }

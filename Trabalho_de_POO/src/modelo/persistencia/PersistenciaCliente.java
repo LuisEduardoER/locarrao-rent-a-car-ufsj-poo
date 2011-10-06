@@ -38,10 +38,12 @@ public class PersistenciaCliente {
                 String linha = null;
                 int contador = 0;
                 try {
-                    while((linha = leitor.readLine()) != null){
-                        Clientes clientes = new Clientes();
-                        Endereco endereco = new Endereco();
+                    
+                    Clientes clientes = new Clientes();
+                    Endereco endereco = new Endereco();
                 
+                    while((linha = leitor.readLine()) != null){
+                        
                         if (contador == 0){
                             
                             //transformando string em inteiro...
@@ -89,6 +91,9 @@ public class PersistenciaCliente {
                             clientes.setEndereco(endereco);
                             listaClientes.add(clientes);
                             contador = 0;
+                            clientes = new Clientes();
+                            endereco = new Endereco();
+                
                         }
                         
                     }
@@ -160,9 +165,9 @@ public class PersistenciaCliente {
     }
     public boolean pesquisaCliente(List<Clientes> listaClientes,Clientes cliente) throws FileNotFoundException, IOException{
         boolean encontrou = false;
-        for(Clientes pessoas: listaClientes){
-            if (cliente.getCodigo() == pessoas.getCodigo()){
-                return encontrou = true;
+        for(Clientes pessoa: listaClientes){
+            if (pessoa.getCodigo() == cliente.getCodigo()){
+                encontrou = true;
             }
         }
         return encontrou;

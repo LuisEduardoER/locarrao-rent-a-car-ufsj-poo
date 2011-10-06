@@ -34,14 +34,22 @@ public class VisaoLocacao {
             /* ------------ Cliente ------------ */
             Clientes cliente = new Clientes();
             System.out.println("Codigo do cliente:");
-            cliente.setCodigo(entrada.nextInt());
+            int codigo = entrada.nextInt();
+            System.out.println("codigo: "+ codigo);
+            
+            cliente.setCodigo(codigo);
+            System.out.println(cliente.getCodigo());
+            
             
             List<Clientes> listaClientes = new ArrayList<Clientes>();
             PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
             listaClientes = persistenciaCliente.retornaTodosClientes();
+            
+            for(Clientes lista: listaClientes){
+                System.out.println("codigo da lista: "+ lista.getCodigo());
+            }
             try {
-                boolean encontrou = persistenciaCliente.
-                        pesquisaCliente(listaClientes, cliente);
+                boolean encontrou = persistenciaCliente.pesquisaCliente(listaClientes, cliente);
                 
                 if(encontrou){
                     locacao.setCliente(cliente);
