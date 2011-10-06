@@ -8,6 +8,7 @@ f
 Fabricas
 sao joao del rei
 mg
+36305006
 2
 patricia
 01201201200
@@ -18,6 +19,7 @@ f
 Centro
 sao joao del rei
 mg
+36305006
 3
 joao paulo
 01233333322
@@ -28,3 +30,4 @@ f
 Centro
 sao joao del rei
 mg
+36305006
