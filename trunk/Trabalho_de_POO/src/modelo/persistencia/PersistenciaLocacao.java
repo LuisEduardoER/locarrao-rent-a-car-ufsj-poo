@@ -103,7 +103,7 @@ public class PersistenciaLocacao {
                         contador++;
                     }
                     else if (contador == 11){
-                        motorista.setCodigo(Integer.parseInt(linha));
+                        motorista.setCnh(linha);
                         locacao.setMotorista(motorista);
                         contador++;
                     }

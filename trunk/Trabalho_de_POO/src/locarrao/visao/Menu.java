@@ -86,7 +86,7 @@ public class Menu {
                                 VisaoMotorista visaoMotorista = new VisaoMotorista();
                                 do{
                                     
-                                    switch(menuCadastroVeiculo()){
+                                    switch(menuCadastroMotorista()){
                                         case 1:
                                             visaoMotorista.cadastraMotorista();
                                             break;
@@ -298,7 +298,7 @@ public class Menu {
     public int menuCadastroVeiculo(){
         Scanner entrada = new Scanner(System.in);
         
-        System.out.println("----------------- Cadastro de Clientes -----------------");
+        System.out.println("----------------- Cadastro de Veiculos -----------------");
         System.out.println();
         
         System.out.println("1 - Cadastrar");
