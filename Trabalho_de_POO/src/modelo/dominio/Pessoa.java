@@ -45,16 +45,10 @@ public class Pessoa {
         this.tefefone = tefefone;
     }
 
-    /**
-     * @return the endereco
-     */
     public Endereco getEndereco() {
         return endereco;
     }
 
-    /**
-     * @param endereco the endereco to set
-     */
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }

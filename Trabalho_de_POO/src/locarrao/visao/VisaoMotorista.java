@@ -25,50 +25,54 @@ public class VisaoMotorista {
         
         PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
         listaMotorista = persistenciaMotorista.retornaMotorista();
+        
         System.out.println("Digite a carteira nacional de habilitação");
-        String cnh= cadastro.nextLine();
+        String cnh = cadastro.nextLine();
         motorista.setCnh(cnh);
         boolean existe = false;
         try{
             existe = persistenciaMotorista.pesquisaMotorista(motorista);
             if(!existe){
-                    System.out.println("Digite o nome");
-                    motorista.setNome(cadastro.nextLine());
-                    
-                    System.out.println("Digite o cpf");
-                    motorista.setCpf(cadastro.nextLine());
-                    
-                    System.out.println("Digite o telefone");
-                    motorista.setTefefone(cadastro.nextLine());
-                    
-                    System.out.println("Digite o rua");
-                    endereco.setRua(cadastro.nextLine());
-                    
-                    System.out.println("Digite o numero");
-                    endereco.setNumero(cadastro.nextInt());
-                    cadastro.nextLine();
-                    
-                    System.out.println("Digite o complemento");
-                    endereco.setComplemento(cadastro.nextLine());
-                    
-                    System.out.println("Digite o bairro");
-                    endereco.setBairro(cadastro.nextLine());
-                    
-                    System.out.println("Digite a Cidade");
-                    endereco.setCidade(cadastro.nextLine());
-                    
-                    System.out.println("Digite uf");
-                    endereco.setUf(cadastro.nextLine());
-                    
-                    System.out.println("Digite cep");
-                    endereco.setCep(cadastro.nextLine());
-                    motorista.setEndereco(endereco);
-                    boolean salvar = persistenciaMotorista.salvar(motorista);
-                    if (salvar){
-                        System.out.println("Motorista salvo com sucesso!");
-                    }else {
-                        System.out.println("ERRO!");
-                    }
+                System.out.println("Digite o nome");
+                motorista.setNome(cadastro.nextLine());
+
+                System.out.println("Digite o cpf");
+                motorista.setCpf(cadastro.nextLine());
+
+                System.out.println("Digite o telefone");
+                motorista.setTefefone(cadastro.nextLine());
+
+                System.out.println("Digite o rua");
+                endereco.setRua(cadastro.nextLine());
+
+                System.out.println("Digite o numero");
+                endereco.setNumero(cadastro.nextInt());
+                cadastro.nextLine();
+
+                System.out.println("Digite o complemento");
+                endereco.setComplemento(cadastro.nextLine());
+
+                System.out.println("Digite o bairro");
+                endereco.setBairro(cadastro.nextLine());
+
+                System.out.println("Digite a Cidade");
+                endereco.setCidade(cadastro.nextLine());
+
+                System.out.println("Digite uf");
+                endereco.setUf(cadastro.nextLine());
+
+                System.out.println("Digite cep");
+                endereco.setCep(cadastro.nextLine());
+                motorista.setEndereco(endereco);
+
+
+                boolean salvar = persistenciaMotorista.salvar(listaMotorista,motorista);
+                if (salvar){
+                    System.out.println("Motorista salvo com sucesso!");
+                }else {
+                    System.out.println("ERRO!");
+                }
+                
             }else {
                 System.out.println("Motorista ja cadastrado");
             }
