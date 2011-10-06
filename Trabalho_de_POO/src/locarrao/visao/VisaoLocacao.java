@@ -31,14 +31,14 @@ public class VisaoLocacao {
             List<Locacao> listaLocacao = new ArrayList<Locacao>();
             
            
-            /* digitar os dados */
+            // digitar os dados
             Scanner entrada = new Scanner(System.in);
             
             //Tipo
             VisaoTipoLocacao visaoTipoLocacao = new VisaoTipoLocacao();        
             visaoTipoLocacao.pesquisaTipoVeiculo(tipoLocacao);
             
-            //Dados cliente
+            /* ------------ Cliente ------------ */
             Clientes cliente = new Clientes();
             System.out.println("Codigo do cliente:");
             cliente.setCodigo(entrada.nextInt());
@@ -64,7 +64,16 @@ public class VisaoLocacao {
                     System.out.println("Erro na escrita ou leitura do arquivo.");
             }
             
-            //Dados Motorista
+             /* ------------------------ Fim Cliente ------------------------*/
+            
+            
+            /* -----------------------   Motorista ------------------------ 
+             * Se o motorista for o proprio cliente, então apenas sera inserida
+             * a sua cnh no arquivo.
+             * 
+             * Caso contrario sera necessario digitar a cnh do motorista, caso ela não
+             * exista, então sai do programa atraves do comando return.
+             */
             Motorista motorista = new Motorista();
             do{
                 System.out.println("Motorista");
@@ -106,12 +115,11 @@ public class VisaoLocacao {
             }while(!entrada.nextLine().equals("s") || !entrada.nextLine().equals("n")
                     || !entrada.nextLine().equals("S") || !entrada.nextLine().equals("N"));
             
-            motorista.setCodigo(entrada.nextInt());
+            locacao.setMotorista(motorista);
             
-            
+             /* -------------------------------Fim Motorista ------------------*/
             
             //Dados Tipo da Locacao
-            tipoLocacao = new TipoLocacao();
             VisaoTipoLocacao visao = new VisaoTipoLocacao();
             locacao.setTipo(visao.retornaTipoDeLocacao());
             
@@ -127,7 +135,11 @@ public class VisaoLocacao {
             //Dados da data da locaçao
             locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
             locacao.setDataDevolucao(0); //Não é conhecida a data de devoluçao
+            
+            //valor da locacao
             locacao.setValor(0); // Valor será calculado depois da finalizaçao
+            
+            //Inicio a locacao com false. No fechamento será passado pra true
             locacao.setLocacaoAberta(false);
             
             //Dados do veiculo
@@ -140,6 +152,7 @@ public class VisaoLocacao {
             }
             else{
                 System.out.println("Veiculo nao encontrado.");
+                return;
             }
      
             PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
