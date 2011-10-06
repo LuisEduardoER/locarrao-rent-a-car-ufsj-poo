@@ -35,19 +35,12 @@ public class VisaoLocacao {
             Clientes cliente = new Clientes();
             System.out.println("Codigo do cliente:");
             int codigo = entrada.nextInt();
-            System.out.println("codigo: "+ codigo);
-            
             cliente.setCodigo(codigo);
-            System.out.println(cliente.getCodigo());
-            
             
             List<Clientes> listaClientes = new ArrayList<Clientes>();
             PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
             listaClientes = persistenciaCliente.retornaTodosClientes();
             
-            for(Clientes lista: listaClientes){
-                System.out.println("codigo da lista: "+ lista.getCodigo());
-            }
             try {
                 boolean encontrou = persistenciaCliente.pesquisaCliente(listaClientes, cliente);
                 
@@ -76,46 +69,56 @@ public class VisaoLocacao {
              * exista, então sai do programa atraves do comando return.
              */
             Motorista motorista = new Motorista();
-            do{
+            int opcao = 0;
+            while(opcao != 1 && opcao != 2){
                 System.out.println("Motorista");
                 System.out.println();
-                System.out.println("Voce é o motorista? (s/n)");
+                System.out.println("Voce é o motorista?");
+                System.out.println("1 - Sim");
+                System.out.println("2 - Nao");
                 
-                if(entrada.nextLine().equals("s") || entrada.nextLine().equals("S")){
-                    motorista.setCnh(entrada.nextLine());
-                }
-                else if (entrada.nextLine().equals("n") || entrada.nextLine().equals("N")){
-                    motorista.setCnh(entrada.nextLine());
+                opcao = entrada.nextInt();
+                entrada.nextLine();
+                switch(opcao){
+                    case 1:    
+                        System.out.println("Digite sua cnh");
+                        motorista.setCnh(entrada.nextLine());
+                        break;
                     
-                    List<Motorista> listaMotorista = new ArrayList<Motorista>();
-                    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
-                    listaMotorista = persistenciaMotorista.retornaMotorista();
-                    boolean encontrou;
-                    
-                    try {
-                        encontrou = persistenciaMotorista.pesquisaMotorista(motorista);
-                        if(encontrou){
-                            locacao.setMotorista(motorista);
-                        }
-                        else{
-                            System.out.println("Motorista nao encontrado");
-                            return;
+                    case 2:
+                        System.out.println("Digite sua cnh");
+                        motorista.setCnh(entrada.nextLine());
+
+                        List<Motorista> listaMotorista = new ArrayList<Motorista>();
+                        PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+                        listaMotorista = persistenciaMotorista.retornaMotorista();
+                        boolean encontrou;
+
+                        try {
+                            encontrou = persistenciaMotorista.pesquisaMotorista(motorista);
+                            if(encontrou){
+                                locacao.setMotorista(motorista);
+                                break;
+                            }
+                            else{
+                                System.out.println("Motorista nao encontrado");
+                                return;
+                            }
+
+                        } catch (FileNotFoundException ex) {
+                                System.out.println("Arquivo nao encontrado.");
+                        } catch (IOException ex) {
+                                System.out.println("Erro na escrita ou leitura do arquivo.");
                         }
                         
-                    } catch (FileNotFoundException ex) {
-                            System.out.println("Arquivo nao encontrado.");
-                    } catch (IOException ex) {
-                            System.out.println("Erro na escrita ou leitura do arquivo.");
-                    }
+                        break;
                     
+                    default:
+                        System.out.println("Opcao invalida");
+                        break;
                 }
-                else{
-                    System.out.println("Opcao invalida");
-                }
-            
-            }while(!entrada.nextLine().equals("s") || !entrada.nextLine().equals("n")
-                    || !entrada.nextLine().equals("S") || !entrada.nextLine().equals("N"));
-            
+                
+            }
             locacao.setMotorista(motorista);
             
              /* -------------------------------Fim Motorista ------------------*/
