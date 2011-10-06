@@ -16,19 +16,7 @@ public class Endereco {
 
     private String cep;
     
-    /*Construtor para iniciar atributos. Valor padrao de String e null
-     * e isso pode gerar erros futuros.
-     */
-    public Endereco(){
-        this.rua = "";
-        this.numero = 0;
-        this.complemento = "";
-        this.bairro = "";
-        this.cidade = "";
-        this.uf = "";
-        this.cep = "";
-    }
-
+    
     public String getRua() {
         return rua;
     }
