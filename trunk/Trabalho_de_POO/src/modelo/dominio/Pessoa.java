@@ -9,9 +9,9 @@ public class Pessoa {
     private String cpf;
 
     private String tefefone;
-    
+   
     private Endereco endereco;
-    
+   
     //construtor para iniciar as variaves
     public Pessoa(){
         this.codigo = 0;
@@ -27,7 +27,7 @@ public class Pessoa {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
+   
     public String getNome() {
         return nome;
     }
@@ -65,6 +65,8 @@ public class Pessoa {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-	 
+         
 }
  
+
+
