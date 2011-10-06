@@ -4,7 +4,7 @@
  */
 package locarrao.visao;
 
-import modelo.dominio.Clientes;
+
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
 import modelo.persistencia.PersistenciaMotorista;
@@ -86,9 +86,42 @@ public class VisaoMotorista {
     }
     
     public void pesquisaMotorista(){
+        Motorista motorista = new Motorista();
+        Endereco endereco = new Endereco();
+        List<Motorista> listaMotorista = new ArrayList<Motorista>();
+        Scanner pesquisa = new Scanner(System.in);
+        PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+        listaMotorista = persistenciaMotorista.retornaMotorista();
+        System.out.println("Digite a cnh do motorista a ser pesquisado");
+        String cnh=pesquisa.nextLine();
+        motorista.setCnh(cnh);
+        try{
+            motorista=persistenciaMotorista.pesquisaMotorista2(motorista);
+            if(motorista!=null){
+                System.out.println("Motorista encontrado:");
+                exibeMotorista(motorista);
+            }else{
+                System.out.println("Motorista nao encontrado");
+            }
+            
+        }catch (FileNotFoundException ex) {
+            System.out.println("Erro! Arquivo nao encontrado");
+        } catch (IOException ex) {
+            System.out.println("Erro na leitura ou escrita do arquivo");
+        }
         
     }
-    
+    public void exibeMotorista(Motorista motorista){
+            System.out.println("Carteira: " + motorista.getCnh());
+            System.out.println("Endereco:");
+            System.out.println("-----------------------------------------------------");
+            System.out.println("Rua "+motorista.getEndereco().getRua()+" numero "+motorista.getEndereco().getNumero() );
+            System.out.println("Complemento: "+motorista.getEndereco().getComplemento());
+            System.out.println("Bairro "+motorista.getEndereco().getBairro()+" Cidade: " +motorista.getEndereco().getCidade());
+            System.out.println("UF: "+motorista.getEndereco().getUf());
+            System.out.println("Cep: "+motorista.getEndereco().getCep());
+            System.out.println("------------------------------------------------------");
+    }
     public void excluiMotorista(){
         
     }
