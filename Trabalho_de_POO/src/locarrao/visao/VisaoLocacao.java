@@ -42,6 +42,7 @@ public class VisaoLocacao {
             Clientes cliente = new Clientes();
             System.out.println("Codigo do cliente:");
             cliente.setCodigo(entrada.nextInt());
+            
             List<Clientes> listaClientes = new ArrayList<Clientes>();
             PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
             listaClientes = persistenciaCliente.retornaTodosClientes();
@@ -54,7 +55,7 @@ public class VisaoLocacao {
                 }
                 else{
                     System.out.println("Cliente nao encontrado.");
-                    System.exit(0);
+                    return;
                 }
                 
             } catch (FileNotFoundException ex) {
@@ -65,22 +66,49 @@ public class VisaoLocacao {
             
             //Dados Motorista
             Motorista motorista = new Motorista();
-            System.out.println("Digite o codigo do motorista:");
-            motorista.setCodigo(entrada.nextInt());
-            List<Motorista> listaMotorista = new ArrayList<Motorista>();
-            PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
-            listaMotorista = persistenciaMotorista.retornaMotorista();
-            boolean encontrou;
-            try {
-                encontrou = persistenciaMotorista.pesquisaMotorista(motorista);
-                if(encontrou){
-                    locacao.setMotorista(motorista);
+            do{
+                System.out.println("Motorista");
+                System.out.println();
+                System.out.println("Voce é o motorista? (s/n)");
+                
+                if(entrada.nextLine().equals("s") || entrada.nextLine().equals("S")){
+                    motorista.setCnh(entrada.nextLine());
                 }
-            } catch (FileNotFoundException ex) {
-                    System.out.println("Arquivo nao encontrado.");
-            } catch (IOException ex) {
-                    System.out.println("Erro na escrita ou leitura do arquivo.");
-            }
+                else if (entrada.nextLine().equals("n") || entrada.nextLine().equals("N")){
+                    motorista.setCnh(entrada.nextLine());
+                    
+                    List<Motorista> listaMotorista = new ArrayList<Motorista>();
+                    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+                    listaMotorista = persistenciaMotorista.retornaMotorista();
+                    boolean encontrou;
+                    
+                    try {
+                        encontrou = persistenciaMotorista.pesquisaMotorista(motorista);
+                        if(encontrou){
+                            locacao.setMotorista(motorista);
+                        }
+                        else{
+                            System.out.println("Motorista nao encontrado");
+                            return;
+                        }
+                        
+                    } catch (FileNotFoundException ex) {
+                            System.out.println("Arquivo nao encontrado.");
+                    } catch (IOException ex) {
+                            System.out.println("Erro na escrita ou leitura do arquivo.");
+                    }
+                    
+                }
+                else{
+                    System.out.println("Opcao invalida");
+                }
+            
+            }while(!entrada.nextLine().equals("s") || !entrada.nextLine().equals("n")
+                    || !entrada.nextLine().equals("S") || !entrada.nextLine().equals("N"));
+            
+            motorista.setCodigo(entrada.nextInt());
+            
+            
             
             //Dados Tipo da Locacao
             tipoLocacao = new TipoLocacao();

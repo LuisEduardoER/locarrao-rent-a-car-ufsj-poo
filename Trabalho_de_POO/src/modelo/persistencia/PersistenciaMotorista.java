@@ -101,7 +101,7 @@ public class PersistenciaMotorista{
     }
     public boolean pesquisaMotorista(Motorista motorista)throws FileNotFoundException, IOException{
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
-        listaMotorista=retornaMotorista();
+        listaMotorista = retornaMotorista();
         boolean encontrou = false;
         for(Motorista item:listaMotorista){
             if(item.getCnh().equals(motorista.getCnh())){

@@ -4,8 +4,14 @@
  */
 package locarrao.visao;
 
+import modelo.dominio.Clientes;
+
 public class VisaoMotorista {
     public void cadastraMotorista(){
+        
+    }
+    
+    public void cadastraMotorista(Clientes cliente){
         
     }
     
