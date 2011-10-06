@@ -34,17 +34,18 @@ public class PersistenciaCliente {
                 reader = new FileReader(arquivo);
                 BufferedReader leitor = new BufferedReader(reader);
                 
-                Clientes clientes = new Clientes();
-                Endereco endereco = new Endereco();
                 //percorre o arquivo...
                 String linha = null;
                 int contador = 0;
                 try {
-                    while((linha=leitor.readLine()) != null){
+                    while((linha = leitor.readLine()) != null){
+                        Clientes clientes = new Clientes();
+                        Endereco endereco = new Endereco();
+                
                         if (contador == 0){
                             
                             //transformando string em inteiro...
-                            clientes.setCodigo(Integer.valueOf(linha));
+                            clientes.setCodigo(Integer.parseInt(linha));
                             contador++;
                         }
                         else if(contador == 1){
@@ -87,7 +88,7 @@ public class PersistenciaCliente {
                             endereco.setCep(linha);
                             clientes.setEndereco(endereco);
                             listaClientes.add(clientes);
-                            contador=0;
+                            contador = 0;
                         }
                         
                     }
