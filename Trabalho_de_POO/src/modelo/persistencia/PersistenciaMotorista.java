@@ -111,6 +111,18 @@ public class PersistenciaMotorista{
         return encontrou;
         
     }
+     public Motorista pesquisaMotorista2(Motorista motorista)throws FileNotFoundException, IOException{
+        List<Motorista> listaMotorista = new ArrayList<Motorista>();
+        listaMotorista = retornaMotorista();
+        boolean encontrou = false;
+        for(Motorista item:listaMotorista){
+            if(item.getCnh().equals(motorista.getCnh())){
+                return item;
+            }
+        }
+        return null;
+        
+    }
     public boolean salvar(Motorista motorista)throws FileNotFoundException, IOException{
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
         listaMotorista=retornaMotorista();
