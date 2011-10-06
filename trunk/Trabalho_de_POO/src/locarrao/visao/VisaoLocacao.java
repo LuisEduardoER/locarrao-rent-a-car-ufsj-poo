@@ -70,7 +70,7 @@ public class VisaoLocacao {
              */
             Motorista motorista = new Motorista();
             int opcao = 0;
-            while(opcao != 1 && opcao != 2){
+            do{
                 System.out.println("Motorista");
                 System.out.println();
                 System.out.println("Voce é o motorista?");
@@ -118,7 +118,8 @@ public class VisaoLocacao {
                         break;
                 }
                 
-            }
+            }while((opcao != 1) && (opcao != 2));
+            
             locacao.setMotorista(motorista);
             
              /* -------------------------------Fim Motorista ------------------*/
@@ -134,6 +135,7 @@ public class VisaoLocacao {
             //Dados da quilometragem
             System.out.println("Digite a quilometragem de saida:");
             locacao.setQuilometragemDeSaida(entrada.nextLong());
+            entrada.nextLine();
             locacao.setQuilometragemDeEntrada(0); // Não é conhecida a quilometragem de chegada
             
             //Dados da data da locaçao
@@ -149,7 +151,7 @@ public class VisaoLocacao {
             //Dados do veiculo
             Veiculos veiculo = new Veiculos();
             VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
-            
+            System.out.println("Placa do veiculo");
             veiculo.setPlaca(entrada.nextLine());
             
             PersistenciaVeiculos persistenciaVeiculo = new PersistenciaVeiculos();

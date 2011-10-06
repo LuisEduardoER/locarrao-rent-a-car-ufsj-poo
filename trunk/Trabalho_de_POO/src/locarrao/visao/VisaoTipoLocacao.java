@@ -46,7 +46,7 @@ public class VisaoTipoLocacao {
         } catch (FileNotFoundException ex) {
             System.out.println("Erro: Arquivo nao encontrado");
         } catch (IOException ex) {
-            System.out.println("Erro na escrita/leitura do arquivo");;
+            System.out.println("Erro na escrita/leitura do arquivo");
         }
         
     }
@@ -71,14 +71,17 @@ public class VisaoTipoLocacao {
         Scanner entrada = new Scanner(System.in);
         String retorno = "";
         
+        int opcao = 0;
         do{
             System.out.println("Escolha o tipo de Locacao");
             System.out.println();
         
             System.out.println("1 - Por Quilometro");
             System.out.println("2 - Quilometragem livre");
+            opcao = entrada.nextInt();
+            entrada.nextLine();
             
-            switch(entrada.nextInt()){
+            switch(opcao){
                 case 1:
                     retorno = "Por Quilometro";
                     break;
@@ -91,7 +94,7 @@ public class VisaoTipoLocacao {
                     System.out.println("Opcao invalida");
                    
             }
-        }while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
+        }while(opcao != 1 && opcao != 2);
         
         
         return retorno;
