@@ -4,9 +4,7 @@ public class Motorista extends Pessoa {
  
     private String cnh;
 
-    public Motorista(){
-        this.cnh = "";
-    }
+    
     public String getCnh() {
         return cnh;
     }

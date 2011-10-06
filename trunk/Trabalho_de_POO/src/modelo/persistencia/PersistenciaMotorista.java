@@ -25,6 +25,7 @@ public class PersistenciaMotorista{
     
     public List<Motorista> retornaMotorista(){
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
+        
         //verifica se o arquivo existe
         if(arquivo.exists()){
            // variaveis para leitura de arquivos
@@ -32,9 +33,6 @@ public class PersistenciaMotorista{
             try {
                 reader = new FileReader(arquivo);
                 BufferedReader leitor = new BufferedReader(reader);
-                //objeto
-                Motorista motorista = new Motorista();
-                Endereco endereco=new Endereco();
                 String linha = null;
                 int contador = 0;
                 
@@ -45,6 +43,10 @@ public class PersistenciaMotorista{
                      * sera a ordem para escrita e leitura no arquivo
                      */
                     while((linha=leitor.readLine()) != null){
+                        //objeto
+                        Motorista motorista = new Motorista();
+                        Endereco endereco=new Endereco();
+
                         if(contador == 0){
                             motorista.setCodigo(Integer.parseInt(linha));
                             contador++;      
@@ -67,15 +69,15 @@ public class PersistenciaMotorista{
                             
                         }else if(contador == 5){
                             endereco.setBairro(linha);
-                            contador ++;
+                            contador++;
                             
                         }else if(contador == 6){
                             endereco.setCidade(linha);
-                            contador ++;
+                            contador++;
                             
                         }else if(contador == 7){
                             endereco.setUf(linha);
-                            contador ++;
+                            contador++;
                             
                         }else if(contador == 8){
                             endereco.setCep(linha);
@@ -123,13 +125,13 @@ public class PersistenciaMotorista{
         return null;
         
     }
-    public boolean salvar(Motorista motorista)throws FileNotFoundException, IOException{
-        List<Motorista> listaMotorista = new ArrayList<Motorista>();
-        listaMotorista=retornaMotorista();
-        FileWriter writer = new FileWriter(arquivo,true);
-        PrintWriter cadastro = new PrintWriter(writer);
-        boolean existe= pesquisaMotorista(motorista);
-        if(!existe){
+    public boolean salvar(List<Motorista> listaMotorista,Motorista motorista)throws FileNotFoundException, IOException{
+        if(arquivo.exists()){
+            FileWriter writer = new FileWriter(arquivo);
+            PrintWriter cadastro = new PrintWriter(writer);
+
+            listaMotorista.add(motorista);
+            System.out.println(motorista.getCnh());
             for(Motorista motoristas: listaMotorista){
                 cadastro.println(motoristas.getCnh());
                 cadastro.println(motoristas.getEndereco().getRua());
@@ -142,8 +144,10 @@ public class PersistenciaMotorista{
             }
             return true;
         }else{
+            System.out.println("Arquivo não existe");
             return false;
         }
+        
     }
     public boolean alteraMotorista(Motorista motorista) throws FileNotFoundException, IOException{
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
@@ -151,9 +155,9 @@ public class PersistenciaMotorista{
         boolean existe = pesquisaMotorista(motorista);
         boolean retorno = false;
         if(existe){
-            for(Motorista motoristas:listaMotorista){
-                if(motorista.getCnh() == motoristas.getCnh()){
-                    motoristas.setEndereco(motorista.getEndereco());
+            for(Motorista pessoa:listaMotorista){
+                if(pessoa.getCnh().equals(motorista.getCnh())){
+                    pessoa.setEndereco(motorista.getEndereco());
                     retorno = true;
                 }
             }
