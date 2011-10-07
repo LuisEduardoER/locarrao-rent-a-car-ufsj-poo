@@ -13,7 +13,7 @@ import modelo.dominio.ModeloVeiculo;
 public class PersistenciaModeloVeiculo {
     File arquivo = new File("src/arquivos/ModeloVeiculo.txt");
     
-    public List<ModeloVeiculo> retornaTodasMarcas(){
+    public List<ModeloVeiculo> retornaTodosModelos(){
         List<ModeloVeiculo> listaMarcaVeiculo = new ArrayList<ModeloVeiculo>();
         
         if(arquivo.exists()){

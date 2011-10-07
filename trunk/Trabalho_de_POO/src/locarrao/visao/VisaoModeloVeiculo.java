@@ -21,7 +21,7 @@ public class VisaoModeloVeiculo {
         modeloVeiculo.setModelo(entrada.nextLine());
         
         PersistenciaModeloVeiculo persistencia = new PersistenciaModeloVeiculo();
-        listaModeloVeiculo = persistencia.retornaTodasMarcas();
+        listaModeloVeiculo = persistencia.retornaTodosModelos();
         
         boolean operacao = persistencia.salvar(listaModeloVeiculo, modeloVeiculo);
 
