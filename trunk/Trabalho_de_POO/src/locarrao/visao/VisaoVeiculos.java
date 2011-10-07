@@ -53,72 +53,71 @@ public class VisaoVeiculos {
         
         PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
         listaTipoVeiculo = persistenciaTipoVeiculo.retornaTodosTipoVeiculo();
-        
         VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
             
         
         System.out.println("Digite a placa do veiculo");
         veiculos.setPlaca(cadastro.nextLine());
-        boolean existe = false;
         
+        System.out.println("Cor do veiculo");
+        veiculos.setCor(cadastro.nextLine());
+
+        System.out.println("Ano do veiculo");
+        veiculos.setAno(cadastro.nextInt());
+        cadastro.nextLine();
+
+        System.out.println("Opcionais");
+        veiculos.setOpcionais(cadastro.nextLine());
+
+        System.out.println("Observacao");
+        veiculos.setObservacao(cadastro.nextLine());
+
+        //Seleciona o tipo de Veiculo
+        System.out.println("Tipo de veiculo");
+        int resposta;
+
         try {
-            existe = persistenciaVeiculos.pesquisaVeiculo(listaVeiculos, veiculos);
-            if (existe){
-                    System.out.println("Cor do veiculo");
-                    veiculos.setCor(cadastro.nextLine());
-                    
-                    System.out.println("Ano do veiculo");
-                    veiculos.setAno(cadastro.nextInt());
-                    cadastro.nextLine();
-                    
-                    System.out.println("Opcionais");
-                    veiculos.setOpcionais(cadastro.nextLine());
-                    
-                    System.out.println("Observacao");
-                    veiculos.setObservacao(cadastro.nextLine());
-                    
-                    //Seleciona o tipo de Veiculo
-                    System.out.println("Tipo de veiculo");
-                    int resposta = visaoTipoVeiculo.menuTipoVeiculo();
-                    tipoVeiculo.setTipo(listaTipoVeiculo.get(resposta - 1).getTipo());
-                    veiculos.setTipoVeiculo(tipoVeiculo);
-                    
-                    System.out.println("Marca do veiculo");
-                    marcaVeiculo.setMarca(cadastro.nextLine());
-                    boolean salvaMarca = persistenciaMarca.salvar(listaMarca, marcaVeiculo);
-                    if(salvaMarca){
-                        veiculos.setMarcaVeiculo(marcaVeiculo);
-                    }
-                    else{
-                        System.out.println("Erro na hora de salvar a marca");
-                        return;
-                    }
-                    
-                    
-                    System.out.println("Modelo do veiculo");
-                    modeloVeiculo.setModelo(cadastro.nextLine());
-                    boolean salvaModelo = persistenciaModelo.salvar(listaModelo, modeloVeiculo);
-                    if(salvaModelo){
-                        veiculos.setModeloVeiculo(modeloVeiculo);
-                    }
-                    else{
-                        System.out.println("Erro na hora de salvar o modelo");
-                        return;
-                    }
-                    
-                    boolean operacao = persistenciaVeiculos.salvar(listaVeiculos, veiculos);
-                    if (operacao) {
-                        System.out.println("Cadastro salvo com sucesso");
-                    }
-                    else {
-                        System.out.println("Erro!");
-                    }
-            }
+            resposta = visaoTipoVeiculo.menuTipoVeiculo();
+            tipoVeiculo.setTipo(persistenciaTipoVeiculo.
+                    retornaTipoVeiculo(resposta).getTipo());
             
+            veiculos.setTipoVeiculo(tipoVeiculo);
         } catch (FileNotFoundException ex) {
-            System.out.println("Erro! Arquivo nao encontrado");
+            System.out.println("Arquivo  TipoVeiculo.txt não encontrado");
         } catch (IOException ex) {
-            System.out.println("Erro na leitura ou escrita do arquivo");
+            System.out.println("Erro na escrita ou leitra do arquivo "
+                    + "TipoVeiculo.txt");
+        }
+
+        System.out.println("Marca do veiculo");
+        marcaVeiculo.setMarca(cadastro.nextLine());
+        boolean salvaMarca = persistenciaMarca.salvar(listaMarca, marcaVeiculo);
+        if(salvaMarca){
+            veiculos.setMarcaVeiculo(marcaVeiculo);
+        }
+        else{
+            System.out.println("Erro na hora de salvar a marca");
+            return;
+        }
+
+
+        System.out.println("Modelo do veiculo");
+        modeloVeiculo.setModelo(cadastro.nextLine());
+        boolean salvaModelo = persistenciaModelo.salvar(listaModelo, modeloVeiculo);
+        if(salvaModelo){
+            veiculos.setModeloVeiculo(modeloVeiculo);
+        }
+        else{
+            System.out.println("Erro na hora de salvar o modelo");
+            return;
+        }
+
+        boolean operacao = persistenciaVeiculos.salvar(listaVeiculos, veiculos);
+        if (operacao) {
+            System.out.println("Cadastro salvo com sucesso");
+        }
+        else {
+            System.out.println("Erro!");
         }
         
     }
