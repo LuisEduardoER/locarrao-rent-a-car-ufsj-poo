@@ -197,7 +197,7 @@ public class Menu {
                             case 7:
                                 VisaoTipoLocacao visaoTipoLocacao = new VisaoTipoLocacao();
                                 do{
-                                    switch(menuCadastroModeloVeiculo()){
+                                    switch(menuCadastroTipoLocacao()){
                                         case 1:
                                             visaoTipoLocacao.cadastraTipoLocacao();
                                             break;
@@ -211,7 +211,7 @@ public class Menu {
                                             System.out.println("Opçao inválida");
                                             break;
                                     }
-                                }while(menuCadastroModeloVeiculo() != 3);
+                                }while(menuCadastroTipoLocacao() != 3);
                                 break;    
                              
                             default:
@@ -309,7 +309,7 @@ public class Menu {
         System.out.println("5 - Marca de Veiculo");
         System.out.println("6 - Modelo de Veiculo");
         System.out.println("7 - Tipo de Locaçao");
-        System.out.println("7 - Voltar ao menu anterior");
+        System.out.println("8 - Voltar ao menu anterior");
         
         return entrada.nextInt();
     }
