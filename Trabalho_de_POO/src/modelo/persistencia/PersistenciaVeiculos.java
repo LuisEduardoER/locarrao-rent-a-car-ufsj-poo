@@ -100,6 +100,7 @@ public class PersistenciaVeiculos {
                 PrintWriter cadastro = new PrintWriter(writer);
                 listaVeiculos.add(veiculos);
                 
+                
                 for(Veiculos automoveis: listaVeiculos){
                     cadastro.println(automoveis.getPlaca());
                     cadastro.println(automoveis.getCor());
@@ -110,6 +111,9 @@ public class PersistenciaVeiculos {
                     cadastro.println(automoveis.getMarcaVeiculo().getMarca());
                     cadastro.println(automoveis.getModeloVeiculo().getModelo());
                 } 
+                
+                writer.close();
+                cadastro.close();
                 retorno = true;
                 
             } catch (IOException ex) {
