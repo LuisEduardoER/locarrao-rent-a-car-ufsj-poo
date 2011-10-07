@@ -52,7 +52,7 @@ public class PersistenciaModeloVeiculo {
         if(arquivo.exists()){
             FileWriter writer = null;
             try {
-                writer = new FileWriter(arquivo,true);
+                writer = new FileWriter(arquivo);
                 PrintWriter dados = new PrintWriter(writer);
                 
                 //busca todos os tipos existentes
