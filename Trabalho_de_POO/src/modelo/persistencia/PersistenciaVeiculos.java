@@ -72,15 +72,14 @@ public class PersistenciaVeiculos {
                             listaVeiculos.add(veiculos);
                             contador = 0;
                         }
-
-                        reader.close();
-                        leitor.close();
                     }
+                    
+                    reader.close();
+                    leitor.close();
                 } catch(IOException ex){
                     System.out.println("Erro na escrita ou leitura do arquivo " +
                             arquivo.getName());
                 }
-                
                     
             } catch (IOException ex) {
                 System.out.println(" Erro na escrita ou leitura do arquivo " + 
@@ -111,7 +110,7 @@ public class PersistenciaVeiculos {
                     cadastro.println(automoveis.getMarcaVeiculo().getMarca());
                     cadastro.println(automoveis.getModeloVeiculo().getModelo());
                 } 
-                return false;
+                retorno = true;
                 
             } catch (IOException ex) {
                 System.out.println("Erro na escrita ou leitura do arquivo do arquivo " +
@@ -145,11 +144,14 @@ public class PersistenciaVeiculos {
     public boolean pesquisaVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos) throws FileNotFoundException, IOException{
         
         boolean encontrou = false;
-        for(Veiculos automoveis: listaVeiculos){
-            if (automoveis.getPlaca().equals(veiculos.getPlaca())){
-                return encontrou = true;
+        if(!listaVeiculos.isEmpty()){
+            for(Veiculos automoveis : listaVeiculos){
+                if (automoveis.getPlaca().equals(veiculos.getPlaca())){
+                    return encontrou = true;
+                }
             }
         }
+        
         return encontrou;
     }
     
