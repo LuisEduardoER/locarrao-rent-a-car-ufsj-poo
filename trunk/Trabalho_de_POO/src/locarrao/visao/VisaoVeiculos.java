@@ -31,13 +31,14 @@ public class VisaoVeiculos {
         List<Veiculos> listaVeiculos = new ArrayList<Veiculos>();
         
         Scanner cadastro = new Scanner(System.in);
-        PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
-        listaVeiculos = persistenciaVeiculos.retornaTodosVeiculos();
+        
         
         System.out.println("Digite a placa do veiculo");
         veiculos.setPlaca(cadastro.nextLine());
         boolean existe = false;
         try {
+            PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
+            listaVeiculos = persistenciaVeiculos.retornaTodosVeiculos();        
             existe = persistenciaVeiculos.pesquisaVeiculo(listaVeiculos, veiculos);
             if (existe){
                     System.out.println("Cor do veiculo");

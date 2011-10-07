@@ -101,4 +101,8 @@ public class VisaoTipoLocacao {
         
     }
     
+    public void alteraTipoLocacao(){
+        
+    }
+    
 }
