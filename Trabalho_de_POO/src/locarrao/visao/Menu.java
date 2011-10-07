@@ -137,7 +137,7 @@ public class Menu {
                                             System.out.println("Opçao inválida");
                                             break;
                                     }
-                                }while(menuCadastroMotorista() != 5);
+                                }while(menuCadastroTipoVeiculo() != 5);
                                 break;
                                 
                             case 5:
@@ -170,7 +170,7 @@ public class Menu {
                             case 6:
                                 VisaoModeloVeiculo visaoModeloVeiculo = new VisaoModeloVeiculo();
                                 do{
-                                    switch(menuCadastroMarcaVeiculo()){
+                                    switch(menuCadastroModeloVeiculo()){
                                         case 1:
                                             visaoModeloVeiculo.cadastraModeloVeiculo();
                                             break;
@@ -193,6 +193,26 @@ public class Menu {
                                     }
                                 }while(menuCadastroModeloVeiculo() != 5);
                                 break;
+                                
+                            case 7:
+                                VisaoTipoLocacao visaoTipoLocacao = new VisaoTipoLocacao();
+                                do{
+                                    switch(menuCadastroModeloVeiculo()){
+                                        case 1:
+                                            visaoTipoLocacao.cadastraTipoLocacao();
+                                            break;
+                                            
+                                        case 2:
+                                            visaoTipoLocacao.alteraTipoLocacao();
+                                            break;
+                                        
+                                        
+                                        default:
+                                            System.out.println("Opçao inválida");
+                                            break;
+                                    }
+                                }while(menuCadastroModeloVeiculo() != 3);
+                                break;    
                              
                             default:
                                 System.out.println("Opçao Inválida");
@@ -288,6 +308,7 @@ public class Menu {
         System.out.println("4 - Tipo de Veiculo");
         System.out.println("5 - Marca de Veiculo");
         System.out.println("6 - Modelo de Veiculo");
+        System.out.println("7 - Tipo de Locaçao");
         System.out.println("7 - Voltar ao menu anterior");
         
         return entrada.nextInt();
@@ -356,7 +377,7 @@ public class Menu {
     public int menuCadastroMarcaVeiculo(){
         Scanner entrada = new Scanner(System.in);
         
-        System.out.println("----------------- Cadastro de Tipos de Veiculos -----------------");
+        System.out.println("----------------- Cadastro de Marcas de Veiculos -----------------");
         System.out.println();
         
         System.out.println("1 - Cadastrar");
@@ -371,7 +392,7 @@ public class Menu {
     public int menuCadastroModeloVeiculo(){
         Scanner entrada = new Scanner(System.in);
         
-        System.out.println("----------------- Cadastro de Tipos de Veiculos -----------------");
+        System.out.println("----------------- Cadastro de Modelos de Veiculos -----------------");
         System.out.println();
         
         System.out.println("1 - Cadastrar");
@@ -379,6 +400,19 @@ public class Menu {
         System.out.println("3 - Pesquisar");
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
+        
+        return entrada.nextInt();
+    }
+    
+    public int menuCadastroTipoLocacao(){
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("----------------- Cadastro de Tipos de Locaçao -----------------");
+        System.out.println();
+        
+        System.out.println("1 - Cadastrar");
+        System.out.println("2 - Alterar");
+        System.out.println("3 - Voltar ao menu anterior");
         
         return entrada.nextInt();
     }
