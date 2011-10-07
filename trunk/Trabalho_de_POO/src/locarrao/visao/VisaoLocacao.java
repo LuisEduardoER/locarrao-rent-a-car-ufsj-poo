@@ -154,18 +154,15 @@ public class VisaoLocacao {
             System.out.println("Placa do veiculo");
             veiculo.setPlaca(entrada.nextLine());
             
+            /*
             PersistenciaVeiculos persistenciaVeiculo = new PersistenciaVeiculos();
             List<Veiculos> listaVeiculos  = new ArrayList<Veiculos>();
             listaVeiculos = persistenciaVeiculo.retornaTodosVeiculos();
             
-            boolean encontrouVeiculo = visaoVeiculo.pesquisaVeiculo(listaVeiculos, veiculo);
-            if(encontrouVeiculo){
-                locacao.setVeiculo(veiculo);
-            }
-            else{
-                System.out.println("Veiculo nao encontrado.");
-                return;
-            }
+             * 
+             */
+            locacao.setVeiculo(veiculo);
+            
      
             PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
             persistenciaLocacao.salvar(listaLocacao, locacao);
