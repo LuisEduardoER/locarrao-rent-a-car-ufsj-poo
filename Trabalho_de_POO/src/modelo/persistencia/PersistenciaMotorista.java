@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
 
@@ -103,7 +105,7 @@ public class PersistenciaMotorista{
     }
     public boolean pesquisaMotorista(Motorista motorista)throws FileNotFoundException, IOException{
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
-        listaMotorista = retornaMotorista();
+        
         boolean encontrou = false;
         for(Motorista item:listaMotorista){
             if(item.getCnh().equals(motorista.getCnh())){
@@ -113,40 +115,40 @@ public class PersistenciaMotorista{
         return encontrou;
         
     }
-     public Motorista pesquisaMotorista2(Motorista motorista)throws FileNotFoundException, IOException{
-        List<Motorista> listaMotorista = new ArrayList<Motorista>();
-        listaMotorista = retornaMotorista();
-        boolean encontrou = false;
-        for(Motorista item:listaMotorista){
-            if(item.getCnh().equals(motorista.getCnh())){
-                return item;
-            }
-        }
-        return null;
-        
-    }
-    public boolean salvar(List<Motorista> listaMotorista,Motorista motorista)throws FileNotFoundException, IOException{
+    
+    public boolean salvar(List<Motorista> listaMotorista,Motorista motorista) {
+        boolean retorno = false;
         if(arquivo.exists()){
-            FileWriter writer = new FileWriter(arquivo);
-            PrintWriter cadastro = new PrintWriter(writer);
-
-            listaMotorista.add(motorista);
-            System.out.println(motorista.getCnh());
-            for(Motorista motoristas: listaMotorista){
-                cadastro.println(motoristas.getCnh());
-                cadastro.println(motoristas.getEndereco().getRua());
-                cadastro.println(motoristas.getEndereco().getNumero());
-                cadastro.println(motoristas.getEndereco().getComplemento());
-                cadastro.println(motoristas.getEndereco().getBairro());
-                cadastro.println(motoristas.getEndereco().getCidade());
-                cadastro.println(motoristas.getEndereco().getUf());
-                cadastro.println(motoristas.getEndereco().getCep());
-            }
-            return true;
+            FileWriter writer = null;
+            try {
+                writer = new FileWriter(arquivo);
+                PrintWriter cadastro = new PrintWriter(writer);
+                
+                listaMotorista.add(motorista);
+                for(Motorista motoristas: listaMotorista){
+                    cadastro.println(motoristas.getCnh());
+                    cadastro.println(motoristas.getEndereco().getRua());
+                    cadastro.println(motoristas.getEndereco().getNumero());
+                    cadastro.println(motoristas.getEndereco().getComplemento());
+                    cadastro.println(motoristas.getEndereco().getBairro());
+                    cadastro.println(motoristas.getEndereco().getCidade());
+                    cadastro.println(motoristas.getEndereco().getUf());
+                    cadastro.println(motoristas.getEndereco().getCep());
+                }
+                
+                writer.close();
+                cadastro.close();
+                retorno =  true;
+                
+            } catch (IOException ex) {
+                System.out.println("Erro na escrita/leitura do arquivo");
+            } 
         }else{
             System.out.println("Arquivo não existe");
-            return false;
+            retorno = false;
         }
+        
+        return retorno;
         
     }
     public boolean alteraMotorista(Motorista motorista) throws FileNotFoundException, IOException{

@@ -90,6 +90,7 @@ public class VisaoMotorista {
     }
     
     public void pesquisaMotorista(){
+        /*
         Motorista motorista = new Motorista();
         Endereco endereco = new Endereco();
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
@@ -114,6 +115,8 @@ public class VisaoMotorista {
             System.out.println("Erro na leitura ou escrita do arquivo");
         }
         
+         * 
+         */
     }
     public void exibeMotorista(Motorista motorista){
             System.out.println("Carteira: " + motorista.getCnh());
