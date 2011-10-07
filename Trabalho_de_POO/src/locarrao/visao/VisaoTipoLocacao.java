@@ -92,10 +92,9 @@ public class VisaoTipoLocacao {
                     
                 default:
                     System.out.println("Opcao invalida");
-                   
+                    break;
             }
         }while(opcao != 1 && opcao != 2);
-        
         
         return retorno;
         

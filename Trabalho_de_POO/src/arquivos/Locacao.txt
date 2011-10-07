@@ -1,0 +1,12 @@
+0
+123
+0
+Por Quilometro
+0.0
+Fri Oct 07 01:34:18 BRT 2011
+Wed Dec 31 21:00:00 BRT 1969
+12
+false
+1
+0
+asdfg

@@ -93,22 +93,16 @@ public class PersistenciaLocacao {
                         contador++;
                     }
                     else if (contador == 9){
-                        tipoVeiculo.setTipo(linha);
-                        tipoLocacao.setTipoVeiculo(tipoVeiculo);
-                        locacao.setTipoLocacao(tipoLocacao);
-                        contador++;
-                    }
-                    else if (contador == 10){
                         cliente.setCodigo(Integer.parseInt(linha));
                         locacao.setCliente(cliente);
                         contador++;
                     }
-                    else if (contador == 11){
+                    else if (contador == 10){
                         motorista.setCnh(linha);
                         locacao.setMotorista(motorista);
                         contador++;
                     }
-                    else if (contador == 12){
+                    else if (contador == 11){
                         veiculo.setPlaca(linha);
                         locacao.setVeiculo(veiculo);
                         listaLocacao.add(locacao);
@@ -165,7 +159,6 @@ public class PersistenciaLocacao {
                 dados.println(tipo.getDataDevolucao());
                 dados.println(tipo.getPrevisao());
                 dados.println(tipo.isLocacaoAberta());
-                dados.println(tipo.getTipoLocacao().getTipoVeiculo().getTipo());
                 dados.println(tipo.getCliente().getCodigo());
                 dados.println(tipo.getMotorista().getCodigo());
                 dados.println(tipo.getVeiculo().getPlaca());
