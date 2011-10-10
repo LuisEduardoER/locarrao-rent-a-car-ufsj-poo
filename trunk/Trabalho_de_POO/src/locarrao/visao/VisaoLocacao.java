@@ -14,9 +14,14 @@ import modelo.dominio.Veiculos;
 import modelo.persistencia.PersistenciaCliente;
 import modelo.persistencia.PersistenciaLocacao;
 import modelo.persistencia.PersistenciaMotorista;
-import modelo.persistencia.PersistenciaVeiculos;
 
 public class VisaoLocacao {
+    PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+    PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
+    
+    public static Clientes cliente = new Clientes();
+    
     public void cadastraLocacao(){
         try {
             Locacao locacao = new Locacao();
@@ -32,17 +37,14 @@ public class VisaoLocacao {
             visaoTipoLocacao.pesquisaTipoVeiculo(tipoLocacao);
             
             /* ------------ Cliente ------------ */
-            Clientes cliente = new Clientes();
+            
             System.out.println("Codigo do cliente:");
             int codigo = entrada.nextInt();
             cliente.setCodigo(codigo);
             
-            List<Clientes> listaClientes = new ArrayList<Clientes>();
-            PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-            listaClientes = persistenciaCliente.retornaTodosClientes();
             
             try {
-                boolean encontrou = persistenciaCliente.pesquisaCliente(listaClientes, cliente);
+                boolean encontrou = persistenciaCliente.pesquisarCliente(cliente);
                 
                 if(encontrou){
                     locacao.setCliente(cliente);
@@ -89,13 +91,9 @@ public class VisaoLocacao {
                         System.out.println("Digite sua cnh");
                         motorista.setCnh(entrada.nextLine());
 
-                        List<Motorista> listaMotorista = new ArrayList<Motorista>();
-                        PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
-                        listaMotorista = persistenciaMotorista.retornaMotorista();
                         boolean encontrou;
-
                         try {
-                            encontrou = persistenciaMotorista.pesquisaMotorista(motorista);
+                            encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
                             if(encontrou){
                                 locacao.setMotorista(motorista);
                                 break;
@@ -164,22 +162,28 @@ public class VisaoLocacao {
             locacao.setVeiculo(veiculo);
             
      
-            PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
-            persistenciaLocacao.salvar(listaLocacao, locacao);
+            boolean operacao = persistenciaLocacao.salvar(locacao);
+            
+            if(operacao){
+                System.out.println("salvo com sucesso");
+            }
+            else{
+                System.out.println("erro ao salvar a locacao");
+            }
         } catch (IOException ex) {
             System.out.println("Erro na leitura ou escrita do arquivo.");
         }
     }
     
-    public void alteraLocacao(){
+    public void alterarLocacao(){
         
     }
     
-    public void pesquisaLocacao(){
+    public void pesquisarLocacao(){
         
     }
     
-    public void excluiLocacao(){
+    public void excluirLocacao(){
         
     }
     

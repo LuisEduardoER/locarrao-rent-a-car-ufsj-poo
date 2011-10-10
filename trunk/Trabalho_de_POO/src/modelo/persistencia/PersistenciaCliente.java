@@ -21,11 +21,15 @@ import modelo.dominio.Endereco;
  * @author PATY
  */
 public class PersistenciaCliente {
-    File arquivo = new File("src/arquivos/Clientes.txt");
-    public List<Clientes> retornaTodosClientes () {
-       
-        //criando a lista...
-        List<Clientes> listaClientes = new ArrayList<Clientes> ();
+    public static File arquivo;
+    public static List<Clientes> listaClientes; 
+    
+    public PersistenciaCliente() {
+        arquivo = new File("src/arquivos/Clientes.txt");
+        listaClientes = new ArrayList<Clientes>();
+        retornarTodosClientes();
+    }
+    public static void retornarTodosClientes () {
        
         //verificando existencia do arquivo...
         if(arquivo.exists()){
@@ -111,13 +115,13 @@ public class PersistenciaCliente {
         else {
             System.out.println("Arquivo não encontrado");
         }
-        return listaClientes;    
+        
    }
-   public boolean salvar(List<Clientes> listaClientes,Clientes clientes) throws FileNotFoundException, IOException {
+   public boolean salvar(Clientes clientes) throws FileNotFoundException, IOException {
         FileWriter writer = new FileWriter(arquivo);
         PrintWriter cadastro = new PrintWriter(writer);
 
-        boolean encontrou = pesquisaCliente(listaClientes,clientes);
+        boolean encontrou = pesquisarCliente(clientes);
 
         if(!encontrou){
             listaClientes.add(clientes);
@@ -145,9 +149,9 @@ public class PersistenciaCliente {
            
     }
    
-    public boolean alteraCliente(List<Clientes> listaClientes, Clientes clientes) throws FileNotFoundException, IOException{
+    public boolean alterarCliente(Clientes clientes) throws FileNotFoundException, IOException{
        
-        boolean existe = pesquisaCliente(listaClientes,clientes);
+        boolean existe = pesquisarCliente(clientes);
         boolean retorno = false;
         if (existe){
             for(Clientes pessoas: listaClientes){
@@ -163,7 +167,7 @@ public class PersistenciaCliente {
         }
         return retorno;
     }
-    public boolean pesquisaCliente(List<Clientes> listaClientes,Clientes cliente) throws FileNotFoundException, IOException{
+    public boolean pesquisarCliente(Clientes cliente) throws FileNotFoundException, IOException{
         boolean encontrou = false;
         for(Clientes pessoa: listaClientes){
             if (pessoa.getCodigo() == cliente.getCodigo()){

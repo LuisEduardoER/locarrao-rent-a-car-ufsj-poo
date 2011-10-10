@@ -24,12 +24,23 @@ import modelo.dominio.Veiculos;
  * @author User
  */
 public class PersistenciaLocacao {
-    File arquivo = new File("src/arquivos/Locacao.txt");
+    public static File arquivo;
+    public static List<Locacao> listaLocacao;
     
-    public List<Locacao> retornarTodasLocacoes() {
-        
-        //criando a lista...
-        List<Locacao> listaLocacao = new ArrayList<Locacao> ();
+    public static TipoLocacao tipoLocacao = new TipoLocacao();
+    public static TipoVeiculo tipoVeiculo = new TipoVeiculo();
+    public static Motorista motorista = new Motorista();
+    public static Veiculos veiculo = new Veiculos();
+    public static Clientes cliente = new Clientes();
+                    
+    
+    public PersistenciaLocacao() {
+        arquivo = new File("src/arquivos/Locacao.txt");
+        listaLocacao = new ArrayList<Locacao>();
+        retornarTodasLocacoes();
+    }
+    
+    public static void  retornarTodasLocacoes() {
         
         //verificando existencia do arquivo...
         if(arquivo.exists()){
@@ -49,11 +60,6 @@ public class PersistenciaLocacao {
                     
                     //objetos
                     Locacao locacao = new Locacao();
-                    TipoLocacao tipoLocacao = new TipoLocacao();
-                    TipoVeiculo tipoVeiculo = new TipoVeiculo();
-                    Motorista motorista = new Motorista();
-                    Veiculos veiculo = new Veiculos();
-                    Clientes cliente = new Clientes();
                     
                     if (contador == 0){
                         locacao.setCodigo(Integer.parseInt(linha));
@@ -120,7 +126,7 @@ public class PersistenciaLocacao {
             System.out.println("Arquivo não existe");
         }
         
-        return listaLocacao;
+        
     }
     
    /* public void alteraCadastroLocacao(List<Locacao> listaLocacao,Locacao locacao){
@@ -140,7 +146,7 @@ public class PersistenciaLocacao {
      * 
      */
     
-    public boolean salvar(List<Locacao> listaLocacao,Locacao locacao) throws IOException {
+    public boolean salvar(Locacao locacao) throws IOException {
         if(arquivo.exists()){
             
             //Variáveis para escrita no arquivo

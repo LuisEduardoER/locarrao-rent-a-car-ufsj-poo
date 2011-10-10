@@ -18,16 +18,14 @@ import modelo.persistencia.PersistenciaCliente;
  * @author PATY
  */
 public class VisaoClientes {
-    public void cadastraClientes(){
+    PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+    
+    public void cadastrarClientes(){
         Clientes clientes = new Clientes();
         Endereco endereco = new Endereco();
-        List<Clientes> listaClientes = new ArrayList<Clientes>();
         
         //aparece na tela...
         Scanner cadastro = new Scanner(System.in);
-        
-        PersistenciaCliente persistenciaClientes = new PersistenciaCliente();
-        listaClientes = persistenciaClientes.retornaTodosClientes();
         
         System.out.println("Digite o codigo");
         clientes.setCodigo(cadastro.nextInt());
@@ -35,7 +33,7 @@ public class VisaoClientes {
         
         boolean existe = false;
         try {
-            existe = persistenciaClientes.pesquisaCliente(listaClientes,clientes);
+            existe = persistenciaCliente.pesquisarCliente(clientes);
             if (!existe){
                     System.out.println("Digite o nome");
                     clientes.setNome(cadastro.nextLine());
@@ -69,7 +67,7 @@ public class VisaoClientes {
                     endereco.setCep(cadastro.nextLine());
                     clientes.setEndereco(endereco);
                     
-                    boolean operacao = persistenciaClientes.salvar(listaClientes,clientes);
+                    boolean operacao = persistenciaCliente.salvar(clientes);
                     if (operacao) {
                         System.out.println("Salvo com sucesso");
                     }
@@ -88,15 +86,15 @@ public class VisaoClientes {
         
     }
     
-    public void alteraCliente(){
+    public void alterarCliente(){
         
     }
     
-    public void pesquisaCliente(){
+    public void pesquisarCliente(){
         
     }
     
-    public void excluiCliente(){
+    public void excluirCliente(){
         
     }
     

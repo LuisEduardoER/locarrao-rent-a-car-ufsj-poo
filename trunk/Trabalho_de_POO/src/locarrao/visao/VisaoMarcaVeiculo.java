@@ -29,15 +29,15 @@ public class VisaoMarcaVeiculo {
         
     }
     
-    public void alteraMarcaVeiculo(){
+    public void alterarMarcaVeiculo(){
         
     }
     
-    public void pesquisaMarcaVeiculo(){
+    public void pesquisarMarcaVeiculo(){
         
     }
     
-    public void excluiMarcaVeiculo(){
+    public void excluirMarcaVeiculo(){
         
     }
 }
