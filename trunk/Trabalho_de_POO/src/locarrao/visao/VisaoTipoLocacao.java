@@ -31,7 +31,7 @@ public class VisaoTipoLocacao {
         
         /* Salvar no arquivo */
         PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
-        listaTipoLocacao = persistenciaTipoLocacao.retornaTodosTipoLocacao();
+        listaTipoLocacao = persistenciaTipoLocacao.retornarTodosTipoLocacao();
         
         try {
             boolean operacao = persistenciaTipoLocacao.salvar(listaTipoLocacao,tipoLocacao);

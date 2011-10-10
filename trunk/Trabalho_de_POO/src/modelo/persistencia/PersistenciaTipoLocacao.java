@@ -15,9 +15,9 @@ import modelo.dominio.TipoVeiculo;
 
 public class PersistenciaTipoLocacao {
     File arquivo = new File("src/arquivos/TipoLocacao.txt");
+    public static List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>(); 
         
-    public List<TipoLocacao> retornaTodosTipoLocacao() {
-        List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
+    public List<TipoLocacao> retornarTodosTipoLocacao() {
         
         //Verifico se o arquivo existe, se existir faz as ações
         if(arquivo.exists()){
@@ -56,11 +56,11 @@ public class PersistenciaTipoLocacao {
                 reader.close();
                 leitor.close();
             } catch (IOException ex) {
-                System.out.println("Erro na leitura/escrita do arquivo");
+                System.out.println("Erro na leitura/escrita do arquivo " + arquivo.getName());
             } 
         }
         else{
-            System.out.println("Arquivo não existe");
+            System.out.println("Arquivo " + arquivo.getName() + "não existe");
         }
         return listaTipoLocacao;
     }
@@ -81,7 +81,7 @@ public class PersistenciaTipoLocacao {
              * Caso contrario será adicionado na lista.
              */
             
-            alteraCadastroTipoLocacao(listaTipoLocacao, tipoLocacao);
+            alterarCadastroTipoLocacao(tipoLocacao);
             
             for(TipoLocacao tipo: listaTipoLocacao){
                 dados.println(tipo.getTaxa());
@@ -108,24 +108,28 @@ public class PersistenciaTipoLocacao {
      * os dois tipos de locação
      */
     
-    public void alteraCadastroTipoLocacao(List<TipoLocacao> listaTipoLocacao,TipoLocacao tipoLocacao){
+    public void alterarCadastroTipoLocacao(TipoLocacao tipoLocacao){
         boolean achou = false;
+        
+        if(!listaTipoLocacao.isEmpty()){
+            TipoVeiculo tipoVeiculo = new TipoVeiculo();
+            tipoVeiculo.setTipo(tipoLocacao.getTipoVeiculo().getTipo());
 
-        TipoVeiculo tipoVeiculo = new TipoVeiculo();
-        tipoVeiculo.setTipo(tipoLocacao.getTipoVeiculo().getTipo());
+            for(TipoLocacao tipo : listaTipoLocacao){
+                if(tipo.getTipoVeiculo().getTipo().equals(tipoVeiculo.getTipo())){
+                    tipo.setTaxa(tipoLocacao.getTaxa());
+                    tipo.setPrecoPorQuilometro(tipoLocacao.getPrecoPorQuilometro());
+                    achou = true;
+                }
 
-        for(TipoLocacao tipo : listaTipoLocacao){
-            if(tipo.getTipoVeiculo().getTipo().equals(tipoVeiculo.getTipo())){
-                tipo.setTaxa(tipoLocacao.getTaxa());
-                tipo.setPrecoPorQuilometro(tipoLocacao.getPrecoPorQuilometro());
-                achou = true;
             }
-
+            if(achou == false){
+                listaTipoLocacao.add(tipoLocacao);
+            }
         }
-        if(achou == false){
+        else{
             listaTipoLocacao.add(tipoLocacao);
         }
-           
+
     }
-    
 }
