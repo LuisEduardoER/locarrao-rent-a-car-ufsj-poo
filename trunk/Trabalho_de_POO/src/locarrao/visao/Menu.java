@@ -50,8 +50,9 @@ public class Menu {
                                             break;
                                         
                                         default:
-                                            System.out.println("Opcao Invalida!");
-                                            break;
+                                            if(menuCadastroCliente() == 5) continue;
+                                            else System.out.println("Opcao Invalida!");
+                                            
                                     }
                                 }while(menuCadastroCliente() != 5);
                                 break;
@@ -78,8 +79,9 @@ public class Menu {
                                             break;
                                         
                                         default:
-                                            System.out.println("Opçao inválida");
-                                            break;
+                                            if(menuCadastroVeiculo() == 5) continue;
+                                            else System.out.println("Opcao Invalida!");
+                                            
                                     }
                                 }while(menuCadastroVeiculo() != 5);
                                 break;
@@ -106,8 +108,9 @@ public class Menu {
                                             break;
                                         
                                         default:
-                                            System.out.println("Opçao inválida");
-                                            break;
+                                            if(menuCadastroMotorista() == 5) continue;
+                                            else System.out.println("Opcao Invalida!");
+                                            
                                     }
                                 }while(menuCadastroMotorista() != 5);
                                 break;
@@ -134,8 +137,9 @@ public class Menu {
                                             break;
                                         
                                         default:
-                                            System.out.println("Opçao inválida");
-                                            break;
+                                            if(menuCadastroTipoVeiculo() == 5) continue;
+                                            else System.out.println("Opcao Invalida!");
+                                            
                                     }
                                 }while(menuCadastroTipoVeiculo() != 5);
                                 break;
@@ -161,8 +165,9 @@ public class Menu {
                                             break;
                                         
                                         default:
-                                            System.out.println("Opçao inválida");
-                                            break;
+                                            if(menuCadastroMarcaVeiculo() == 5) continue;
+                                            else System.out.println("Opcao Invalida!");
+                                            
                                     }
                                 }while(menuCadastroMarcaVeiculo() != 5);
                                 break;
@@ -188,8 +193,9 @@ public class Menu {
                                             break;
                                         
                                         default:
-                                            System.out.println("Opçao inválida");
-                                            break;
+                                            if(menuCadastroModeloVeiculo() == 5) continue;
+                                            else System.out.println("Opcao Invalida!");
+                                            
                                     }
                                 }while(menuCadastroModeloVeiculo() != 5);
                                 break;
@@ -208,17 +214,18 @@ public class Menu {
                                         
                                         
                                         default:
-                                            System.out.println("Opçao inválida");
-                                            break;
+                                            if(menuCadastroTipoLocacao() == 3) continue;
+                                            else System.out.println("Opcao Invalida!");
+                                            
                                     }
                                 }while(menuCadastroTipoLocacao() != 3);
                                 break;    
                              
                             default:
-                                System.out.println("Opçao Inválida");
-                                break;
+                                if(menuCadastro() == 8) continue;
+                                else System.out.println("Opcao Invalida!");
                         }
-                    }while(menuCadastro()!= 7);
+                    }while(menuCadastro()!= 8);
                     break;
                     
                 case 2:
@@ -255,8 +262,9 @@ public class Menu {
                                 break;
                                
                             default:
-                                System.out.println("Opçao Invalida");
-                                break;
+                                if(menuRelatorios() == 8) continue;
+                                else System.out.println("Opcao Invalida!");
+                                            
                         }
                     }while(menuRelatorios()!= 8);
                     break;
@@ -282,15 +290,17 @@ public class Menu {
                                 break;
                                 
                             default:
-                                System.out.println("Opçao inválida");
-                                break;
+                                if(menuLocacao() == 5) continue;
+                                else System.out.println("Opcao Invalida!");
+                                            
                         }
                     }while(menuLocacao() != 5);
                     break;
                     
                 default:
-                    System.out.println("Opçao invalida");
-                    break;
+                    if(opcao == 4) continue;
+                    else System.out.println("Opcao Invalida!");
+                                            
             }
             
         }while (opcao !=4);
