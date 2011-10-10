@@ -13,11 +13,19 @@ import modelo.dominio.TipoVeiculo;
 
 //deu erro no commit
 
-public class PersistenciaTipoLocacao {
-    File arquivo = new File("src/arquivos/TipoLocacao.txt");
-    public static List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>(); 
+public class PersistenciaTipoLocacao {    
+    public static File arquivo;
+    public static List<TipoLocacao> listaTipoLocacao;
+    
+    //construtor que vai fazer com que a lista seja lida somente uma vez.
+    public PersistenciaTipoLocacao() {
+        listaTipoLocacao = new ArrayList<TipoLocacao>();
+        arquivo = new File("src/arquivos/TipoLocacao.txt");
+        retornarTodosTipoLocacao();
+    }
+    
         
-    public List<TipoLocacao> retornarTodosTipoLocacao() {
+    public static void retornarTodosTipoLocacao() {
         
         //Verifico se o arquivo existe, se existir faz as ações
         if(arquivo.exists()){
@@ -56,17 +64,16 @@ public class PersistenciaTipoLocacao {
                 reader.close();
                 leitor.close();
             } catch (IOException ex) {
-                System.out.println("Erro na leitura/escrita do arquivo " + arquivo.getName());
+                System.out.println("Erro na leitura ou escrita do arquivo " + arquivo.getName());
             } 
         }
         else{
             System.out.println("Arquivo " + arquivo.getName() + "não existe");
         }
-        return listaTipoLocacao;
     }
     
     //salvar
-    public boolean salvar(List<TipoLocacao> listaTipoLocacao,TipoLocacao tipoLocacao) throws IOException {
+    public boolean salvar(TipoLocacao tipoLocacao) throws IOException {
         if(arquivo.exists()){
             
             //Variáveis para escrita no arquivo
@@ -94,7 +101,8 @@ public class PersistenciaTipoLocacao {
             return true;
         }
         else{
-            System.out.println("Arquvo não encontrado");
+            System.out.println("No método salvar o arquivo " + arquivo.getName() + 
+                    "não foi encontrado");
             return false;
         }
 

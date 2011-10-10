@@ -4,26 +4,22 @@
  */
 package locarrao.visao;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.ModeloVeiculo;
 import modelo.persistencia.PersistenciaModeloVeiculo;
 
 public class VisaoModeloVeiculo {
-    public void cadastraModeloVeiculo(){
+    PersistenciaModeloVeiculo persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
+    
+    public void cadastrarModeloVeiculo() {
         ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
-        List<ModeloVeiculo> listaModeloVeiculo = new ArrayList<ModeloVeiculo>();
         
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("Digite a modelo do veiculo");
         modeloVeiculo.setModelo(entrada.nextLine());
         
-        PersistenciaModeloVeiculo persistencia = new PersistenciaModeloVeiculo();
-        listaModeloVeiculo = persistencia.retornaTodosModelos();
-        
-        boolean operacao = persistencia.salvar(listaModeloVeiculo, modeloVeiculo);
+        boolean operacao = persistenciaModeloVeiculo.salvar(modeloVeiculo);
 
         if(operacao){
             System.out.println("Salvo com sucesso");
@@ -32,15 +28,15 @@ public class VisaoModeloVeiculo {
         }
     }
     
-    public void alteraModeloVeiculo(){
+    public void alterarModeloVeiculo(){
         
     }
     
-    public void pesquisaModeloVeiculo(){
+    public void pesquisarModeloVeiculo(){
         
     }
     
-    public void excluiModeloVeiculo(){
+    public void excluirModeloVeiculo(){
         
     }
 }

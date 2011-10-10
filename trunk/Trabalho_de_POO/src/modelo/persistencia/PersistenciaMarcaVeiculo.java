@@ -11,10 +11,16 @@ import java.util.List;
 import modelo.dominio.MarcaVeiculo;
 
 public class PersistenciaMarcaVeiculo {
-    File arquivo = new File("src/arquivos/MarcaVeiculo.txt");
+    public static File arquivo;
+    public static List<MarcaVeiculo> listaMarcaVeiculo;
     
-    public List<MarcaVeiculo> retornaTodasMarcas(){
-        List<MarcaVeiculo> listaMarcaVeiculo = new ArrayList<MarcaVeiculo>();
+    public PersistenciaMarcaVeiculo(){
+        arquivo = new File("src/arquivos/MarcaVeiculo.txt");
+        listaMarcaVeiculo = new ArrayList<MarcaVeiculo>();
+        retornarTodasMarcas();
+    }
+    
+    public static void retornarTodasMarcas(){
         
         if(arquivo.exists()){
             FileReader reader = null;
@@ -33,22 +39,24 @@ public class PersistenciaMarcaVeiculo {
                     reader.close();
                     leitor.close();
                 } catch (IOException ex){
-                    System.out.println("Erro na leitura ou escrita do arquivo");
+                    System.out.println("Erro na leitura ou escrita do arquivo " +
+                            arquivo.getName());
                 }
                 
             } catch (IOException ex) {
-                System.out.println("Erro na leitura/escrita do arquivo");
+                System.out.println("Erro na leitura ou escrita do arquivo " +
+                            arquivo.getName());
             }
             
         }
         else{
-            System.out.println("Arquivo não encontrado");
+            System.out.println("Arquivo " + arquivo.getName() + " não foi encontrado");
         }
-        return listaMarcaVeiculo;
+        
         
     }
     
-    public boolean salvar(List<MarcaVeiculo> listaMarcaVeiculo, MarcaVeiculo marcaVeiculo) {
+    public boolean salvar(MarcaVeiculo marcaVeiculo) {
         if(arquivo.exists()){
             FileWriter writer = null;
             try {
@@ -70,12 +78,13 @@ public class PersistenciaMarcaVeiculo {
                 dados.close();
                 return true;
             } catch (IOException ex) {
-                System.out.println("Erro na escrita/leitura do arquivo");
+                System.out.println("Erro na leitura ou escrita do arquivo " +
+                            arquivo.getName());
                 return false;
             }
         }
         else{
-            System.out.println("Arquvo não encontrado");
+            System.out.println("Arquivo " + arquivo.getName() + " não foi encontrado");
             return false;
         }
 

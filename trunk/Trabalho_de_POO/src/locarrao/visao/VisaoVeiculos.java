@@ -6,18 +6,14 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersistenciaMarcaVeiculo;
 import modelo.persistencia.PersistenciaModeloVeiculo;
-import modelo.persistencia.PersistenciaTipoLocacao;
 import modelo.persistencia.PersistenciaTipoVeiculo;
 import modelo.persistencia.PersistenciaVeiculos;
 
@@ -26,6 +22,12 @@ import modelo.persistencia.PersistenciaVeiculos;
  * @author PATY
  */
 public class VisaoVeiculos {
+    PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
+    PersistenciaMarcaVeiculo persistenciaMarcaVeiculo = new PersistenciaMarcaVeiculo();
+    PersistenciaModeloVeiculo persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
+    PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
+    
+    
     public void cadastraVeiculos() {
         //objetos
         Veiculos veiculos = new Veiculos();
@@ -33,28 +35,9 @@ public class VisaoVeiculos {
         MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
         ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
         
-        //listas
-        List<Veiculos> listaVeiculos = new ArrayList<Veiculos>();
-        List<MarcaVeiculo> listaMarca = new ArrayList<MarcaVeiculo>();
-        List<ModeloVeiculo> listaModelo = new ArrayList<ModeloVeiculo>();
-        List<TipoVeiculo> listaTipoVeiculo = new ArrayList<TipoVeiculo>();
-        
         Scanner cadastro = new Scanner(System.in);
         
-        //preenchendo as listas
-        PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
-        listaVeiculos = persistenciaVeiculos.retornaTodosVeiculos();
-        
-        PersistenciaMarcaVeiculo  persistenciaMarca = new PersistenciaMarcaVeiculo();
-        listaMarca = persistenciaMarca.retornaTodasMarcas();
-        
-        PersistenciaModeloVeiculo persistenciaModelo = new PersistenciaModeloVeiculo();
-        listaModelo = persistenciaModelo.retornaTodosModelos();
-        
-        PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
-        listaTipoVeiculo = persistenciaTipoVeiculo.retornaTodosTipoVeiculo();
         VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
-            
         
         System.out.println("Digite a placa do veiculo");
         veiculos.setPlaca(cadastro.nextLine());
@@ -82,6 +65,7 @@ public class VisaoVeiculos {
                     retornaTipoVeiculo(resposta).getTipo());
             
             veiculos.setTipoVeiculo(tipoVeiculo);
+            
         } catch (FileNotFoundException ex) {
             System.out.println("Arquivo  TipoVeiculo.txt não encontrado");
         } catch (IOException ex) {
@@ -91,7 +75,7 @@ public class VisaoVeiculos {
 
         System.out.println("Marca do veiculo");
         marcaVeiculo.setMarca(cadastro.nextLine());
-        boolean salvaMarca = persistenciaMarca.salvar(listaMarca, marcaVeiculo);
+        boolean salvaMarca = persistenciaMarcaVeiculo.salvar(marcaVeiculo);
         if(salvaMarca){
             veiculos.setMarcaVeiculo(marcaVeiculo);
         }
@@ -103,7 +87,7 @@ public class VisaoVeiculos {
 
         System.out.println("Modelo do veiculo");
         modeloVeiculo.setModelo(cadastro.nextLine());
-        boolean salvaModelo = persistenciaModelo.salvar(listaModelo, modeloVeiculo);
+        boolean salvaModelo = persistenciaModeloVeiculo.salvar(modeloVeiculo);
         if(salvaModelo){
             veiculos.setModeloVeiculo(modeloVeiculo);
         }
@@ -112,7 +96,7 @@ public class VisaoVeiculos {
             return;
         }
 
-        boolean operacao = persistenciaVeiculos.salvar(listaVeiculos, veiculos);
+        boolean operacao = persistenciaVeiculos.salvar(veiculos);
         if (operacao) {
             System.out.println("Cadastro salvo com sucesso");
         }
@@ -122,23 +106,20 @@ public class VisaoVeiculos {
         
     }
     
-    public void alteraVeiculos(){
+    public void alterarVeiculos(){
         
     }
     
-    public boolean pesquisaVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos){
-        List<Veiculos> listaVeiculo = new ArrayList<Veiculos>();
+    public boolean pesquisarVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos){
         boolean encontrou = false;
-        PersistenciaVeiculos persistenciaVeiculo = new PersistenciaVeiculos();
         try {
-            listaVeiculo = persistenciaVeiculo.retornaTodosVeiculos();
             
-            encontrou = persistenciaVeiculo.pesquisaVeiculo(listaVeiculos, veiculos);
+            encontrou = persistenciaVeiculos.pesquisarVeiculo(veiculos);
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(VisaoVeiculos.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("arquivo nao encontrado");
         } catch (IOException ex) {
-            Logger.getLogger(VisaoVeiculos.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erro na escrita ou leitura do arquivo");
         }
         
         return encontrou;
@@ -146,11 +127,11 @@ public class VisaoVeiculos {
         
     }
     
-    public void pesquisaVeiculo(){
+    public void pesquisarVeiculo(){
         
     }
     
-    public void excluiVeiculo(){
+    public void excluirVeiculo(){
         
     }
 }

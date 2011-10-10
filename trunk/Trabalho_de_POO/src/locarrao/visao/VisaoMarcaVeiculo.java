@@ -4,28 +4,22 @@
  */
 package locarrao.visao;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.MarcaVeiculo;
 import modelo.persistencia.PersistenciaMarcaVeiculo;
 
 public class VisaoMarcaVeiculo {
-    public void cadastraMarcaVeiculo(){
+    PersistenciaMarcaVeiculo persistenciaMarcaVeiculo = new PersistenciaMarcaVeiculo();
+    
+    public void cadastrarMarcaVeiculo() {
         MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
-        List<MarcaVeiculo> listaMarcaVeiculo = new ArrayList<MarcaVeiculo>();
         
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("Digite a marca do veiculo");
         marcaVeiculo.setMarca(entrada.nextLine());
         
-        PersistenciaMarcaVeiculo persistencia = new PersistenciaMarcaVeiculo();
-        listaMarcaVeiculo = persistencia.retornaTodasMarcas();
-        
-        boolean operacao = persistencia.salvar(listaMarcaVeiculo, marcaVeiculo);
+        boolean operacao = persistenciaMarcaVeiculo.salvar(marcaVeiculo);
 
         if(operacao){
             System.out.println("Salvo com sucesso");

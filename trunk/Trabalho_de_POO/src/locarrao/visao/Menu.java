@@ -66,15 +66,15 @@ public class Menu {
                                             break;
                                             
                                         case 2:
-                                            visaoVeiculos.alteraVeiculos();
+                                            visaoVeiculos.alterarVeiculos();
                                             break;
                                         
                                         case 3:
-                                            visaoVeiculos.pesquisaVeiculo();
+                                            visaoVeiculos.pesquisarVeiculo();
                                             break;
                                         
                                         case 4:
-                                            visaoVeiculos.excluiVeiculo();
+                                            visaoVeiculos.excluirVeiculo();
                                             break;
                                         
                                         default:
@@ -145,7 +145,7 @@ public class Menu {
                                 do{
                                     switch(menuCadastroMarcaVeiculo()){
                                         case 1:
-                                            visaoMarcaVeiculo.cadastraMarcaVeiculo();
+                                            visaoMarcaVeiculo.cadastrarMarcaVeiculo();
                                             break;
                                             
                                         case 2:
@@ -172,19 +172,19 @@ public class Menu {
                                 do{
                                     switch(menuCadastroModeloVeiculo()){
                                         case 1:
-                                            visaoModeloVeiculo.cadastraModeloVeiculo();
+                                            visaoModeloVeiculo.cadastrarModeloVeiculo();
                                             break;
                                             
                                         case 2:
-                                            visaoModeloVeiculo.alteraModeloVeiculo();
+                                            visaoModeloVeiculo.alterarModeloVeiculo();
                                             break;
                                         
                                         case 3:
-                                            visaoModeloVeiculo.pesquisaModeloVeiculo();
+                                            visaoModeloVeiculo.pesquisarModeloVeiculo();
                                             break;
                                         
                                         case 4:
-                                            visaoModeloVeiculo.excluiModeloVeiculo();
+                                            visaoModeloVeiculo.excluirModeloVeiculo();
                                             break;
                                         
                                         default:
