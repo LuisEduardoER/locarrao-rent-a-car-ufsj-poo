@@ -15,11 +15,17 @@ import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 
 public class PersistenciaVeiculos {
-    File arquivo = new File("src/arquivos/Veiculos.txt");
+    public static File arquivo;
+    public static List<Veiculos> listaVeiculos;
     
-    public List<Veiculos> retornaTodosVeiculos () {
+    public PersistenciaVeiculos() {
+        arquivo = new File("src/arquivos/Veiculos.txt");
+        listaVeiculos = new ArrayList<Veiculos>();
+        retornarTodosVeiculos();
+    }
+    
+    public static void retornarTodosVeiculos () {
         
-        List<Veiculos> listaVeiculos = new ArrayList<Veiculos> ();
         if(arquivo.exists()){
             FileReader reader = null;
             try {
@@ -89,10 +95,11 @@ public class PersistenciaVeiculos {
         else {
             System.out.println("Arquivo " + arquivo.getName()+ " nao encontrado");
         }
-        return listaVeiculos;    
+        
    }
-    public boolean salvar(List<Veiculos> listaVeiculos,Veiculos veiculos) {
+    public boolean salvar(Veiculos veiculos) {
         boolean retorno = false;
+        
         if(arquivo.exists()){
             FileWriter writer = null;
             try {
@@ -127,8 +134,8 @@ public class PersistenciaVeiculos {
         return retorno;
     }
     
-    public boolean alteraVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos) throws FileNotFoundException, IOException{
-        boolean existe = pesquisaVeiculo(listaVeiculos, veiculos);
+    public boolean alterarVeiculo(Veiculos veiculos) throws FileNotFoundException, IOException{
+        boolean existe = pesquisarVeiculo(veiculos);
         boolean retorno = false;
         if (existe){
             for(Veiculos automoveis: listaVeiculos){
@@ -145,8 +152,7 @@ public class PersistenciaVeiculos {
         return retorno;
     }
     
-    public boolean pesquisaVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos) throws FileNotFoundException, IOException{
-        
+    public boolean pesquisarVeiculo(Veiculos veiculos) throws FileNotFoundException, IOException{
         boolean encontrou = false;
         if(!listaVeiculos.isEmpty()){
             for(Veiculos automoveis : listaVeiculos){

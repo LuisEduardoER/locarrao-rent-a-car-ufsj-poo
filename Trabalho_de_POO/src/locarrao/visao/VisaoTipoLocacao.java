@@ -2,17 +2,17 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.TipoLocacao;
 import modelo.persistencia.PersistenciaTipoLocacao;
 import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoLocacao {
+    PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
+    
+    
     public void cadastraTipoLocacao() {
         TipoLocacao tipoLocacao = new TipoLocacao();
-        List<TipoLocacao> listaTipoLocacao = new ArrayList<TipoLocacao>();
         
         /* digitar os dados */
         Scanner entrada = new Scanner(System.in);
@@ -30,11 +30,9 @@ public class VisaoTipoLocacao {
         /* ------- Fim ------- */
         
         /* Salvar no arquivo */
-        PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
-        listaTipoLocacao = persistenciaTipoLocacao.retornarTodosTipoLocacao();
         
         try {
-            boolean operacao = persistenciaTipoLocacao.salvar(listaTipoLocacao,tipoLocacao);
+            boolean operacao = persistenciaTipoLocacao.salvar(tipoLocacao);
             
             if(operacao){
                 System.out.println("Lista salva com sucesso");
@@ -44,9 +42,13 @@ public class VisaoTipoLocacao {
             }
             
         } catch (FileNotFoundException ex) {
-            System.out.println("Erro: Arquivo nao encontrado");
+            System.out.println("Arquivo " + 
+                    PersistenciaTipoLocacao.arquivo.getName() +
+                    " não foi encontrado");
+            
         } catch (IOException ex) {
-            System.out.println("Erro na escrita/leitura do arquivo");
+            System.out.println("Erro na escrita/leitura do arquivo "+
+                    PersistenciaTipoLocacao.arquivo.getName());
         }
         
     }

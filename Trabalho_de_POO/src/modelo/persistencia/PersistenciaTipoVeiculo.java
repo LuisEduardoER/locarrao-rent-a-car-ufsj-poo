@@ -12,12 +12,17 @@ import java.util.List;
 import modelo.dominio.TipoVeiculo;
 
 public class PersistenciaTipoVeiculo {
-    File arquivo = new File("src/arquivos/TipoVeiculo.txt");
-   
-   
-    public List<TipoVeiculo> retornaTodosTipoVeiculo() {
-        List<TipoVeiculo> listaTipoVeiculos = new ArrayList<TipoVeiculo>();
-       
+    public static File arquivo;
+    public static List<TipoVeiculo> listaTipoVeiculos;
+    
+    public PersistenciaTipoVeiculo(){
+        arquivo = new File("src/arquivos/TipoVeiculo.txt");
+        listaTipoVeiculos = new ArrayList<TipoVeiculo>();
+        retornarTodosTipoVeiculo();
+    }
+    
+    public static void retornarTodosTipoVeiculo() {
+        
         if(arquivo.exists()){
             FileReader reader = null;
             try{
@@ -35,21 +40,23 @@ public class PersistenciaTipoVeiculo {
                     reader.close();
                     leitor.close();
                 } catch (IOException ex){
-                    System.out.println("Erro na leitura ou escrita do arquivo");
+                    System.out.println("Erro na leitura ou escrita do arquivo " +
+                            arquivo.getName());
                 }
                 
             } catch (IOException ex) {
-                System.out.println("Erro na leitura/escrita do arquivo");
+                System.out.println("Erro na leitura ou escrita do arquivo " +
+                            arquivo.getName());
             }
             
         }
         else{
-            System.out.println("Arquivo não encontrado");
+            System.out.println("Arquivo " + arquivo.getName() + "não foi encontrado");
         }
-        return listaTipoVeiculos;
+        
     }
    
-    public boolean salvar(List<TipoVeiculo> listaTipoVeiculo, TipoVeiculo tipoVeiculo) {
+    public boolean salvar(TipoVeiculo tipoVeiculo) {
         if(arquivo.exists()){
             FileWriter writer = null;
             try {
@@ -65,7 +72,7 @@ public class PersistenciaTipoVeiculo {
                  */
                
                 boolean achou = false;
-                for(TipoVeiculo tipo : listaTipoVeiculo){
+                for(TipoVeiculo tipo : listaTipoVeiculos){
                     if(tipo.getTipo().equals(tipoVeiculo.getTipo())){
                         achou = true;
                     }
@@ -77,12 +84,13 @@ public class PersistenciaTipoVeiculo {
                 dados.close();
                 return true;
             } catch (IOException ex) {
-                System.out.println("Erro na escrita/leitura do arquivo");
+                System.out.println("Erro na leitura ou escrita do arquivo " +
+                            arquivo.getName());
                 return false;
             }
         }
         else{
-            System.out.println("Arquvo não encontrado");
+            System.out.println("Arquivo " + arquivo.getName() + "não foi encontrado");
             return false;
         }
 
@@ -95,7 +103,7 @@ public class PersistenciaTipoVeiculo {
      *
      */
     public TipoVeiculo retornaTipoVeiculo(int indice) throws FileNotFoundException, IOException {
-        return retornaTodosTipoVeiculo().get(indice - 1);
+        return listaTipoVeiculos.get(indice - 1);
     }
    
 }

@@ -11,10 +11,16 @@ import java.util.List;
 import modelo.dominio.ModeloVeiculo;
 
 public class PersistenciaModeloVeiculo {
-    File arquivo = new File("src/arquivos/ModeloVeiculo.txt");
+    public static File arquivo;
+    public static List<ModeloVeiculo> listaModeloVeiculo;
     
-    public List<ModeloVeiculo> retornaTodosModelos(){
-        List<ModeloVeiculo> listaMarcaVeiculo = new ArrayList<ModeloVeiculo>();
+    public PersistenciaModeloVeiculo() {
+        arquivo = new File("src/arquivos/ModeloVeiculo.txt");
+        listaModeloVeiculo = new ArrayList<ModeloVeiculo>();
+        retornarTodosModelos();
+    }
+    
+    public static void retornarTodosModelos(){
         
         if(arquivo.exists()){
             FileReader reader = null;
@@ -27,28 +33,29 @@ public class PersistenciaModeloVeiculo {
                     while((linha = leitor.readLine()) != null){
                         ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
                         modeloVeiculo.setModelo(linha);
-                        listaMarcaVeiculo.add(modeloVeiculo);
+                        listaModeloVeiculo.add(modeloVeiculo);
                     }
 
                     reader.close();
                     leitor.close();
                 } catch (IOException ex){
-                    System.out.println("Erro na leitura ou escrita do arquivo");
+                    System.out.println("Erro na leitura ou escrita do arquivo " 
+                            + arquivo.getName());
                 }
                 
             } catch (IOException ex) {
-                System.out.println("Erro na leitura/escrita do arquivo");
+                System.out.println("Erro na leitura ou escrita do arquivo " 
+                        + arquivo.getName());
             }
             
         }
         else{
-            System.out.println("Arquivo não encontrado");
+            System.out.println("Arquivo " + arquivo.getName() + "não foi encontrado");
         }
-        return listaMarcaVeiculo;
         
     }
     
-    public boolean salvar(List<ModeloVeiculo> listaModeloVeiculo, ModeloVeiculo modeloVeiculo) {
+    public boolean salvar(ModeloVeiculo modeloVeiculo) {
         if(arquivo.exists()){
             FileWriter writer = null;
             try {
