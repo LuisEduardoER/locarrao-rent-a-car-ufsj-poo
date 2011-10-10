@@ -26,7 +26,7 @@ import modelo.dominio.Veiculos;
 public class PersistenciaLocacao {
     File arquivo = new File("src/arquivos/Locacao.txt");
     
-    public List<Locacao> retornaTodasLocacoes () {
+    public List<Locacao> retornarTodasLocacoes() {
         
         //criando a lista...
         List<Locacao> listaLocacao = new ArrayList<Locacao> ();
@@ -174,6 +174,5 @@ public class PersistenciaLocacao {
         }
     
     }
-      
      
 }
