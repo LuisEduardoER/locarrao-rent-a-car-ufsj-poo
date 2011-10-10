@@ -10,28 +10,24 @@ import modelo.dominio.Endereco;
 import modelo.persistencia.PersistenciaMotorista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
 public class VisaoMotorista {
-    public void cadastraMotorista(){
+    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+    
+    public void cadastrarMotorista(){
         Motorista motorista = new Motorista();
         Endereco endereco = new Endereco();
-        List<Motorista> listaMotorista = new ArrayList<Motorista>();
         
         Scanner cadastro = new Scanner(System.in);
-        
-        PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
-        listaMotorista = persistenciaMotorista.retornaMotorista();
         
         System.out.println("Digite a carteira nacional de habilitação");
         String cnh = cadastro.nextLine();
         motorista.setCnh(cnh);
         boolean existe = false;
         try{
-            existe = persistenciaMotorista.pesquisaMotorista(motorista);
+            existe = persistenciaMotorista.pesquisarMotorista(motorista);
             if(!existe){
                 System.out.println("Digite o nome");
                 motorista.setNome(cadastro.nextLine());
@@ -66,7 +62,7 @@ public class VisaoMotorista {
                 motorista.setEndereco(endereco);
 
 
-                boolean salvar = persistenciaMotorista.salvar(listaMotorista,motorista);
+                boolean salvar = persistenciaMotorista.salvar(motorista);
                 if (salvar){
                     System.out.println("Motorista salvo com sucesso!");
                 }else {
@@ -85,18 +81,18 @@ public class VisaoMotorista {
         
     }
    
-    public void alteraMotorista(){
+    public void alterarMotorista(){
         
     }
     
-    public void pesquisaMotorista(){
+    public void pesquisarMotorista(){
         /*
         Motorista motorista = new Motorista();
         Endereco endereco = new Endereco();
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
         Scanner pesquisa = new Scanner(System.in);
         PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
-        listaMotorista = persistenciaMotorista.retornaMotorista();
+        listaMotorista = persistenciaMotorista.retornarMotorista();
         System.out.println("Digite a cnh do motorista a ser pesquisado");
         String cnh=pesquisa.nextLine();
         motorista.setCnh(cnh);
@@ -104,7 +100,7 @@ public class VisaoMotorista {
             motorista=persistenciaMotorista.pesquisaMotorista2(motorista);
             if(motorista!=null){
                 System.out.println("Motorista encontrado:");
-                exibeMotorista(motorista);
+                exibirMotorista(motorista);
             }else{
                 System.out.println("Motorista nao encontrado");
             }
@@ -118,7 +114,7 @@ public class VisaoMotorista {
          * 
          */
     }
-    public void exibeMotorista(Motorista motorista){
+    public void exibirMotorista(Motorista motorista){
             System.out.println("Carteira: " + motorista.getCnh());
             System.out.println("Endereco:");
             System.out.println("-----------------------------------------------------");
@@ -129,7 +125,7 @@ public class VisaoMotorista {
             System.out.println("Cep: "+motorista.getEndereco().getCep());
             System.out.println("------------------------------------------------------");
     }
-    public void excluiMotorista(){
+    public void excluirMotorista(){
         
     }
     

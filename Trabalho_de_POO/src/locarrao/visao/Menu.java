@@ -34,19 +34,19 @@ public class Menu {
                                 do{
                                     switch(menuCadastroCliente()){
                                         case 1:
-                                            visaoClientes.cadastraClientes();
+                                            visaoClientes.cadastrarClientes();
                                             break;
                                             
                                         case 2:
-                                            visaoClientes.alteraCliente();
+                                            visaoClientes.alterarCliente();
                                             break;
                                         
                                         case 3:
-                                            visaoClientes.pesquisaCliente();
+                                            visaoClientes.pesquisarCliente();
                                             break;
                                         
                                         case 4:
-                                            visaoClientes.excluiCliente();
+                                            visaoClientes.excluirCliente();
                                             break;
                                         
                                         default:
@@ -90,19 +90,19 @@ public class Menu {
                                     
                                     switch(menuCadastroMotorista()){
                                         case 1:
-                                            visaoMotorista.cadastraMotorista();
+                                            visaoMotorista.cadastrarMotorista();
                                             break;
                                             
                                         case 2:
-                                            visaoMotorista.alteraMotorista();
+                                            visaoMotorista.alterarMotorista();
                                             break;
                                         
                                         case 3:
-                                            visaoMotorista.pesquisaMotorista();
+                                            visaoMotorista.pesquisarMotorista();
                                             break;
                                         
                                         case 4:
-                                            visaoMotorista.excluiMotorista();
+                                            visaoMotorista.excluirMotorista();
                                             break;
                                         
                                         default:
@@ -149,15 +149,15 @@ public class Menu {
                                             break;
                                             
                                         case 2:
-                                            visaoMarcaVeiculo.alteraMarcaVeiculo();
+                                            visaoMarcaVeiculo.alterarMarcaVeiculo();
                                             break;
                                         
                                         case 3:
-                                            visaoMarcaVeiculo.pesquisaMarcaVeiculo();
+                                            visaoMarcaVeiculo.pesquisarMarcaVeiculo();
                                             break;
                                         
                                         case 4:
-                                            visaoMarcaVeiculo.excluiMarcaVeiculo();
+                                            visaoMarcaVeiculo.excluirMarcaVeiculo();
                                             break;
                                         
                                         default:
@@ -270,15 +270,15 @@ public class Menu {
                                 break;
                                 
                             case 2:
-                                visaoLocacao.alteraLocacao();
+                                visaoLocacao.alterarLocacao();
                                 break;
                                 
                             case 3:
-                                visaoLocacao.pesquisaLocacao();
+                                visaoLocacao.pesquisarLocacao();
                                 break;
                                 
                             case 4:
-                                visaoLocacao.excluiLocacao();
+                                visaoLocacao.excluirLocacao();
                                 break;
                                 
                             default:

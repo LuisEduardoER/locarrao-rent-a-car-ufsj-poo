@@ -17,16 +17,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
 
 public class PersistenciaMotorista{
-    File arquivo = new File("src/arquivos/Motorista.txt");
+    public static File arquivo;
+    public static List<Motorista> listaMotorista;
     
-    public List<Motorista> retornaMotorista(){
-        List<Motorista> listaMotorista = new ArrayList<Motorista>();
+    public PersistenciaMotorista() {
+        arquivo = new File("src/arquivos/Motorista.txt");
+        listaMotorista = new ArrayList<Motorista>();
+        retornarMotorista();
+    }
+    
+    public static void retornarMotorista(){
         
         //verifica se o arquivo existe
         if(arquivo.exists()){
@@ -101,10 +105,9 @@ public class PersistenciaMotorista{
         }else{
             System.out.println("Erro: Arquivo de Motoristas não encontrado");
         }
-        return listaMotorista;
+        
     }
-    public boolean pesquisaMotorista(Motorista motorista)throws FileNotFoundException, IOException{
-        List<Motorista> listaMotorista = new ArrayList<Motorista>();
+    public boolean pesquisarMotorista(Motorista motorista)throws FileNotFoundException, IOException{
         
         boolean encontrou = false;
         for(Motorista item:listaMotorista){
@@ -116,7 +119,7 @@ public class PersistenciaMotorista{
         
     }
     
-    public boolean salvar(List<Motorista> listaMotorista,Motorista motorista) {
+    public boolean salvar(Motorista motorista) {
         boolean retorno = false;
         if(arquivo.exists()){
             FileWriter writer = null;
@@ -151,10 +154,8 @@ public class PersistenciaMotorista{
         return retorno;
         
     }
-    public boolean alteraMotorista(Motorista motorista) throws FileNotFoundException, IOException{
-        List<Motorista> listaMotorista = new ArrayList<Motorista>();
-        listaMotorista= retornaMotorista();
-        boolean existe = pesquisaMotorista(motorista);
+    public boolean alterarMotorista(Motorista motorista) throws FileNotFoundException, IOException{
+        boolean existe = pesquisarMotorista(motorista);
         boolean retorno = false;
         if(existe){
             for(Motorista pessoa:listaMotorista){
