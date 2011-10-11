@@ -17,15 +17,12 @@ public class PersistenciaTipoLocacao {
     public static File arquivo;
     public static List<TipoLocacao> listaTipoLocacao;
     
-    public static TipoLocacao tipoLocacao = new TipoLocacao();
-    public static TipoVeiculo tipoVeiculo = new TipoVeiculo();
-
-    
     //construtor que vai fazer com que a lista seja lida somente uma vez.
     public PersistenciaTipoLocacao() {
-        listaTipoLocacao = new ArrayList<TipoLocacao>();
         arquivo = new File("src/arquivos/TipoLocacao.txt");
+        listaTipoLocacao = new ArrayList<TipoLocacao>();
         retornarTodosTipoLocacao();
+        
     }
     
         
@@ -47,7 +44,9 @@ public class PersistenciaTipoLocacao {
                 int contador = 0;
                 while((linha = leitor.readLine()) != null) {
                     //objetos
-                    
+                    TipoLocacao tipoLocacao = new TipoLocacao();
+                    TipoVeiculo tipoVeiculo = new TipoVeiculo();
+
                     if (contador == 0) {
                         tipoLocacao.setTaxa(Double.parseDouble(linha));
                         contador++;

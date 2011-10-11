@@ -14,8 +14,6 @@ import modelo.dominio.TipoVeiculo;
 public class PersistenciaTipoVeiculo {
     public static File arquivo;
     public static List<TipoVeiculo> listaTipoVeiculos;
-    
-    public static TipoVeiculo tipoVeiculo = new TipoVeiculo();
                         
     
     public PersistenciaTipoVeiculo(){
@@ -35,6 +33,7 @@ public class PersistenciaTipoVeiculo {
                 String linha = null;
                 try{
                     while((linha = leitor.readLine()) != null){
+                        TipoVeiculo tipoVeiculo = new TipoVeiculo();
                         tipoVeiculo.setTipo(linha);
                         listaTipoVeiculos.add(tipoVeiculo);
                     }

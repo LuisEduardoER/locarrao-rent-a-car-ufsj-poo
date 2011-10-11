@@ -1,44 +1,22 @@
 1
-joao
-01234567890
-3233718888
-Leite de Castro
+joao victor
+2302320
+3892328304
+a
 10
 f
-Fabricas
-sao joao del rei
+centro
+sjdr
 mg
-36305006
+22932
 2
-patricia
-01201201200
-3233710000
-Paulo Freitas
+maria
+1219821
+28192812
+b
 20
-f
-Centro
-sao joao del rei
+ad
+jadlksad
+sjdr
 mg
-36305006
-3
-joao paulo
-01233333322
-3233711111
-Paulo Freitas
-20
-f
-Centro
-sao joao del rei
-mg
-36305006
-4
-ajdaklsd
-askdasdjask
-ajsldkajsda
-djalsjdaklsd
-20
-aljsdk
-alsjdaslkd
-asjdasdklaj
-ajsdlasjda
-alsjdalsd
+2323232
