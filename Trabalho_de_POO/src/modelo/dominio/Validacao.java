@@ -9,7 +9,7 @@ package modelo.dominio;
  * @author USER
  */
 public class Validacao {
-    public static boolean validarCPF(final String CPF) {
+    public  boolean validarCPF(String CPF) {
         int acumulador1 = 0;
         int acumulador2 = 0;
         int resto = 0;
@@ -44,4 +44,5 @@ public class Validacao {
          return (resultado.toString().equals(digitoVerificadorCPF));
 
     }
+    
 }
