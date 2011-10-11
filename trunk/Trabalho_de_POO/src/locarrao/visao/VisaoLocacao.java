@@ -14,21 +14,25 @@ import modelo.dominio.Veiculos;
 import modelo.persistencia.PersistenciaCliente;
 import modelo.persistencia.PersistenciaLocacao;
 import modelo.persistencia.PersistenciaMotorista;
+import modelo.persistencia.PersistenciaVeiculos;
 
 public class VisaoLocacao {
     PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
     PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
     PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
-    
+    VisaoClientes visaoClientes = new VisaoClientes();
+    VisaoMotorista visaoMotorista = new VisaoMotorista();
+    PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
+    Veiculos veiculo = new Veiculos();
+    VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
+            
     public static Clientes cliente = new Clientes();
     
     public void cadastraLocacao(){
         try {
             Locacao locacao = new Locacao();
             TipoLocacao tipoLocacao = new TipoLocacao();
-            List<Locacao> listaLocacao = new ArrayList<Locacao>();
             
-           
             // digitar os dados
             Scanner entrada = new Scanner(System.in);
             
@@ -37,6 +41,13 @@ public class VisaoLocacao {
             visaoTipoLocacao.pesquisaTipoVeiculo(tipoLocacao);
             
             /* ------------ Cliente ------------ */
+            /*
+             * Caso o cliente não existir, será dada a opção de cadastrar
+             * ou não. 
+             * 
+             * Caso a opção escolhida seja sim, então será chamado a visaoClientes
+             * Caso não, encerra a locação
+             */
             
             System.out.println("Codigo do cliente:");
             int codigo = entrada.nextInt();
@@ -50,8 +61,29 @@ public class VisaoLocacao {
                     locacao.setCliente(cliente);
                 }
                 else{
-                    System.out.println("Cliente nao encontrado.");
-                    return;
+                    do{
+                    
+                        System.out.println("Cliente nao encontrado. "
+                                + "Deseja cadastrar esse cliente?");
+                        System.out.println("1 - Sim");
+                        System.out.println("2 - Nao");
+                        
+                        switch(entrada.nextInt()){
+                            case 1:
+                                visaoClientes.cadastrarClientes();
+                                cliente.setCodigo(PersistenciaCliente.listaClientes.size());
+                                locacao.setCliente(cliente);
+                                break;
+                                
+                            case 2:
+                                return;
+                                
+                                
+                            default:
+                                System.out.println("Opcao inválida");
+                        }
+                    } while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
+                    
                 }
                 
             } catch (FileNotFoundException ex) {
@@ -68,14 +100,15 @@ public class VisaoLocacao {
              * a sua cnh no arquivo.
              * 
              * Caso contrario sera necessario digitar a cnh do motorista, caso ela não
-             * exista, então sai do programa atraves do comando return.
+             * exista, será dada a opção de cadastrar. Se não for cadastrado, então
+             * sairá do cadastro de locação
              */
             Motorista motorista = new Motorista();
             int opcao = 0;
             do{
                 System.out.println("Motorista");
                 System.out.println();
-                System.out.println("Voce é o motorista?");
+                System.out.println("Cliente é o motorista?");
                 System.out.println("1 - Sim");
                 System.out.println("2 - Nao");
                 
@@ -83,12 +116,13 @@ public class VisaoLocacao {
                 entrada.nextLine();
                 switch(opcao){
                     case 1:    
-                        System.out.println("Digite sua cnh");
+                        System.out.println("Digite a cnh");
                         motorista.setCnh(entrada.nextLine());
+                        locacao.setMotorista(motorista);
                         break;
                     
                     case 2:
-                        System.out.println("Digite sua cnh");
+                        System.out.println("Digite a cnh");
                         motorista.setCnh(entrada.nextLine());
 
                         boolean encontrou;
@@ -99,8 +133,26 @@ public class VisaoLocacao {
                                 break;
                             }
                             else{
-                                System.out.println("Motorista nao encontrado");
-                                return;
+                                do{
+                                    System.out.println("Motorista nao encontrado."
+                                        + " Deseja cadastrar?");
+                                    System.out.println("1 - Sim");
+                                    System.out.println("2 - Nao");
+                                    
+                                    switch(entrada.nextInt()){
+                                        case 1:
+                                            visaoMotorista.cadastrarMotorista();
+                                            locacao.setMotorista(VisaoMotorista.motorista);
+                                            break;
+                                        
+                                        case 2:
+                                            return;
+                                            
+                                        default:
+                                            System.out.println("Opcao inválida");
+                                    }
+                                
+                                }while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
                             }
 
                         } catch (FileNotFoundException ex) {
@@ -117,8 +169,6 @@ public class VisaoLocacao {
                 }
                 
             }while((opcao != 1) && (opcao != 2));
-            
-            locacao.setMotorista(motorista);
             
              /* -------------------------------Fim Motorista ------------------*/
             
@@ -147,21 +197,39 @@ public class VisaoLocacao {
             locacao.setLocacaoAberta(false);
             
             //Dados do veiculo
-            Veiculos veiculo = new Veiculos();
-            VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
             System.out.println("Placa do veiculo");
             veiculo.setPlaca(entrada.nextLine());
-            
-            /*
-            PersistenciaVeiculos persistenciaVeiculo = new PersistenciaVeiculos();
-            List<Veiculos> listaVeiculos  = new ArrayList<Veiculos>();
-            listaVeiculos = persistenciaVeiculo.retornaTodosVeiculos();
-            
-             * 
-             */
-            locacao.setVeiculo(veiculo);
+            boolean buscaVeiculo = persistenciaVeiculos.pesquisarVeiculo(veiculo);
+            if(buscaVeiculo){
+                locacao.setVeiculo(veiculo);
+            }
+            else{
+                do{
+                    System.out.println("Veiculo não encontrado. "
+                        + "Deseja cadastra-lo?");
+                    System.out.println("1 - Sim");
+                    System.out.println("2 - Nao");
+                    
+                    switch(entrada.nextInt()){
+                        case 1:
+                            visaoVeiculo.cadastraVeiculos();
+                            locacao.setVeiculo(VisaoVeiculos.veiculos);
+                            break;
+                       
+                        case 2:
+                            return;
+                            
+                        default:
+                            System.out.println("Opcao invalida");
+                            
+                    }
+                    
+                }while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
+                
+            }
             
      
+            /* Salvar a locacao */
             boolean operacao = persistenciaLocacao.salvar(locacao);
             
             if(operacao){

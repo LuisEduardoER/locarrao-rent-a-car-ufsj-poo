@@ -15,13 +15,16 @@ import java.util.Scanner;
 
 public class VisaoMotorista {
     PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+    public static Motorista motorista = new Motorista();
     
     public void cadastrarMotorista(){
-        Motorista motorista = new Motorista();
+        
         Endereco endereco = new Endereco();
         
         Scanner cadastro = new Scanner(System.in);
         
+        //Codigo será auto incremento
+        motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
         System.out.println("Digite a carteira nacional de habilitação");
         String cnh = cadastro.nextLine();
         motorista.setCnh(cnh);

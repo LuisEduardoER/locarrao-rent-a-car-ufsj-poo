@@ -24,6 +24,10 @@ public class PersistenciaMotorista{
     public static File arquivo;
     public static List<Motorista> listaMotorista;
     
+    public static Motorista motorista = new Motorista();
+    public static Endereco endereco=new Endereco();
+
+    
     public PersistenciaMotorista() {
         arquivo = new File("src/arquivos/Motorista.txt");
         listaMotorista = new ArrayList<Motorista>();
@@ -50,9 +54,7 @@ public class PersistenciaMotorista{
                      */
                     while((linha=leitor.readLine()) != null){
                         //objeto
-                        Motorista motorista = new Motorista();
-                        Endereco endereco=new Endereco();
-
+                        
                         if(contador == 0){
                             motorista.setCodigo(Integer.parseInt(linha));
                             contador++;      
