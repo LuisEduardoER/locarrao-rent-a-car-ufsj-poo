@@ -27,10 +27,13 @@ public class VisaoVeiculos {
     PersistenciaModeloVeiculo persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
     PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
     
-    public static Veiculos veiculos = new Veiculos();
+    public static Veiculos veiculos;
+    public VisaoVeiculos() {
+        veiculos = new Veiculos();
+    }
     
     public void cadastraVeiculos() {
-        
+        veiculos = new Veiculos();
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
         ModeloVeiculo modeloVeiculo = new ModeloVeiculo();

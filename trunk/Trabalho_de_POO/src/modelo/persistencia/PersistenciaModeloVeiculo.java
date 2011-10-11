@@ -13,7 +13,6 @@ import modelo.dominio.ModeloVeiculo;
 public class PersistenciaModeloVeiculo {
     public static File arquivo;
     public static List<ModeloVeiculo> listaModeloVeiculo;
-    public static ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
                         
     
     public PersistenciaModeloVeiculo() {
@@ -33,6 +32,7 @@ public class PersistenciaModeloVeiculo {
                 String linha = null;
                 try{
                     while((linha = leitor.readLine()) != null){
+                        ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
                         modeloVeiculo.setModelo(linha);
                         listaModeloVeiculo.add(modeloVeiculo);
                     }

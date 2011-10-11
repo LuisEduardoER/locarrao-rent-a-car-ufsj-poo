@@ -55,6 +55,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroCliente() != 5);
+                                entrada.nextLine();
                                 break;
                                 
                             case 2:
@@ -84,6 +85,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroVeiculo() != 5);
+                                entrada.nextLine();
                                 break;
                                 
                             case 3:
@@ -113,6 +115,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroMotorista() != 5);
+                                entrada.nextLine();
                                 break;
                                 
                             case 4:
@@ -142,6 +145,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroTipoVeiculo() != 5);
+                                entrada.nextLine();
                                 break;
                                 
                             case 5:
@@ -170,6 +174,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroMarcaVeiculo() != 5);
+                                entrada.nextLine();
                                 break;
                                 
                             case 6:
@@ -198,6 +203,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroModeloVeiculo() != 5);
+                                entrada.nextLine();
                                 break;
                                 
                             case 7:
@@ -219,6 +225,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroTipoLocacao() != 3);
+                                entrada.nextLine();
                                 break;    
                              
                             default:
@@ -267,6 +274,7 @@ public class Menu {
                                             
                         }
                     }while(menuRelatorios()!= 8);
+                    entrada.nextLine();
                     break;
                     
                 case 3:
@@ -295,12 +303,12 @@ public class Menu {
                                             
                         }
                     }while(menuLocacao() != 5);
+                    entrada.nextLine();
                     break;
                     
                 default:
                     if(opcao == 4) continue;
-                    else System.out.println("Opcao Invalida!");
-                                            
+                    else System.out.println("Opcao Invalida!");     
             }
             
         }while (opcao !=4);

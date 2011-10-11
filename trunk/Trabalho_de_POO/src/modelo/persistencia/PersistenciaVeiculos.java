@@ -18,12 +18,6 @@ public class PersistenciaVeiculos {
     public static File arquivo;
     public static List<Veiculos> listaVeiculos;
     
-    public static Veiculos veiculos = new Veiculos();
-    public static TipoVeiculo tipoVeiculo = new TipoVeiculo();
-    public static MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
-    public static ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
-
-    
     public PersistenciaVeiculos() {
         arquivo = new File("src/arquivos/Veiculos.txt");
         listaVeiculos = new ArrayList<Veiculos>();
@@ -43,7 +37,11 @@ public class PersistenciaVeiculos {
                 int contador = 0;
                 try{
                     while((linha = leitor.readLine()) != null){
-                        
+                        Veiculos veiculos = new Veiculos();
+                        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+                        MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
+                        ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
+
                         if (contador == 0){
                             veiculos.setPlaca(linha);
                             contador++;
@@ -165,6 +163,20 @@ public class PersistenciaVeiculos {
         }
         
         return encontrou;
+    }
+    
+    public void retornarVeiculo(Veiculos veiculo) {
+        for(Veiculos automovel: listaVeiculos){
+            if(automovel.getPlaca().equals(veiculo.getPlaca())){
+                veiculo.setAno(automovel.getAno());
+                veiculo.setCor(automovel.getCor());
+                veiculo.setMarcaVeiculo(automovel.getMarcaVeiculo());
+                veiculo.setModeloVeiculo(automovel.getModeloVeiculo());
+                veiculo.setObservacao(automovel.getObservacao());
+                veiculo.setOpcionais(automovel.getOpcionais());
+                veiculo.setTipoVeiculo(automovel.getTipoVeiculo());
+            }
+        }
     }
     
 }

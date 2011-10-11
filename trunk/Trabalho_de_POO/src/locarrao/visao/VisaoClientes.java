@@ -17,9 +17,13 @@ import modelo.persistencia.PersistenciaCliente;
  */
 public class VisaoClientes {
     PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-    public static Clientes clientes = new Clientes();
+    public static Clientes clientes;
+    public VisaoClientes() {
+        clientes = new Clientes();
+    }
         
     public void cadastrarClientes(){
+        clientes = new Clientes();
         Endereco endereco = new Endereco();
         
         //aparece na tela...

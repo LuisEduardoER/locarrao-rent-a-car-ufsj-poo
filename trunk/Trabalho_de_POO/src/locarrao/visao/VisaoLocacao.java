@@ -2,9 +2,7 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
@@ -18,15 +16,18 @@ import modelo.persistencia.PersistenciaVeiculos;
 
 public class VisaoLocacao {
     PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
-    PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
+    Clientes cliente = new Clientes();
     VisaoClientes visaoClientes = new VisaoClientes();
+    
+    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
     VisaoMotorista visaoMotorista = new VisaoMotorista();
+    
     PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
     Veiculos veiculo = new Veiculos();
     VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
+    
+    PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
             
-    public static Clientes cliente = new Clientes();
     
     public void cadastraLocacao(){
         try {
@@ -97,7 +98,7 @@ public class VisaoLocacao {
             
             /* -----------------------   Motorista ------------------------ 
              * Se o motorista for o proprio cliente, então apenas sera inserida
-             * a sua cnh no arquivo.
+             * a sua cnh no arquivo e ele será salvo como um novo motorista
              * 
              * Caso contrario sera necessario digitar a cnh do motorista, caso ela não
              * exista, será dada a opção de cadastrar. Se não for cadastrado, então
@@ -115,10 +116,23 @@ public class VisaoLocacao {
                 opcao = entrada.nextInt();
                 entrada.nextLine();
                 switch(opcao){
-                    case 1:    
+                    case 1:
+                        
                         System.out.println("Digite a cnh");
                         motorista.setCnh(entrada.nextLine());
-                        locacao.setMotorista(motorista);
+                        motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
+                        motorista.setCpf(cliente.getCpf());
+                        motorista.setEndereco(cliente.getEndereco());
+                        motorista.setNome(cliente.getNome());
+                        motorista.setTefefone(cliente.getTefefone());
+                        
+                        boolean salvaMotorista = persistenciaMotorista.salvar(motorista);
+                        if(salvaMotorista){
+                            locacao.setMotorista(motorista);
+                        }
+                        else{
+                            System.out.println("erro ao salvar novo motorista");
+                        }
                         break;
                     
                     case 2:
@@ -170,37 +184,14 @@ public class VisaoLocacao {
                 
             }while((opcao != 1) && (opcao != 2));
             
-             /* -------------------------------Fim Motorista ------------------*/
+             /* ------------------ Fim Motorista ------------------ */
             
-            //Dados Tipo da Locacao
-            VisaoTipoLocacao visao = new VisaoTipoLocacao();
-            locacao.setTipo(visao.retornaTipoDeLocacao());
-            
-            //Dados da Previsao
-            System.out.println("Digite a previsao de dias:");
-            locacao.setPrevisao(entrada.nextInt());
-            
-            //Dados da quilometragem
-            System.out.println("Digite a quilometragem de saida:");
-            locacao.setQuilometragemDeSaida(entrada.nextLong());
-            entrada.nextLine();
-            locacao.setQuilometragemDeEntrada(0); // Não é conhecida a quilometragem de chegada
-            
-            //Dados da data da locaçao
-            locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
-            locacao.setDataDevolucao(0); //Não é conhecida a data de devoluçao
-            
-            //valor da locacao
-            locacao.setValor(0); // Valor será calculado depois da finalizaçao
-            
-            //Inicio a locacao com false. No fechamento será passado pra true
-            locacao.setLocacaoAberta(false);
-            
-            //Dados do veiculo
+            /* ------------------ Veiculo ------------------ */
             System.out.println("Placa do veiculo");
             veiculo.setPlaca(entrada.nextLine());
             boolean buscaVeiculo = persistenciaVeiculos.pesquisarVeiculo(veiculo);
             if(buscaVeiculo){
+                persistenciaVeiculos.retornarVeiculo(veiculo);
                 locacao.setVeiculo(veiculo);
             }
             else{
@@ -227,8 +218,33 @@ public class VisaoLocacao {
                 }while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
                 
             }
+            /* ------------------ Fim Veiculo ------------------ */
             
-     
+            //Dados Tipo da Locacao
+            VisaoTipoLocacao visao = new VisaoTipoLocacao();
+            locacao.setTipo(visao.retornaTipoDeLocacao());
+            
+            //Dados da Previsao
+            System.out.println("Digite a previsao de dias:");
+            locacao.setPrevisao(entrada.nextInt());
+            
+            //Dados da quilometragem
+            System.out.println("Digite a quilometragem de saida:");
+            locacao.setQuilometragemDeSaida(entrada.nextLong());
+            entrada.nextLine();
+            locacao.setQuilometragemDeEntrada(0); // Não é conhecida a quilometragem de chegada
+            
+            //Dados da data da locaçao
+            locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
+            locacao.setDataDevolucao(0); //Não é conhecida a data de devoluçao
+            
+            //valor da locacao
+            locacao.setValor(0); // Valor será calculado depois da finalizaçao
+            
+            //Inicio a locacao com false. No fechamento será passado pra true
+            locacao.setLocacaoAberta(false);
+            
+            
             /* Salvar a locacao */
             boolean operacao = persistenciaLocacao.salvar(locacao);
             

@@ -24,10 +24,6 @@ public class PersistenciaCliente {
     public static File arquivo;
     public static List<Clientes> listaClientes; 
     
-    public static Clientes clientes = new Clientes();
-    public static Endereco endereco = new Endereco();
-                
-    
     public PersistenciaCliente() {
         arquivo = new File("src/arquivos/Clientes.txt");
         listaClientes = new ArrayList<Clientes>();
@@ -46,11 +42,11 @@ public class PersistenciaCliente {
                 String linha = null;
                 int contador = 0;
                 try {
-                    
                     while((linha = leitor.readLine()) != null){
-                        
+                        Clientes clientes = new Clientes();
+                        Endereco endereco = new Endereco();
+    
                         if (contador == 0){
-                            
                             //transformando string em inteiro...
                             clientes.setCodigo(Integer.parseInt(linha));
                             contador++;
@@ -96,11 +92,7 @@ public class PersistenciaCliente {
                             clientes.setEndereco(endereco);
                             listaClientes.add(clientes);
                             contador = 0;
-                            clientes = new Clientes();
-                            endereco = new Endereco();
-                
                         }
-                        
                     }
                     
                     reader.close();

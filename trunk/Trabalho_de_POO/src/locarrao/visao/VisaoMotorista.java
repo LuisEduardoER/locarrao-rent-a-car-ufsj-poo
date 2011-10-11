@@ -15,10 +15,14 @@ import java.util.Scanner;
 
 public class VisaoMotorista {
     PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
-    public static Motorista motorista = new Motorista();
+    public static Motorista motorista;
+    
+    public VisaoMotorista() {
+        motorista = new Motorista();
+    }
     
     public void cadastrarMotorista(){
-        
+        motorista = new Motorista();
         Endereco endereco = new Endereco();
         
         Scanner cadastro = new Scanner(System.in);
