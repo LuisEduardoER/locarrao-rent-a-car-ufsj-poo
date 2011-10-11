@@ -73,7 +73,7 @@ public class VisaoMotorista {
                 if (salvar){
                     System.out.println("Motorista salvo com sucesso!");
                 }else {
-                    System.out.println("ERRO!");
+                    System.out.println("ERRO AO SALVAR!");
                 }
                 
             }else {
