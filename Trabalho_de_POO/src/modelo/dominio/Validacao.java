@@ -6,7 +6,7 @@ package modelo.dominio;
 
 /**
  *
- * @author USER
+ * @author Thais
  */
 public class Validacao {
     public  boolean validarCPF(String CPF) {
@@ -43,6 +43,14 @@ public class Validacao {
 
          return (resultado.toString().equals(digitoVerificadorCPF));
 
+    }
+    public boolean validarCEP(String CEP){
+        if(CEP.length()==8){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
     
 }

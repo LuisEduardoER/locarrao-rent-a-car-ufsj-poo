@@ -11,6 +11,7 @@ import modelo.persistencia.PersistenciaMotorista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+import modelo.dominio.Validacao;
 
 
 public class VisaoMotorista {
@@ -24,7 +25,7 @@ public class VisaoMotorista {
     public void cadastrarMotorista(){
         motorista = new Motorista();
         Endereco endereco = new Endereco();
-        
+        Validacao valida = new Validacao();
         Scanner cadastro = new Scanner(System.in);
         
         //Codigo será auto incremento
@@ -36,46 +37,57 @@ public class VisaoMotorista {
         try{
             existe = persistenciaMotorista.pesquisarMotorista(motorista);
             if(!existe){
-                System.out.println("Digite o nome");
-                motorista.setNome(cadastro.nextLine());
-
                 System.out.println("Digite o cpf");
-                motorista.setCpf(cadastro.nextLine());
+                String retorno = cadastro.nextLine();
+                if(valida.validarCPF(retorno)){
+                    System.out.println("CPF VALIDO");
+                    motorista.setCpf(retorno);
+                    System.out.println("Digite o nome");
+                    motorista.setNome(cadastro.nextLine());
+                    System.out.println("Digite o telefone");
+                    motorista.setTefefone(cadastro.nextLine());
 
-                System.out.println("Digite o telefone");
-                motorista.setTefefone(cadastro.nextLine());
+                    System.out.println("Digite o rua");
+                    endereco.setRua(cadastro.nextLine());
 
-                System.out.println("Digite o rua");
-                endereco.setRua(cadastro.nextLine());
+                    System.out.println("Digite o numero");
+                    endereco.setNumero(cadastro.nextInt());
+                    cadastro.nextLine();
 
-                System.out.println("Digite o numero");
-                endereco.setNumero(cadastro.nextInt());
-                cadastro.nextLine();
+                    System.out.println("Digite o complemento");
+                    endereco.setComplemento(cadastro.nextLine());
 
-                System.out.println("Digite o complemento");
-                endereco.setComplemento(cadastro.nextLine());
+                    System.out.println("Digite o bairro");
+                    endereco.setBairro(cadastro.nextLine());
 
-                System.out.println("Digite o bairro");
-                endereco.setBairro(cadastro.nextLine());
+                    System.out.println("Digite a Cidade");
+                    endereco.setCidade(cadastro.nextLine());
 
-                System.out.println("Digite a Cidade");
-                endereco.setCidade(cadastro.nextLine());
-
-                System.out.println("Digite uf");
-                endereco.setUf(cadastro.nextLine());
-
-                System.out.println("Digite cep");
-                endereco.setCep(cadastro.nextLine());
-                motorista.setEndereco(endereco);
-
-
-                boolean salvar = persistenciaMotorista.salvar(motorista);
-                if (salvar){
-                    System.out.println("Motorista salvo com sucesso!");
-                }else {
-                    System.out.println("ERRO AO SALVAR!");
-                }
+                    System.out.println("Digite uf");
+                    endereco.setUf(cadastro.nextLine());
                 
+                    System.out.println("Digite cep");
+                    retorno = cadastro.nextLine();
+                    if(valida.validarCEP(retorno)){
+                        System.out.println("CEP valido");
+                        endereco.setCep(retorno);
+                        motorista.setEndereco(endereco);
+
+
+                        boolean salvar = persistenciaMotorista.salvar(motorista);
+                        if (salvar){
+                             System.out.println("Motorista salvo com sucesso!");
+                             }else {
+                              System.out.println("ERRO AO SALVAR!");
+                        }
+                    }else{
+                        System.out.println("Erro:CEP invalido");
+                        System.out.println("Tente novamente");
+                    }
+                }else{
+                     System.out.println("CPF INVÁLIDO!");
+                     System.out.println("Tente novamente");
+                }
             }else {
                 System.out.println("Motorista ja cadastrado");
             }
