@@ -27,6 +27,7 @@ public class PersistenciaLocacao {
     public static File arquivo;
     public static List<Locacao> listaLocacao;
     
+    public static Locacao locacao = new Locacao();                
     public static TipoLocacao tipoLocacao = new TipoLocacao();
     public static TipoVeiculo tipoVeiculo = new TipoVeiculo();
     public static Motorista motorista = new Motorista();
@@ -57,9 +58,6 @@ public class PersistenciaLocacao {
                 String linha = null;
                 int contador = 0;
                 while((linha = leitor.readLine()) != null) {
-                    
-                    //objetos
-                    Locacao locacao = new Locacao();
                     
                     if (contador == 0){
                         locacao.setCodigo(Integer.parseInt(linha));

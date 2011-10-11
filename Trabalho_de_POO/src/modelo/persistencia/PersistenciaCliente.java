@@ -24,6 +24,10 @@ public class PersistenciaCliente {
     public static File arquivo;
     public static List<Clientes> listaClientes; 
     
+    public static Clientes clientes = new Clientes();
+    public static Endereco endereco = new Endereco();
+                
+    
     public PersistenciaCliente() {
         arquivo = new File("src/arquivos/Clientes.txt");
         listaClientes = new ArrayList<Clientes>();
@@ -43,9 +47,6 @@ public class PersistenciaCliente {
                 int contador = 0;
                 try {
                     
-                    Clientes clientes = new Clientes();
-                    Endereco endereco = new Endereco();
-                
                     while((linha = leitor.readLine()) != null){
                         
                         if (contador == 0){

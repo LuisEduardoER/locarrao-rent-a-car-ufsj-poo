@@ -27,10 +27,10 @@ public class VisaoVeiculos {
     PersistenciaModeloVeiculo persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
     PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
     
+    public static Veiculos veiculos = new Veiculos();
     
     public void cadastraVeiculos() {
-        //objetos
-        Veiculos veiculos = new Veiculos();
+        
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
         ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
@@ -110,7 +110,7 @@ public class VisaoVeiculos {
         
     }
     
-    public boolean pesquisarVeiculo(List<Veiculos> listaVeiculos,Veiculos veiculos){
+    public boolean pesquisarVeiculo(Veiculos veiculos){
         boolean encontrou = false;
         try {
             
