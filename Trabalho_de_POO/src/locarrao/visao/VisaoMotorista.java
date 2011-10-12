@@ -25,6 +25,7 @@ public class VisaoMotorista {
     public void cadastrarMotorista(){
         motorista = new Motorista();
         Endereco endereco = new Endereco();
+        
         Validacao valida = new Validacao();
         Scanner cadastro = new Scanner(System.in);
         
@@ -34,16 +35,18 @@ public class VisaoMotorista {
         String cnh = cadastro.nextLine();
         motorista.setCnh(cnh);
         boolean existe = false;
-        try{
-            existe = persistenciaMotorista.pesquisarMotorista(motorista);
-            if(!existe){
+        //try{
+            //existe = persistenciaMotorista.pesquisarMotorista(motorista);
+            //if(!existe){
                 System.out.println("Digite o cpf");
                 String retorno = cadastro.nextLine();
                 if(valida.validarCPF(retorno)){
                     System.out.println("CPF VALIDO");
                     motorista.setCpf(retorno);
+                    
                     System.out.println("Digite o nome");
                     motorista.setNome(cadastro.nextLine());
+                    
                     System.out.println("Digite o telefone");
                     motorista.setTefefone(cadastro.nextLine());
 
@@ -88,15 +91,17 @@ public class VisaoMotorista {
                      System.out.println("CPF INVÁLIDO!");
                      System.out.println("Tente novamente");
                 }
-            }else {
-                System.out.println("Motorista ja cadastrado");
-            }
-            
+            //}else {
+               // System.out.println("Motorista ja cadastrado");
+            //}
+        /*    
         }catch (FileNotFoundException ex) {
             System.out.println("Erro! Arquivo nao encontrado");
         } catch (IOException ex) {
             System.out.println("Erro na leitura ou escrita do arquivo");
         }
+                 * 
+                 */
         
     }
    
