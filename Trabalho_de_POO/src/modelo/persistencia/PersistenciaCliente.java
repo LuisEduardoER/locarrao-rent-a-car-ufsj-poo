@@ -42,11 +42,12 @@ public class PersistenciaCliente {
                 //percorre o arquivo...
                 String linha = null;
                 int contador = 0;
+                Clientes clientes = new Clientes();
+                Endereco endereco = new Endereco();
+    
                 try {
                     while((linha = leitor.readLine()) != null){
-                        Clientes clientes = new Clientes();
-                        Endereco endereco = new Endereco();
-    
+                        
                         if (contador == 0){
                             //transformando string em inteiro...
                             clientes.setCodigo(Integer.parseInt(linha));
@@ -93,6 +94,8 @@ public class PersistenciaCliente {
                             clientes.setEndereco(endereco);
                             listaClientes.add(clientes);
                             contador = 0;
+                            clientes = new Clientes();
+                            endereco = new Endereco();
                         }
                     }
                     
@@ -150,7 +153,7 @@ public class PersistenciaCliente {
         if (existe){
             for(Clientes pessoas: listaClientes){
                 if(clientes.getCodigo() == pessoas.getCodigo()){
-                    pessoas=clientes;
+                    pessoas = clientes;
                     retorno = true;
                 }
             }
@@ -169,6 +172,18 @@ public class PersistenciaCliente {
             }
         }
         return encontrou;
+    }
+    
+    public void retornarCliente(Clientes cliente){
+        
+        for(Clientes item : listaClientes){
+            if(item.getCodigo() == cliente.getCodigo()){
+                cliente.setNome(item.getNome());
+                cliente.setCpf(item.getCpf());
+                cliente.setTefefone(item.getTefefone());
+                cliente.setEndereco(item.getEndereco());
+            }
+        }
     }
    
 }

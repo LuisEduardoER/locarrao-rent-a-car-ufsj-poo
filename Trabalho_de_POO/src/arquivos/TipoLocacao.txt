@@ -1,6 +1,12 @@
 10.0
 20.0
 Padrao
-30.0
-40.0
+1.0
+2.0
 Basico
+1.0
+2.0
+Economico
+4.0
+5.0
+Compacto

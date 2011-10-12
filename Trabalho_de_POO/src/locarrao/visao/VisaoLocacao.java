@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
+import modelo.dominio.Endereco;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
 import modelo.dominio.TipoLocacao;
@@ -36,10 +37,6 @@ public class VisaoLocacao {
             
             // digitar os dados
             Scanner entrada = new Scanner(System.in);
-            
-            //Tipo
-            VisaoTipoLocacao visaoTipoLocacao = new VisaoTipoLocacao();        
-            visaoTipoLocacao.pesquisaTipoVeiculo(tipoLocacao);
             
             /* ------------ Cliente ------------ */
             /*
@@ -105,6 +102,7 @@ public class VisaoLocacao {
              * sairá do cadastro de locação
              */
             Motorista motorista = new Motorista();
+            boolean encontrou;
             int opcao = 0;
             do{
                 System.out.println("Motorista");
@@ -120,26 +118,35 @@ public class VisaoLocacao {
                         
                         System.out.println("Digite a cnh");
                         motorista.setCnh(entrada.nextLine());
-                        motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
-                        motorista.setCpf(cliente.getCpf());
-                        motorista.setEndereco(cliente.getEndereco());
-                        motorista.setNome(cliente.getNome());
-                        motorista.setTefefone(cliente.getTefefone());
+                        encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
                         
-                        boolean salvaMotorista = persistenciaMotorista.salvar(motorista);
-                        if(salvaMotorista){
-                            locacao.setMotorista(motorista);
+                        if (!encontrou){
+                            persistenciaCliente.retornarCliente(cliente);
+                            motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
+                            motorista.setNome(cliente.getNome());
+                            motorista.setCpf(cliente.getCpf());
+                            motorista.setTefefone(cliente.getTefefone());
+                            motorista.setEndereco(cliente.getEndereco());
+                            
+                            boolean salvaMotorista = persistenciaMotorista.salvar(motorista);
+                            if(salvaMotorista){
+                                locacao.setMotorista(motorista);
+                            }
+                            else{
+                                System.out.println("erro ao salvar novo motorista");
+                            }
                         }
                         else{
-                            System.out.println("erro ao salvar novo motorista");
+                            locacao.setMotorista(motorista);
                         }
+                        
                         break;
                     
                     case 2:
                         System.out.println("Digite a cnh");
                         motorista.setCnh(entrada.nextLine());
 
-                        boolean encontrou;
+                        
                         try {
                             encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
                             if(encontrou){
@@ -183,7 +190,7 @@ public class VisaoLocacao {
                 }
                 
             }while((opcao != 1) && (opcao != 2));
-            
+            entrada.nextLine();
              /* ------------------ Fim Motorista ------------------ */
             
             /* ------------------ Veiculo ------------------ */
@@ -192,7 +199,9 @@ public class VisaoLocacao {
             boolean buscaVeiculo = persistenciaVeiculos.pesquisarVeiculo(veiculo);
             if(buscaVeiculo){
                 persistenciaVeiculos.retornarVeiculo(veiculo);
+                tipoLocacao.setTipoVeiculo(veiculo.getTipoVeiculo());
                 locacao.setVeiculo(veiculo);
+                locacao.setTipoLocacao(tipoLocacao);
             }
             else{
                 do{

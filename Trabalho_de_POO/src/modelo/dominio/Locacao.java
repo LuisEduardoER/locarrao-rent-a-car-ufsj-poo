@@ -28,8 +28,6 @@ public class Locacao {
 
     private Veiculos veiculo;
 
-    private int codigo;
-
     
     public long getQuilometragemDeSaida() {
         return quilometragemDeSaida;
@@ -117,40 +115,18 @@ public class Locacao {
         return motorista;
     }
 
-    /**
-     * @param motorista the motorista to set
-     */
     public void setMotorista(Motorista motorista) {
         this.motorista = motorista;
     }
 
-    /**
-     * @return the veiculo
-     */
     public Veiculos getVeiculo() {
         return veiculo;
     }
 
-    /**
-     * @param veiculo the veiculo to set
-     */
     public void setVeiculo(Veiculos veiculo) {
         this.veiculo = veiculo;
     }
 
-    /**
-     * @return the codigo
-     */
-    public int getCodigo() {
-        return codigo;
-    }
-
-    /**
-     * @param codigo the codigo to set
-     */
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
 	 
 }
  
