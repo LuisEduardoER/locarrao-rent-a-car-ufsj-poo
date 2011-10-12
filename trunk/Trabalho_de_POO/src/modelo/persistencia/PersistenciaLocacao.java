@@ -50,67 +50,80 @@ public class PersistenciaLocacao {
                  */
                 String linha = null;
                 int contador = 0;
+                
+                Locacao locacao = new Locacao();                
+                TipoLocacao tipoLocacao = new TipoLocacao();
+                TipoVeiculo tipoVeiculo = new TipoVeiculo();
+                Motorista motorista = new Motorista();
+                Veiculos veiculo = new Veiculos();
+                Clientes cliente = new Clientes();
+                    
                 while((linha = leitor.readLine()) != null) {
-                    Locacao locacao = new Locacao();                
-                    TipoLocacao tipoLocacao = new TipoLocacao();
-                    TipoVeiculo tipoVeiculo = new TipoVeiculo();
-                    Motorista motorista = new Motorista();
-                    Veiculos veiculo = new Veiculos();
-                    Clientes cliente = new Clientes();
-    
-                    if (contador == 0){
-                        locacao.setCodigo(Integer.parseInt(linha));
-                        contador++;
-                    }
-                    else if (contador == 1) {
-                        locacao.setQuilometragemDeSaida(Long.parseLong(linha));
-                        contador++;
-                    }
-                    else if (contador == 2) {
-                        locacao.setQuilometragemDeEntrada(Long.parseLong(linha));
-                        contador++ ;
-                    }
-                    else if (contador == 3) {
-                        locacao.setTipo(linha);
-                        contador++;
-                        
-                    }
-                    else if (contador == 4){
-                        locacao.setValor(Double.parseDouble(linha));
-                        contador++;
-                    }
-                    else if (contador == 5){
-                        locacao.setDataSaida(Long.parseLong(linha));
-                        contador++;
-                    }
-                    else if (contador == 6){
-                        locacao.setDataDevolucao(Long.parseLong(linha));
-                        contador++;
-                    }
-                    else if (contador == 7){
-                        locacao.setPrevisao(Integer.parseInt(linha));
-                        contador++;
-                    }
-                    else if (contador == 8 ){
-                        locacao.setLocacaoAberta(Boolean.parseBoolean(linha));
-                        contador++;
-                    }
-                    else if (contador == 9){
+                    
+                    if(contador == 0){
                         cliente.setCodigo(Integer.parseInt(linha));
                         locacao.setCliente(cliente);
                         contador++;
                     }
-                    else if (contador == 10){
+                    else if(contador == 1){
                         motorista.setCnh(linha);
                         locacao.setMotorista(motorista);
                         contador++;
                     }
-                    else if (contador == 11){
+                    else if(contador == 2){
                         veiculo.setPlaca(linha);
                         locacao.setVeiculo(veiculo);
-                        listaLocacao.add(locacao);
-                        contador = 0;
+                        contador++;
                     }
+                    else if(contador == 3){
+                        tipoVeiculo.setTipo(linha);
+                        tipoLocacao.setTipoVeiculo(tipoVeiculo);
+                        locacao.setTipoLocacao(tipoLocacao);
+                        contador++;
+                    }
+                    else if(contador == 4){
+                        locacao.setTipo(linha);
+                        contador++;
+                    }
+                    else if(contador == 5){
+                        locacao.setQuilometragemDeSaida(Long.parseLong(linha));
+                        contador++;
+                    }
+                    else if(contador == 6){
+                        locacao.setQuilometragemDeEntrada(Long.parseLong(linha));
+                        contador++;
+                    }
+                    else if(contador == 7){
+                        locacao.setDataSaida(Long.parseLong(linha));
+                        contador++;
+                    }
+                    else if(contador == 8){
+                        locacao.setDataDevolucao(Long.parseLong(linha));
+                        contador++;
+                    }
+                    else if(contador == 9){
+                        locacao.setPrevisao(Integer.parseInt(linha));
+                        contador++;
+                    }
+                    else if(contador == 10){
+                        locacao.setLocacaoAberta(Boolean.parseBoolean(linha));
+                        contador++;
+                    }
+                    else if(contador == 11){
+                        locacao.setValor(Double.parseDouble(linha));
+                        listaLocacao.add(locacao);
+                        
+                        locacao = new Locacao();                
+                        tipoLocacao = new TipoLocacao();
+                        tipoVeiculo = new TipoVeiculo();
+                        motorista = new Motorista();
+                        veiculo = new Veiculos();
+                        cliente = new Clientes();
+                        
+                        contador = 0;
+                
+                    }
+                    
                     
                 }
                 reader.close();
@@ -153,18 +166,18 @@ public class PersistenciaLocacao {
             listaLocacao.add(locacao);
             
             for(Locacao tipo: listaLocacao){
-                dados.println(tipo.getCodigo());
+                dados.println(tipo.getCliente().getCodigo());
+                dados.println(tipo.getMotorista().getCnh());
+                dados.println(tipo.getVeiculo().getPlaca());
+                dados.println(tipo.getTipoLocacao().getTipoVeiculo().getTipo());
+                dados.println(tipo.getTipo());
                 dados.println(tipo.getQuilometragemDeSaida());
                 dados.println(tipo.getQuilometragemDeEntrada());
-                dados.println(tipo.getTipo());
-                dados.println(tipo.getValor());
-                dados.println(tipo.getDataSaida());
-                dados.println(tipo.getDataDevolucao());
+                dados.println(tipo.getDataSaida().getTime());
+                dados.println(tipo.getDataDevolucao().getTime());
                 dados.println(tipo.getPrevisao());
                 dados.println(tipo.isLocacaoAberta());
-                dados.println(tipo.getCliente().getCodigo());
-                dados.println(tipo.getMotorista().getCodigo());
-                dados.println(tipo.getVeiculo().getPlaca());
+                dados.println(tipo.getValor());
             }
             
             writer.close();

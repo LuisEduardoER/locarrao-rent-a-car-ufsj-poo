@@ -35,13 +35,14 @@ public class PersistenciaVeiculos {
                 String linha = null;
                 
                 int contador = 0;
+                Veiculos veiculos = new Veiculos();
+                TipoVeiculo tipoVeiculo = new TipoVeiculo();
+                MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
+                ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
+
                 try{
                     while((linha = leitor.readLine()) != null){
-                        Veiculos veiculos = new Veiculos();
-                        TipoVeiculo tipoVeiculo = new TipoVeiculo();
-                        MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
-                        ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
-
+                        
                         if (contador == 0){
                             veiculos.setPlaca(linha);
                             contador++;
@@ -77,6 +78,11 @@ public class PersistenciaVeiculos {
                             veiculos.setModeloVeiculo(modeloVeiculo);
                             listaVeiculos.add(veiculos);
                             contador = 0;
+                            veiculos = new Veiculos();
+                            tipoVeiculo = new TipoVeiculo();
+                            marcaVeiculo = new MarcaVeiculo();
+                            modeloVeiculo = new ModeloVeiculo();
+
                         }
                     }
                     
@@ -154,6 +160,7 @@ public class PersistenciaVeiculos {
     
     public boolean pesquisarVeiculo(Veiculos veiculos) throws FileNotFoundException, IOException{
         boolean encontrou = false;
+        
         if(!listaVeiculos.isEmpty()){
             for(Veiculos automoveis : listaVeiculos){
                 if (automoveis.getPlaca().equals(veiculos.getPlaca())){
