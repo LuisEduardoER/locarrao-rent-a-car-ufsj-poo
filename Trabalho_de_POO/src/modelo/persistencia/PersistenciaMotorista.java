@@ -32,26 +32,22 @@ public class PersistenciaMotorista{
     }
     
     public static void retornarMotorista () {
-        //verificando existencia do arquivo...
         if(arquivo.exists()){
-            FileReader reader = null;
             try {
-                reader = new FileReader(arquivo);
+                FileReader reader = new FileReader(arquivo);
                 BufferedReader leitor = new BufferedReader(reader);
                 
-                //percorre o arquivo...
                 String linha = null;
                 int contador = 0;
+                
+                Motorista motorista = new Motorista();
+                Endereco endereco = new Endereco();
+                        
                 try {
                     while((linha = leitor.readLine()) != null){
-                        //objeto
-                        System.out.println("linha: " + linha);
-                        Motorista motorista = new Motorista();
-                        Endereco endereco = new Endereco();
-
+                        
                         if(contador == 0){
                             motorista.setCnh(linha);
-                            System.out.println("motorista: " + motorista.getCnh());
                             contador++;
                         }
                         else if(contador == 1){
@@ -72,7 +68,7 @@ public class PersistenciaMotorista{
                         }
                         else if(contador == 5){
                             endereco.setRua(linha);
-                            contador ++;
+                            contador++;
                         }
                         else if(contador == 6){
                             endereco.setNumero(Integer.parseInt(linha));
@@ -98,24 +94,24 @@ public class PersistenciaMotorista{
                             endereco.setCep(linha);
                             motorista.setEndereco(endereco);
                             listaMotorista.add(motorista);
+                            motorista = new Motorista();
+                            endereco = new Endereco();
+                        
                             contador = 0;
                         }
                     }
-                    
-                    reader.close();
-                    leitor.close();
                 } catch (IOException ex) {
-                    System.out.println("Erro na leitura/escrita do arquivo");
-                    System.out.println(ex.getMessage());
+                    System.out.println("erro na escrita ou leitura do arquivo " + 
+                            arquivo.getName());
                 }
             } catch (FileNotFoundException ex) {
-                System.out.println("Arquivo não encontrado");
+                System.out.println("Arquivo " + 
+                            arquivo.getName() + "não encontrado.");
             }
         }
-        else {
-            System.out.println("Arquivo não encontrado");
+        else{
+            System.out.println("Arquivo " + arquivo.getName() + "não foi encontrado");
         }
-        
     }
     
     public boolean pesquisarMotorista(Motorista motorista)throws FileNotFoundException, IOException{
