@@ -2,12 +2,15 @@ package modelo.persistencia;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 
 public class PersistenciaMarcaVeiculo {
@@ -22,39 +25,30 @@ public class PersistenciaMarcaVeiculo {
     }
     
     public static void retornarTodasMarcas(){
-        
         if(arquivo.exists()){
-            FileReader reader = null;
-            try{
-                reader = new FileReader(arquivo);
+            try {
+                FileReader reader = new FileReader(arquivo);
                 BufferedReader leitor = new BufferedReader(reader);
-           
+                
                 String linha = null;
-                try{
+                MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
+                try {
                     while((linha = leitor.readLine()) != null){
-                        MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
                         marcaVeiculo.setMarca(linha);
                         listaMarcaVeiculo.add(marcaVeiculo);
+                        marcaVeiculo = new MarcaVeiculo();
                     }
-
-                    reader.close();
-                    leitor.close();
-                } catch (IOException ex){
-                    System.out.println("Erro na leitura ou escrita do arquivo " +
+                } catch (IOException ex) {
+                    System.out.println("Erro na leitura ou escrita do arquivo " + 
                             arquivo.getName());
                 }
-                
-            } catch (IOException ex) {
-                System.out.println("Erro na leitura ou escrita do arquivo " +
-                            arquivo.getName());
+            } catch (FileNotFoundException ex) {
+                System.out.println("Arquivo " + arquivo.getName() + "não foi encontrado");
             }
-            
         }
         else{
-            System.out.println("Arquivo " + arquivo.getName() + " não foi encontrado");
+            System.out.println("Arquivo " + arquivo.getName() + "não foi encontrado");
         }
-        
-        
     }
     
     public boolean salvar(MarcaVeiculo marcaVeiculo) {
@@ -73,8 +67,13 @@ public class PersistenciaMarcaVeiculo {
                     }
                 }
                 if(achou == false){
-                    dados.println(marcaVeiculo.getMarca());
+                    listaMarcaVeiculo.add(marcaVeiculo);
                 }
+                
+                for(MarcaVeiculo marca : listaMarcaVeiculo){
+                    dados.println(marca.getMarca());
+                }
+                
                 writer.close();
                 dados.close();
                 return true;
