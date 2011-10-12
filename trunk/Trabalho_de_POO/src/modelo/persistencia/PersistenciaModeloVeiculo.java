@@ -72,8 +72,13 @@ public class PersistenciaModeloVeiculo {
                     }
                 }
                 if(achou == false){
-                    dados.println(modeloVeiculo.getModelo());
+                    listaModeloVeiculo.add(modeloVeiculo);
                 }
+                
+                for(ModeloVeiculo modelo : listaModeloVeiculo){
+                    dados.println(modelo.getModelo());
+                }
+                
                 writer.close();
                 dados.close();
                 return true;
