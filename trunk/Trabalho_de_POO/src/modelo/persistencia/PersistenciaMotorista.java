@@ -28,91 +28,106 @@ public class PersistenciaMotorista{
         arquivo = new File("src/arquivos/Motorista.txt");
         listaMotorista = new ArrayList<Motorista>();
         retornarMotorista();
+        
     }
     
-    public static void retornarMotorista(){
-        
-        //verifica se o arquivo existe
+    public static void retornarMotorista () {
+        //verificando existencia do arquivo...
         if(arquivo.exists()){
-           // variaveis para leitura de arquivos
-            FileReader reader;
+            FileReader reader = null;
             try {
                 reader = new FileReader(arquivo);
                 BufferedReader leitor = new BufferedReader(reader);
+                
+                //percorre o arquivo...
                 String linha = null;
                 int contador = 0;
-                
                 try {
-                    /* leitura do arquivo 
-                     * linha 0 = cnh
-                     * linha 1 = endereco
-                     * sera a ordem para escrita e leitura no arquivo
-                     */
-                    while((linha=leitor.readLine()) != null){
+                    while((linha = leitor.readLine()) != null){
                         //objeto
+                        System.out.println("linha: " + linha);
                         Motorista motorista = new Motorista();
-                        Endereco endereco=new Endereco();
+                        Endereco endereco = new Endereco();
 
                         if(contador == 0){
-                            motorista.setCodigo(Integer.parseInt(linha));
-                            contador++;      
+                            motorista.setCnh(linha);
+                            System.out.println("motorista: " + motorista.getCnh());
+                            contador++;
                         }
                         else if(contador == 1){
-                            motorista.setCnh(linha);
+                            motorista.setCodigo(Integer.parseInt(linha));
                             contador++;
-                            
-                        }else if(contador == 2){
+                        }
+                        else if(contador == 2){
+                            motorista.setNome(linha);
+                            contador++;
+                        }
+                        else if(contador == 3){
+                            motorista.setCpf(linha);
+                            contador++;
+                        }
+                        else if(contador == 4){
+                            motorista.setTefefone(linha);
+                            contador++;
+                        }
+                        else if(contador == 5){
                             endereco.setRua(linha);
                             contador ++;
-                            
-                        }else if(contador == 3){
-                            endereco.setNumero(Integer.valueOf(linha));
+                        }
+                        else if(contador == 6){
+                            endereco.setNumero(Integer.parseInt(linha));
                             contador++;
-                            
-                        }else if(contador == 4){
+                        }
+                        else if(contador == 7){
                             endereco.setComplemento(linha);
                             contador++;
-                            
-                        }else if(contador == 5){
+                        }
+                        else if(contador == 8){
                             endereco.setBairro(linha);
                             contador++;
-                            
-                        }else if(contador == 6){
+                        }
+                        else if(contador == 9){
                             endereco.setCidade(linha);
                             contador++;
-                            
-                        }else if(contador == 7){
+                        }
+                        else if(contador == 10){
                             endereco.setUf(linha);
                             contador++;
-                            
-                        }else if(contador == 8){
+                        }
+                        else if(contador == 11){
                             endereco.setCep(linha);
                             motorista.setEndereco(endereco);
                             listaMotorista.add(motorista);
                             contador = 0;
-                        }   
+                        }
                     }
                     
                     reader.close();
                     leitor.close();
                 } catch (IOException ex) {
-                    System.out.println("Erro na escrita ou leitura do arquivo");
+                    System.out.println("Erro na leitura/escrita do arquivo");
+                    System.out.println(ex.getMessage());
                 }
             } catch (FileNotFoundException ex) {
-                System.out.println("Arquivo nao encontrado");
+                System.out.println("Arquivo não encontrado");
             }
-            
-        }else{
-            System.out.println("Erro: Arquivo de Motoristas não encontrado");
+        }
+        else {
+            System.out.println("Arquivo não encontrado");
         }
         
     }
+    
     public boolean pesquisarMotorista(Motorista motorista)throws FileNotFoundException, IOException{
         
         boolean encontrou = false;
-        for(Motorista item:listaMotorista){
-            if(item.getCnh().equals(motorista.getCnh())){
-                return encontrou = true;
+        System.out.println(listaMotorista.size());
+        
+        if(!listaMotorista.isEmpty()){
+            for(Motorista item:listaMotorista){
+                if(item.getCnh().equals(motorista.getCnh())){
+                    return encontrou = true;
+                }
             }
         }
         return encontrou;
@@ -130,6 +145,10 @@ public class PersistenciaMotorista{
                 listaMotorista.add(motorista);
                 for(Motorista motoristas: listaMotorista){
                     cadastro.println(motoristas.getCnh());
+                    cadastro.println(motorista.getCodigo());
+                    cadastro.println(motorista.getNome());
+                    cadastro.println(motorista.getCpf());
+                    cadastro.println(motorista.getTefefone());
                     cadastro.println(motoristas.getEndereco().getRua());
                     cadastro.println(motoristas.getEndereco().getNumero());
                     cadastro.println(motoristas.getEndereco().getComplemento());

@@ -22,15 +22,16 @@ import modelo.dominio.Endereco;
  */
 public class PersistenciaCliente {
     public static File arquivo;
-    public static List<Clientes> listaClientes; 
+    public static List<Clientes> listaClientes;
     
     public PersistenciaCliente() {
         arquivo = new File("src/arquivos/Clientes.txt");
         listaClientes = new ArrayList<Clientes>();
         retornarTodosClientes();
     }
+    
     public static void retornarTodosClientes () {
-       
+        
         //verificando existencia do arquivo...
         if(arquivo.exists()){
             FileReader reader = null;
@@ -108,9 +109,9 @@ public class PersistenciaCliente {
         else {
             System.out.println("Arquivo não encontrado");
         }
-        
-   }
-   public boolean salvar(Clientes clientes) throws FileNotFoundException, IOException {
+    }
+    
+    public boolean salvar(Clientes clientes) throws FileNotFoundException, IOException {
         FileWriter writer = new FileWriter(arquivo);
         PrintWriter cadastro = new PrintWriter(writer);
 
