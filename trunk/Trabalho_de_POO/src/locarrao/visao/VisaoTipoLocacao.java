@@ -22,10 +22,10 @@ public class VisaoTipoLocacao {
         
         //outros dados
         System.out.println("Taxa base");
-        tipoLocacao.setTaxa(entrada.nextDouble());
+        tipoLocacao.setTaxa(Double.parseDouble(entrada.nextLine()));
         
         System.out.println("Preço por Quilometro");
-        tipoLocacao.setPrecoPorQuilometro(entrada.nextDouble());
+        tipoLocacao.setPrecoPorQuilometro(Double.parseDouble(entrada.nextLine()));
         
         /* ------- Fim ------- */
         

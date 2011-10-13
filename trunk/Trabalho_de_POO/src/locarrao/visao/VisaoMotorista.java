@@ -32,8 +32,8 @@ public class VisaoMotorista {
         //Codigo será auto incremento
         motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
         System.out.println("Digite a carteira nacional de habilitação");
-        String cnh = cadastro.nextLine();
-        motorista.setCnh(cnh);
+        
+        motorista.setCnh(cadastro.nextLine());
         boolean existe = false;
         try{
             existe = persistenciaMotorista.pesquisarMotorista(motorista);
@@ -54,9 +54,8 @@ public class VisaoMotorista {
                     endereco.setRua(cadastro.nextLine());
 
                     System.out.println("Digite o numero");
-                    endereco.setNumero(cadastro.nextInt());
-                    cadastro.nextLine();
-
+                    endereco.setNumero(Integer.parseInt(cadastro.nextLine()));
+                    
                     System.out.println("Digite o complemento");
                     endereco.setComplemento(cadastro.nextLine());
 

@@ -24,7 +24,7 @@ public class Menu {
             System.out.println("3 - Locaçao");
             System.out.println("4 - Sair");
             
-            opcao = entrada.nextInt();
+            opcao = Integer.parseInt(entrada.nextLine());
             switch(opcao){
                 case 1: 
                     do{
@@ -55,7 +55,7 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroCliente() != 5);
-                                entrada.nextLine();
+                                
                                 break;
                                 
                             case 2:
@@ -85,7 +85,6 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroVeiculo() != 5);
-                                entrada.nextLine();
                                 break;
                                 
                             case 3:
@@ -115,7 +114,6 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroMotorista() != 5);
-                                entrada.nextLine();
                                 break;
                                 
                             case 4:
@@ -145,7 +143,6 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroTipoVeiculo() != 5);
-                                entrada.nextLine();
                                 break;
                                 
                             case 5:
@@ -174,7 +171,6 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroMarcaVeiculo() != 5);
-                                entrada.nextLine();
                                 break;
                                 
                             case 6:
@@ -203,7 +199,6 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroModeloVeiculo() != 5);
-                                entrada.nextLine();
                                 break;
                                 
                             case 7:
@@ -225,7 +220,6 @@ public class Menu {
                                             
                                     }
                                 }while(menuCadastroTipoLocacao() != 3);
-                                entrada.nextLine();
                                 break;    
                              
                             default:
@@ -274,7 +268,6 @@ public class Menu {
                                             
                         }
                     }while(menuRelatorios()!= 8);
-                    entrada.nextLine();
                     break;
                     
                 case 3:
@@ -303,7 +296,6 @@ public class Menu {
                                             
                         }
                     }while(menuLocacao() != 5);
-                    entrada.nextLine();
                     break;
                     
                 default:
@@ -329,7 +321,7 @@ public class Menu {
         System.out.println("7 - Tipo de Locaçao");
         System.out.println("8 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     public int menuCadastroCliente(){
@@ -344,7 +336,7 @@ public class Menu {
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     public int menuCadastroVeiculo(){
@@ -359,7 +351,7 @@ public class Menu {
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     public int menuCadastroMotorista(){
@@ -374,7 +366,7 @@ public class Menu {
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     public int menuCadastroTipoVeiculo(){
@@ -389,7 +381,7 @@ public class Menu {
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     public int menuCadastroMarcaVeiculo(){
@@ -404,7 +396,7 @@ public class Menu {
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     public int menuCadastroModeloVeiculo(){
@@ -419,7 +411,7 @@ public class Menu {
         System.out.println("4 - Excluir");
         System.out.println("5 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     public int menuCadastroTipoLocacao(){
@@ -432,7 +424,7 @@ public class Menu {
         System.out.println("2 - Alterar");
         System.out.println("3 - Voltar ao menu anterior");
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     /* --------------------- fim dos métodos para o menu de cadastro --------------------- */
     
@@ -455,7 +447,7 @@ public class Menu {
         System.out.println("8 - Voltar ao menu anterior");
         
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     /* --------------------- fim métodos para o menu de cadastro --------------------- */
@@ -475,7 +467,7 @@ public class Menu {
         System.out.println("5 - Voltar ao menu anterior");
         
         
-        return entrada.nextInt();
+        return Integer.parseInt(entrada.nextLine());
     }
     
     /* --------------------- fim métodos para o menu de Locação --------------------- */

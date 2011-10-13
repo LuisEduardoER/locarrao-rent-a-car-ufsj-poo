@@ -56,7 +56,7 @@ public class VisaoTipoVeiculo {
             contador++;
         }
         
-        contador = entrada.nextInt();
+        contador = Integer.parseInt(entrada.nextLine());
         
         System.out.println();
         return contador;
