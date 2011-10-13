@@ -6,7 +6,6 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
@@ -49,9 +48,8 @@ public class VisaoVeiculos {
         veiculos.setCor(cadastro.nextLine());
 
         System.out.println("Ano do veiculo");
-        veiculos.setAno(cadastro.nextInt());
-        cadastro.nextLine();
-
+        veiculos.setAno(Integer.parseInt(cadastro.nextLine()));
+        
         System.out.println("Opcionais");
         veiculos.setOpcionais(cadastro.nextLine());
 

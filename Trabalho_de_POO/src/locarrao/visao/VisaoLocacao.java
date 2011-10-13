@@ -48,8 +48,7 @@ public class VisaoLocacao {
              */
             
             System.out.println("Codigo do cliente:");
-            int codigo = entrada.nextInt();
-            cliente.setCodigo(codigo);
+            cliente.setCodigo(Integer.parseInt(entrada.nextLine()));
             
             
             try {
@@ -66,7 +65,7 @@ public class VisaoLocacao {
                         System.out.println("1 - Sim");
                         System.out.println("2 - Nao");
                         
-                        switch(entrada.nextInt()){
+                        switch(Integer.parseInt(entrada.nextLine())){
                             case 1:
                                 visaoClientes.cadastrarClientes();
                                 cliente.setCodigo(PersistenciaCliente.listaClientes.size());
@@ -80,7 +79,8 @@ public class VisaoLocacao {
                             default:
                                 System.out.println("Opcao inválida");
                         }
-                    } while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
+                    } while(Integer.parseInt(entrada.nextLine()) != 1 && 
+                            Integer.parseInt(entrada.nextLine()) != 2);
                     
                 }
                 
@@ -111,8 +111,7 @@ public class VisaoLocacao {
                 System.out.println("1 - Sim");
                 System.out.println("2 - Nao");
                 
-                opcao = entrada.nextInt();
-                entrada.nextLine();
+                opcao = Integer.parseInt(entrada.nextLine());
                 switch(opcao){
                     case 1:
                         
@@ -160,7 +159,7 @@ public class VisaoLocacao {
                                     System.out.println("1 - Sim");
                                     System.out.println("2 - Nao");
                                     
-                                    switch(entrada.nextInt()){
+                                    switch(Integer.parseInt(entrada.nextLine())){
                                         case 1:
                                             visaoMotorista.cadastrarMotorista();
                                             locacao.setMotorista(VisaoMotorista.motorista);
@@ -173,7 +172,8 @@ public class VisaoLocacao {
                                             System.out.println("Opcao inválida");
                                     }
                                 
-                                }while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
+                                }while(Integer.parseInt(entrada.nextLine()) != 1 
+                                        && Integer.parseInt(entrada.nextLine()) != 2);
                             }
 
                         } catch (FileNotFoundException ex) {
@@ -190,7 +190,7 @@ public class VisaoLocacao {
                 }
                 
             }while((opcao != 1) && (opcao != 2));
-            entrada.nextLine();
+            
              /* ------------------ Fim Motorista ------------------ */
             
             /* ------------------ Veiculo ------------------ */
@@ -210,7 +210,7 @@ public class VisaoLocacao {
                     System.out.println("1 - Sim");
                     System.out.println("2 - Nao");
                     
-                    switch(entrada.nextInt()){
+                    switch(Integer.parseInt(entrada.nextLine())){
                         case 1:
                             visaoVeiculo.cadastraVeiculos();
                             locacao.setVeiculo(VisaoVeiculos.veiculos);
@@ -224,7 +224,8 @@ public class VisaoLocacao {
                             
                     }
                     
-                }while(entrada.nextInt() != 1 && entrada.nextInt() != 2);
+                }while(Integer.parseInt(entrada.nextLine()) != 1 && 
+                        Integer.parseInt(entrada.nextLine()) != 2);
                 
             }
             /* ------------------ Fim Veiculo ------------------ */
@@ -235,12 +236,12 @@ public class VisaoLocacao {
             
             //Dados da Previsao
             System.out.println("Digite a previsao de dias:");
-            locacao.setPrevisao(entrada.nextInt());
+            locacao.setPrevisao(Integer.parseInt(entrada.nextLine()));
             
             //Dados da quilometragem
             System.out.println("Digite a quilometragem de saida:");
-            locacao.setQuilometragemDeSaida(entrada.nextLong());
-            entrada.nextLine();
+            locacao.setQuilometragemDeSaida(Long.parseLong(entrada.nextLine()));
+            
             locacao.setQuilometragemDeEntrada(0); // Não é conhecida a quilometragem de chegada
             
             //Dados da data da locaçao

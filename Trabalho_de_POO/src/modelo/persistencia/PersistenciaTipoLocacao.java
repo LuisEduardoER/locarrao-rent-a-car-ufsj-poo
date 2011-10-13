@@ -42,11 +42,12 @@ public class PersistenciaTipoLocacao {
                  */
                 String linha = null;
                 int contador = 0;
+                TipoLocacao tipoLocacao = new TipoLocacao();
+                TipoVeiculo tipoVeiculo = new TipoVeiculo();
+
                 while((linha = leitor.readLine()) != null) {
                     //objetos
-                    TipoLocacao tipoLocacao = new TipoLocacao();
-                    TipoVeiculo tipoVeiculo = new TipoVeiculo();
-
+                    
                     if (contador == 0) {
                         tipoLocacao.setTaxa(Double.parseDouble(linha));
                         contador++;
@@ -59,6 +60,8 @@ public class PersistenciaTipoLocacao {
                         tipoVeiculo.setTipo(linha);
                         tipoLocacao.setTipoVeiculo(tipoVeiculo);
                         listaTipoLocacao.add(tipoLocacao);
+                        tipoLocacao = new TipoLocacao();
+                        tipoVeiculo = new TipoVeiculo();
                         contador = 0;
                     }
                 }

@@ -50,9 +50,8 @@ public class VisaoClientes {
                  endereco.setRua(cadastro.nextLine());
 
                  System.out.println("Digite o numero");
-                 endereco.setNumero(cadastro.nextInt());
-                 cadastro.nextLine();
-
+                 endereco.setNumero(Integer.parseInt(cadastro.nextLine()));
+                 
                  System.out.println("Digite o complemento");
                  endereco.setComplemento(cadastro.nextLine());
 
