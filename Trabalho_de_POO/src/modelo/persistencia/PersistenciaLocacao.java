@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
@@ -189,6 +190,24 @@ public class PersistenciaLocacao {
             return false;
         }
     
+    }
+    
+    /*
+     * Considerando que o valor da diaria é de R$ 50
+     */
+    public void fechaLocacao(Clientes cliente, Motorista motorista, 
+            long QuilometragemChegada){
+        
+        
+        for(Locacao item: listaLocacao){
+            if(item.getCliente().getCodigo() == cliente.getCodigo() &&
+                    item.getMotorista().getCnh().equals(motorista.getCnh())){
+                
+                item.setDataDevolucao(new GregorianCalendar().getTimeInMillis());
+                item.setQuilometragemDeEntrada(QuilometragemChegada);
+                item.setLocacaoAberta(false);
+            }
+        }
     }
      
 }

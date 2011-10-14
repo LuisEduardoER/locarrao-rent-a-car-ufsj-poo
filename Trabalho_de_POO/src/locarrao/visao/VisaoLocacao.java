@@ -2,7 +2,9 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
@@ -22,6 +24,7 @@ public class VisaoLocacao {
     
     PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
     VisaoMotorista visaoMotorista = new VisaoMotorista();
+    Motorista motorista = new Motorista();
     
     PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
     Veiculos veiculo = new Veiculos();
@@ -277,6 +280,61 @@ public class VisaoLocacao {
         
     }
     
+    public void fecharLocacao(){
+        Scanner entrada = new Scanner(System.in);
+        List<Locacao> listaLocacaoCliente = new ArrayList<Locacao>();
+        cliente = new Clientes();
+        motorista = new Motorista();
+        
+        
+        System.out.println("Codigo do Cliente");
+        cliente.setCodigo(Integer.parseInt(entrada.nextLine()));
+        
+        //busco todas as locações do cliente
+        boolean achou = false;
+        for(Locacao item: PersistenciaLocacao.listaLocacao){
+            if((item.getCliente().getCodigo() == cliente.getCodigo()) &&
+                    item.isLocacaoAberta()){
+                
+                achou = true;
+                listaLocacaoCliente.add(item);
+            }
+        }
+        
+        if(!achou){
+            System.out.println("Não existe locações com o cliente desejado");
+        }
+        else{
+            
+            System.out.println("Selecione a locacao que deseja fechar");
+            for(int i=0; i< listaLocacaoCliente.size();i++){
+                System.out.println(i+1 + ": ");
+                listaLocacaoCliente.get(i).toString();
+                System.out.println();
+            }
+            
+            int resposta = 0;
+            
+            do{
+                resposta = Integer.parseInt(entrada.nextLine());
+                if(resposta < 1 || resposta > listaLocacaoCliente.size()){
+                    System.out.println("Opcao Invalida");
+                }
+                else{
+                    System.out.println("Quilometragem de chegada");
+                    motorista.setCnh(listaLocacaoCliente.get(resposta-1).
+                            getMotorista().getCnh());
+                    
+                    long kmDeChegada = Long.parseLong(entrada.nextLine());
+                    persistenciaLocacao.fechaLocacao(cliente,motorista, kmDeChegada);
+                }
+            }while((resposta < 1) || resposta > listaLocacaoCliente.size());
+            
+            
+        }
+        
+    }
+    
     public void excluirLocacao(){
         
     }
@@ -304,4 +362,6 @@ public class VisaoLocacao {
     public void disponibilidadePorTipo(){
         
     }
+    
+    
 }
