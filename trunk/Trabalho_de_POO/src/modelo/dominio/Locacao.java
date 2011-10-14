@@ -126,6 +126,19 @@ public class Locacao {
     public void setVeiculo(Veiculos veiculo) {
         this.veiculo = veiculo;
     }
+    
+    //implementação do toString() para imprimir as locacoes
+    @Override
+    public String toString(){
+        return "Codigo do Cliente: " + this.getCliente().getCodigo() + "\n" +
+                "CNH do Motorista : " + this.getMotorista().getCnh() + "\n" +
+                "Placa do Veiculo : " + this.getVeiculo().getPlaca() + "\n" +
+                "Tipo do Veiculo : " + this.getVeiculo().getTipoVeiculo().getTipo() + "\n" +
+                "Tipo da Locacao : " + this.getTipo() + "\n" +
+                "Km de Saida : " + this.getQuilometragemDeSaida() + "\n" +
+                "Data de Saida : " + this.getDataSaida() + "\n" +
+                "Previsa de dias : " + this.getPrevisao() + "\n";
+    }
 
 	 
 }
