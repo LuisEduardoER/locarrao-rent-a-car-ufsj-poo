@@ -40,51 +40,55 @@ public class VisaoClientes {
             System.out.println("Digite o cpf");
             String retorno = cadastro.nextLine();
             Validacao valida = new Validacao();
-            if(valida.validarCPF(retorno)){
-                System.out.println("CPF VALIDO");
+            if(!valida.validarCPF(retorno)){
+                System.out.println("CPF invalido");
+                return;
+            }
+            else{
                 clientes.setCpf(retorno);
-                System.out.println("Digite o telefone");
-                clientes.setTefefone(cadastro.nextLine());
-
-                 System.out.println("Digite o rua");
-                 endereco.setRua(cadastro.nextLine());
-
-                 System.out.println("Digite o numero");
-                 endereco.setNumero(Integer.parseInt(cadastro.nextLine()));
-                 
-                 System.out.println("Digite o complemento");
-                 endereco.setComplemento(cadastro.nextLine());
-
-                 System.out.println("Digite o bairro");
-                 endereco.setBairro(cadastro.nextLine());
-
-                 System.out.println("Digite a Cidade");
-                 endereco.setCidade(cadastro.nextLine());
-
-                 System.out.println("Digite uf");
-                 endereco.setUf(cadastro.nextLine());
-
-                 System.out.println("Digite cep");
-                 retorno = cadastro.nextLine();
-                 if(valida.validarCEP(retorno)){
-                    System.out.println("CEP valido");
-                    endereco.setCep(retorno);
-                    clientes.setEndereco(endereco);
-                    boolean operacao = persistenciaCliente.salvar(clientes);
-                    if (operacao) {
-                      System.out.println("Salvo com sucesso");
-                     }
-                    else {
-                       System.out.println("Erro!");
-                     }
-                 }else{
-                     System.out.println("Erro:CEP invalido");
-                     System.out.println("Tente novamente");
-                 }
-            }else{
-                System.out.println("CPF INVÁLIDO!");
-                System.out.println("Tente novamente");
-            }  
+            }
+            System.out.println("Digite o telefone");
+            clientes.setTefefone(cadastro.nextLine());
+            
+            System.out.println("Digite o rua");
+            endereco.setRua(cadastro.nextLine());
+            
+            System.out.println("Digite o numero");
+            endereco.setNumero(Integer.parseInt(cadastro.nextLine()));
+            
+            System.out.println("Digite o complemento");
+            endereco.setComplemento(cadastro.nextLine());
+            
+            System.out.println("Digite o bairro");
+            endereco.setBairro(cadastro.nextLine());
+            
+            System.out.println("Digite a Cidade");
+            endereco.setCidade(cadastro.nextLine());
+            
+            System.out.println("Digite uf");
+            endereco.setUf(cadastro.nextLine());
+            
+            System.out.println("Digite cep");
+            retorno = cadastro.nextLine();
+             
+            if(!valida.validarCEP(retorno)){
+                System.out.println("CEP invalido");
+                return;
+            }
+            else{
+                endereco.setCep(retorno);
+            }
+            
+            clientes.setEndereco(endereco);
+            
+            boolean operacao = persistenciaCliente.salvar(clientes);
+            if (operacao) {
+              System.out.println("Salvo com sucesso");
+            }
+            else {
+               System.out.println("Erro!");
+            }
+              
         } catch (FileNotFoundException ex) {
             System.out.println("Erro! Arquivo nao encontrado");
         } catch (IOException ex) {

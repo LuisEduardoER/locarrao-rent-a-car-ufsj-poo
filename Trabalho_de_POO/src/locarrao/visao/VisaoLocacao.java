@@ -196,14 +196,26 @@ public class VisaoLocacao {
              /* ------------------ Fim Motorista ------------------ */
             
             /* ------------------ Veiculo ------------------ */
+            
+            /*
+             * Ao digitar a placa do veiculo é virificado se o veiculo existe.
+             * Caso ele existir, é feito uma busca nas locações para ver se ele 
+             * ja está locado ou não. Se ele existir e não estiver locado, então
+             * a operação de locação é feita normalmente
+             */
             System.out.println("Placa do veiculo");
             veiculo.setPlaca(entrada.nextLine());
             boolean buscaVeiculo = persistenciaVeiculos.pesquisarVeiculo(veiculo);
             if(buscaVeiculo){
-                persistenciaVeiculos.retornarVeiculo(veiculo);
-                tipoLocacao.setTipoVeiculo(veiculo.getTipoVeiculo());
-                locacao.setVeiculo(veiculo);
-                locacao.setTipoLocacao(tipoLocacao);
+                if(persistenciaLocacao.verificarVeiculoLocado(veiculo)){
+                    System.out.println("Veiculo ja está alugado!");
+                }
+                else{
+                    persistenciaVeiculos.retornarVeiculo(veiculo);
+                    tipoLocacao.setTipoVeiculo(veiculo.getTipoVeiculo());
+                    locacao.setVeiculo(veiculo);
+                    locacao.setTipoLocacao(tipoLocacao);
+                }
             }
             else{
                 do{

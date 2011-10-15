@@ -142,23 +142,6 @@ public class PersistenciaLocacao {
         
     }
     
-   /* public void alteraCadastroLocacao(List<Locacao> listaLocacao,Locacao locacao){
-        boolean achou = false;
-
-        for(Locacao elemento : listaLocacao){
-            if(locacao.getCodigo()==elemento.getCodigo()){
-                achou = true;
-                
-            }
-
-        }
-        if(achou == false){
-            listaTipoLocacao.add(tipoLocacao);
-        }
-     
-     * 
-     */
-    
     public boolean salvar(Locacao locacao) throws IOException {
         if(arquivo.exists()){
             
@@ -316,6 +299,17 @@ public class PersistenciaLocacao {
             resultado = 1;
         }
         return resultado;
+    }
+    
+    public boolean verificarVeiculoLocado(Veiculos veiculo){
+        boolean locado = false;
+        
+        for(Locacao item: listaLocacao){
+            if(item.getVeiculo().getPlaca().equals(veiculo.getPlaca())){
+                locado = true;
+            }
+        }
+        return locado;
     }
      
 }
