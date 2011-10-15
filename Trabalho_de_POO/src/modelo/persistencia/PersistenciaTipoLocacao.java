@@ -144,4 +144,27 @@ public class PersistenciaTipoLocacao {
         }
 
     }
+    
+    public double retornarTaxa(TipoLocacao tipoLocacao){
+        double taxa = 0;
+        
+        for(TipoLocacao tipo: listaTipoLocacao){
+            if(tipo.getTipoVeiculo().getTipo().equals(tipoLocacao.getTipoVeiculo().getTipo())){
+                taxa = tipo.getTaxa();
+            }
+        }
+        return taxa;
+    }
+    
+    public double retornarPrecoPorKm(TipoLocacao tipoLocacao){
+        double preco = 0;
+        
+        for(TipoLocacao tipo: listaTipoLocacao){
+            if(tipo.getTipoVeiculo().getTipo().equals(tipoLocacao.getTipoVeiculo().getTipo())){
+                preco = tipo.getPrecoPorQuilometro();
+            }
+        }
+        return preco;
+    }
+    
 }
