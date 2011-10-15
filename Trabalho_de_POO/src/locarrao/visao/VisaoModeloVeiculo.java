@@ -15,9 +15,19 @@ public class VisaoModeloVeiculo {
         ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
         
         Scanner entrada = new Scanner(System.in);
+        String dado = null;
         
-        System.out.println("Digite a modelo do veiculo");
-        modeloVeiculo.setModelo(entrada.nextLine());
+        do{
+            System.out.println("Digite a modelo do veiculo");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação do modelo é obrigatorio");
+            }else{
+                modeloVeiculo.setModelo(dado);
+            }
+                
+        }while(dado.isEmpty());
         
         boolean operacao = persistenciaModeloVeiculo.salvar(modeloVeiculo);
 

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
@@ -39,6 +40,7 @@ public class VisaoLocacao {
             
             // digitar os dados
             Scanner entrada = new Scanner(System.in);
+            String dado = null;
             
             /* ------------ Cliente ------------ */
             /*
@@ -50,8 +52,22 @@ public class VisaoLocacao {
              */
             
             cliente = new Clientes();
-            System.out.println("Codigo do cliente:");
-            cliente.setCodigo(Integer.parseInt(entrada.nextLine()));
+            do{
+                System.out.println("Codigo do cliente:");
+                dado = entrada.nextLine();
+                
+                if(dado == null){
+                    System.out.println("Digitação do codigo é obrigatoria");
+                }else{
+                    try{
+                        cliente.setCodigo(Integer.parseInt(dado));
+                    }catch(InputMismatchException ex){
+                        System.out.println("Deve ser digitado um numero");
+                    }
+                    
+                }
+                
+            }while(dado == null);
             
             try {
                 boolean encontrou = persistenciaCliente.pesquisarCliente(cliente);
@@ -121,8 +137,18 @@ public class VisaoLocacao {
                 switch(opcao){
                     case 1:
                         
-                        System.out.println("Digite a cnh");
-                        motorista.setCnh(entrada.nextLine());
+                        do{
+                            System.out.println("Digite a cnh");
+                            dado = entrada.nextLine();
+                            
+                            if(dado.isEmpty()){
+                                System.out.println("Digitação da CNH é obrigatoria");
+                            }else{
+                                motorista.setCnh(dado);
+                            }
+                        
+                        }while(dado.isEmpty());
+                        
                         if(persistenciaLocacao.verifcarMotoristaEmLocacao(motorista)){
                             
                             encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
@@ -154,9 +180,18 @@ public class VisaoLocacao {
                         break;
                     
                     case 2:
-                        System.out.println("Digite a cnh");
-                        motorista.setCnh(entrada.nextLine());
-
+                        do{
+                            System.out.println("Digite a cnh");
+                            dado = entrada.nextLine();
+                            
+                            if(dado.isEmpty()){
+                                System.out.println("Digitação da CNH é obrigatoria");
+                            }else{
+                                motorista.setCnh(dado);
+                            }
+                        
+                        }while(dado.isEmpty());
+                        
                         
                         try {
                             encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
@@ -213,8 +248,17 @@ public class VisaoLocacao {
              * ja está locado ou não. Se ele existir e não estiver locado, então
              * a operação de locação é feita normalmente
              */
-            System.out.println("Placa do veiculo");
-            veiculo.setPlaca(entrada.nextLine());
+            do{
+                System.out.println("Placa do veiculo");
+                dado = entrada.nextLine();
+                
+                if(dado.isEmpty()){
+                    System.out.println("Digitação da placa é obrigatorio");
+                }else{
+                    veiculo.setPlaca(dado);
+                }
+            }while(dado.isEmpty());
+            
             boolean buscaVeiculo = persistenciaVeiculos.pesquisarVeiculo(veiculo);
             if(buscaVeiculo){
                 if(persistenciaLocacao.verificarVeiculoLocado(veiculo)){
@@ -260,11 +304,27 @@ public class VisaoLocacao {
             
             //Dados da Previsao
             System.out.println("Digite a previsao de dias:");
-            locacao.setPrevisao(Integer.parseInt(entrada.nextLine()));
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                locacao.setPrevisao(0);
+            }else{
+                locacao.setPrevisao(Integer.parseInt(dado));
+            }
             
             //Dados da quilometragem
-            System.out.println("Digite a quilometragem de saida:");
-            locacao.setQuilometragemDeSaida(Long.parseLong(entrada.nextLine()));
+            do{
+                System.out.println("Digite a quilometragem de saida:");
+                dado = entrada.nextLine();
+                
+                if(dado.isEmpty()){
+                    System.out.println("Digitação da quilometragem de saida"
+                            + " é obrigatoria.");
+                }else{
+                    locacao.setQuilometragemDeSaida(Long.parseLong(dado));
+                }
+            
+            }while(dado.isEmpty());
             
             locacao.setQuilometragemDeEntrada(0); // Não é conhecida a quilometragem de chegada
             
@@ -275,7 +335,7 @@ public class VisaoLocacao {
             //valor da locacao
             locacao.setValor(0); // Valor será calculado depois da finalizaçao
             
-            //Inicio a locacao com false. No fechamento será passado pra true
+            //Inicio a locacao com true. No fechamento será passado pra false
             locacao.setLocacaoAberta(true);
             
             

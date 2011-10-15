@@ -117,12 +117,8 @@ public class PersistenciaCliente {
     public boolean salvar(Clientes clientes) throws FileNotFoundException, IOException {
         FileWriter writer = new FileWriter(arquivo);
         PrintWriter cadastro = new PrintWriter(writer);
-
-        boolean encontrou = pesquisarCliente(clientes);
-
-        if(!encontrou){
-            listaClientes.add(clientes);
-        }
+        
+        listaClientes.add(clientes);
        
         for(Clientes pessoas: listaClientes){
             cadastro.println(pessoas.getCodigo());
@@ -167,7 +163,7 @@ public class PersistenciaCliente {
     public boolean pesquisarCliente(Clientes cliente) throws FileNotFoundException, IOException{
         boolean encontrou = false;
         for(Clientes pessoa: listaClientes){
-            if (pessoa.getCodigo() == cliente.getCodigo()){
+            if(pessoa.getCpf().equals(cliente.getCpf())){
                 encontrou = true;
             }
         }
