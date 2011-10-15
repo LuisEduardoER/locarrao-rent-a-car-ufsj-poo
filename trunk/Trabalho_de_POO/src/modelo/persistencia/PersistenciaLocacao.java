@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
@@ -30,6 +28,7 @@ import modelo.dominio.Veiculos;
 public class PersistenciaLocacao {
     public static File arquivo;
     public static List<Locacao> listaLocacao;
+    PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
     
     
     public PersistenciaLocacao() {
@@ -255,12 +254,12 @@ public class PersistenciaLocacao {
                 double valor = 0;
                 if(item.getTipo().equals("Por Quilometro")){
                     valor = calculaValorLocacao(item.getQuilometragemDeSaida(), 
-                            QuilometragemChegada, item.getTipoLocacao().getTaxa());
+                            QuilometragemChegada, item.getTipoLocacao());
                 }
                 else{
                     valor = calculaValorLocacao(item.getDataSaida(), 
                             item.getDataDevolucao(), 
-                            item.getTipoLocacao().getTaxa());
+                            item.getTipoLocacao());
                 }
                 item.setValor(valor);
                 item.setLocacaoAberta(false);
@@ -281,16 +280,24 @@ public class PersistenciaLocacao {
     }
     
     //calcula o valor, caso seja por quilometro
-    public double calculaValorLocacao(long valorDeSaida, long valorDeChegada, double taxa){
+    public double calculaValorLocacao(long valorDeSaida, long valorDeChegada, 
+            TipoLocacao tipoLocacao){
+        
         double valor = 0;
-        valor = (valorDeSaida - valorDeChegada) * taxa;
+        double taxa = persistenciaTipoLocacao.retornarTaxa(tipoLocacao);
+        double precoPorKm = persistenciaTipoLocacao.retornarPrecoPorKm(tipoLocacao);
+        
+        valor = (valorDeChegada - valorDeSaida) * precoPorKm * taxa;
         return valor;
     }
     
     //calcula o valor, caso seja por quilometragem livre
-    public double calculaValorLocacao(Date dataDeSaida, Date dataDeChegada, double taxa){
+    public double calculaValorLocacao(Date dataDeSaida, Date dataDeChegada, 
+            TipoLocacao tipoLocacao){
+        
         double valor = 0;
         long diferenca = 0;
+        double taxa = persistenciaTipoLocacao.retornarTaxa(tipoLocacao);
         
         diferenca = diferencaDeDias(dataDeSaida.getTime(), dataDeChegada.getTime());
         valor = diferenca * taxa;
@@ -303,6 +310,11 @@ public class PersistenciaLocacao {
         long dia = 1000 * 60 * 60 * 24;
         
         long resultado = (dataDeChegada - dataDeSaida)/dia;
+        
+        //caso devolva no mesmo dia, será cobrado 1 diaria
+        if(resultado == 0){
+            resultado = 1;
+        }
         return resultado;
     }
      
