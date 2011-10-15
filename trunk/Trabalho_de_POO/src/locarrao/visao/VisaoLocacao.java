@@ -96,6 +96,10 @@ public class VisaoLocacao {
             
             
             /* -----------------------   Motorista ------------------------ 
+             * Ao digitar a cnh é verificado na lista de locações se a mesma ja pertence
+             * a alguma locação em aberto. Caso não pertença o processo segue normalmente.
+             * Caso contrário, o processo de locação é encerrado
+             * 
              * Se o motorista for o proprio cliente, então apenas sera inserida
              * a sua cnh no arquivo e ele será salvo como um novo motorista
              * 
@@ -119,26 +123,32 @@ public class VisaoLocacao {
                         
                         System.out.println("Digite a cnh");
                         motorista.setCnh(entrada.nextLine());
-                        encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
-                        
-                        if (!encontrou){
-                            persistenciaCliente.retornarCliente(cliente);
-                            motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
-                            motorista.setNome(cliente.getNome());
-                            motorista.setCpf(cliente.getCpf());
-                            motorista.setTefefone(cliente.getTefefone());
-                            motorista.setEndereco(cliente.getEndereco());
+                        if(persistenciaLocacao.verifcarMotoristaEmLocacao(motorista)){
                             
-                            boolean salvaMotorista = persistenciaMotorista.salvar(motorista);
-                            if(salvaMotorista){
-                                locacao.setMotorista(motorista);
+                            encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
+                            if (!encontrou){
+                                persistenciaCliente.retornarCliente(cliente);
+                                motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
+                                motorista.setNome(cliente.getNome());
+                                motorista.setCpf(cliente.getCpf());
+                                motorista.setTefefone(cliente.getTefefone());
+                                motorista.setEndereco(cliente.getEndereco());
+
+                                boolean salvaMotorista = persistenciaMotorista.salvar(motorista);
+                                if(salvaMotorista){
+                                    locacao.setMotorista(motorista);
+                                }
+                                else{
+                                    System.out.println("erro ao salvar novo motorista");
+                                }
                             }
                             else{
-                                System.out.println("erro ao salvar novo motorista");
+                                locacao.setMotorista(motorista);
                             }
                         }
                         else{
-                            locacao.setMotorista(motorista);
+                            System.out.println("Motorista ja pertence a alguma locação em aberto");
+                            return;
                         }
                         
                         break;
@@ -198,8 +208,8 @@ public class VisaoLocacao {
             /* ------------------ Veiculo ------------------ */
             
             /*
-             * Ao digitar a placa do veiculo é virificado se o veiculo existe.
-             * Caso ele existir, é feito uma busca nas locações para ver se ele 
+             * Ao digitar a placa do veiculo é verificado se o veículo existe.
+             * Caso ele exista, é feito uma busca nas locações para ver se ele 
              * ja está locado ou não. Se ele existir e não estiver locado, então
              * a operação de locação é feita normalmente
              */

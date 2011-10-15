@@ -301,6 +301,7 @@ public class PersistenciaLocacao {
         return resultado;
     }
     
+    //verifica se o veiculo ja esta alugado
     public boolean verificarVeiculoLocado(Veiculos veiculo){
         boolean locado = false;
         
@@ -311,5 +312,17 @@ public class PersistenciaLocacao {
         }
         return locado;
     }
-     
+    
+    //verifica se motorista ja pertence a alguma locação em aberto
+    public boolean verifcarMotoristaEmLocacao(Motorista motorista){
+        boolean pertence = false;
+        
+        for(Locacao item: listaLocacao){
+            if(item.getMotorista().getCnh().equals(motorista.getCnh())
+                    && item.isLocacaoAberta()){
+                pertence = true;
+            }
+        }
+        return pertence;
+    }
 }
