@@ -18,6 +18,8 @@ public class VisaoMotorista {
     PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
     public static Motorista motorista;
     
+    VisaoEndereco visaoEndereco;
+    
     public VisaoMotorista() {
         motorista = new Motorista();
     }
@@ -25,65 +27,56 @@ public class VisaoMotorista {
     public void cadastrarMotorista(){
         motorista = new Motorista();
         Endereco endereco = new Endereco();
+        visaoEndereco = new VisaoEndereco();
         
         Validacao valida = new Validacao();
         Scanner cadastro = new Scanner(System.in);
+        String dado = null;
+        do{
+            System.out.println("Digite o numero da CNH");
+            dado = cadastro.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da CNH é obrigatorio");
+            }else{
+                motorista.setCnh(cadastro.nextLine());
+            }
+        }while(dado.isEmpty());
         
-        //Codigo será auto incremento
-        motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
-        System.out.println("Digite a carteira nacional de habilitação");
-        
-        motorista.setCnh(cadastro.nextLine());
         boolean existe = false;
         try{
             existe = persistenciaMotorista.pesquisarMotorista(motorista);
             if(!existe){
-                System.out.println("Digite o cpf");
-                String retorno = cadastro.nextLine();
-                if(!valida.validarCPF(retorno)){
-                    System.out.println("CPF Invalido");
-                    return;
-                }
-                else{
-                    motorista.setCpf(retorno);
+                
+                //código será auto incremento
+                motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
+                
+                System.out.println("Digite o CPF");
+                dado = cadastro.nextLine();
+                
+                if(dado.isEmpty()){
+                    motorista.setCpf(" - ");
+                }else{
+                    if(!valida.validarCPF(dado)){
+                        System.out.println("CPF Invalido");
+                        return;
+                    }
+                    else{
+                        motorista.setCpf(dado);
+                    }
                 }
                 
-                System.out.println("Digite o nome");
-                motorista.setNome(cadastro.nextLine());
-
-                System.out.println("Digite o telefone");
-                motorista.setTefefone(cadastro.nextLine());
-
-                System.out.println("Digite o rua");
-                endereco.setRua(cadastro.nextLine());
-
-                System.out.println("Digite o numero");
-                endereco.setNumero(Integer.parseInt(cadastro.nextLine()));
-
-                System.out.println("Digite o complemento");
-                endereco.setComplemento(cadastro.nextLine());
-
-                System.out.println("Digite o bairro");
-                endereco.setBairro(cadastro.nextLine());
-
-                System.out.println("Digite a Cidade");
-                endereco.setCidade(cadastro.nextLine());
-
-                System.out.println("Digite uf");
-                endereco.setUf(cadastro.nextLine());
-
-                System.out.println("Digite cep");
-                retorno = cadastro.nextLine();
-                if(valida.validarCEP(retorno)){
+                
+                endereco = visaoEndereco.cadastrarEndereco();
+                
+                if(endereco == null){
                     System.out.println("CEP inválido");
                     return;
-                }
-                else{
-                    endereco.setCep(retorno);
+                }else{
+                    motorista.setEndereco(endereco);
                 }
                 
                 motorista.setEndereco(endereco);
-
 
                 boolean salvar = persistenciaMotorista.salvar(motorista);
                 if (salvar){

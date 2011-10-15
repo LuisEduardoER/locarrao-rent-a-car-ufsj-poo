@@ -15,9 +15,17 @@ public class VisaoMarcaVeiculo {
         MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
         
         Scanner entrada = new Scanner(System.in);
-        
-        System.out.println("Digite a marca do veiculo");
-        marcaVeiculo.setMarca(entrada.nextLine());
+        String dado = null;
+        do{
+            System.out.println("Digite a marca do veiculo");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da marca do veiculo é obrigatorio");
+            }else{
+                marcaVeiculo.setMarca(dado);
+            }
+        }while(dado.isEmpty());
         
         boolean operacao = persistenciaMarcaVeiculo.salvar(marcaVeiculo);
 

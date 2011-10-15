@@ -16,16 +16,32 @@ public class VisaoTipoLocacao {
         
         /* digitar os dados */
         Scanner entrada = new Scanner(System.in);
-        
+        String dado = null;
         //Tipo
         pesquisaTipoVeiculo(tipoLocacao);
         
         //outros dados
-        System.out.println("Taxa base");
-        tipoLocacao.setTaxa(Double.parseDouble(entrada.nextLine()));
+        do{
+            System.out.println("Taxa base");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da taxa base é obrigatoria");
+            }else{
+                tipoLocacao.setTaxa(Double.parseDouble(dado));
+            }
+        }while(dado.isEmpty());
         
-        System.out.println("Preço por Quilometro");
-        tipoLocacao.setPrecoPorQuilometro(Double.parseDouble(entrada.nextLine()));
+        do{
+            System.out.println("Preço por Quilometro");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação do preço por quilometro é obrigatorio");
+            }else{
+                tipoLocacao.setPrecoPorQuilometro(Double.parseDouble(dado));
+            }
+        }while(dado.isEmpty());
         
         /* ------- Fim ------- */
         
