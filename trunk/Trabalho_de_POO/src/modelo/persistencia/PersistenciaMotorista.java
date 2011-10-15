@@ -117,7 +117,6 @@ public class PersistenciaMotorista{
     public boolean pesquisarMotorista(Motorista motorista)throws FileNotFoundException, IOException{
         
         boolean encontrou = false;
-        System.out.println(listaMotorista.size());
         
         if(!listaMotorista.isEmpty()){
             for(Motorista item:listaMotorista){

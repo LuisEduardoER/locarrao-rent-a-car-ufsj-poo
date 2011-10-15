@@ -7,7 +7,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
-import modelo.dominio.Endereco;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
 import modelo.dominio.TipoLocacao;
@@ -50,9 +49,9 @@ public class VisaoLocacao {
              * Caso não, encerra a locação
              */
             
+            cliente = new Clientes();
             System.out.println("Codigo do cliente:");
             cliente.setCodigo(Integer.parseInt(entrada.nextLine()));
-            
             
             try {
                 boolean encontrou = persistenciaCliente.pesquisarCliente(cliente);
@@ -104,7 +103,7 @@ public class VisaoLocacao {
              * exista, será dada a opção de cadastrar. Se não for cadastrado, então
              * sairá do cadastro de locação
              */
-            Motorista motorista = new Motorista();
+            motorista = new Motorista();
             boolean encontrou;
             int opcao = 0;
             do{
@@ -153,7 +152,7 @@ public class VisaoLocacao {
                             encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
                             if(encontrou){
                                 locacao.setMotorista(motorista);
-                                break;
+                                
                             }
                             else{
                                 do{
@@ -255,7 +254,7 @@ public class VisaoLocacao {
             locacao.setValor(0); // Valor será calculado depois da finalizaçao
             
             //Inicio a locacao com false. No fechamento será passado pra true
-            locacao.setLocacaoAberta(false);
+            locacao.setLocacaoAberta(true);
             
             
             /* Salvar a locacao */
@@ -281,6 +280,7 @@ public class VisaoLocacao {
     }
     
     public void fecharLocacao(){
+        persistenciaLocacao = new PersistenciaLocacao();
         Scanner entrada = new Scanner(System.in);
         List<Locacao> listaLocacaoCliente = new ArrayList<Locacao>();
         cliente = new Clientes();
@@ -293,6 +293,10 @@ public class VisaoLocacao {
         //busco todas as locações do cliente
         boolean achou = false;
         for(Locacao item: PersistenciaLocacao.listaLocacao){
+            System.out.println("cliente: " + item.getCliente().getCodigo());
+            System.out.println("tamanho da lista: "+ PersistenciaLocacao.listaLocacao.size());
+            System.out.println("locacao aberta: " + item.isLocacaoAberta());
+            System.out.println("cliente do parametro: " + cliente.getCodigo());
             if((item.getCliente().getCodigo() == cliente.getCodigo()) &&
                     item.isLocacaoAberta()){
                 
@@ -301,16 +305,50 @@ public class VisaoLocacao {
             }
         }
         
-        if(!achou){
-            System.out.println("Não existe locações com o cliente desejado");
+        if(achou == false){
+            System.out.println("Não existem locações com o cliente desejado");
         }
         else{
             
             System.out.println("Selecione a locacao que deseja fechar");
             for(int i=0; i< listaLocacaoCliente.size();i++){
                 System.out.println(i+1 + ": ");
-                listaLocacaoCliente.get(i).toString();
-                System.out.println();
+                System.out.println("Codigo do Motorista : " + 
+                        listaLocacaoCliente.get(i).getCliente().getCodigo());
+                
+                System.out.println("CNH do Motorista: " + 
+                        listaLocacaoCliente.get(i).getMotorista().getCnh());
+                
+                System.out.println("Placa do Veiculo : " + 
+                        listaLocacaoCliente.get(i).getVeiculo().getPlaca());
+                
+                System.out.println("Tipo do Veiculo : " + 
+                        listaLocacaoCliente.get(i).getTipoLocacao().getTipoVeiculo().
+                        getTipo());
+                
+                System.out.println("Tipo da Locacao : " 
+                        + listaLocacaoCliente.get(i).getTipo());
+                
+                System.out.println("Km de Saida : " 
+                        + listaLocacaoCliente.get(i).getQuilometragemDeSaida());
+                
+                System.out.println("Km de Chegada : " 
+                        + listaLocacaoCliente.get(i).getQuilometragemDeEntrada());
+                
+                System.out.println("Data de Saida : " 
+                        + listaLocacaoCliente.get(i).getDataSaida());
+                
+                System.out.println("Data de Chegada : " 
+                        + listaLocacaoCliente.get(i).getDataDevolucao());
+                
+                System.out.println("Previsao : " 
+                        + listaLocacaoCliente.get(i).getPrevisao());
+                
+                System.out.println("Locaca aberta?  " 
+                        + listaLocacaoCliente.get(i).isLocacaoAberta());
+                
+                System.out.println("Valor : " 
+                        + listaLocacaoCliente.get(i).getValor());
             }
             
             int resposta = 0;
@@ -325,11 +363,21 @@ public class VisaoLocacao {
                     motorista.setCnh(listaLocacaoCliente.get(resposta-1).
                             getMotorista().getCnh());
                     
-                    long kmDeChegada = Long.parseLong(entrada.nextLine());
+                    long kmDeSaida = PersistenciaLocacao.listaLocacao.get(resposta-1).
+                            getQuilometragemDeSaida();
+                    long kmDeChegada = 0;
+                    
+                    do{
+                        System.out.println("Km de saida: " + kmDeSaida);
+                        kmDeChegada = Long.parseLong(entrada.nextLine());
+                        if((kmDeChegada - kmDeSaida) < 0){
+                            System.out.println("Erro: Quilometragem de Chegada deve ser maior que "
+                                    + "a quiometragem de saida");
+                        }
+                    }while((kmDeChegada - kmDeSaida) < 0);
                     persistenciaLocacao.fechaLocacao(cliente,motorista, kmDeChegada);
                 }
             }while((resposta < 1) || resposta > listaLocacaoCliente.size());
-            
             
         }
         
