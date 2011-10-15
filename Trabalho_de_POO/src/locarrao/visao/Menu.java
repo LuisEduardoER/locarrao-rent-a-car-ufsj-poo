@@ -279,23 +279,15 @@ public class Menu {
                                 break;
                                 
                             case 2:
-                                visaoLocacao.alterarLocacao();
-                                break;
-                                
-                            case 3:
-                                visaoLocacao.pesquisarLocacao();
-                                break;
-                                
-                            case 4:
-                                visaoLocacao.excluirLocacao();
+                                visaoLocacao.fecharLocacao();
                                 break;
                                 
                             default:
-                                if(menuLocacao() == 5) continue;
+                                if(menuLocacao() == 3) continue;
                                 else System.out.println("Opcao Invalida!");
                                             
                         }
-                    }while(menuLocacao() != 5);
+                    }while(menuLocacao() != 3);
                     break;
                     
                 default:
@@ -461,10 +453,8 @@ public class Menu {
         System.out.println();
         
         System.out.println("1 - Cadastrar");
-        System.out.println("2 - Alterar");
-        System.out.println("3 - Pesquisar");
-        System.out.println("4 - Excluir");
-        System.out.println("5 - Voltar ao menu anterior");
+        System.out.println("2 - Fechar");
+        System.out.println("3 - Voltar ao menu anterior");
         
         
         return Integer.parseInt(entrada.nextLine());

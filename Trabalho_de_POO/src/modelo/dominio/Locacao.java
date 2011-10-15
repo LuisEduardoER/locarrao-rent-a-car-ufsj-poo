@@ -136,8 +136,11 @@ public class Locacao {
                 "Tipo do Veiculo : " + this.getVeiculo().getTipoVeiculo().getTipo() + "\n" +
                 "Tipo da Locacao : " + this.getTipo() + "\n" +
                 "Km de Saida : " + this.getQuilometragemDeSaida() + "\n" +
+                "Km de Saida : " + this.getQuilometragemDeEntrada() + "\n" +
                 "Data de Saida : " + this.getDataSaida() + "\n" +
-                "Previsa de dias : " + this.getPrevisao() + "\n";
+                "Data de Chegada : " + this.getDataSaida() + "\n" +
+                "Previsa de dias : " + this.getPrevisao() + "\n" +
+                "Valor da locacao: " + this.getDataSaida() + "\n";
     }
 
 	 

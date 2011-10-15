@@ -11,8 +11,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
@@ -192,22 +195,115 @@ public class PersistenciaLocacao {
     
     }
     
+    public boolean salvar() throws IOException {
+        if(arquivo.exists()){
+            
+            //Variáveis para escrita no arquivo
+            FileWriter writer = new FileWriter(arquivo); 
+            PrintWriter dados = new PrintWriter(writer);
+            
+            for(Locacao tipo: listaLocacao){
+                dados.println(tipo.getCliente().getCodigo());
+                dados.println(tipo.getMotorista().getCnh());
+                dados.println(tipo.getVeiculo().getPlaca());
+                dados.println(tipo.getTipoLocacao().getTipoVeiculo().getTipo());
+                dados.println(tipo.getTipo());
+                dados.println(tipo.getQuilometragemDeSaida());
+                dados.println(tipo.getQuilometragemDeEntrada());
+                dados.println(tipo.getDataSaida().getTime());
+                dados.println(tipo.getDataDevolucao().getTime());
+                dados.println(tipo.getPrevisao());
+                dados.println(tipo.isLocacaoAberta());
+                dados.println(tipo.getValor());
+            }
+            
+            writer.close();
+            dados.close();
+            return true;
+        }
+        else{
+            System.out.println("Arquvo não encontrado");
+            return false;
+        }
+    
+    }
+    
     /*
-     * Considerando que o valor da diaria é de R$ 50
+     * No método fechaLocacao é passando o codigo do cliente
+     * cnh do motorista e a quilometragem de chegada.
+     * Então é feito uma busca na lista buscando as locações com o cliente e o
+     * motorista desejado. Com isso é setado os valores para o fechamento da locação.
+     * 
      */
     public void fechaLocacao(Clientes cliente, Motorista motorista, 
             long QuilometragemChegada){
         
-        
+        //busca na lista
         for(Locacao item: listaLocacao){
             if(item.getCliente().getCodigo() == cliente.getCodigo() &&
                     item.getMotorista().getCnh().equals(motorista.getCnh())){
                 
+                //Inserção dos valores
                 item.setDataDevolucao(new GregorianCalendar().getTimeInMillis());
                 item.setQuilometragemDeEntrada(QuilometragemChegada);
+                
+                /*calculo do valor da locação. Se foi escolhida a opção "Por Quilometro"
+                 * então é calculado da seguinte forma: (diferença de km) * taxa
+                 * Caso a opção seja "Quilometragem livre" é feito o calculo de diarias
+                 * então o calculo fica da seguinte forma: (diarias) * taxa
+                 */
+                double valor = 0;
+                if(item.getTipo().equals("Por Quilometro")){
+                    valor = calculaValorLocacao(item.getQuilometragemDeSaida(), 
+                            QuilometragemChegada, item.getTipoLocacao().getTaxa());
+                }
+                else{
+                    valor = calculaValorLocacao(item.getDataSaida(), 
+                            item.getDataDevolucao(), 
+                            item.getTipoLocacao().getTaxa());
+                }
+                item.setValor(valor);
                 item.setLocacaoAberta(false);
             }
         }
+        
+        //Salvo a lista no arquivo com os novos valores
+        try {
+            if(this.salvar()){
+                System.out.println("salvo com sucesso");
+            }
+            else{
+                System.out.println("erro ao salvar a lista");
+            }
+        } catch (IOException ex) {
+            System.out.println("Erro na leitura ou escrita do arquivo " + arquivo.getName());
+        }
+    }
+    
+    //calcula o valor, caso seja por quilometro
+    public double calculaValorLocacao(long valorDeSaida, long valorDeChegada, double taxa){
+        double valor = 0;
+        valor = (valorDeSaida - valorDeChegada) * taxa;
+        return valor;
+    }
+    
+    //calcula o valor, caso seja por quilometragem livre
+    public double calculaValorLocacao(Date dataDeSaida, Date dataDeChegada, double taxa){
+        double valor = 0;
+        long diferenca = 0;
+        
+        diferenca = diferencaDeDias(dataDeSaida.getTime(), dataDeChegada.getTime());
+        valor = diferenca * taxa;
+        return valor;
+    }
+    
+    //calcula o valor, caso seja por quilometragem livre
+    public long diferencaDeDias(long dataDeSaida, long dataDeChegada){
+        //total de milissegundos em 1 dia
+        long dia = 1000 * 60 * 60 * 24;
+        
+        long resultado = (dataDeChegada - dataDeSaida)/dia;
+        return resultado;
     }
      
 }
