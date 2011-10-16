@@ -137,7 +137,7 @@ public class VisaoVeiculos {
     }
     
     public void veiculosDisponiveis(){
-        
+        persistenciaVeiculos.verificarveiculosDisponiveis();
     }
     
     public void veiculosMaisProcurados(){
