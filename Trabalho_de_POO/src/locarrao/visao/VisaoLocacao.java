@@ -2,11 +2,16 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
@@ -470,28 +475,108 @@ public class VisaoLocacao {
     }
     
     public void locacoesEmAberto(){
+        DateFormat formatoData = DateFormat.getDateInstance();
+        Date dataInicial = null,dataFinal = null;
+        Scanner entrada = new Scanner(System.in);
+        String dado = null;
+        do{
+            System.out.println("Data Inicial (dd/mm/aaaa)");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da Data inicial é obrigatoria");
+            }else{
+                try {
+                    dataInicial = formatoData.parse(dado);
+                } catch (ParseException ex) {
+                    System.out.println("Errou ao converter a data");
+                }
+            }
+        }while(dado.isEmpty());
+        
+        do{
+            System.out.println("Data Final (dd/mm/aaaa)");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da Data final é obrigatoria");
+            }else{
+                try {
+                    dataFinal = formatoData.parse(dado);
+                } catch (ParseException ex) {
+                    System.out.println("Errou ao converter a data");
+                }
+            }
+        }while(dado.isEmpty());
+        
+        double total = persistenciaLocacao.retornarLocacoesEmAberto(dataInicial, dataFinal);
+        
+        System.out.println();
+        System.out.println("Total previsto: " + total);
         
     }
     
     public void locacoesFinalizadas(){
+        DateFormat formatoData = DateFormat.getDateInstance();
+        Date dataInicial = null,dataFinal = null;
+        Scanner entrada = new Scanner(System.in);
+        String dado = null;
+        do{
+            System.out.println("Data Inicial (dd/mm/aaaa)");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da Data inicial é obrigatoria");
+            }else{
+                try {
+                    dataInicial = formatoData.parse(dado);
+                } catch (ParseException ex) {
+                    System.out.println("Errou ao converter a data");
+                }
+            }
+        }while(dado.isEmpty());
+        
+        do{
+            System.out.println("Data Final (dd/mm/aaaa)");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da Data final é obrigatoria");
+            }else{
+                try {
+                    dataFinal = formatoData.parse(dado);
+                } catch (ParseException ex) {
+                    System.out.println("Errou ao converter a data");
+                }
+            }
+        }while(dado.isEmpty());
+        
+        double total = persistenciaLocacao.retornarLocacoesFinalizadas(dataInicial, dataFinal);
+        
+        System.out.println();
+        System.out.println("Total: " + total);
         
     }
     
-    public void veiculosDisponiveis(){
-        
-    }
-    
-    public void veiculosMaisProcurados(){
-        
-    }
     
     public void veiculosMaisRentaveis(){
         
     }
     
-    public void disponibilidadePorTipo(){
-        
+    public void imprimirLocacao(Locacao locacao){
+        System.out.println("Codigo do Cliente: " + locacao.getCliente().getCodigo());
+        System.out.println("CNH do motorista: " + locacao.getMotorista().getCnh());
+        System.out.println("Placa do veiculo: " + locacao.getVeiculo().getPlaca());
+        System.out.println("Tipo do veiculo: " + locacao.getTipoLocacao().getTipoVeiculo().
+                getTipo() );
+        System.out.println("Tipo da locacao: " + locacao.getTipo());
+        System.out.println("Km de saida: " +locacao.getQuilometragemDeSaida());
+        System.out.println("Km de chegada: " + locacao.getQuilometragemDeEntrada());
+        System.out.println("Data de saida: " + locacao.getDataSaida());
+        System.out.println("Data de devolucao: " + locacao.getDataDevolucao());
+        System.out.println("Previsao: " + locacao.getPrevisao());
+        System.out.println("Locacao aberta? " + locacao.isLocacaoAberta());
+        System.out.println("Valor: " + locacao.getValor());
     }
-    
     
 }

@@ -186,5 +186,9 @@ public class PersistenciaVeiculos {
         }
     }
     
+    public void veiculosDisponiveis(){
+        
+    }
+    
 }
 

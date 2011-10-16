@@ -231,6 +231,8 @@ public class Menu {
                     
                 case 2:
                     VisaoLocacao visaoLocacao = new VisaoLocacao();
+                    VisaoVeiculos visaoVeiculos = new VisaoVeiculos();
+                    VisaoClientes visaoClientes = new VisaoClientes();  
                     do{
                         switch(menuRelatorios()){
                             case 1:
@@ -242,11 +244,11 @@ public class Menu {
                                 break;
                                 
                             case 3:
-                                visaoLocacao.veiculosDisponiveis();
+                                visaoVeiculos.veiculosDisponiveis();
                                 break;
                                 
                             case 4:
-                                visaoLocacao.veiculosMaisProcurados();
+                                visaoVeiculos.veiculosMaisProcurados();
                                 break;
                                
                             case 5:
@@ -254,12 +256,11 @@ public class Menu {
                                 break;
                                 
                             case 6:
-                                VisaoClientes visaoClientes = new VisaoClientes();
                                 visaoClientes.buscaPorNome();
                                 break;
                              
                             case 7:
-                                visaoLocacao.disponibilidadePorTipo();
+                                visaoVeiculos.disponibilidadePorTipo();
                                 break;
                                
                             default:

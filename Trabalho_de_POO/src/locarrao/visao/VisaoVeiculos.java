@@ -135,5 +135,17 @@ public class VisaoVeiculos {
     public void excluirVeiculo(){
         
     }
+    
+    public void veiculosDisponiveis(){
+        
+    }
+    
+    public void veiculosMaisProcurados(){
+        
+    }
+    
+    public void disponibilidadePorTipo(){
+        
+    }
 }
 
