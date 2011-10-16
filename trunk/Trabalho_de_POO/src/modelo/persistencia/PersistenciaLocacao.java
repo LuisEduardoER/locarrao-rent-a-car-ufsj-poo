@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import locarrao.visao.VisaoLocacao;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
@@ -287,6 +288,8 @@ public class PersistenciaLocacao {
         return valor;
     }
     
+    
+    
     //calcula o valor, caso seja por quilometragem livre
     public long diferencaDeDias(long dataDeSaida, long dataDeChegada){
         //total de milissegundos em 1 dia
@@ -324,5 +327,60 @@ public class PersistenciaLocacao {
             }
         }
         return pertence;
+    }
+    
+    public double retornarLocacoesEmAberto(Date periodoInicial,Date periodoFinal){
+        List<Locacao> listaLocacoesAberto = new ArrayList<Locacao>();
+        VisaoLocacao visaoLocacao = new VisaoLocacao();
+        for(Locacao item: listaLocacao){
+            if(item.getDataSaida().getTime()>= periodoInicial.getTime() &&
+                    item.getDataSaida().getTime() <= periodoFinal.getTime() && 
+                    item.isLocacaoAberta()){
+                
+                listaLocacoesAberto.add(item);
+            }
+        }
+        
+        /*
+         * Considerando que todas as locações são por diárias.
+         * Sera inserido o valor e depois a soma dos mesmos
+         */
+        double valor = 0;
+        double total = 0;
+        for(Locacao item:listaLocacoesAberto){
+            
+            valor = calculaValorLocacao(item.getDataSaida(), new Date(),
+                    item.getTipoLocacao());
+            item.setValor(valor);
+            visaoLocacao.imprimirLocacao(item);
+            total+= item.getValor();
+        }
+        
+        return total;
+    }
+    
+    public double retornarLocacoesFinalizadas(Date periodoInicial,Date periodoFinal){
+        List<Locacao> listaLocacoesAberto = new ArrayList<Locacao>();
+        VisaoLocacao visaoLocacao = new VisaoLocacao();
+        for(Locacao item: listaLocacao){
+            if(item.getDataSaida().getTime()>= periodoInicial.getTime() &&
+                    item.getDataSaida().getTime() <= periodoFinal.getTime() && 
+                    !item.isLocacaoAberta()){
+                
+                listaLocacoesAberto.add(item);
+            }
+        }
+        
+        /*
+         * Considerando que todas as locações são por diárias.
+         * Sera inserido o valor e depois a soma dos mesmos
+         */
+        double total = 0;
+        for(Locacao item:listaLocacoesAberto){
+            visaoLocacao.imprimirLocacao(item);
+            total+= item.getValor();
+        }
+        
+        return total;
     }
 }
