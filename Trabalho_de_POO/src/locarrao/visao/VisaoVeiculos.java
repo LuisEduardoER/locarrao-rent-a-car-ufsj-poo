@@ -147,5 +147,16 @@ public class VisaoVeiculos {
     public void disponibilidadePorTipo(){
         
     }
+    
+    public void imprimirVeiculo(Veiculos veiculo){
+        System.out.println("Placa: " + veiculo.getPlaca());
+        System.out.println("Cor: " + veiculo.getCor());
+        System.out.println("Ano: " + veiculo.getAno());
+        System.out.println("Opcionais: " + veiculo.getOpcionais());
+        System.out.println("Obeservacao: " + veiculo.getObservacao());
+        System.out.println("Tipo: " + veiculo.getTipoVeiculo().getTipo());
+        System.out.println("Marca: " + veiculo.getMarcaVeiculo());
+        System.out.println("Modelo: " + veiculo.getModeloVeiculo());
+    }
 }
 

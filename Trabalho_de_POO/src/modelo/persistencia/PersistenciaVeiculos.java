@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import locarrao.visao.VisaoVeiculos;
+import modelo.dominio.Locacao;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
@@ -186,8 +188,31 @@ public class PersistenciaVeiculos {
         }
     }
     
-    public void veiculosDisponiveis(){
+    public void verificarveiculosDisponiveis(){
+        VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
+        List<Veiculos> lista = new ArrayList<Veiculos>();
         
+        boolean alugado = false;
+        for(Veiculos item: listaVeiculos){
+            for(Locacao locacao: PersistenciaLocacao.listaLocacao){
+                if(item.getPlaca().equals(locacao.getVeiculo().getPlaca()) && 
+                        locacao.isLocacaoAberta()){
+                    alugado = true;
+                }
+            }
+            if(!alugado){
+                    lista.add(item);
+            }
+        }
+        
+        if(lista.isEmpty()){
+            System.out.println("Não há veiculo cadastrado disponivel");
+        }else{
+            for(Veiculos item: lista){
+                visaoVeiculo.imprimirVeiculo(item);
+                System.out.println();
+            }
+        }
     }
     
 }
