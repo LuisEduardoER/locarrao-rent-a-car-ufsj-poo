@@ -31,6 +31,7 @@ public class VisaoMarcaVeiculo {
 
         if(operacao){
             System.out.println("Salvo com sucesso");
+            entrada.nextLine();
         } else{
             System.out.println("Erro!");
         }
