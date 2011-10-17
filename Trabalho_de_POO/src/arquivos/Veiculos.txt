@@ -1,16 +1,8 @@
 aaa1111
-branco
-2010
-nao
-sim
-Padrao
-fiat
-uno
-aaa1234
-vermelho
-2011
-nao
-sim
+
+2000
+
+
 Basico
-volks
-aaa
+marca 1
+modelo 1
