@@ -93,7 +93,7 @@ public class PersistenciaMotorista{
                         else if(contador == 11){
                             endereco.setCep(linha);
                             motorista.setEndereco(endereco);
-                            listaMotorista.add(motorista);
+                            listaMotorista.add(motorista);  
                             motorista = new Motorista();
                             endereco = new Endereco();
                         
@@ -140,10 +140,10 @@ public class PersistenciaMotorista{
                 listaMotorista.add(motorista);
                 for(Motorista motoristas: listaMotorista){
                     cadastro.println(motoristas.getCnh());
-                    cadastro.println(motorista.getCodigo());
-                    cadastro.println(motorista.getNome());
-                    cadastro.println(motorista.getCpf());
-                    cadastro.println(motorista.getTefefone());
+                    cadastro.println(motoristas.getCodigo());
+                    cadastro.println(motoristas.getNome());
+                    cadastro.println(motoristas.getCpf());
+                    cadastro.println(motoristas.getTefefone());
                     cadastro.println(motoristas.getEndereco().getRua());
                     cadastro.println(motoristas.getEndereco().getNumero());
                     cadastro.println(motoristas.getEndereco().getComplemento());
@@ -158,10 +158,11 @@ public class PersistenciaMotorista{
                 retorno =  true;
                 
             } catch (IOException ex) {
-                System.out.println("Erro na escrita/leitura do arquivo");
+                System.out.println("Erro na escrita ou leitura do arquivo " + 
+                        arquivo.getName());
             } 
         }else{
-            System.out.println("Arquivo não existe");
+            System.out.println("Arquivo " + arquivo.getName() + " não existe");
             retorno = false;
         }
         

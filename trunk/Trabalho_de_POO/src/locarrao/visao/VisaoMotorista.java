@@ -11,23 +11,25 @@ import modelo.persistencia.PersistenciaMotorista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+import modelo.dominio.Clientes;
 import modelo.dominio.Validacao;
+import modelo.persistencia.PersistenciaCliente;
 
 
 public class VisaoMotorista {
-    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+    PersistenciaMotorista persistenciaMotorista;
+    PersistenciaCliente persistenciaCliente;
+    Clientes cliente;
+    
     public static Motorista motorista;
     
     VisaoEndereco visaoEndereco;
-    
-    public VisaoMotorista() {
-        motorista = new Motorista();
-    }
     
     public void cadastrarMotorista(){
         motorista = new Motorista();
         Endereco endereco = new Endereco();
         visaoEndereco = new VisaoEndereco();
+        persistenciaMotorista = new PersistenciaMotorista();
         
         Validacao valida = new Validacao();
         Scanner cadastro = new Scanner(System.in);
@@ -39,7 +41,7 @@ public class VisaoMotorista {
             if(dado.isEmpty()){
                 System.out.println("Digitação da CNH é obrigatorio");
             }else{
-                motorista.setCnh(cadastro.nextLine());
+                motorista.setCnh(dado);
             }
         }while(dado.isEmpty());
         
@@ -48,45 +50,91 @@ public class VisaoMotorista {
             existe = persistenciaMotorista.pesquisarMotorista(motorista);
             if(!existe){
                 
+                do{
+                    System.out.println("Digite o CPF");
+                    dado = cadastro.nextLine();
+
+                    if(dado.isEmpty()){
+                        System.out.println("Digitação do CPF é obrigatoria");
+                    }else{
+                        if(!valida.validarCPF(dado)){
+                            System.out.println("CPF Invalido");
+                            cadastro.nextLine();
+                            return;
+                        }
+                        else{
+                            motorista.setCpf(dado);
+                        }
+                    }
+                }while(dado.isEmpty());
+                
+                
+                /*
+                 * Ao digitar o CPF, será feito uma busca na lista de clientes
+                 * Caso o CPF seja de um cliente cadastrado, os dados do cliente
+                 * será passado para o motorista (nome,telefone e endereço.
+                 * 
+                 * Caso o contrario, será feita a digitação normalmente
+                 */
+                persistenciaCliente = new PersistenciaCliente();
+                cliente = new Clientes();
+                cliente.setCpf(dado);
+                persistenciaCliente.retornarCliente(cliente);
+                boolean pesquisaCliente = persistenciaCliente.retornarClienteComCpf(cliente);
+                
+                if(pesquisaCliente){
+                    motorista.setNome(cliente.getNome());
+                    motorista.setTefefone(cliente.getTefefone());
+                    motorista.setEndereco(cliente.getEndereco());
+                }else{
+                    do{
+                        System.out.println("Digite o nome");
+                        dado = cadastro.nextLine();
+                        if(dado.isEmpty()){
+                            System.out.println("Digitaçao do nome é obrigatorio");
+                        }else{
+                            motorista.setNome(dado);
+                        }
+                        
+                    }while(dado.isEmpty());
+                    
+                    System.out.println("Digite o telefone");
+                    dado = cadastro.nextLine();
+                    
+                    if(dado.isEmpty()){
+                        motorista.setTefefone(" - ");
+                    }else{
+                        motorista.setTefefone(dado);
+                    }
+                    
+                    endereco = visaoEndereco.cadastrarEndereco();
+
+                    if(endereco == null){
+                        System.out.println("CEP inválido");
+                        return;
+                    }else{
+                        motorista.setEndereco(endereco);
+                    }
+
+                    motorista.setEndereco(endereco);
+                    
+                }
+                
                 //código será auto incremento
                 motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
                 
-                System.out.println("Digite o CPF");
-                dado = cadastro.nextLine();
-                
-                if(dado.isEmpty()){
-                    motorista.setCpf(" - ");
-                }else{
-                    if(!valida.validarCPF(dado)){
-                        System.out.println("CPF Invalido");
-                        return;
-                    }
-                    else{
-                        motorista.setCpf(dado);
-                    }
-                }
-                
-                
-                endereco = visaoEndereco.cadastrarEndereco();
-                
-                if(endereco == null){
-                    System.out.println("CEP inválido");
-                    return;
-                }else{
-                    motorista.setEndereco(endereco);
-                }
-                
-                motorista.setEndereco(endereco);
-
                 boolean salvar = persistenciaMotorista.salvar(motorista);
                 if (salvar){
                     System.out.println("Motorista salvo com sucesso!");
+                    cadastro.nextLine();
                 }else {
                     System.out.println("ERRO AO SALVAR!");
+                    cadastro.nextLine();
                 }
                 
             }else {
                 System.out.println("Motorista ja cadastrado");
+                cadastro.nextLine();
             }
             
         }catch (FileNotFoundException ex) {

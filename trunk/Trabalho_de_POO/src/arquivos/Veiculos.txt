@@ -1,8 +1,16 @@
 aaa1111
-
+ - 
 2000
-
-
-Basico
+ - 
+nao
+Padrao
 marca 1
 modelo 1
+aaa1234
+vermelho
+2001
+ - 
+ - 
+Padrao
+marca 2
+modelo 2

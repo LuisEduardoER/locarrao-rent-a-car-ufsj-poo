@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoLocacao;
@@ -65,115 +67,128 @@ public class VisaoVeiculos {
             }
         }while(dado.isEmpty());
         
-        System.out.println("Cor do veiculo");
-        dado = cadastro.nextLine();
-        if(dado.isEmpty()){
-            veiculos.setCor(" - ");
-        }else{
-            veiculos.setCor(dado);
-        }
-        
-        
-        System.out.println("Ano do veiculo");
-        dado = cadastro.nextLine();
-        if(dado.isEmpty()){
-            veiculos.setAno(0);
-        }else{
-            try{
-                veiculos.setAno(Integer.parseInt(dado));
-            }catch(InputMismatchException ex){
-                System.out.println("No campo Ano é numérico e inteiro");
-            }
-        }
-        
-        System.out.println("Opcionais");
-        dado = cadastro.nextLine();
-        if(dado.isEmpty()){
-            veiculos.setOpcionais(" - ");
-        }else{
-            veiculos.setOpcionais(dado);
-        }
-        
-        System.out.println("Observacao");
-        dado = cadastro.nextLine();
-        if(dado.isEmpty()){
-            veiculos.setObservacao(" - ");
-        }else{
-            veiculos.setObservacao(dado);
-        }
-        
-        //Seleciona o tipo de Veiculo
-        System.out.println("Tipo de veiculo");
-        int resposta;
-
         try {
-            resposta = visaoTipoVeiculo.menuTipoVeiculo();
-            tipoVeiculo.setTipo(persistenciaTipoVeiculo.
-                    retornaTipoVeiculo(resposta).getTipo());
-            
-            veiculos.setTipoVeiculo(tipoVeiculo);
-            
-        } catch (FileNotFoundException ex) {
-            System.out.println("Arquivo  TipoVeiculo.txt não encontrado");
-        } catch (IOException ex) {
-            System.out.println("Erro na escrita ou leitra do arquivo "
-                    + "TipoVeiculo.txt");
-        }
+            if(persistenciaVeiculos.pesquisarVeiculo(veiculos)){
+                System.out.println("Veiculo ja cadastrado");
+                cadastro.nextLine();
+            }else{
+                
+                System.out.println("Cor do veiculo");
+                dado = cadastro.nextLine();
+                if(dado.isEmpty()){
+                    veiculos.setCor(" - ");
+                }else{
+                    veiculos.setCor(dado);
+                }
 
-        do{
-            System.out.println("Marca do veiculo");
-            dado = cadastro.nextLine();
-            
-            if(dado.isEmpty()){
-                System.out.println("Digitação da marca do veiculo é obrigatoria");
-            }else{
-                marcaVeiculo.setMarca(dado);
-                veiculos.setMarcaVeiculo(marcaVeiculo);
-                
-                //salva a marca no arquivo MarcaVeiculo.txt
-                boolean salvaMarca = persistenciaMarcaVeiculo.salvar(marcaVeiculo);
-                if(salvaMarca){
-                    veiculos.setMarcaVeiculo(marcaVeiculo);
+
+                System.out.println("Ano do veiculo");
+                dado = cadastro.nextLine();
+                if(dado.isEmpty()){
+                    veiculos.setAno(0);
+                }else{
+                    try{
+                        veiculos.setAno(Integer.parseInt(dado));
+                    }catch(InputMismatchException ex){
+                        System.out.println("No campo Ano é numérico e inteiro");
+                    }
                 }
-                else{
-                    System.out.println("Erro na hora de salvar a marca");
+
+                System.out.println("Opcionais");
+                dado = cadastro.nextLine();
+                if(dado.isEmpty()){
+                    veiculos.setOpcionais(" - ");
+                }else{
+                    veiculos.setOpcionais(dado);
+                }
+
+                System.out.println("Observacao");
+                dado = cadastro.nextLine();
+                if(dado.isEmpty()){
+                    veiculos.setObservacao(" - ");
+                }else{
+                    veiculos.setObservacao(dado);
+                }
+
+                //Seleciona o tipo de Veiculo
+                System.out.println("Tipo de veiculo");
+                int resposta;
+
+                try {
+                    resposta = visaoTipoVeiculo.menuTipoVeiculo();
+                    tipoVeiculo.setTipo(persistenciaTipoVeiculo.
+                            retornaTipoVeiculo(resposta).getTipo());
+
+                    veiculos.setTipoVeiculo(tipoVeiculo);
+
+                } catch (FileNotFoundException ex) {
+                    System.out.println("Arquivo  TipoVeiculo.txt não encontrado");
+                } catch (IOException ex) {
+                    System.out.println("Erro na escrita ou leitra do arquivo "
+                            + "TipoVeiculo.txt");
+                }
+
+                do{
+                    System.out.println("Marca do veiculo");
+                    dado = cadastro.nextLine();
+
+                    if(dado.isEmpty()){
+                        System.out.println("Digitação da marca do veiculo é obrigatoria");
+                    }else{
+                        marcaVeiculo.setMarca(dado);
+                        veiculos.setMarcaVeiculo(marcaVeiculo);
+
+                        //salva a marca no arquivo MarcaVeiculo.txt
+                        boolean salvaMarca = persistenciaMarcaVeiculo.salvar(marcaVeiculo);
+                        if(salvaMarca){
+                            veiculos.setMarcaVeiculo(marcaVeiculo);
+                        }
+                        else{
+                            System.out.println("Erro na hora de salvar a marca");
+                            cadastro.nextLine();
+                            return;
+                        }
+                    }
+                }while(dado.isEmpty());
+
+                do{
+                    System.out.println("Modelo do veiculo");
+                    dado = cadastro.nextLine();
+
+                    if(dado.isEmpty()){
+                        System.out.println("Digitação do modelo do Veiculo é obrigatoria");
+                    }else{
+                        modeloVeiculo.setModelo(dado);
+                        veiculos.setModeloVeiculo(modeloVeiculo);
+
+                        //Salva o modelo no arquivo ModeloVeiculo.txt
+                        boolean salvaModelo = persistenciaModeloVeiculo.salvar(modeloVeiculo);
+                        if(salvaModelo){
+                            veiculos.setModeloVeiculo(modeloVeiculo);
+                        }
+                        else{
+                            System.out.println("Erro na hora de salvar o modelo");
+                            cadastro.nextLine();
+                            return;
+                        }
+                    }
+                }while(dado.isEmpty());
+
+                boolean operacao = persistenciaVeiculos.salvar(veiculos);
+                if (operacao) {
+                    System.out.println("Cadastro salvo com sucesso");
                     cadastro.nextLine();
-                    return;
+                }
+                else {
+                    System.out.println("Erro!");
                 }
             }
-        }while(dado.isEmpty());
-        
-        do{
-            System.out.println("Modelo do veiculo");
-            dado = cadastro.nextLine();
-            
-            if(dado.isEmpty()){
-                System.out.println("Digitação do modelo do Veiculo é obrigatoria");
-            }else{
-                modeloVeiculo.setModelo(dado);
-                veiculos.setModeloVeiculo(modeloVeiculo);
-                
-                //Salva o modelo no arquivo ModeloVeiculo.txt
-                boolean salvaModelo = persistenciaModeloVeiculo.salvar(modeloVeiculo);
-                if(salvaModelo){
-                    veiculos.setModeloVeiculo(modeloVeiculo);
-                }
-                else{
-                    System.out.println("Erro na hora de salvar o modelo");
-                    cadastro.nextLine();
-                    return;
-                }
-            }
-        }while(dado.isEmpty());
-        
-        boolean operacao = persistenciaVeiculos.salvar(veiculos);
-        if (operacao) {
-            System.out.println("Cadastro salvo com sucesso");
-            cadastro.nextLine();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Arquivo não encontrado");
+        } catch (IOException ex) {
+            System.out.println("Erro na escrita ou leitura do arquivo");
         }
-        else {
-            System.out.println("Erro!");
-        }
+        
         
     }
     

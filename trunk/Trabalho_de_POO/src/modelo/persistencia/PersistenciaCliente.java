@@ -173,16 +173,33 @@ public class PersistenciaCliente {
         return encontrou;
     }
     
-    public void retornarCliente(Clientes cliente){
-        
+    public boolean retornarCliente(Clientes cliente){
+        boolean achou = false;
         for(Clientes item : listaClientes){
             if(item.getCodigo() == cliente.getCodigo()){
+                achou = true;
                 cliente.setNome(item.getNome());
                 cliente.setCpf(item.getCpf());
                 cliente.setTefefone(item.getTefefone());
                 cliente.setEndereco(item.getEndereco());
             }
         }
+        
+        return achou;
+    }
+    
+    public boolean retornarClienteComCpf(Clientes cliente){
+        boolean achou = false;
+        for(Clientes item : listaClientes){
+            if(item.getCpf().equals(cliente.getCpf())){
+                achou = true;
+                cliente.setNome(item.getNome());
+                cliente.setTefefone(item.getTefefone());
+                cliente.setEndereco(item.getEndereco());
+            }
+        }
+        
+        return achou;
     }
     
     
