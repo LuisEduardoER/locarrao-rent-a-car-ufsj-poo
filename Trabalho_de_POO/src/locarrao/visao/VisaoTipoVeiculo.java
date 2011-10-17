@@ -14,9 +14,17 @@ public class VisaoTipoVeiculo {
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         
         Scanner entrada = new Scanner(System.in);
-        
-        System.out.println("Nome para o tipo");
-        tipoVeiculo.setTipo(entrada.nextLine());
+        String dado = null;
+        do{
+            System.out.println("Nome para o tipo");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação do tipo de veiculo é obrigatoria");
+            }else{
+                tipoVeiculo.setTipo(dado);
+            }
+        }while(dado.isEmpty());
         
         /* Salvar no arquivo */
         
@@ -24,6 +32,7 @@ public class VisaoTipoVeiculo {
 
         if(operacao){
             System.out.println("Lista salva com sucesso");
+            entrada.nextLine();
         }
         else{
             System.out.println("Erro na gravação do arquivo " + 

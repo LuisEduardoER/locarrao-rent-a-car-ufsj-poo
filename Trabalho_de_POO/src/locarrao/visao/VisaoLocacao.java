@@ -21,9 +21,9 @@ import modelo.persistencia.PersistenciaMotorista;
 import modelo.persistencia.PersistenciaVeiculos;
 
 public class VisaoLocacao {
-    PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-    Clientes cliente = new Clientes();
-    VisaoClientes visaoClientes = new VisaoClientes();
+    PersistenciaCliente persistenciaCliente;
+    Clientes cliente;
+    VisaoClientes visaoClientes;
     
     PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
     VisaoMotorista visaoMotorista = new VisaoMotorista();
@@ -38,6 +38,10 @@ public class VisaoLocacao {
     
     public void cadastraLocacao(){
         try {
+            persistenciaCliente = new PersistenciaCliente();
+            cliente = new Clientes();
+            visaoClientes = new VisaoClientes();
+    
             Locacao locacao = new Locacao();
             TipoLocacao tipoLocacao = new TipoLocacao();
             
@@ -59,7 +63,7 @@ public class VisaoLocacao {
                 System.out.println("Codigo do cliente:");
                 dado = entrada.nextLine();
                 
-                if(dado == null){
+                if(dado.isEmpty()){
                     System.out.println("Digitação do codigo é obrigatoria");
                 }else{
                     try{
@@ -70,7 +74,7 @@ public class VisaoLocacao {
                     
                 }
                 
-            }while(dado == null);
+            }while(dado.isEmpty());
             
             try {
                 boolean encontrou = persistenciaCliente.pesquisarCliente(cliente);
@@ -94,6 +98,8 @@ public class VisaoLocacao {
                                 break;
                                 
                             case 2:
+                                System.out.println("Cadastro de locação sera encerrado");
+                                entrada.nextLine();
                                 return;
                                 
                                 
@@ -169,6 +175,7 @@ public class VisaoLocacao {
                                 }
                                 else{
                                     System.out.println("erro ao salvar novo motorista");
+                                    entrada.nextLine();
                                 }
                             }
                             else{
@@ -177,6 +184,7 @@ public class VisaoLocacao {
                         }
                         else{
                             System.out.println("Motorista ja pertence a alguma locação em aberto");
+                            entrada.nextLine();
                             return;
                         }
                         
@@ -216,6 +224,9 @@ public class VisaoLocacao {
                                             break;
                                         
                                         case 2:
+                                            System.out.println("Cadastro da locação sera "
+                                                    + "encerrrada");
+                                            entrada.nextLine();
                                             return;
                                             
                                         default:
@@ -266,6 +277,8 @@ public class VisaoLocacao {
             if(buscaVeiculo){
                 if(persistenciaLocacao.verificarVeiculoLocado(veiculo)){
                     System.out.println("Veiculo ja está alugado!");
+                    entrada.nextLine();
+                    return;
                 }
                 else{
                     persistenciaVeiculos.retornarVeiculo(veiculo);
@@ -288,6 +301,8 @@ public class VisaoLocacao {
                             break;
                        
                         case 2:
+                            System.out.println("O cadastro da locação sera encerrado");
+                            entrada.nextLine();
                             return;
                             
                         default:
@@ -366,22 +381,35 @@ public class VisaoLocacao {
     
     public void fecharLocacao(){
         persistenciaLocacao = new PersistenciaLocacao();
+        
         Scanner entrada = new Scanner(System.in);
+        String dado = null;
+        
         List<Locacao> listaLocacaoCliente = new ArrayList<Locacao>();
+        
         cliente = new Clientes();
         motorista = new Motorista();
         
         
-        System.out.println("Codigo do Cliente");
-        cliente.setCodigo(Integer.parseInt(entrada.nextLine()));
+        do{
+            System.out.println("Codigo do Cliente");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação do codigo do cliente é obrigatoria");
+            }else{
+                try{
+                    cliente.setCodigo(Integer.parseInt(dado));
+                }catch(InputMismatchException ex){
+                    System.out.println("O campo codigo é numérico e inteiro");
+                }
+                
+            }
+        }while(dado.isEmpty());
         
         //busco todas as locações do cliente
         boolean achou = false;
         for(Locacao item: PersistenciaLocacao.listaLocacao){
-            System.out.println("cliente: " + item.getCliente().getCodigo());
-            System.out.println("tamanho da lista: "+ PersistenciaLocacao.listaLocacao.size());
-            System.out.println("locacao aberta: " + item.isLocacaoAberta());
-            System.out.println("cliente do parametro: " + cliente.getCodigo());
             if((item.getCliente().getCodigo() == cliente.getCodigo()) &&
                     item.isLocacaoAberta()){
                 
@@ -390,8 +418,9 @@ public class VisaoLocacao {
             }
         }
         
-        if(achou == false){
+        if(!achou){
             System.out.println("Não existem locações com o cliente desejado");
+            entrada.nextLine();
         }
         else{
             

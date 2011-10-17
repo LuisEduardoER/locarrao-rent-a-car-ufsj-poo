@@ -271,7 +271,8 @@ public class PersistenciaLocacao {
         double taxa = persistenciaTipoLocacao.retornarTaxa(tipoLocacao);
         double precoPorKm = persistenciaTipoLocacao.retornarPrecoPorKm(tipoLocacao);
         
-        valor = (valorDeChegada - valorDeSaida) * precoPorKm * taxa;
+        valor = ((valorDeChegada - valorDeSaida) * precoPorKm) + 
+                ((valorDeChegada - valorDeSaida) * precoPorKm) * taxa;
         return valor;
     }
     

@@ -33,6 +33,7 @@ public class VisaoModeloVeiculo {
 
         if(operacao){
             System.out.println("Salvo com sucesso");
+            entrada.nextLine();
         } else{
             System.out.println("Erro!");
         }
