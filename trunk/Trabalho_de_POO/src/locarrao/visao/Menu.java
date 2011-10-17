@@ -31,195 +31,37 @@ public class Menu {
                         switch(menuCadastro()){
                             case 1:
                                 VisaoClientes visaoClientes = new VisaoClientes();
-                                do{
-                                    switch(menuCadastroCliente()){
-                                        case 1:
-                                            visaoClientes.cadastrarClientes();
-                                            break;
-                                            
-                                        case 2:
-                                            visaoClientes.alterarCliente();
-                                            break;
-                                        
-                                        case 3:
-                                            visaoClientes.pesquisarCliente();
-                                            break;
-                                        
-                                        case 4:
-                                            visaoClientes.excluirCliente();
-                                            break;
-                                        
-                                        default:
-                                            if(menuCadastroCliente() == 5) continue;
-                                            else System.out.println("Opcao Invalida!");
-                                            
-                                    }
-                                }while(menuCadastroCliente() != 5);
-                                
+                                visaoClientes.cadastrarClientes();
                                 break;
                                 
                             case 2:
                                 VisaoVeiculos visaoVeiculos = new VisaoVeiculos();
-                                do{
-                                    
-                                    switch(menuCadastroVeiculo()){
-                                        case 1:
-                                            visaoVeiculos.cadastraVeiculos();
-                                            break;
-                                            
-                                        case 2:
-                                            visaoVeiculos.alterarVeiculos();
-                                            break;
-                                        
-                                        case 3:
-                                            visaoVeiculos.pesquisarVeiculo();
-                                            break;
-                                        
-                                        case 4:
-                                            visaoVeiculos.excluirVeiculo();
-                                            break;
-                                        
-                                        default:
-                                            if(menuCadastroVeiculo() == 5) continue;
-                                            else System.out.println("Opcao Invalida!");
-                                            
-                                    }
-                                }while(menuCadastroVeiculo() != 5);
+                                visaoVeiculos.cadastraVeiculos();
                                 break;
                                 
                             case 3:
                                 VisaoMotorista visaoMotorista = new VisaoMotorista();
-                                do{
-                                    
-                                    switch(menuCadastroMotorista()){
-                                        case 1:
-                                            visaoMotorista.cadastrarMotorista();
-                                            break;
-                                            
-                                        case 2:
-                                            visaoMotorista.alterarMotorista();
-                                            break;
-                                        
-                                        case 3:
-                                            visaoMotorista.pesquisarMotorista();
-                                            break;
-                                        
-                                        case 4:
-                                            visaoMotorista.excluirMotorista();
-                                            break;
-                                        
-                                        default:
-                                            if(menuCadastroMotorista() == 5) continue;
-                                            else System.out.println("Opcao Invalida!");
-                                            
-                                    }
-                                }while(menuCadastroMotorista() != 5);
+                                visaoMotorista.cadastrarMotorista();
                                 break;
                                 
                             case 4:
                                 VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
-                                do{
-                                    
-                                    switch(menuCadastroTipoVeiculo()){
-                                        case 1:
-                                            visaoTipoVeiculo.cadastraTipoVeiculo();
-                                            break;
-                                            
-                                        case 2:
-                                            visaoTipoVeiculo.alteraTipoVeiculo();
-                                            break;
-                                        
-                                        case 3:
-                                            visaoTipoVeiculo.pesquisaTipoVeiculo();
-                                            break;
-                                        
-                                        case 4:
-                                            visaoTipoVeiculo.excluiTipoVeiculo();
-                                            break;
-                                        
-                                        default:
-                                            if(menuCadastroTipoVeiculo() == 5) continue;
-                                            else System.out.println("Opcao Invalida!");
-                                            
-                                    }
-                                }while(menuCadastroTipoVeiculo() != 5);
+                                visaoTipoVeiculo.cadastraTipoVeiculo();
                                 break;
                                 
                             case 5:
                                 VisaoMarcaVeiculo visaoMarcaVeiculo = new VisaoMarcaVeiculo();
-                                do{
-                                    switch(menuCadastroMarcaVeiculo()){
-                                        case 1:
-                                            visaoMarcaVeiculo.cadastrarMarcaVeiculo();
-                                            break;
-                                            
-                                        case 2:
-                                            visaoMarcaVeiculo.alterarMarcaVeiculo();
-                                            break;
-                                        
-                                        case 3:
-                                            visaoMarcaVeiculo.pesquisarMarcaVeiculo();
-                                            break;
-                                        
-                                        case 4:
-                                            visaoMarcaVeiculo.excluirMarcaVeiculo();
-                                            break;
-                                        
-                                        default:
-                                            if(menuCadastroMarcaVeiculo() == 5) continue;
-                                            else System.out.println("Opcao Invalida!");
-                                            
-                                    }
-                                }while(menuCadastroMarcaVeiculo() != 5);
+                                visaoMarcaVeiculo.cadastrarMarcaVeiculo();
                                 break;
                                 
                             case 6:
                                 VisaoModeloVeiculo visaoModeloVeiculo = new VisaoModeloVeiculo();
-                                do{
-                                    switch(menuCadastroModeloVeiculo()){
-                                        case 1:
-                                            visaoModeloVeiculo.cadastrarModeloVeiculo();
-                                            break;
-                                            
-                                        case 2:
-                                            visaoModeloVeiculo.alterarModeloVeiculo();
-                                            break;
-                                        
-                                        case 3:
-                                            visaoModeloVeiculo.pesquisarModeloVeiculo();
-                                            break;
-                                        
-                                        case 4:
-                                            visaoModeloVeiculo.excluirModeloVeiculo();
-                                            break;
-                                        
-                                        default:
-                                            if(menuCadastroModeloVeiculo() == 5) continue;
-                                            else System.out.println("Opcao Invalida!");
-                                            
-                                    }
-                                }while(menuCadastroModeloVeiculo() != 5);
+                                visaoModeloVeiculo.cadastrarModeloVeiculo();
                                 break;
                                 
                             case 7:
                                 VisaoTipoLocacao visaoTipoLocacao = new VisaoTipoLocacao();
-                                do{
-                                    switch(menuCadastroTipoLocacao()){
-                                        case 1:
-                                            visaoTipoLocacao.cadastraTipoLocacao();
-                                            break;
-                                            
-                                        case 2:
-                                            visaoTipoLocacao.alteraTipoLocacao();
-                                            break;
-                                        
-                                        
-                                        default:
-                                            if(menuCadastroTipoLocacao() == 3) continue;
-                                            else System.out.println("Opcao Invalida!");
-                                            
-                                    }
-                                }while(menuCadastroTipoLocacao() != 3);
+                                visaoTipoLocacao.cadastraTipoLocacao();
                                 break;    
                              
                             default:
