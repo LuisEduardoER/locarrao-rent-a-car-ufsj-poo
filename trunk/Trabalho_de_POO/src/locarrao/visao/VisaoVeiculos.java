@@ -141,8 +141,13 @@ public class VisaoVeiculos {
     }
     
     public void veiculosMaisProcurados(){
-        
+        persistenciaVeiculos.mostrarVeiculosMaisProcurados();
     }
+    
+    public void veiculosMaisRentaveis(){
+        persistenciaVeiculos.mostrarVeiculosMaisRentaveis();
+    }
+    
     
     public void disponibilidadePorTipo(){
         

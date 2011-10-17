@@ -252,7 +252,7 @@ public class Menu {
                                 break;
                                
                             case 5:
-                                visaoLocacao.veiculosMaisRentaveis();
+                                visaoVeiculos.veiculosMaisRentaveis();
                                 break;
                                 
                             case 6:
