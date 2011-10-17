@@ -351,6 +351,10 @@ public class PersistenciaLocacao {
         double total = 0;
         Locacao tipodaLocacao = new Locacao();
         tipodaLocacao.setTipo("Por Quilometro");
+        
+        System.out.println("---------------- Locações em Aberto ----------------");
+        System.out.println();
+        
         for(Locacao item:listaLocacoesAberto){
             
             valor = calculaValorLocacao(item.getDataSaida(), new Date(),
@@ -366,14 +370,14 @@ public class PersistenciaLocacao {
     }
     
     public double retornarLocacoesFinalizadas(Date periodoInicial,Date periodoFinal){
-        List<Locacao> listaLocacoesAberto = new ArrayList<Locacao>();
+        List<Locacao> listaLocacoesFinalizadas = new ArrayList<Locacao>();
         VisaoLocacao visaoLocacao = new VisaoLocacao();
         for(Locacao item: listaLocacao){
             if(item.getDataSaida().getTime()>= periodoInicial.getTime() &&
                     item.getDataSaida().getTime() <= periodoFinal.getTime() && 
                     !item.isLocacaoAberta()){
                 
-                listaLocacoesAberto.add(item);
+                listaLocacoesFinalizadas.add(item);
             }
         }
         
@@ -382,8 +386,16 @@ public class PersistenciaLocacao {
          * Sera inserido o valor e depois a soma dos mesmos
          */
         double total = 0;
-        for(Locacao item:listaLocacoesAberto){
+        
+        System.out.println("---------------- Locações Finalizadas ----------------");
+        System.out.println();
+        
+        for(Locacao item:listaLocacoesFinalizadas){
             visaoLocacao.imprimirLocacao(item);
+            
+            System.out.println();
+            System.out.println();
+            
             total+= item.getValor();
         }
         
