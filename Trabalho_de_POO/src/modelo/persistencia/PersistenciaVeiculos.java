@@ -15,7 +15,6 @@ import locarrao.visao.VisaoVeiculos;
 import modelo.dominio.Locacao;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
-import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 
