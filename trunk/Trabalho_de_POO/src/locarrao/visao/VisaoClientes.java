@@ -127,7 +127,36 @@ public class VisaoClientes {
     }
     
     public void buscaPorNome(){
+        Scanner entrada = new Scanner(System.in);
         
+        String dado = null;
+        do{
+            System.out.println("Digite o nome");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("A digitação do nome é obrigatoria");
+            }
+        }while(dado.isEmpty());
+        
+        persistenciaCliente.mostrarClientesComNome(dado);
+        
+    }
+    
+    public void imprimeCliente(Clientes cliente){
+        System.out.println("Codigo: " + cliente.getCodigo());
+        System.out.println("Nome: " + cliente.getNome());
+        System.out.println("CPF: " + cliente.getCpf());
+        System.out.println("Telefone: " + cliente.getTefefone());
+        
+        System.out.println("---------------- Endereco ----------------");
+        System.out.println("Rua: " + cliente.getEndereco().getRua());
+        System.out.println("Numero: " + cliente.getEndereco().getNumero());
+        System.out.println("Complemento: " + cliente.getEndereco().getComplemento());
+        System.out.println("Bairro: " + cliente.getEndereco().getBairro());
+        System.out.println("Cidade: " + cliente.getEndereco().getCidade());
+        System.out.println("CEP: " + cliente.getEndereco().getCep());
+        System.out.println("UF: " + cliente.getEndereco().getUf());
     }
 }
 

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import locarrao.visao.VisaoClientes;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
 
@@ -23,6 +24,8 @@ import modelo.dominio.Endereco;
 public class PersistenciaCliente {
     public static File arquivo;
     public static List<Clientes> listaClientes;
+    
+    VisaoClientes visaoCliente = new VisaoClientes();
     
     public PersistenciaCliente() {
         arquivo = new File("src/arquivos/Clientes.txt");
@@ -180,6 +183,28 @@ public class PersistenciaCliente {
                 cliente.setEndereco(item.getEndereco());
             }
         }
+    }
+    
+    
+    /*
+     * Como pode ocorrer de ter mais de um cliente com o mesmo nome, é criado uma lista
+     * que irá conter todos os clientes com o nome desejado
+     */
+    public void mostrarClientesComNome(String nome){
+        List<Clientes> lista = new ArrayList<Clientes>();
+        visaoCliente = new VisaoClientes();
+        
+        for(Clientes item: listaClientes){
+            if(item.getNome().equals(nome)){
+                lista.add(item);
+            }
+        }
+        
+        for(Clientes item: lista){
+            visaoCliente.imprimeCliente(item);
+            System.out.println();
+        }
+        
     }
    
 }
