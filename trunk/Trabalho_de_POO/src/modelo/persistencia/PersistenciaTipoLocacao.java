@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.dominio.Locacao;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 
@@ -46,17 +47,20 @@ public class PersistenciaTipoLocacao {
                 TipoVeiculo tipoVeiculo = new TipoVeiculo();
 
                 while((linha = leitor.readLine()) != null) {
-                    //objetos
                     
                     if (contador == 0) {
-                        tipoLocacao.setTaxa(Double.parseDouble(linha));
+                        tipoLocacao.setTaxaDiarias(Double.parseDouble(linha));
                         contador++;
                     }
                     else if (contador == 1) {
+                        tipoLocacao.setTaxaPorKm(Double.parseDouble(linha));
+                        contador++;
+                    }        
+                    else if (contador == 2) {
                         tipoLocacao.setPrecoPorQuilometro(Double.parseDouble(linha));
                         contador++ ;
                     }
-                    else if (contador == 2) {
+                    else if (contador == 3) {
                         tipoVeiculo.setTipo(linha);
                         tipoLocacao.setTipoVeiculo(tipoVeiculo);
                         listaTipoLocacao.add(tipoLocacao);
@@ -95,7 +99,8 @@ public class PersistenciaTipoLocacao {
             alterarCadastroTipoLocacao(tipoLocacao);
             
             for(TipoLocacao tipo: listaTipoLocacao){
-                dados.println(tipo.getTaxa());
+                dados.println(tipo.getTaxaDiarias());
+                dados.println(tipo.getTaxaPorKm());
                 dados.println(tipo.getPrecoPorQuilometro());
                 dados.println(tipo.getTipoVeiculo().getTipo());
             }
@@ -120,6 +125,7 @@ public class PersistenciaTipoLocacao {
      * os dois tipos de locação
      */
     
+    
     public void alterarCadastroTipoLocacao(TipoLocacao tipoLocacao){
         boolean achou = false;
         
@@ -129,7 +135,8 @@ public class PersistenciaTipoLocacao {
 
             for(TipoLocacao tipo : listaTipoLocacao){
                 if(tipo.getTipoVeiculo().getTipo().equals(tipoVeiculo.getTipo())){
-                    tipo.setTaxa(tipoLocacao.getTaxa());
+                    tipo.setTaxaDiarias(tipoLocacao.getTaxaDiarias());
+                    tipo.setTaxaPorKm(tipoLocacao.getTaxaPorKm());
                     tipo.setPrecoPorQuilometro(tipoLocacao.getPrecoPorQuilometro());
                     achou = true;
                 }
@@ -145,12 +152,17 @@ public class PersistenciaTipoLocacao {
 
     }
     
-    public double retornarTaxa(TipoLocacao tipoLocacao){
+    public double retornarTaxa(TipoLocacao tipoLocacao, Locacao locacao){
         double taxa = 0;
         
         for(TipoLocacao tipo: listaTipoLocacao){
             if(tipo.getTipoVeiculo().getTipo().equals(tipoLocacao.getTipoVeiculo().getTipo())){
-                taxa = tipo.getTaxa();
+                if(locacao.getTipo().equals("Por Quilometro")){
+                    taxa = tipo.getTaxaPorKm();
+                }else{
+                    taxa = tipo.getTaxaDiarias();
+                }
+                
             }
         }
         return taxa;

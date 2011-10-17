@@ -77,7 +77,7 @@ public class VisaoLocacao {
             }while(dado.isEmpty());
             
             try {
-                boolean encontrou = persistenciaCliente.pesquisarCliente(cliente);
+                boolean encontrou = persistenciaCliente.pesquisarCliente(cliente.getCodigo());
                 
                 if(encontrou){
                     locacao.setCliente(cliente);
@@ -92,8 +92,8 @@ public class VisaoLocacao {
                         
                         switch(Integer.parseInt(entrada.nextLine())){
                             case 1:
-                                visaoClientes.cadastrarClientes();
                                 cliente.setCodigo(PersistenciaCliente.listaClientes.size());
+                                visaoClientes.cadastrarClientes();
                                 locacao.setCliente(cliente);
                                 break;
                                 
@@ -113,8 +113,12 @@ public class VisaoLocacao {
                 
             } catch (FileNotFoundException ex) {
                     System.out.println("Arquivo nao encontrado.");
+                    entrada.nextLine();
+                    return;
             } catch (IOException ex) {
                     System.out.println("Erro na escrita ou leitura do arquivo.");
+                    entrada.nextLine();
+                    return;
             }
             
              /* ------------------------ Fim Cliente ------------------------*/
@@ -239,8 +243,12 @@ public class VisaoLocacao {
 
                         } catch (FileNotFoundException ex) {
                                 System.out.println("Arquivo nao encontrado.");
+                                entrada.nextLine();
+                                return;
                         } catch (IOException ex) {
                                 System.out.println("Erro na escrita ou leitura do arquivo.");
+                                entrada.nextLine();
+                                return;
                         }
                         
                         break;
@@ -267,7 +275,7 @@ public class VisaoLocacao {
                 dado = entrada.nextLine();
                 
                 if(dado.isEmpty()){
-                    System.out.println("Digitação da placa é obrigatorio");
+                    System.out.println("Digitação da placa é obrigatoria");
                 }else{
                     veiculo.setPlaca(dado);
                 }
@@ -327,7 +335,13 @@ public class VisaoLocacao {
             if(dado.isEmpty()){
                 locacao.setPrevisao(0);
             }else{
-                locacao.setPrevisao(Integer.parseInt(dado));
+                try{
+                    locacao.setPrevisao(Integer.parseInt(dado));
+                }catch(InputMismatchException ex){
+                    System.out.println("O campo previsao é do tipo numérico e inteiro");
+                    entrada.nextLine();
+                    return;
+                }
             }
             
             //Dados da quilometragem
@@ -339,7 +353,14 @@ public class VisaoLocacao {
                     System.out.println("Digitação da quilometragem de saida"
                             + " é obrigatoria.");
                 }else{
-                    locacao.setQuilometragemDeSaida(Long.parseLong(dado));
+                    try{
+                        locacao.setQuilometragemDeSaida(Long.parseLong(dado));
+                    }catch(InputMismatchException ex){
+                        System.out.println("O campo quilometragem de "
+                                + "saída é do tipo numérico e inteiro");
+                        entrada.nextLine();
+                        return;
+                    }
                 }
             
             }while(dado.isEmpty());
@@ -381,7 +402,7 @@ public class VisaoLocacao {
     
     public void fecharLocacao(){
         persistenciaLocacao = new PersistenciaLocacao();
-        
+        Locacao locacao = new Locacao();
         Scanner entrada = new Scanner(System.in);
         String dado = null;
         
@@ -476,9 +497,12 @@ public class VisaoLocacao {
                     System.out.println("Quilometragem de chegada");
                     motorista.setCnh(listaLocacaoCliente.get(resposta-1).
                             getMotorista().getCnh());
+                    locacao.setTipo(PersistenciaLocacao.listaLocacao.
+                            get(resposta - 1).getTipo());
                     
                     long kmDeSaida = PersistenciaLocacao.listaLocacao.get(resposta-1).
                             getQuilometragemDeSaida();
+                    
                     long kmDeChegada = 0;
                     
                     do{
@@ -489,7 +513,7 @@ public class VisaoLocacao {
                                     + "a quiometragem de saida");
                         }
                     }while((kmDeChegada - kmDeSaida) < 0);
-                    persistenciaLocacao.fechaLocacao(cliente,motorista, kmDeChegada);
+                    persistenciaLocacao.fechaLocacao(cliente,motorista, kmDeChegada,locacao);
                 }
             }while((resposta < 1) || resposta > listaLocacaoCliente.size());
             

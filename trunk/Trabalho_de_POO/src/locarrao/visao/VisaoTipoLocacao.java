@@ -2,16 +2,19 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.dominio.TipoLocacao;
 import modelo.persistencia.PersistenciaTipoLocacao;
 import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoLocacao {
-    PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
+    PersistenciaTipoLocacao persistenciaTipoLocacao;
     
     
     public void cadastraTipoLocacao() {
+        persistenciaTipoLocacao = new PersistenciaTipoLocacao();
+    
         TipoLocacao tipoLocacao = new TipoLocacao();
         
         /* digitar os dados */
@@ -22,13 +25,36 @@ public class VisaoTipoLocacao {
         
         //outros dados
         do{
-            System.out.println("Taxa base");
+            System.out.println("Taxa - Diárias");
             dado = entrada.nextLine();
             
             if(dado.isEmpty()){
                 System.out.println("Digitação da taxa base é obrigatoria");
             }else{
-                tipoLocacao.setTaxa(Double.parseDouble(dado));
+                try{
+                    tipoLocacao.setTaxaDiarias(Double.parseDouble(dado));
+                }catch(InputMismatchException ex){
+                    System.out.println("O campo taxa dever ser numérico");
+                    entrada.nextLine();
+                    continue;
+                }
+            }
+        }while(dado.isEmpty());
+        
+        do{
+            System.out.println("Taxa - Por Km");
+            dado = entrada.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da taxa base é obrigatoria");
+            }else{
+                try{
+                    tipoLocacao.setTaxaPorKm(Double.parseDouble(dado));
+                }catch(InputMismatchException ex){
+                    System.out.println("O campo taxa dever ser numérico");
+                    entrada.nextLine();
+                    continue;
+                }
             }
         }while(dado.isEmpty());
         

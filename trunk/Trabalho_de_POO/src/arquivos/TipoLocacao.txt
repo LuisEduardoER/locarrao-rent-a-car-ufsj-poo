@@ -1,6 +1,4 @@
 10.0
-20.0
-Padrao
-15.0
 12.0
-Basico
+15.0
+Padrao

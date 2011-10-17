@@ -97,7 +97,7 @@ public class VisaoClientes {
                     }else{
                         clientes.setEndereco(endereco);
                     }
-                    
+                    clientes.setCodigo(PersistenciaCliente.listaClientes.size() + 1);
                     boolean operacao = persistenciaCliente.salvar(clientes);
                     if (operacao) {
                       System.out.println("Salvo com sucesso");
