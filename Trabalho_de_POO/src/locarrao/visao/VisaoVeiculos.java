@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
+import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersistenciaMarcaVeiculo;
 import modelo.persistencia.PersistenciaModeloVeiculo;
+import modelo.persistencia.PersistenciaTipoLocacao;
 import modelo.persistencia.PersistenciaTipoVeiculo;
 import modelo.persistencia.PersistenciaVeiculos;
 
@@ -25,7 +27,12 @@ public class VisaoVeiculos {
     PersistenciaMarcaVeiculo persistenciaMarcaVeiculo = new PersistenciaMarcaVeiculo();
     PersistenciaModeloVeiculo persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
     PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
-    
+    VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
+    TipoLocacao tipoLocacao = new TipoLocacao();
+    TipoVeiculo tipoVeiculo = new TipoVeiculo();
+    MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
+    ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
+                
     public static Veiculos veiculos;
     public VisaoVeiculos() {
         veiculos = new Veiculos();
@@ -33,13 +40,13 @@ public class VisaoVeiculos {
     
     public void cadastraVeiculos() {
         veiculos = new Veiculos();
-        TipoVeiculo tipoVeiculo = new TipoVeiculo();
-        MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
-        ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
+        tipoVeiculo = new TipoVeiculo();
+        marcaVeiculo = new MarcaVeiculo();
+        modeloVeiculo = new ModeloVeiculo();
         
         Scanner cadastro = new Scanner(System.in);
         
-        VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
+        visaoTipoVeiculo = new VisaoTipoVeiculo();
         
         System.out.println("Digite a placa do veiculo");
         veiculos.setPlaca(cadastro.nextLine());
@@ -150,7 +157,17 @@ public class VisaoVeiculos {
     
     
     public void disponibilidadePorTipo(){
-        
+        try {
+            int tipo = visaoTipoVeiculo.menuTipoVeiculo();
+            tipoVeiculo = PersistenciaTipoVeiculo.listaTipoVeiculos.get(tipo);
+            System.out.println("Veiculos Disponiveis");
+            persistenciaVeiculos.mostrarVeiculosDisponiveis(tipoVeiculo);
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println("Arquivo não encontrado");
+        } catch (IOException ex) {
+            System.out.println("erro na escrita ou leitura do arquivo");
+        }
     }
     
     public void imprimirVeiculo(Veiculos veiculo){

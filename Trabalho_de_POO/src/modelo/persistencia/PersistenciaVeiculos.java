@@ -15,6 +15,7 @@ import locarrao.visao.VisaoVeiculos;
 import modelo.dominio.Locacao;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
+import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 
@@ -194,11 +195,12 @@ public class PersistenciaVeiculos {
     }
     
     public void verificarveiculosDisponiveis(){
-        VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
+        visaoVeiculo = new VisaoVeiculos();
         List<Veiculos> lista = new ArrayList<Veiculos>();
         
         boolean alugado = false;
         for(Veiculos item: listaVeiculos){
+            alugado = false;
             for(Locacao locacao: PersistenciaLocacao.listaLocacao){
                 if(item.getPlaca().equals(locacao.getVeiculo().getPlaca()) && 
                         locacao.isLocacaoAberta()){
@@ -300,5 +302,32 @@ public class PersistenciaVeiculos {
             System.out.println();
         }
     }
+    
+    public void mostrarVeiculosDisponiveis(TipoVeiculo tipoVeiculo){
+        List<Veiculos> listaVeiculosDoTipo = new ArrayList<Veiculos>();
+        boolean achou = false;
+        
+        for(Veiculos item: listaVeiculos){
+            achou = false;
+            for(Locacao locacao: PersistenciaLocacao.listaLocacao){
+                if(item.getPlaca().equals(locacao.getVeiculo().getPlaca()) &&
+                        locacao.isLocacaoAberta() && 
+                        locacao.getTipoLocacao().getTipoVeiculo().getTipo().
+                        equals(tipoVeiculo.getTipo())){
+                    achou = true;
+                }
+            }
+            
+            if(!achou){
+                listaVeiculosDoTipo.add(item);
+            }
+        }
+        
+        for(Veiculos item: listaVeiculosDoTipo){
+            visaoVeiculo.imprimirVeiculo(item);
+            System.out.println();
+        }
+    }
+    
 }
 
