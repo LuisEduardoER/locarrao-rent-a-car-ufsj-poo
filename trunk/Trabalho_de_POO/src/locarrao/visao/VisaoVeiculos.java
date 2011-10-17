@@ -6,6 +6,7 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
@@ -14,7 +15,6 @@ import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersistenciaMarcaVeiculo;
 import modelo.persistencia.PersistenciaModeloVeiculo;
-import modelo.persistencia.PersistenciaTipoLocacao;
 import modelo.persistencia.PersistenciaTipoVeiculo;
 import modelo.persistencia.PersistenciaVeiculos;
 
@@ -23,15 +23,15 @@ import modelo.persistencia.PersistenciaVeiculos;
  * @author PATY
  */
 public class VisaoVeiculos {
-    PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
-    PersistenciaMarcaVeiculo persistenciaMarcaVeiculo = new PersistenciaMarcaVeiculo();
-    PersistenciaModeloVeiculo persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
-    PersistenciaTipoVeiculo persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
-    VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
-    TipoLocacao tipoLocacao = new TipoLocacao();
-    TipoVeiculo tipoVeiculo = new TipoVeiculo();
-    MarcaVeiculo marcaVeiculo = new MarcaVeiculo();
-    ModeloVeiculo modeloVeiculo = new ModeloVeiculo();
+    PersistenciaVeiculos persistenciaVeiculos;
+    PersistenciaMarcaVeiculo persistenciaMarcaVeiculo;
+    PersistenciaModeloVeiculo persistenciaModeloVeiculo;
+    PersistenciaTipoVeiculo persistenciaTipoVeiculo;
+    VisaoTipoVeiculo visaoTipoVeiculo;
+    TipoLocacao tipoLocacao;
+    TipoVeiculo tipoVeiculo;
+    MarcaVeiculo marcaVeiculo;
+    ModeloVeiculo modeloVeiculo;
                 
     public static Veiculos veiculos;
     public VisaoVeiculos() {
@@ -39,30 +39,69 @@ public class VisaoVeiculos {
     }
     
     public void cadastraVeiculos() {
+        persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
+        persistenciaMarcaVeiculo = new PersistenciaMarcaVeiculo();
+        persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
+        persistenciaVeiculos = new PersistenciaVeiculos();
+        
         veiculos = new Veiculos();
         tipoVeiculo = new TipoVeiculo();
         marcaVeiculo = new MarcaVeiculo();
         modeloVeiculo = new ModeloVeiculo();
         
-        Scanner cadastro = new Scanner(System.in);
-        
         visaoTipoVeiculo = new VisaoTipoVeiculo();
         
-        System.out.println("Digite a placa do veiculo");
-        veiculos.setPlaca(cadastro.nextLine());
+        
+        Scanner cadastro = new Scanner(System.in);
+        String dado = null;
+        do{
+            System.out.println("Digite a placa do veiculo");
+            dado = cadastro.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da placa é obrigatoria");
+            }else{
+                veiculos.setPlaca(dado);
+            }
+        }while(dado.isEmpty());
         
         System.out.println("Cor do veiculo");
-        veiculos.setCor(cadastro.nextLine());
-
+        dado = cadastro.nextLine();
+        if(dado.isEmpty()){
+            veiculos.setCor(" - ");
+        }else{
+            veiculos.setCor(dado);
+        }
+        
+        
         System.out.println("Ano do veiculo");
-        veiculos.setAno(Integer.parseInt(cadastro.nextLine()));
+        dado = cadastro.nextLine();
+        if(dado.isEmpty()){
+            veiculos.setAno(0);
+        }else{
+            try{
+                veiculos.setAno(Integer.parseInt(dado));
+            }catch(InputMismatchException ex){
+                System.out.println("No campo Ano é numérico e inteiro");
+            }
+        }
         
         System.out.println("Opcionais");
-        veiculos.setOpcionais(cadastro.nextLine());
-
+        dado = cadastro.nextLine();
+        if(dado.isEmpty()){
+            veiculos.setOpcionais(" - ");
+        }else{
+            veiculos.setOpcionais(dado);
+        }
+        
         System.out.println("Observacao");
-        veiculos.setObservacao(cadastro.nextLine());
-
+        dado = cadastro.nextLine();
+        if(dado.isEmpty()){
+            veiculos.setObservacao(" - ");
+        }else{
+            veiculos.setObservacao(dado);
+        }
+        
         //Seleciona o tipo de Veiculo
         System.out.println("Tipo de veiculo");
         int resposta;
@@ -81,32 +120,56 @@ public class VisaoVeiculos {
                     + "TipoVeiculo.txt");
         }
 
-        System.out.println("Marca do veiculo");
-        marcaVeiculo.setMarca(cadastro.nextLine());
-        boolean salvaMarca = persistenciaMarcaVeiculo.salvar(marcaVeiculo);
-        if(salvaMarca){
-            veiculos.setMarcaVeiculo(marcaVeiculo);
-        }
-        else{
-            System.out.println("Erro na hora de salvar a marca");
-            return;
-        }
-
-
-        System.out.println("Modelo do veiculo");
-        modeloVeiculo.setModelo(cadastro.nextLine());
-        boolean salvaModelo = persistenciaModeloVeiculo.salvar(modeloVeiculo);
-        if(salvaModelo){
-            veiculos.setModeloVeiculo(modeloVeiculo);
-        }
-        else{
-            System.out.println("Erro na hora de salvar o modelo");
-            return;
-        }
-
+        do{
+            System.out.println("Marca do veiculo");
+            dado = cadastro.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação da marca do veiculo é obrigatoria");
+            }else{
+                marcaVeiculo.setMarca(dado);
+                veiculos.setMarcaVeiculo(marcaVeiculo);
+                
+                //salva a marca no arquivo MarcaVeiculo.txt
+                boolean salvaMarca = persistenciaMarcaVeiculo.salvar(marcaVeiculo);
+                if(salvaMarca){
+                    veiculos.setMarcaVeiculo(marcaVeiculo);
+                }
+                else{
+                    System.out.println("Erro na hora de salvar a marca");
+                    cadastro.nextLine();
+                    return;
+                }
+            }
+        }while(dado.isEmpty());
+        
+        do{
+            System.out.println("Modelo do veiculo");
+            dado = cadastro.nextLine();
+            
+            if(dado.isEmpty()){
+                System.out.println("Digitação do modelo do Veiculo é obrigatoria");
+            }else{
+                modeloVeiculo.setModelo(dado);
+                veiculos.setModeloVeiculo(modeloVeiculo);
+                
+                //Salva o modelo no arquivo ModeloVeiculo.txt
+                boolean salvaModelo = persistenciaModeloVeiculo.salvar(modeloVeiculo);
+                if(salvaModelo){
+                    veiculos.setModeloVeiculo(modeloVeiculo);
+                }
+                else{
+                    System.out.println("Erro na hora de salvar o modelo");
+                    cadastro.nextLine();
+                    return;
+                }
+            }
+        }while(dado.isEmpty());
+        
         boolean operacao = persistenciaVeiculos.salvar(veiculos);
         if (operacao) {
             System.out.println("Cadastro salvo com sucesso");
+            cadastro.nextLine();
         }
         else {
             System.out.println("Erro!");
@@ -119,6 +182,7 @@ public class VisaoVeiculos {
     }
     
     public boolean pesquisarVeiculo(Veiculos veiculos){
+        persistenciaVeiculos = new PersistenciaVeiculos();
         boolean encontrou = false;
         try {
             
@@ -144,19 +208,26 @@ public class VisaoVeiculos {
     }
     
     public void veiculosDisponiveis(){
+        persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.verificarveiculosDisponiveis();
     }
     
     public void veiculosMaisProcurados(){
+        persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.mostrarVeiculosMaisProcurados();
     }
     
     public void veiculosMaisRentaveis(){
+        persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.mostrarVeiculosMaisRentaveis();
     }
     
     
     public void disponibilidadePorTipo(){
+        visaoTipoVeiculo = new VisaoTipoVeiculo();
+        tipoVeiculo = new TipoVeiculo();
+        persistenciaVeiculos = new PersistenciaVeiculos();
+        
         try {
             int tipo = visaoTipoVeiculo.menuTipoVeiculo();
             tipoVeiculo = PersistenciaTipoVeiculo.listaTipoVeiculos.get(tipo);

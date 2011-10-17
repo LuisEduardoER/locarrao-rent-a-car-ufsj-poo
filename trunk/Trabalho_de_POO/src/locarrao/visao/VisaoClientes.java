@@ -15,10 +15,10 @@ import modelo.dominio.Validacao;
  * @author PATY
  */
 public class VisaoClientes {
-    PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+    PersistenciaCliente persistenciaCliente;
     public static Clientes clientes;
-    
     VisaoEndereco visaoEndereco;
+    
     public VisaoClientes() {
         clientes = new Clientes();
     }
@@ -27,6 +27,7 @@ public class VisaoClientes {
      * A string dado será responsavel por fazer a validação de campos obrigatórios
      */
     public void cadastrarClientes(){
+        persistenciaCliente = new PersistenciaCliente();
         clientes = new Clientes();
         Endereco endereco = new Endereco();
         visaoEndereco = new VisaoEndereco();
@@ -56,6 +57,7 @@ public class VisaoClientes {
             try{
                 if(persistenciaCliente.pesquisarCliente(clientes)){
                     System.out.println("Cliente ja cadastrado");
+                    cadastro.nextLine();
                     return;
                 }
                 else{
@@ -69,10 +71,9 @@ public class VisaoClientes {
                             System.out.println("Nome é um campo obrigatorio");
                         }
                         else{
-                            clientes.setNome(cadastro.nextLine());
+                            clientes.setNome(dado);
                         }
                     }while(dado.isEmpty());
-                    
                     
                     System.out.println("Digite o telefone");
                     dado = cadastro.nextLine();
@@ -91,6 +92,7 @@ public class VisaoClientes {
                     endereco = visaoEndereco.cadastrarEndereco();
                     if(endereco == null){
                         System.out.println("CEP Invalido");
+                        cadastro.nextLine();
                         return;
                     }else{
                         clientes.setEndereco(endereco);

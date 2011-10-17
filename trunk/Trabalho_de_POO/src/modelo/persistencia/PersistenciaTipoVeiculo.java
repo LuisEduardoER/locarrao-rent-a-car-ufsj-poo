@@ -20,6 +20,16 @@ public class PersistenciaTipoVeiculo {
         arquivo = new File("src/arquivos/TipoVeiculo.txt");
         listaTipoVeiculos = new ArrayList<TipoVeiculo>();
         retornarTodosTipoVeiculo();
+        
+        /*
+         * Caso não tenha algum tipo de veiculo cadastrado, então o tipo Padrão
+         * sera cadastrado automaticamente.
+         */
+        if(listaTipoVeiculos.isEmpty()){
+            TipoVeiculo tipo = new TipoVeiculo();
+            tipo.setTipo("Padrao");
+            salvar(tipo);
+        }
     }
     
     public static void retornarTodosTipoVeiculo() {
@@ -57,7 +67,7 @@ public class PersistenciaTipoVeiculo {
         
     }
    
-    public boolean salvar(TipoVeiculo tipoVeiculo) {
+    public static boolean salvar(TipoVeiculo tipoVeiculo) {
         if(arquivo.exists()){
             FileWriter writer = null;
             try {

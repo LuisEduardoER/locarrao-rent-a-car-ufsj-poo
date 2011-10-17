@@ -27,8 +27,10 @@ public class Menu {
             opcao = Integer.parseInt(entrada.nextLine());
             switch(opcao){
                 case 1: 
+                    int opcaoCadastro = 0;
                     do{
-                        switch(menuCadastro()){
+                        opcaoCadastro = menuCadastro(entrada);
+                        switch(opcaoCadastro){
                             case 1:
                                 VisaoClientes visaoClientes = new VisaoClientes();
                                 visaoClientes.cadastrarClientes();
@@ -65,18 +67,20 @@ public class Menu {
                                 break;    
                              
                             default:
-                                if(menuCadastro() == 8) continue;
+                                if(opcaoCadastro == 8) continue;
                                 else System.out.println("Opcao Invalida!");
                         }
-                    }while(menuCadastro()!= 8);
+                    }while(opcaoCadastro != 8);
                     break;
                     
                 case 2:
                     VisaoLocacao visaoLocacao = new VisaoLocacao();
                     VisaoVeiculos visaoVeiculos = new VisaoVeiculos();
                     VisaoClientes visaoClientes = new VisaoClientes();  
+                    int opcaoRelatorios = 0;
                     do{
-                        switch(menuRelatorios()){
+                        opcaoRelatorios = menuRelatorios(entrada);
+                        switch(opcaoRelatorios){
                             case 1:
                                 visaoLocacao.locacoesEmAberto();
                                 break;
@@ -106,17 +110,19 @@ public class Menu {
                                 break;
                                
                             default:
-                                if(menuRelatorios() == 8) continue;
+                                if(opcaoRelatorios == 8) continue;
                                 else System.out.println("Opcao Invalida!");
                                             
                         }
-                    }while(menuRelatorios()!= 8);
+                    }while(opcaoRelatorios != 8);
                     break;
                     
                 case 3:
                     visaoLocacao = new VisaoLocacao();
+                    int opcaoLocacao = 0;
                     do{
-                        switch(menuLocacao()){
+                        opcaoLocacao = menuLocacao(entrada);
+                        switch(opcaoLocacao){
                             case 1:
                                 visaoLocacao.cadastraLocacao();
                                 break;
@@ -126,11 +132,11 @@ public class Menu {
                                 break;
                                 
                             default:
-                                if(menuLocacao() == 3) continue;
+                                if(opcaoLocacao == 3) continue;
                                 else System.out.println("Opcao Invalida!");
                                             
                         }
-                    }while(menuLocacao() != 3);
+                    }while(opcaoLocacao != 3);
                     break;
                     
                 default:
@@ -142,8 +148,7 @@ public class Menu {
              
     }
     /* --------------------- métodos para o menu de cadastro --------------------- */
-    public int menuCadastro(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastro(Scanner entrada){
         System.out.println("----------------- Cadastro -----------------");
         System.out.println();
         
@@ -159,8 +164,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
-    public int menuCadastroCliente(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastroCliente(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Clientes -----------------");
         System.out.println();
@@ -174,8 +178,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
-    public int menuCadastroVeiculo(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastroVeiculo(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Veiculos -----------------");
         System.out.println();
@@ -189,8 +192,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
-    public int menuCadastroMotorista(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastroMotorista(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Motoristas -----------------");
         System.out.println();
@@ -204,8 +206,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
-    public int menuCadastroTipoVeiculo(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastroTipoVeiculo(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Tipos de Veiculos -----------------");
         System.out.println();
@@ -219,8 +220,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
-    public int menuCadastroMarcaVeiculo(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastroMarcaVeiculo(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Marcas de Veiculos -----------------");
         System.out.println();
@@ -234,8 +234,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
-    public int menuCadastroModeloVeiculo(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastroModeloVeiculo(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Modelos de Veiculos -----------------");
         System.out.println();
@@ -249,8 +248,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
-    public int menuCadastroTipoLocacao(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuCadastroTipoLocacao(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Tipos de Locaçao -----------------");
         System.out.println();
@@ -266,8 +264,7 @@ public class Menu {
     
     /* --------------------- métodos para o menu de Relatorios --------------------- */
     
-    public int menuRelatorios(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuRelatorios(Scanner entrada){
         
         System.out.println("----------------- Relatorios -----------------");
         System.out.println();
@@ -289,8 +286,7 @@ public class Menu {
     
     /* --------------------- métodos para o menu de Locação --------------------- */
     
-    public int menuLocacao(){
-        Scanner entrada = new Scanner(System.in);
+    public int menuLocacao(Scanner entrada){
         
         System.out.println("----------------- Locação -----------------");
         System.out.println();
