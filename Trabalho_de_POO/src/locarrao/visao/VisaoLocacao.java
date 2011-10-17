@@ -162,7 +162,7 @@ public class VisaoLocacao {
                         
                         }while(dado.isEmpty());
                         
-                        if(persistenciaLocacao.verifcarMotoristaEmLocacao(motorista)){
+                        if(!persistenciaLocacao.verifcarMotoristaEmLocacao(motorista)){
                             
                             encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
                             if (!encontrou){
@@ -180,6 +180,7 @@ public class VisaoLocacao {
                                 else{
                                     System.out.println("erro ao salvar novo motorista");
                                     entrada.nextLine();
+                                    return;
                                 }
                             }
                             else{
@@ -447,7 +448,7 @@ public class VisaoLocacao {
             
             System.out.println("Selecione a locacao que deseja fechar");
             for(int i=0; i< listaLocacaoCliente.size();i++){
-                System.out.println(i+1 + ": ");
+                System.out.println("--------------- " + (i+1) + " --------------- ");
                 System.out.println("Codigo do Motorista : " + 
                         listaLocacaoCliente.get(i).getCliente().getCodigo());
                 
@@ -467,23 +468,23 @@ public class VisaoLocacao {
                 System.out.println("Km de Saida : " 
                         + listaLocacaoCliente.get(i).getQuilometragemDeSaida());
                 
-                System.out.println("Km de Chegada : " 
-                        + listaLocacaoCliente.get(i).getQuilometragemDeEntrada());
+                System.out.println("Km de Chegada : - ");
                 
                 System.out.println("Data de Saida : " 
                         + listaLocacaoCliente.get(i).getDataSaida());
                 
-                System.out.println("Data de Chegada : " 
-                        + listaLocacaoCliente.get(i).getDataDevolucao());
+                System.out.println("Data de Chegada : - ");
                 
                 System.out.println("Previsao : " 
                         + listaLocacaoCliente.get(i).getPrevisao());
                 
-                System.out.println("Locaca aberta?  " 
-                        + listaLocacaoCliente.get(i).isLocacaoAberta());
+                System.out.println("Locaca aberta? Sim ");
                 
                 System.out.println("Valor : " 
                         + listaLocacaoCliente.get(i).getValor());
+                
+                System.out.println();
+                System.out.println();
             }
             
             int resposta = 0;

@@ -1,36 +1,24 @@
 1
-123
-aaa1234
-Padrao
-Por Quilometro
-2000
-3000
-1318637844847
-1318653413083
-10
-false
-200000.0
-2
-1234
-aaa1234
-Basico
-Quilometragem livre
-1000
-0
-1318637891474
-0
-3
-true
-0.0
-1
 12
 aaa1111
 Padrao
 Por Quilometro
-1000
+120
 0
-1318875544292
+1318879665965
 0
-0
+12
 true
 0.0
+1
+12345
+aaa1234
+Padrao
+Quilometragem livre
+200
+240
+1318880734060
+1318881912842
+0
+false
+10.0
