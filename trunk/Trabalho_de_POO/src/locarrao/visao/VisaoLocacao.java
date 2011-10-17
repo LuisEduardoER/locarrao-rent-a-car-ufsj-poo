@@ -554,7 +554,13 @@ public class VisaoLocacao {
                 System.out.println("Digitação da Data final é obrigatoria");
             }else{
                 try {
-                    dataFinal = formatoData.parse(dado);
+                    /*
+                     * adiciono 1 dia na data final para a pesquisa pegar as locações
+                     * com data de saida igual a data final digitada
+                     */
+                    long dia = 1000 * 60 * 60 * 24;
+                    long dataTemp = formatoData.parse(dado).getTime() + dia;
+                    dataFinal = new Date(dataTemp);
                 } catch (ParseException ex) {
                     System.out.println("Errou ao converter a data");
                 }
@@ -565,6 +571,8 @@ public class VisaoLocacao {
         
         System.out.println();
         System.out.println("Total previsto: " + total);
+        
+        entrada.nextLine();
         
     }
     
