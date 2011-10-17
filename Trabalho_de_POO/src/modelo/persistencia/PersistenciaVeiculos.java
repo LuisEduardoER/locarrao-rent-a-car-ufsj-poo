@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import locarrao.visao.VisaoVeiculos;
 import modelo.dominio.Locacao;
@@ -19,6 +21,9 @@ import modelo.dominio.Veiculos;
 public class PersistenciaVeiculos {
     public static File arquivo;
     public static List<Veiculos> listaVeiculos;
+    VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
+    
+    PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
     
     public PersistenciaVeiculos() {
         arquivo = new File("src/arquivos/Veiculos.txt");
@@ -215,5 +220,85 @@ public class PersistenciaVeiculos {
         }
     }
     
+    public void mostrarVeiculosMaisProcurados(){
+        persistenciaLocacao = new PersistenciaLocacao();
+        for(Veiculos item: listaVeiculos){
+            item.setTotalLocacoes(persistenciaLocacao.retornarTotalLocacoes(item));
+        }
+        
+        /*
+         * Ordena a lista de veiculo pelo total de locações
+         */
+        Collections.sort(listaVeiculos, new Comparator(){
+            
+            /*
+             * O método sort da classe Collections ordena uma lista. A forma de ordenar
+             * a lista é feita através do método compare
+             */
+            @Override
+            public int compare(Object veiculo1, Object veiculo2){
+                Veiculos v1 = (Veiculos) veiculo1;
+                Veiculos v2 = (Veiculos) veiculo2;
+                
+                if(v1.getTotalLocacoes() < v2.getTotalLocacoes()){
+                    return -1;
+                }
+                else if(v1.getTotalLocacoes() > v2.getTotalLocacoes()){
+                    return +1;
+                }
+                else{
+                    return 0;
+                }
+            }
+        });
+        
+        
+        //imprimo a lista ordenada
+        for(Veiculos item: listaVeiculos){
+            visaoVeiculo.imprimirVeiculo(item);
+            System.out.println();
+        }
+        
+    }
+    
+    public void mostrarVeiculosMaisRentaveis(){
+        persistenciaLocacao = new PersistenciaLocacao();
+        for(Veiculos item: listaVeiculos){
+            item.setValorTotalLocacoes(persistenciaLocacao.retornarTotalValor(item));
+        }
+        
+        /*
+         * Ordena a lista de veiculo pelo total de locações
+         */
+        Collections.sort(listaVeiculos, new Comparator(){
+            
+            /*
+             * O método sort da classe Collections ordena uma lista. A forma de ordenar
+             * a lista é feita através do método compare
+             */
+            @Override
+            public int compare(Object veiculo1, Object veiculo2){
+                Veiculos v1 = (Veiculos) veiculo1;
+                Veiculos v2 = (Veiculos) veiculo2;
+                
+                if(v1.getValorTotalLocacoes() < v2.getValorTotalLocacoes()){
+                    return -1;
+                }
+                else if(v1.getValorTotalLocacoes() > v2.getValorTotalLocacoes()){
+                    return +1;
+                }
+                else{
+                    return 0;
+                }
+            }
+        });
+        
+        
+        //imprimo a lista ordenada
+        for(Veiculos item: listaVeiculos){
+            visaoVeiculo.imprimirVeiculo(item);
+            System.out.println();
+        }
+    }
 }
 

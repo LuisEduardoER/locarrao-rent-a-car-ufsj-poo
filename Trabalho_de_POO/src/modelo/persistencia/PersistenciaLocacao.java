@@ -383,4 +383,24 @@ public class PersistenciaLocacao {
         
         return total;
     }
+    
+    public int retornarTotalLocacoes(Veiculos veiculo){
+        int total = 0;
+        for(Locacao item: listaLocacao){
+            if(item.getVeiculo().getPlaca().equals(veiculo.getPlaca())){
+                total++;
+            }
+        }
+        return total;
+    }
+    
+    public int retornarTotalValor(Veiculos veiculo){
+        int total = 0;
+        for(Locacao item: listaLocacao){
+            if(item.getVeiculo().getPlaca().equals(veiculo.getPlaca())){
+                total+= item.getValor();
+            }
+        }
+        return total;
+    }
 }

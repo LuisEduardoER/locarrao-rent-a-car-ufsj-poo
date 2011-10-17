@@ -17,6 +17,10 @@ public class Veiculos {
     private MarcaVeiculo marcaVeiculo;
 
     private ModeloVeiculo modeloVeiculo;
+    
+    private int totalLocacoes;
+    
+    private double valorTotalLocacoes;
 
     public String getPlaca() {
         return placa;
@@ -80,5 +84,21 @@ public class Veiculos {
 
     public void setModeloVeiculo(ModeloVeiculo modeloVeiculo) {
         this.modeloVeiculo = modeloVeiculo;
+    }
+
+    public int getTotalLocacoes() {
+        return totalLocacoes;
+    }
+
+    public void setTotalLocacoes(int totalLocacoes) {
+        this.totalLocacoes = totalLocacoes;
+    }
+
+    public double getValorTotalLocacoes() {
+        return valorTotalLocacoes;
+    }
+
+    public void setValorTotalLocacoes(double valorTotalLocacoes) {
+        this.valorTotalLocacoes = valorTotalLocacoes;
     }
 }
