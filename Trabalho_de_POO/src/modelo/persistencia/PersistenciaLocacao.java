@@ -333,6 +333,7 @@ public class PersistenciaLocacao {
     public double retornarLocacoesEmAberto(Date periodoInicial,Date periodoFinal){
         List<Locacao> listaLocacoesAberto = new ArrayList<Locacao>();
         VisaoLocacao visaoLocacao = new VisaoLocacao();
+        
         for(Locacao item: listaLocacao){
             if(item.getDataSaida().getTime()>= periodoInicial.getTime() &&
                     item.getDataSaida().getTime() <= periodoFinal.getTime() && 
@@ -356,6 +357,8 @@ public class PersistenciaLocacao {
                     item.getTipoLocacao(),tipodaLocacao);
             item.setValor(valor);
             visaoLocacao.imprimirLocacao(item);
+            System.out.println();
+            System.out.println();
             total+= item.getValor();
         }
         
