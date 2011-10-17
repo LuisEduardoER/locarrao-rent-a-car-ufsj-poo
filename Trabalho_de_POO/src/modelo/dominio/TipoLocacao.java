@@ -2,21 +2,15 @@ package modelo.dominio;
 
 public class TipoLocacao {
  
-    private double taxa;
+    private double taxaDiarias;
+    
+    private double taxaPorKm;
 
     private double precoPorQuilometro;
 
     private TipoVeiculo tipoVeiculo;
 
     
-    public double getTaxa() {
-        return taxa;
-    }
-
-    public void setTaxa(double taxa) {
-        this.taxa = taxa;
-    }
-
     public double getPrecoPorQuilometro() {
         return precoPorQuilometro;
     }
@@ -31,6 +25,22 @@ public class TipoLocacao {
 
     public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
         this.tipoVeiculo = tipoVeiculo;
+    }
+
+    public double getTaxaDiarias() {
+        return taxaDiarias;
+    }
+
+    public void setTaxaDiarias(double taxaDiarias) {
+        this.taxaDiarias = taxaDiarias;
+    }
+
+    public double getTaxaPorKm() {
+        return taxaPorKm;
+    }
+
+    public void setTaxaPorKm(double taxaPorKm) {
+        this.taxaPorKm = taxaPorKm;
     }
     	 
 }

@@ -173,6 +173,16 @@ public class PersistenciaCliente {
         return encontrou;
     }
     
+    public boolean pesquisarCliente(int codigo) throws FileNotFoundException, IOException{
+        boolean encontrou = false;
+        for(Clientes pessoa: listaClientes){
+            if(pessoa.getCodigo() == codigo){
+                encontrou = true;
+            }
+        }
+        return encontrou;
+    }
+    
     public boolean retornarCliente(Clientes cliente){
         boolean achou = false;
         for(Clientes item : listaClientes){

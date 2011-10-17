@@ -22,3 +22,15 @@ Quilometragem livre
 3
 true
 0.0
+1
+12
+aaa1111
+Padrao
+Por Quilometro
+1000
+0
+1318875544292
+0
+0
+true
+0.0
