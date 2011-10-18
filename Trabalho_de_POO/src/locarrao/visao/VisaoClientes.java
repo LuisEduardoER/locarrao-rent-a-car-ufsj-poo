@@ -130,18 +130,21 @@ public class VisaoClientes {
     
     public void buscaPorNome(){
         Scanner entrada = new Scanner(System.in);
-        
-        String dado = null;
+        persistenciaCliente = new PersistenciaCliente();
+        String dado = "";
         do{
             System.out.println("Digite o nome");
             dado = entrada.nextLine();
             
             if(dado.isEmpty()){
                 System.out.println("A digitação do nome é obrigatoria");
+            }else{
+                persistenciaCliente.mostrarClientesComNome(dado);
+                entrada.nextLine();
             }
         }while(dado.isEmpty());
         
-        persistenciaCliente.mostrarClientesComNome(dado);
+        
         
     }
     

@@ -223,37 +223,49 @@ public class VisaoVeiculos {
     }
     
     public void veiculosDisponiveis(){
+        Scanner entrada = new Scanner(System.in);
         persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.verificarveiculosDisponiveis();
+        entrada.nextLine();
+        
     }
     
     public void veiculosMaisProcurados(){
+        Scanner entrada = new Scanner(System.in);
         persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.mostrarVeiculosMaisProcurados();
+        entrada.nextLine();
+        
     }
     
     public void veiculosMaisRentaveis(){
+        Scanner entrada = new Scanner(System.in);
         persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.mostrarVeiculosMaisRentaveis();
+        entrada.nextLine();
+        
     }
     
     
     public void disponibilidadePorTipo(){
+        Scanner entrada = new Scanner(System.in);
         visaoTipoVeiculo = new VisaoTipoVeiculo();
         tipoVeiculo = new TipoVeiculo();
         persistenciaVeiculos = new PersistenciaVeiculos();
         
         try {
             int tipo = visaoTipoVeiculo.menuTipoVeiculo();
-            tipoVeiculo = PersistenciaTipoVeiculo.listaTipoVeiculos.get(tipo);
+            tipoVeiculo = PersistenciaTipoVeiculo.listaTipoVeiculos.get(tipo - 1);
             System.out.println("Veiculos Disponiveis");
             persistenciaVeiculos.mostrarVeiculosDisponiveis(tipoVeiculo);
+            entrada.nextLine();
             
         } catch (FileNotFoundException ex) {
             System.out.println("Arquivo não encontrado");
         } catch (IOException ex) {
             System.out.println("erro na escrita ou leitura do arquivo");
         }
+        
     }
     
     public void imprimirVeiculo(Veiculos veiculo){
@@ -263,8 +275,8 @@ public class VisaoVeiculos {
         System.out.println("Opcionais: " + veiculo.getOpcionais());
         System.out.println("Obeservacao: " + veiculo.getObservacao());
         System.out.println("Tipo: " + veiculo.getTipoVeiculo().getTipo());
-        System.out.println("Marca: " + veiculo.getMarcaVeiculo());
-        System.out.println("Modelo: " + veiculo.getModeloVeiculo());
+        System.out.println("Marca: " + veiculo.getMarcaVeiculo().getMarca());
+        System.out.println("Modelo: " + veiculo.getModeloVeiculo().getModelo());
     }
 }
 

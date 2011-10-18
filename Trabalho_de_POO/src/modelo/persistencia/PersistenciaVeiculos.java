@@ -214,6 +214,8 @@ public class PersistenciaVeiculos {
         if(lista.isEmpty()){
             System.out.println("Não há veiculo cadastrado disponivel");
         }else{
+            System.out.println("-------------- Veiculos --------------");
+            System.out.println();
             for(Veiculos item: lista){
                 visaoVeiculo.imprimirVeiculo(item);
                 System.out.println();
@@ -253,10 +255,13 @@ public class PersistenciaVeiculos {
             }
         });
         
+        System.out.println("-------------- Veiculos --------------");
+        System.out.println();
         
         //imprimo a lista ordenada
         for(Veiculos item: listaVeiculos){
             visaoVeiculo.imprimirVeiculo(item);
+            System.out.println("Total de Locacoes: " + item.getTotalLocacoes());
             System.out.println();
         }
         
@@ -294,10 +299,13 @@ public class PersistenciaVeiculos {
             }
         });
         
+        System.out.println("-------------- Veiculos --------------");
+        System.out.println();
         
         //imprimo a lista ordenada
         for(Veiculos item: listaVeiculos){
             visaoVeiculo.imprimirVeiculo(item);
+            System.out.println("Total de Locacoes: " + item.getValorTotalLocacoes());
             System.out.println();
         }
     }
@@ -321,6 +329,9 @@ public class PersistenciaVeiculos {
                 listaVeiculosDoTipo.add(item);
             }
         }
+        
+        System.out.println("-------------- Veiculos --------------");
+        System.out.println();
         
         for(Veiculos item: listaVeiculosDoTipo){
             visaoVeiculo.imprimirVeiculo(item);

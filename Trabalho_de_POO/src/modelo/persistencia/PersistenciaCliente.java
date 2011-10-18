@@ -227,10 +227,17 @@ public class PersistenciaCliente {
             }
         }
         
-        for(Clientes item: lista){
-            visaoCliente.imprimeCliente(item);
+        if(lista.isEmpty()){
+            System.out.println("Nenhum " + nome + "cadastrado");
+        }else{
+            System.out.println("------------- Cliente -------------");
             System.out.println();
-        }
+            for(Clientes item: lista){
+                visaoCliente.imprimeCliente(item);
+                System.out.println();
+            }
+        }    
+        
         
     }
    
