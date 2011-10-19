@@ -78,9 +78,14 @@ public class VisaoClientes {
                     System.out.println("Digite o telefone");
                     dado = cadastro.nextLine();
                     if(dado.isEmpty()){
-                        clientes.setTefefone(" - ");
+                          clientes.setTefefone(" - ");
                     }else{
-                        clientes.setTefefone(dado);
+                        if(valida.validaTelefone(dado)){
+                            clientes.setTefefone(dado);
+                        }else{
+                            System.out.println("Telefone invÃ¡lido");
+                            return;
+                        }
                     }
                     
                     /*
