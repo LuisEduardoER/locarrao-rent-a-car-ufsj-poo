@@ -63,14 +63,18 @@ public class VisaoFuncionarios {
                         }
                     }while(dado.isEmpty());
                     
-                    System.out.println("Digite o telefone");
+                    System.out.println("Digite o telefone com DDD ex: 31xxxxxxxx");
                     dado = cadastro.nextLine();
                     if(dado.isEmpty()){
-                        funcionarios.setTefefone(" - ");
+                          funcionarios.setTefefone(" - ");
                     }else{
-                        funcionarios.setTefefone(dado);
+                        if(valida.validaTelefone(dado)){
+                            funcionarios.setTefefone(dado);
+                        }else{
+                            System.out.println("Telefone invalido");
+                            return;
+                        }
                     }
-                    
                     do{
                         System.out.println("Digite o cargo");
                         dado= cadastro.nextLine();
@@ -79,6 +83,7 @@ public class VisaoFuncionarios {
                         }else{
                             funcionarios.setCargo(dado);
                         }
+                        
                     }while(dado.isEmpty());
                     System.out.println("Digite o usuário");
                     dado = cadastro.nextLine();

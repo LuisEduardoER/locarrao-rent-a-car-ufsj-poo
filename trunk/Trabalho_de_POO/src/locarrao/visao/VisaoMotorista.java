@@ -35,14 +35,18 @@ public class VisaoMotorista {
         Scanner cadastro = new Scanner(System.in);
         String dado = null;
         do{
-            System.out.println("Digite o numero da CNH");
-            dado = cadastro.nextLine();
-            
-            if(dado.isEmpty()){
-                System.out.println("Digitação da CNH é obrigatorio");
-            }else{
-                motorista.setCnh(dado);
-            }
+            System.out.println("Digite a CNH");
+                    dado = cadastro.nextLine();
+                    if(dado.isEmpty()){
+                          motorista.setCnh(" - ");
+                    }else{
+                        if(valida.validaCnh(dado)){
+                            motorista.setCnh(dado);
+                        }else{
+                            System.out.println("Cnh invalida");
+                            return;
+                        }
+                    }
         }while(dado.isEmpty());
         
         boolean existe = false;
@@ -98,15 +102,18 @@ public class VisaoMotorista {
                         
                     }while(dado.isEmpty());
                     
-                    System.out.println("Digite o telefone");
+                    System.out.println("Digite o telefone com DDD ex: 31xxxxxxxx");
                     dado = cadastro.nextLine();
-                    
                     if(dado.isEmpty()){
-                        motorista.setTefefone(" - ");
+                          motorista.setTefefone(" - ");
                     }else{
-                        motorista.setTefefone(dado);
+                        if(valida.validaTelefone(dado)){
+                            motorista.setTefefone(dado);
+                        }else{
+                            System.out.println("Telefone invalido");
+                            return;
+                        }
                     }
-                    
                     endereco = visaoEndereco.cadastrarEndereco();
 
                     if(endereco == null){
