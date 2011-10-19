@@ -84,6 +84,7 @@ public class VisaoClientes {
                             clientes.setTefefone(dado);
                         }else{
                             System.out.println("Telefone invalido");
+                            cadastro.nextLine();
                             return;
                         }
                     }

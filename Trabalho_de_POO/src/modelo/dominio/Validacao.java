@@ -50,40 +50,49 @@ public class Validacao {
     }
     
      public boolean validaCnh( String cnh){
-         if(cnh.length() == 9){
-             if(cnh.contains("^[a-Z]")){
-                return false;
-            }else{
-                return true;
-            }
+         boolean resposta = true;
+         if(cnh.length() == 10){
+             for(int i=0; i< cnh.length(); i++){
+                 if(Character.isLetter(cnh.charAt(i))){
+                     resposta = false;
+                     break;
+                 }
+             }
          }else{
-             return false;
+             resposta = false;
          }
+         return resposta;
     }
     
     public boolean validarCEP(String cep){
+        boolean resposta = true;
         if(cep.length() == 8){
-            if(cep.contains("^[a-Z]")){
-                return false;
-            }else{
-                return true;
+            for(int i=0; i< cep.length(); i++){
+                if(Character.isLetter(cep.charAt(i))){
+                    resposta = false;
+                    break;
+                }
             }
         }else{
-            return false;
+             resposta = false;
         }
+        return resposta;
         
     }
     
     public boolean validaTelefone( String  telefone){      
+        boolean resposta = true;
         if(telefone.length() == 10){
-            if(telefone.contains("^[a-Z]")){
-                return false;
-            }else{
-                return true;
+            for(int i=0; i< telefone.length(); i++){
+                if(Character.isLetter(telefone.charAt(i))){
+                    resposta = false;
+                    break;
+                }
             }
         }else{
-            return false;
+            resposta = false;
         }
+        return resposta;
     }
     
 }

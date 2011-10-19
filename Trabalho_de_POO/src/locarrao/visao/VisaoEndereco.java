@@ -72,7 +72,7 @@ public class VisaoEndereco {
                 endereco.setUf(dado);
             }
 
-            System.out.println("Digite cep");
+            System.out.println("Digite CEP");
             dado = cadastro.nextLine();
             if(dado.isEmpty()){
                 endereco.setCep(" - ");
