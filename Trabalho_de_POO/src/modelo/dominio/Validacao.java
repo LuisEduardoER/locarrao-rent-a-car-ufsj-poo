@@ -57,4 +57,8 @@ public class Validacao {
         
     }
     
+    public boolean validaTelefone( String  telefone){      
+        return telefone.length() == 8;
+    }
+    
 }
