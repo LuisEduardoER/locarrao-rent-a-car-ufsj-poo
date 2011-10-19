@@ -48,6 +48,11 @@ public class Validacao {
          return (resultado.toString().equals(digitoVerificadorCPF));
 
     }
+    
+     public boolean validaCnh( String cnh){      
+        return cnh.length() == 9;
+    }
+    
     public boolean validarCEP(String CEP){
         if(CEP.length()==8){
             return true;
@@ -58,7 +63,7 @@ public class Validacao {
     }
     
     public boolean validaTelefone( String  telefone){      
-        return telefone.length() == 8;
+        return telefone.length() == 10;
     }
     
 }

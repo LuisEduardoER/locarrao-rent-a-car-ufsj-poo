@@ -75,7 +75,7 @@ public class VisaoClientes {
                         }
                     }while(dado.isEmpty());
                     
-                    System.out.println("Digite o telefone");
+                    System.out.println("Digite o telefone com DDD ex: 31xxxxxxxx");
                     dado = cadastro.nextLine();
                     if(dado.isEmpty()){
                           clientes.setTefefone(" - ");
@@ -83,7 +83,7 @@ public class VisaoClientes {
                         if(valida.validaTelefone(dado)){
                             clientes.setTefefone(dado);
                         }else{
-                            System.out.println("Telefone invÃ¡lido");
+                            System.out.println("Telefone invalido");
                             return;
                         }
                     }
