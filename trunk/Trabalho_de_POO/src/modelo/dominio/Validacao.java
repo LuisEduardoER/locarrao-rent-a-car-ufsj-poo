@@ -49,13 +49,25 @@ public class Validacao {
 
     }
     
-     public boolean validaCnh( String cnh){      
-        return cnh.length() == 9;
+     public boolean validaCnh( String cnh){
+         if(cnh.length() == 9){
+             if(cnh.contains("^[a-Z]")){
+                return false;
+            }else{
+                return true;
+            }
+         }else{
+             return false;
+         }
     }
     
-    public boolean validarCEP(String CEP){
-        if(CEP.length()==8){
-            return true;
+    public boolean validarCEP(String cep){
+        if(cep.length() == 8){
+            if(cep.contains("^[a-Z]")){
+                return false;
+            }else{
+                return true;
+            }
         }else{
             return false;
         }
@@ -63,7 +75,15 @@ public class Validacao {
     }
     
     public boolean validaTelefone( String  telefone){      
-        return telefone.length() == 10;
+        if(telefone.length() == 10){
+            if(telefone.contains("^[a-Z]")){
+                return false;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
+        }
     }
     
 }
