@@ -192,6 +192,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
+    
     public int menuCadastroMotorista(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Motoristas -----------------");
@@ -248,6 +249,7 @@ public class Menu {
         return Integer.parseInt(entrada.nextLine());
     }
     
+   
     public int menuCadastroTipoLocacao(Scanner entrada){
         
         System.out.println("----------------- Cadastro de Tipos de Locaçao -----------------");
