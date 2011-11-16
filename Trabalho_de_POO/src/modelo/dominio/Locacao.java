@@ -1,31 +1,66 @@
 package modelo.dominio;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Locacao {
- 
+@Entity
+@Table(name = "Locacao")
+public class Locacao implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Codigo", nullable = false)
+    private Long id;
+    
+    @Column(name = "KmSaida" )
     private long quilometragemDeSaida;
-
+    
+    @Column(name = "KmChegada")
     private long quilometragemDeEntrada;
-
+    
+    @Column(length=45)
     private String tipo;
-
+    
+    @Column(name = "Valor")
     private double valor;
-
+    
+    @Column(name = "DataSaida")
+    @Temporal(TemporalType.DATE)
     private Date dataSaida;
-
+    
+    @Column(name = "DataChegada")
+    @Temporal(TemporalType.DATE)
     private Date dataDevolucao;
 
+    @Column
     private int previsao;
-
+    
+    @Column
     private boolean locacaoAberta;
 
+    @OneToOne
+    @JoinColumn(name = "TipoLocacao")
     private TipoLocacao tipoLocacao;
-
+    
+    @OneToOne
+    @JoinColumn(name = "IdCliente")
     private Clientes cliente;
 
+    @OneToOne
+    @JoinColumn(name = "IdMotorista")
     private Motorista motorista;
 
+    @OneToOne
+    @JoinColumn(name = "IdVeiculo")
     private Veiculos veiculo;
 
     
@@ -141,6 +176,14 @@ public class Locacao {
                 "Data de Chegada : " + this.getDataSaida() + "\n" +
                 "Previsa de dias : " + this.getPrevisao() + "\n" +
                 "Valor da locacao: " + this.getDataSaida() + "\n";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 	 
