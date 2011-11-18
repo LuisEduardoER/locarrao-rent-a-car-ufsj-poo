@@ -2,7 +2,7 @@ package locarrao.visao;
 
 import java.util.Scanner;
 import modelo.dominio.Endereco;
-import modelo.dominio.Validacao;
+import modelo.dominio.Valida;
 
 public class VisaoEndereco {
     Endereco endereco;
@@ -15,7 +15,7 @@ public class VisaoEndereco {
         Scanner cadastro = new Scanner(System.in);
         String dado = null;
         
-        Validacao valida = new Validacao();
+        Valida valida = new Valida();
         /*
          * Caso o usuario não digitar a rua, todos os outros campos
          * referentes ao endereço ficarão vazios
@@ -77,7 +77,7 @@ public class VisaoEndereco {
             if(dado.isEmpty()){
                 endereco.setCep(" - ");
             }else{
-                if(!valida.validarCEP(dado)){
+                if(!valida.validaCEP(dado)){
                     System.out.println("CEP invalido");
                     return null;
                 }

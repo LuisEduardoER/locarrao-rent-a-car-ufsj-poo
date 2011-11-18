@@ -9,21 +9,21 @@ import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
-import modelo.persistencia.PersistenciaFuncionarios;
-import modelo.dominio.Validacao;
+import modelo.persiste.PersisteFuncionarios;
+import modelo.dominio.Valida;
 /**
  *
  * @author PATY
  */
 public class VisaoFuncionarios {
-    PersistenciaFuncionarios persistenciaFuncionarios;
+    PersisteFuncionarios persistenciaFuncionarios;
     public static Funcionarios funcionarios;
     VisaoEndereco visaoEndereco;
     public VisaoFuncionarios(){
         funcionarios = new Funcionarios();
     }
     public void cadastraFuncionarios() {
-        persistenciaFuncionarios = new PersistenciaFuncionarios();
+        persistenciaFuncionarios = new PersisteFuncionarios();
         funcionarios=new Funcionarios();
         Endereco endereco = new Endereco();
         visaoEndereco = new VisaoEndereco();
@@ -39,8 +39,8 @@ public class VisaoFuncionarios {
             }
         }while(dado.isEmpty());
         
-        Validacao valida = new Validacao();
-        if(!valida.validarCPF(dado)){
+        Valida valida = new Valida();
+        if(!valida.validaCPF(dado)){
             System.out.println("CPF invalido");
             return;
         }else{
@@ -52,7 +52,7 @@ public class VisaoFuncionarios {
                     return;
                 }else{
                     //codigo com auto incremento
-                    funcionarios.setCodigo(PersistenciaFuncionarios.listaFuncionarios.size()+1);
+                    funcionarios.setCodigo(PersisteFuncionarios.listaFuncionarios.size()+1);
                     do{
                         System.out.println("Digite o nome"); 
                         dado = cadastro.nextLine();
@@ -108,7 +108,7 @@ public class VisaoFuncionarios {
                     }else{
                         funcionarios.setEndereco(endereco);
                     }
-                    funcionarios.setCodigo(PersistenciaFuncionarios.listaFuncionarios.size()+1);
+                    funcionarios.setCodigo(PersisteFuncionarios.listaFuncionarios.size()+1);
                     boolean operacao = persistenciaFuncionarios.salvar(funcionarios);
                     if (operacao) {
                       System.out.println("Salvo com sucesso");

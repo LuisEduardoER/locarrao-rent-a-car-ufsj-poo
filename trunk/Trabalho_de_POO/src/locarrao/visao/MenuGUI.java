@@ -56,6 +56,11 @@ public class MenuGUI extends javax.swing.JFrame {
         cadastro.setText("Cadastro");
 
         jMenuItem1.setText("Clientes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         cadastro.add(jMenuItem1);
 
         jMenuItem2.setText("Veículo");
@@ -129,6 +134,10 @@ public class MenuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -137,6 +146,7 @@ public class MenuGUI extends javax.swing.JFrame {
 
             public void run() {
                 new MenuGUI().setVisible(true);
+              
             }
         });
     }
