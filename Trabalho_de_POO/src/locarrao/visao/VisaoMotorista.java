@@ -7,18 +7,18 @@ package locarrao.visao;
 
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
-import modelo.persistencia.PersistenciaMotorista;
+import modelo.persiste.PersisteMotorista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
-import modelo.dominio.Validacao;
-import modelo.persistencia.PersistenciaCliente;
+import modelo.dominio.Valida;
+import modelo.persiste.PersisteCliente;
 
 
 public class VisaoMotorista {
-    PersistenciaMotorista persistenciaMotorista;
-    PersistenciaCliente persistenciaCliente;
+    PersisteMotorista persistenciaMotorista;
+    PersisteCliente persistenciaCliente;
     Clientes cliente;
     
     public static Motorista motorista;
@@ -29,9 +29,9 @@ public class VisaoMotorista {
         motorista = new Motorista();
         Endereco endereco = new Endereco();
         visaoEndereco = new VisaoEndereco();
-        persistenciaMotorista = new PersistenciaMotorista();
+        persistenciaMotorista = new PersisteMotorista();
         
-        Validacao valida = new Validacao();
+        Valida valida = new Valida();
         Scanner cadastro = new Scanner(System.in);
         String dado = null;
         do{
@@ -61,7 +61,7 @@ public class VisaoMotorista {
                     if(dado.isEmpty()){
                         System.out.println("Digitação do CPF é obrigatoria");
                     }else{
-                        if(!valida.validarCPF(dado)){
+                        if(!valida.validaCPF(dado)){
                             System.out.println("CPF Invalido");
                             cadastro.nextLine();
                             return;
@@ -80,7 +80,7 @@ public class VisaoMotorista {
                  * 
                  * Caso o contrario, será feita a digitação normalmente
                  */
-                persistenciaCliente = new PersistenciaCliente();
+                persistenciaCliente = new PersisteCliente();
                 cliente = new Clientes();
                 cliente.setCpf(dado);
                 persistenciaCliente.retornarCliente(cliente);
@@ -128,7 +128,7 @@ public class VisaoMotorista {
                 }
                 
                 //código será auto incremento
-                motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
+                motorista.setCodigo(PersisteMotorista.listaMotorista.size() + 1);
                 
                 boolean salvar = persistenciaMotorista.salvar(motorista);
                 if (salvar){
@@ -161,7 +161,7 @@ public class VisaoMotorista {
         Endereco endereco = new Endereco();
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
         Scanner pesquisa = new Scanner(System.in);
-        PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
+        PersisteMotorista persistenciaMotorista = new PersisteMotorista();
         listaMotorista = persistenciaMotorista.retornarMotorista();
         System.out.println("Digite a cnh do motorista a ser pesquisado");
         String cnh=pesquisa.nextLine();

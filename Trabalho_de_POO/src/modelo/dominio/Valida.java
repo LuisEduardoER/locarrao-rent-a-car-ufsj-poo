@@ -8,8 +8,8 @@ package modelo.dominio;
  *
  * @author Thais
  */
-public class Validacao {
-    public  boolean validarCPF(String CPF) {
+public class Valida {
+public  boolean validaCPF(String CPF) {
         int digitoVerificador1 = 0;
         int digitoVerificador2 = 0;
         int resto = 0;
@@ -49,7 +49,7 @@ public class Validacao {
 
     }
     
-     public boolean validaCnh( String cnh){
+public boolean validaCnh( String cnh){
          boolean resposta = true;
          if(cnh.length() == 10){
              for(int i=0; i< cnh.length(); i++){
@@ -63,8 +63,7 @@ public class Validacao {
          }
          return resposta;
     }
-    
-    public boolean validarCEP(String cep){
+    public boolean validaCEP(String cep){
         boolean resposta = true;
         if(cep.length() == 8){
             for(int i=0; i< cep.length(); i++){
