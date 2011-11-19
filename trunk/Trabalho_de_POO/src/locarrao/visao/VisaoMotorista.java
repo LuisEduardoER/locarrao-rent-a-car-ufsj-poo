@@ -7,13 +7,13 @@ package locarrao.visao;
 
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
-import modelo.persiste.PersisteMotorista;
+import modelo.persistencia.PersisteMotorista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
 import modelo.dominio.Valida;
-import modelo.persiste.PersisteCliente;
+import modelo.persistencia.PersisteCliente;
 
 
 public class VisaoMotorista {

@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.TipoVeiculo;
-import modelo.persiste.PersisteTipoVeiculo;
+import modelo.persistencia.PersisteTipoVeiculo;
 
 public class VisaoTipoVeiculo {
     PersisteTipoVeiculo persistenciaTipoVeiculo;

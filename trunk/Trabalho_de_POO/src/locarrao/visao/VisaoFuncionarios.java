@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
-import modelo.persiste.PersisteFuncionarios;
+import modelo.persistencia.PersisteFuncionarios;
 import modelo.dominio.Valida;
 /**
  *

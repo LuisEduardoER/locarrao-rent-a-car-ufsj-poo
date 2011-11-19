@@ -15,10 +15,10 @@ import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.Veiculos;
-import modelo.persiste.PersisteCliente;
-import modelo.persiste.PersisteLocacao;
-import modelo.persiste.PersisteMotorista;
-import modelo.persiste.PersisteVeiculos;
+import modelo.persistencia.PersisteCliente;
+import modelo.persistencia.PersisteLocacao;
+import modelo.persistencia.PersisteMotorista;
+import modelo.persistencia.PersisteVeiculos;
 
 public class VisaoLocacao {
     PersisteCliente persistenciaCliente;
