@@ -13,12 +13,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 
-public class PersisteMarcaVeiculo {
+public class PersistenciaMarcaVeiculo {
     public static File arquivo;
     public static List<MarcaVeiculo> listaMarcaVeiculo;
                         
     
-    public PersisteMarcaVeiculo(){
+    public PersistenciaMarcaVeiculo(){
         arquivo = new File("src/arquivos/MarcaVeiculo.txt");
         listaMarcaVeiculo = new ArrayList<MarcaVeiculo>();
         retornarTodasMarcas();

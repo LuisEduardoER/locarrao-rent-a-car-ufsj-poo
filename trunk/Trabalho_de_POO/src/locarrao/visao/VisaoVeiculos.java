@@ -15,20 +15,20 @@ import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
-import modelo.persistencia.PersisteMarcaVeiculo;
-import modelo.persistencia.PersisteModeloVeiculo;
-import modelo.persistencia.PersisteTipoVeiculo;
-import modelo.persistencia.PersisteVeiculos;
+import modelo.persistencia.PersistenciaMarcaVeiculo;
+import modelo.persistencia.PersistenciaModeloVeiculo;
+import modelo.persistencia.PersistenciaTipoVeiculo;
+import modelo.persistencia.PersistenciaVeiculos;
 
 /**
  *
  * @author PATY
  */
 public class VisaoVeiculos {
-    PersisteVeiculos persistenciaVeiculos;
-    PersisteMarcaVeiculo persistenciaMarcaVeiculo;
-    PersisteModeloVeiculo persistenciaModeloVeiculo;
-    PersisteTipoVeiculo persistenciaTipoVeiculo;
+    PersistenciaVeiculos persistenciaVeiculos;
+    PersistenciaMarcaVeiculo persistenciaMarcaVeiculo;
+    PersistenciaModeloVeiculo persistenciaModeloVeiculo;
+    PersistenciaTipoVeiculo persistenciaTipoVeiculo;
     VisaoTipoVeiculo visaoTipoVeiculo;
     TipoLocacao tipoLocacao;
     TipoVeiculo tipoVeiculo;
@@ -41,10 +41,10 @@ public class VisaoVeiculos {
     }
     
     public void cadastraVeiculos() {
-        persistenciaTipoVeiculo = new PersisteTipoVeiculo();
-        persistenciaMarcaVeiculo = new PersisteMarcaVeiculo();
-        persistenciaModeloVeiculo = new PersisteModeloVeiculo();
-        persistenciaVeiculos = new PersisteVeiculos();
+        persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
+        persistenciaMarcaVeiculo = new PersistenciaMarcaVeiculo();
+        persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
+        persistenciaVeiculos = new PersistenciaVeiculos();
         
         veiculos = new Veiculos();
         tipoVeiculo = new TipoVeiculo();
@@ -197,7 +197,7 @@ public class VisaoVeiculos {
     }
     
     public boolean pesquisarVeiculo(Veiculos veiculos){
-        persistenciaVeiculos = new PersisteVeiculos();
+        persistenciaVeiculos = new PersistenciaVeiculos();
         boolean encontrou = false;
         try {
             
@@ -224,7 +224,7 @@ public class VisaoVeiculos {
     
     public void veiculosDisponiveis(){
         Scanner entrada = new Scanner(System.in);
-        persistenciaVeiculos = new PersisteVeiculos();
+        persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.verificarveiculosDisponiveis();
         entrada.nextLine();
         
@@ -232,7 +232,7 @@ public class VisaoVeiculos {
     
     public void veiculosMaisProcurados(){
         Scanner entrada = new Scanner(System.in);
-        persistenciaVeiculos = new PersisteVeiculos();
+        persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.mostrarVeiculosMaisProcurados();
         entrada.nextLine();
         
@@ -240,7 +240,7 @@ public class VisaoVeiculos {
     
     public void veiculosMaisRentaveis(){
         Scanner entrada = new Scanner(System.in);
-        persistenciaVeiculos = new PersisteVeiculos();
+        persistenciaVeiculos = new PersistenciaVeiculos();
         persistenciaVeiculos.mostrarVeiculosMaisRentaveis();
         entrada.nextLine();
         
@@ -251,11 +251,11 @@ public class VisaoVeiculos {
         Scanner entrada = new Scanner(System.in);
         visaoTipoVeiculo = new VisaoTipoVeiculo();
         tipoVeiculo = new TipoVeiculo();
-        persistenciaVeiculos = new PersisteVeiculos();
+        persistenciaVeiculos = new PersistenciaVeiculos();
         
         try {
             int tipo = visaoTipoVeiculo.menuTipoVeiculo();
-            tipoVeiculo = PersisteTipoVeiculo.listaTipoVeiculos.get(tipo - 1);
+            tipoVeiculo = PersistenciaTipoVeiculo.listaTipoVeiculos.get(tipo - 1);
             System.out.println("Veiculos Disponiveis");
             persistenciaVeiculos.mostrarVeiculosDisponiveis(tipoVeiculo);
             entrada.nextLine();

@@ -26,13 +26,13 @@ import modelo.dominio.Veiculos;
  *
  * @author User
  */
-public class PersisteLocacao {
+public class PersistenciaLocacao {
     public static File arquivo;
     public static List<Locacao> listaLocacao;
-    PersisteTipoLocacao persistenciaTipoLocacao = new PersisteTipoLocacao();
+    PersistenciaTipoLocacao persistenciaTipoLocacao = new PersistenciaTipoLocacao();
     
     
-    public PersisteLocacao() {
+    public PersistenciaLocacao() {
         arquivo = new File("src/arquivos/Locacao.txt");
         listaLocacao = new ArrayList<Locacao>();
         retornarTodasLocacoes();

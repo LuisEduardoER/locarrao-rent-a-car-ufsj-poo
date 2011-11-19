@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.dominio.TipoLocacao;
-import modelo.persistencia.PersisteTipoLocacao;
-import modelo.persistencia.PersisteTipoVeiculo;
+import modelo.persistencia.PersistenciaTipoLocacao;
+import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoLocacao {
-    PersisteTipoLocacao persistenciaTipoLocacao;
+    PersistenciaTipoLocacao persistenciaTipoLocacao;
     
     
     public void cadastraTipoLocacao() {
-        persistenciaTipoLocacao = new PersisteTipoLocacao();
+        persistenciaTipoLocacao = new PersistenciaTipoLocacao();
     
         TipoLocacao tipoLocacao = new TipoLocacao();
         
@@ -85,12 +85,12 @@ public class VisaoTipoLocacao {
             
         } catch (FileNotFoundException ex) {
             System.out.println("Arquivo " + 
-                    PersisteTipoLocacao.arquivo.getName() +
+                    PersistenciaTipoLocacao.arquivo.getName() +
                     " não foi encontrado");
             
         } catch (IOException ex) {
             System.out.println("Erro na escrita/leitura do arquivo "+
-                    PersisteTipoLocacao.arquivo.getName());
+                    PersistenciaTipoLocacao.arquivo.getName());
         }
         
     }
@@ -98,7 +98,7 @@ public class VisaoTipoLocacao {
     
     public void pesquisaTipoVeiculo(TipoLocacao tipoLocacao){
         VisaoTipoVeiculo visaoTipoVeiculo = new VisaoTipoVeiculo();
-        PersisteTipoVeiculo buscaTipoVeiculo = new PersisteTipoVeiculo();
+        PersistenciaTipoVeiculo buscaTipoVeiculo = new PersistenciaTipoVeiculo();
         
         try {
             int itemMenu = visaoTipoVeiculo.menuTipoVeiculo();

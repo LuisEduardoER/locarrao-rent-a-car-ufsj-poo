@@ -21,13 +21,13 @@ import modelo.dominio.Endereco;
  *
  * @author PATY
  */
-public class PersisteCliente {
+public class PersistenciaCliente {
     public static File arquivo;
     public static List<Clientes> listaClientes;
     
     VisaoClientes visaoCliente = new VisaoClientes();
     
-    public PersisteCliente() {
+    public PersistenciaCliente() {
         arquivo = new File("src/arquivos/Clientes.txt");
         listaClientes = new ArrayList<Clientes>();
         retornarTodosClientes();

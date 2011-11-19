@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
-import modelo.persistencia.PersisteCliente;
+import modelo.persistencia.PersistenciaCliente;
 import modelo.dominio.Valida;
 /**
  *
  * @author PATY
  */
 public class VisaoClientes {
-    PersisteCliente persistenciaCliente;
+    PersistenciaCliente persistenciaCliente;
     public static Clientes clientes;
     VisaoEndereco visaoEndereco;
     
@@ -27,7 +27,7 @@ public class VisaoClientes {
      * A string dado será responsavel por fazer a validação de campos obrigatórios
      */
     public void cadastrarClientes(){
-        persistenciaCliente = new PersisteCliente();
+        persistenciaCliente = new PersistenciaCliente();
         clientes = new Clientes();
         Endereco endereco = new Endereco();
         visaoEndereco = new VisaoEndereco();
@@ -62,7 +62,7 @@ public class VisaoClientes {
                 }
                 else{
                     //Codigo será com auto incremento
-                    clientes.setCodigo(PersisteCliente.listaClientes.size()+1);
+                    clientes.setCodigo(PersistenciaCliente.listaClientes.size()+1);
         
                     do{
                         System.out.println("Digite o nome"); 
@@ -103,7 +103,7 @@ public class VisaoClientes {
                     }else{
                         clientes.setEndereco(endereco);
                     }
-                    clientes.setCodigo(PersisteCliente.listaClientes.size() + 1);
+                    clientes.setCodigo(PersistenciaCliente.listaClientes.size() + 1);
                     boolean operacao = persistenciaCliente.salvar(clientes);
                     if (operacao) {
                       System.out.println("Salvo com sucesso");
@@ -136,7 +136,7 @@ public class VisaoClientes {
     
     public void buscaPorNome(){
         Scanner entrada = new Scanner(System.in);
-        persistenciaCliente = new PersisteCliente();
+        persistenciaCliente = new PersistenciaCliente();
         String dado = "";
         do{
             System.out.println("Digite o nome");
