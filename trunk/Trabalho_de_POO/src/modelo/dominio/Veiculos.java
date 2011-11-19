@@ -3,6 +3,8 @@ package modelo.dominio;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -12,7 +14,8 @@ import javax.persistence.Table;
 @Table(name="Veiculos")
 public class Veiculos implements Serializable {
     @Id
-    @Column
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="idEndereco",nullable=false)
     private Long id;
     
     @Column(length=7)

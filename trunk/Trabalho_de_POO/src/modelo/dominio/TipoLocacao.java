@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,8 +14,8 @@ import javax.persistence.Table;
 @Table(name="tipoLocacao")
 public class TipoLocacao implements Serializable {
     @Id
-    @GeneratedValue
-    @Column(name="idTipoLocacao", insertable=true, updatable=false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="idEndereco",nullable=false)
     private Long id;
     
     @Column

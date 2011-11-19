@@ -8,7 +8,7 @@
  *
  * Created on Nov 12, 2011, 10:12:36 PM
  */
-package locarrao.visao;
+package locarrao.visao.grafica;
 
 /**
  *
