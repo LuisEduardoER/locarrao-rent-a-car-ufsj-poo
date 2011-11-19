@@ -1,10 +1,10 @@
 package modelo.dominio;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue("Clientes")
+@PrimaryKeyJoinColumn(name="ID_CLIENTE")
 public class Clientes extends Pessoa {
     
 }

@@ -1,20 +1,20 @@
 package modelo.dominio;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue("Funcionarios")
+@PrimaryKeyJoinColumn(name = "ID_FUNCIONARIO")
 public class Funcionarios extends Pessoa {
     
     @Column(length=45)
     private String cargo;
     
-    @Column
+    @Column(length=45)
     private String usuario;
     
-    @Column
+    @Column(length=100)
     private String senha;
 
     public String getCargo() {

@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 public class Endereco implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idEndereco",nullable=false)
+    @Column(name="ID_ENDERECO",nullable=false)
     private Long id;
  
     @Transient

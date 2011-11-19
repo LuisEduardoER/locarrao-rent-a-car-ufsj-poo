@@ -18,49 +18,49 @@ import javax.persistence.TemporalType;
 public class Locacao implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Codigo", nullable = false)
+    @Column(name = "ID_LOCACAO", nullable = false)
     private Long id;
     
-    @Column(name = "KmSaida" )
+    @Column(name = "KM_SAIDA")
     private long quilometragemDeSaida;
     
-    @Column(name = "KmChegada")
+    @Column(name = "KM_CHEGADA")
     private long quilometragemDeEntrada;
     
-    @Column(length=45)
+    @Column(length=45, name="TIPO_VEICULO")
     private String tipo;
     
-    @Column(name = "Valor")
+    @Column
     private double valor;
     
-    @Column(name = "DataSaida")
+    @Column(name = "DATA_SAIDA")
     @Temporal(TemporalType.DATE)
     private Date dataSaida;
     
-    @Column(name = "DataChegada")
+    @Column(name = "DATA_CHEGADA")
     @Temporal(TemporalType.DATE)
     private Date dataDevolucao;
 
     @Column
     private int previsao;
     
-    @Column
+    @Column(name="ABERTA")
     private boolean locacaoAberta;
 
     @OneToOne
-    @JoinColumn(name = "TipoLocacao")
+    @JoinColumn(name = "ID_TIPO_LOCACAO")
     private TipoLocacao tipoLocacao;
     
     @OneToOne
-    @JoinColumn(name = "IdCliente")
+    @JoinColumn(name = "CPF_CLIENTE")
     private Clientes cliente;
 
     @OneToOne
-    @JoinColumn(name = "IdMotorista")
+    @JoinColumn(name = "CPF_MOTORISTA")
     private Motorista motorista;
 
     @OneToOne
-    @JoinColumn(name = "IdVeiculo")
+    @JoinColumn(name = "ID_VEICULO")
     private Veiculos veiculo;
 
     

@@ -11,24 +11,24 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tipoLocacao")
+@Table(name="TIPO_LOCACAO")
 public class TipoLocacao implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idEndereco",nullable=false)
+    @Column(name="ID_TIPO_LOCACAO",nullable=false)
     private Long id;
     
-    @Column
+    @Column(name = "TAXA_DIARIAS")
     private double taxaDiarias;
     
-    @Column
+    @Column(name = "TAXA_POR_KM")
     private double taxaPorKm;
 
-    @Column
+    @Column(name="PRECO_POR_KM")
     private double precoPorQuilometro;
 
     @OneToOne
-    @JoinColumn(name="idTipoVeiculo")
+    @JoinColumn(name="ID_TIPO_VEICULO")
     private TipoVeiculo tipoVeiculo;
 
     
