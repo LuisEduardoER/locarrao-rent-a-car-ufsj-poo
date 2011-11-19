@@ -1,15 +1,34 @@
 package modelo.dominio;
 
-public class Pessoa {
- 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Pessoa")
+public class Pessoa implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Codigo", nullable = false)
     private int codigo;
-
+    
+    @Column(length=45)
     private String nome;
-
+    
+    @Column(length=11)
     private String cpf;
-
+    
+    @Column(length=10)
     private String tefefone;
    
+    @OneToOne
     private Endereco endereco;
    
     
