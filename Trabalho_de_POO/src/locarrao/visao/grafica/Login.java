@@ -10,7 +10,9 @@
  */
 package locarrao.visao.grafica;
 
+import javax.swing.JOptionPane;
 import modelo.dominio.Funcionarios;
+import modelo.persistencia.PersisteFuncionarios;
 
 /**
  *
@@ -30,9 +32,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTxtUsuario = new javax.swing.JTextField();
-        jTxtSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBAcessar = new javax.swing.JButton();
+        jTxtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -61,13 +63,16 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(161, 161, 161)
                         .addComponent(jBAcessar)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTxtSenha, jTxtUsuario});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -86,7 +91,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAcessarActionPerformed
-        // TODO add your handling code here:
+        verificarLogin();
     }//GEN-LAST:event_jBAcessarActionPerformed
 
     /**
@@ -101,14 +106,18 @@ public class Login extends javax.swing.JFrame {
         });
     }
     
-    public boolean verificarLogin(){
-        boolean loginCorreto = false;
+    
+    public void verificarLogin(){
+        PersisteFuncionarios persisteFuncionario = new PersisteFuncionarios();
         Funcionarios funcionario = new Funcionarios();
-        
         funcionario.setUsuario(jTxtUsuario.getText());
         funcionario.setSenha(jTxtSenha.getText());
-        
-        return loginCorreto;
+        if(!persisteFuncionario.verificarLogin(funcionario)){
+            JOptionPane.showMessageDialog(null, "Dados incorretos. Verifique o usuario e a senha");
+        }
+        else{
+            
+        }
         
         
     }
@@ -116,7 +125,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jBAcessar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTxtSenha;
+    private javax.swing.JPasswordField jTxtSenha;
     private javax.swing.JTextField jTxtUsuario;
     // End of variables declaration//GEN-END:variables
 }
