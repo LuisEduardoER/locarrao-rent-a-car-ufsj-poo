@@ -1,13 +1,33 @@
 package modelo.dominio;
 
-public class TipoLocacao {
- 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tipoLocacao")
+public class TipoLocacao implements Serializable {
+    @Id
+    @GeneratedValue
+    @Column(name="idTipoLocacao", insertable=true, updatable=false)
+    private Long id;
+    
+    @Column
     private double taxaDiarias;
     
+    @Column
     private double taxaPorKm;
 
+    @Column
     private double precoPorQuilometro;
 
+    @OneToOne
+    @JoinColumn(name="idTipoVeiculo")
     private TipoVeiculo tipoVeiculo;
 
     
@@ -41,6 +61,14 @@ public class TipoLocacao {
 
     public void setTaxaPorKm(double taxaPorKm) {
         this.taxaPorKm = taxaPorKm;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     	 
 }
