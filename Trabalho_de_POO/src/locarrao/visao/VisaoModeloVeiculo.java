@@ -6,10 +6,10 @@ package locarrao.visao;
 
 import java.util.Scanner;
 import modelo.dominio.ModeloVeiculo;
-import modelo.persistencia.PersistenciaModeloVeiculo;
+import modelo.persistencia.PersisteModeloVeiculo;
 
 public class VisaoModeloVeiculo {
-    PersistenciaModeloVeiculo persistenciaModeloVeiculo = new PersistenciaModeloVeiculo();
+    PersisteModeloVeiculo persistenciaModeloVeiculo = new PersisteModeloVeiculo();
     
     public void cadastrarModeloVeiculo() {
         ModeloVeiculo modeloVeiculo = new ModeloVeiculo();

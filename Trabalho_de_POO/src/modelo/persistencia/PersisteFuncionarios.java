@@ -21,13 +21,13 @@ import locarrao.visao.VisaoFuncionarios;
  *
  * @author PATY
  */
-public class PersistenciaFuncionarios {
+public class PersisteFuncionarios {
     public static File arquivo;
     public static List<Funcionarios> listaFuncionarios;
     
     VisaoFuncionarios visaoFuncionarios = new VisaoFuncionarios();
    
-    public PersistenciaFuncionarios(){
+    public PersisteFuncionarios(){
         arquivo = new File("src/arquivos/Funcionarios.txt");
         listaFuncionarios = new ArrayList<Funcionarios> ();
         retornarTodosFuncionarios();

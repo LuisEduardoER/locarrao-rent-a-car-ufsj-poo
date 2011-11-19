@@ -77,7 +77,7 @@ public class VisaoEndereco {
             if(dado.isEmpty()){
                 endereco.setCep(" - ");
             }else{
-                if(!valida.validaCEP(dado)){
+                if(!valida.validarCEP(dado)){
                     System.out.println("CEP invalido");
                     return null;
                 }
