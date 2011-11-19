@@ -1,11 +1,20 @@
 package modelo.dominio;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Funcionarios")
 public class Funcionarios extends Pessoa {
- 
+    
+    @Column(length=45)
     private String cargo;
-
+    
+    @Column
     private String usuario;
-
+    
+    @Column
     private String senha;
 
     public String getCargo() {

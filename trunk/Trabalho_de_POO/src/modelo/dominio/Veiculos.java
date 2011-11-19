@@ -1,22 +1,47 @@
 package modelo.dominio;
 
-public class Veiculos {
- 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Veiculos")
+public class Veiculos implements Serializable {
+    @Id
+    @Column
+    private Long id;
+    
+    @Column(length=7)
     private String placa;
-
+    
+    @Column(length=20)
     private String cor;
-
+    
+    @Column
     private int ano;
 
+    @Column(length=100)
     private String opcionais;
-
+    
+    @Column(length=100)
     private String observacao;
-
+    
+    @OneToOne
+    @JoinColumn(name="idTipoVeiculo")
     private TipoVeiculo tipoVeiculo;
-
+    
+    @OneToOne
+    @JoinColumn(name="idMarca")
     private MarcaVeiculo marcaVeiculo;
 
+    @OneToOne
+    @JoinColumn(name="idModelo")
     private ModeloVeiculo modeloVeiculo;
+    
     
     private int totalLocacoes;
     
@@ -100,5 +125,13 @@ public class Veiculos {
 
     public void setValorTotalLocacoes(double valorTotalLocacoes) {
         this.valorTotalLocacoes = valorTotalLocacoes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -1,19 +1,40 @@
 package modelo.dominio;
 
-public class Endereco {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="Endereco")
+public class Endereco implements Serializable{
+    @Id
+    @GeneratedValue
+    @Column(name="idEndereco",insertable=true,updatable=false)
+    private Long id;
  
+    @Transient
     private String rua;
 
+    @Transient
     private int numero;
 
+    @Transient
     private String complemento;
-
+    
+    @Transient
     private String bairro;
 
+    @Transient
     private String cidade;
 
+    @Transient
     private String uf;
 
+    @Transient
     private String cep;
     
     
@@ -71,6 +92,14 @@ public class Endereco {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     	 
 }
