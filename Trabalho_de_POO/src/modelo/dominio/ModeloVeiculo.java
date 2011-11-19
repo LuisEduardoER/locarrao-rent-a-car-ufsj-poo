@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,8 +16,8 @@ public class ModeloVeiculo implements Serializable {
     private String modelo;
     
     @Id
-    @GeneratedValue
-    @Column(name="idModelo", insertable=true,updatable=false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="idEndereco",nullable=false)
     private Long id;
     
     
