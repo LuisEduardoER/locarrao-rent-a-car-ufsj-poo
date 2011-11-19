@@ -18,14 +18,14 @@ import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 
-public class PersisteVeiculos {
+public class PersistenciaVeiculos {
     public static File arquivo;
     public static List<Veiculos> listaVeiculos;
     VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
     
-    PersisteLocacao persistenciaLocacao = new PersisteLocacao();
+    PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
     
-    public PersisteVeiculos() {
+    public PersistenciaVeiculos() {
         arquivo = new File("src/arquivos/Veiculos.txt");
         listaVeiculos = new ArrayList<Veiculos>();
         retornarTodosVeiculos();
@@ -200,7 +200,7 @@ public class PersisteVeiculos {
         boolean alugado = false;
         for(Veiculos item: listaVeiculos){
             alugado = false;
-            for(Locacao locacao: PersisteLocacao.listaLocacao){
+            for(Locacao locacao: PersistenciaLocacao.listaLocacao){
                 if(item.getPlaca().equals(locacao.getVeiculo().getPlaca()) && 
                         locacao.isLocacaoAberta()){
                     alugado = true;
@@ -224,7 +224,7 @@ public class PersisteVeiculos {
     }
     
     public void mostrarVeiculosMaisProcurados(){
-        persistenciaLocacao = new PersisteLocacao();
+        persistenciaLocacao = new PersistenciaLocacao();
         for(Veiculos item: listaVeiculos){
             item.setTotalLocacoes(persistenciaLocacao.retornarTotalLocacoes(item));
         }
@@ -268,7 +268,7 @@ public class PersisteVeiculos {
     }
     
     public void mostrarVeiculosMaisRentaveis(){
-        persistenciaLocacao = new PersisteLocacao();
+        persistenciaLocacao = new PersistenciaLocacao();
         for(Veiculos item: listaVeiculos){
             item.setValorTotalLocacoes(persistenciaLocacao.retornarTotalValor(item));
         }
@@ -316,7 +316,7 @@ public class PersisteVeiculos {
         
         for(Veiculos item: listaVeiculos){
             achou = false;
-            for(Locacao locacao: PersisteLocacao.listaLocacao){
+            for(Locacao locacao: PersistenciaLocacao.listaLocacao){
                 if(item.getPlaca().equals(locacao.getVeiculo().getPlaca()) &&
                         locacao.isLocacaoAberta() && 
                         locacao.getTipoLocacao().getTipoVeiculo().getTipo().

@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.dominio.ModeloVeiculo;
 
-public class PersisteModeloVeiculo {
+public class PersistenciaModeloVeiculo {
     public static File arquivo;
     public static List<ModeloVeiculo> listaModeloVeiculo;
                         
     
-    public PersisteModeloVeiculo() {
+    public PersistenciaModeloVeiculo() {
         arquivo = new File("src/arquivos/ModeloVeiculo.txt");
         listaModeloVeiculo = new ArrayList<ModeloVeiculo>();
         retornarTodosModelos();

@@ -15,30 +15,30 @@ import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.Veiculos;
-import modelo.persistencia.PersisteCliente;
-import modelo.persistencia.PersisteLocacao;
-import modelo.persistencia.PersisteMotorista;
-import modelo.persistencia.PersisteVeiculos;
+import modelo.persistencia.PersistenciaCliente;
+import modelo.persistencia.PersistenciaLocacao;
+import modelo.persistencia.PersistenciaMotorista;
+import modelo.persistencia.PersistenciaVeiculos;
 
 public class VisaoLocacao {
-    PersisteCliente persistenciaCliente;
+    PersistenciaCliente persistenciaCliente;
     Clientes cliente;
     VisaoClientes visaoClientes;
     
-    PersisteMotorista persistenciaMotorista = new PersisteMotorista();
+    PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
     VisaoMotorista visaoMotorista = new VisaoMotorista();
     Motorista motorista = new Motorista();
     
-    PersisteVeiculos persistenciaVeiculos = new PersisteVeiculos();
+    PersistenciaVeiculos persistenciaVeiculos = new PersistenciaVeiculos();
     Veiculos veiculo = new Veiculos();
     VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
     
-    PersisteLocacao persistenciaLocacao = new PersisteLocacao();
+    PersistenciaLocacao persistenciaLocacao = new PersistenciaLocacao();
             
     
     public void cadastraLocacao(){
         try {
-            persistenciaCliente = new PersisteCliente();
+            persistenciaCliente = new PersistenciaCliente();
             cliente = new Clientes();
             visaoClientes = new VisaoClientes();
     
@@ -92,7 +92,7 @@ public class VisaoLocacao {
                         
                         switch(Integer.parseInt(entrada.nextLine())){
                             case 1:
-                                cliente.setCodigo(PersisteCliente.listaClientes.size());
+                                cliente.setCodigo(PersistenciaCliente.listaClientes.size());
                                 visaoClientes.cadastrarClientes();
                                 locacao.setCliente(cliente);
                                 break;
@@ -167,7 +167,7 @@ public class VisaoLocacao {
                             encontrou = persistenciaMotorista.pesquisarMotorista(motorista);
                             if (!encontrou){
                                 persistenciaCliente.retornarCliente(cliente);
-                                motorista.setCodigo(PersisteMotorista.listaMotorista.size() + 1);
+                                motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
                                 motorista.setNome(cliente.getNome());
                                 motorista.setCpf(cliente.getCpf());
                                 motorista.setTefefone(cliente.getTefefone());
@@ -402,7 +402,7 @@ public class VisaoLocacao {
     }
     
     public void fecharLocacao(){
-        persistenciaLocacao = new PersisteLocacao();
+        persistenciaLocacao = new PersistenciaLocacao();
         Locacao locacao = new Locacao();
         Scanner entrada = new Scanner(System.in);
         String dado = null;
@@ -431,7 +431,7 @@ public class VisaoLocacao {
         
         //busco todas as locações do cliente
         boolean achou = false;
-        for(Locacao item: PersisteLocacao.listaLocacao){
+        for(Locacao item: PersistenciaLocacao.listaLocacao){
             if((item.getCliente().getCodigo() == cliente.getCodigo()) &&
                     item.isLocacaoAberta()){
                 
@@ -498,10 +498,10 @@ public class VisaoLocacao {
                     System.out.println("Quilometragem de chegada");
                     motorista.setCnh(listaLocacaoCliente.get(resposta-1).
                             getMotorista().getCnh());
-                    locacao.setTipo(PersisteLocacao.listaLocacao.
+                    locacao.setTipo(PersistenciaLocacao.listaLocacao.
                             get(resposta - 1).getTipo());
                     
-                    long kmDeSaida = PersisteLocacao.listaLocacao.get(resposta-1).
+                    long kmDeSaida = PersistenciaLocacao.listaLocacao.get(resposta-1).
                             getQuilometragemDeSaida();
                     
                     long kmDeChegada = 0;

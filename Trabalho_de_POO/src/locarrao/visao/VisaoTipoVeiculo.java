@@ -4,12 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.TipoVeiculo;
-import modelo.persistencia.PersisteTipoVeiculo;
+import modelo.persistencia.PersistenciaTipoVeiculo;
 
 public class VisaoTipoVeiculo {
-    PersisteTipoVeiculo persistenciaTipoVeiculo;
+    PersistenciaTipoVeiculo persistenciaTipoVeiculo;
     public void cadastraTipoVeiculo() {
-        persistenciaTipoVeiculo = new PersisteTipoVeiculo();
+        persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
     
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         
@@ -28,7 +28,7 @@ public class VisaoTipoVeiculo {
         
         /* Salvar no arquivo */
         
-        boolean operacao = PersisteTipoVeiculo.salvar(tipoVeiculo);
+        boolean operacao = PersistenciaTipoVeiculo.salvar(tipoVeiculo);
 
         if(operacao){
             System.out.println("Lista salva com sucesso");
@@ -36,7 +36,7 @@ public class VisaoTipoVeiculo {
         }
         else{
             System.out.println("Erro na gravação do arquivo " + 
-                    PersisteTipoVeiculo.arquivo.getName());
+                    PersistenciaTipoVeiculo.arquivo.getName());
         }
         
         
@@ -56,15 +56,15 @@ public class VisaoTipoVeiculo {
     
     //Cria o menu a partir de uma lista de Veiculos
     public int menuTipoVeiculo() throws FileNotFoundException, IOException{
-        persistenciaTipoVeiculo = new PersisteTipoVeiculo();
+        persistenciaTipoVeiculo = new PersistenciaTipoVeiculo();
         Scanner entrada = new Scanner(System.in);
         System.out.println("Selecione o tipo de veiculo");
         int contador = 1;
-        if(PersisteTipoVeiculo.listaTipoVeiculos.size() == 1){
+        if(PersistenciaTipoVeiculo.listaTipoVeiculos.size() == 1){
             System.out.println();
             return 1;
         }else{
-            for(TipoVeiculo tipoVeiculo:PersisteTipoVeiculo.listaTipoVeiculos){
+            for(TipoVeiculo tipoVeiculo:PersistenciaTipoVeiculo.listaTipoVeiculos){
             
                 System.out.println(contador + " - " + tipoVeiculo.getTipo());
                 contador++;

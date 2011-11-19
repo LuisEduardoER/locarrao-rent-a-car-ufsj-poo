@@ -7,18 +7,18 @@ package locarrao.visao;
 
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
-import modelo.persistencia.PersisteMotorista;
+import modelo.persistencia.PersistenciaMotorista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
 import modelo.dominio.Valida;
-import modelo.persistencia.PersisteCliente;
+import modelo.persistencia.PersistenciaCliente;
 
 
 public class VisaoMotorista {
-    PersisteMotorista persistenciaMotorista;
-    PersisteCliente persistenciaCliente;
+    PersistenciaMotorista persistenciaMotorista;
+    PersistenciaCliente persistenciaCliente;
     Clientes cliente;
     
     public static Motorista motorista;
@@ -29,7 +29,7 @@ public class VisaoMotorista {
         motorista = new Motorista();
         Endereco endereco = new Endereco();
         visaoEndereco = new VisaoEndereco();
-        persistenciaMotorista = new PersisteMotorista();
+        persistenciaMotorista = new PersistenciaMotorista();
         
         Valida valida = new Valida();
         Scanner cadastro = new Scanner(System.in);
@@ -80,7 +80,7 @@ public class VisaoMotorista {
                  * 
                  * Caso o contrario, será feita a digitação normalmente
                  */
-                persistenciaCliente = new PersisteCliente();
+                persistenciaCliente = new PersistenciaCliente();
                 cliente = new Clientes();
                 cliente.setCpf(dado);
                 persistenciaCliente.retornarCliente(cliente);
@@ -128,7 +128,7 @@ public class VisaoMotorista {
                 }
                 
                 //código será auto incremento
-                motorista.setCodigo(PersisteMotorista.listaMotorista.size() + 1);
+                motorista.setCodigo(PersistenciaMotorista.listaMotorista.size() + 1);
                 
                 boolean salvar = persistenciaMotorista.salvar(motorista);
                 if (salvar){
@@ -161,7 +161,7 @@ public class VisaoMotorista {
         Endereco endereco = new Endereco();
         List<Motorista> listaMotorista = new ArrayList<Motorista>();
         Scanner pesquisa = new Scanner(System.in);
-        PersisteMotorista persistenciaMotorista = new PersisteMotorista();
+        PersistenciaMotorista persistenciaMotorista = new PersistenciaMotorista();
         listaMotorista = persistenciaMotorista.retornarMotorista();
         System.out.println("Digite a cnh do motorista a ser pesquisado");
         String cnh=pesquisa.nextLine();
