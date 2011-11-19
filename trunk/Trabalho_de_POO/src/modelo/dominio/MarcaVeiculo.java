@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="MarcaVeiculo")
 public class MarcaVeiculo implements Serializable {
     
-    @Column
+    @Column(length=45)
     private String marca;
     
     @Id

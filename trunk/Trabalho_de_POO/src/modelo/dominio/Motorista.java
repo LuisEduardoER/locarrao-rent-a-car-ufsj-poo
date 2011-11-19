@@ -1,11 +1,11 @@
 package modelo.dominio;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue("Morotista")
+@PrimaryKeyJoinColumn(name = "ID_MOTORISTA")
 public class Motorista extends Pessoa {
     
     @Column(length=10)

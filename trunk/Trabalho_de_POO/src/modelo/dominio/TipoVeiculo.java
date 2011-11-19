@@ -17,7 +17,7 @@ public class TipoVeiculo implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idEndereco",nullable=false)
+    @Column(name="ID_TIPO_VEICULO",nullable=false)
     private Long id;
     
     public TipoVeiculo(){

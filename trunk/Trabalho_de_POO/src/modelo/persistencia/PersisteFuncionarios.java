@@ -21,7 +21,7 @@ import locarrao.visao.VisaoFuncionarios;
  *
  * @author PATY
  */
-public class PersisteFuncionarios {
+public class PersisteFuncionarios extends DaoBase{
     public static File arquivo;
     public static List<Funcionarios> listaFuncionarios;
     
@@ -239,5 +239,20 @@ public class PersisteFuncionarios {
                 System.out.println();
             }
         }   
+    }
+    
+    /*
+     * Codigos referentes à interface gráfica. Utilizando o Hibernate
+     */
+    
+    public boolean verificarLogin(Funcionarios funcionario){
+        boolean login = false;
+        Funcionarios f = new Funcionarios();
+        
+        f = em.find(Funcionarios.class, f.getUsuario());
+        
+        
+        return login;
+        
     }
 }

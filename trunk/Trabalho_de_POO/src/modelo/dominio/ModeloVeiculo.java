@@ -12,12 +12,12 @@ import javax.persistence.Table;
 @Table(name="ModeloVeiculo")
 public class ModeloVeiculo implements Serializable {
     
-    @Column
+    @Column(length=45)
     private String modelo;
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idEndereco",nullable=false)
+    @Column(name="ID_MODELO",nullable=false)
     private Long id;
     
     

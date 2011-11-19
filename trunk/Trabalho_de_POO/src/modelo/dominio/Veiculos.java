@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Veiculos implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idEndereco",nullable=false)
+    @Column(name="ID_VEICULO",nullable=false)
     private Long id;
     
     @Column(length=7)
@@ -34,20 +34,21 @@ public class Veiculos implements Serializable {
     private String observacao;
     
     @OneToOne
-    @JoinColumn(name="idTipoVeiculo")
+    @JoinColumn(name="ID_TIPO_VEICULO")
     private TipoVeiculo tipoVeiculo;
     
     @OneToOne
-    @JoinColumn(name="idMarca")
+    @JoinColumn(name="ID_MARCA")
     private MarcaVeiculo marcaVeiculo;
 
     @OneToOne
-    @JoinColumn(name="idModelo")
+    @JoinColumn(name="ID_MODELO")
     private ModeloVeiculo modeloVeiculo;
     
-    
+    @Column
     private int totalLocacoes;
     
+    @Column
     private double valorTotalLocacoes;
 
     public String getPlaca() {

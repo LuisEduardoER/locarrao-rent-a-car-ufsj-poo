@@ -16,16 +16,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TipoPessoa", 
-        discriminatorType= DiscriminatorType.CHAR)
-@DiscriminatorValue("")
-@Table(name = "Pessoa")
+@Inheritance(strategy= InheritanceType.JOINED)
 public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Codigo", nullable = false)
+    @Column(nullable = false)
     private int codigo;
     
     @Column(length=45)
@@ -38,7 +34,7 @@ public class Pessoa implements Serializable {
     private String tefefone;
    
     @OneToOne
-    @JoinColumn(name="idEndereco")
+    @JoinColumn(name="ID_ENDERECO")
     private Endereco endereco;
    
     
