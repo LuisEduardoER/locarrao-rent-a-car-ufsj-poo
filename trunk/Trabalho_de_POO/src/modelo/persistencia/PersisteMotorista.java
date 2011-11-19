@@ -20,11 +20,11 @@ import java.util.List;
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
 
-public class PersistenciaMotorista{
+public class PersisteMotorista{
     public static File arquivo;
     public static List<Motorista> listaMotorista;
     
-    public PersistenciaMotorista() {
+    public PersisteMotorista() {
         arquivo = new File("src/arquivos/Motorista.txt");
         listaMotorista = new ArrayList<Motorista>();
         retornarMotorista();

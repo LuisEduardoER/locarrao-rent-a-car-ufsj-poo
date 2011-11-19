@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
-import modelo.persistencia.PersistenciaCliente;
+import modelo.persistencia.PersisteCliente;
 import modelo.dominio.Valida;
 /**
  *
  * @author PATY
  */
 public class VisaoClientes {
-    PersistenciaCliente persistenciaCliente;
+    PersisteCliente persistenciaCliente;
     public static Clientes clientes;
     VisaoEndereco visaoEndereco;
     
@@ -27,7 +27,7 @@ public class VisaoClientes {
      * A string dado será responsavel por fazer a validação de campos obrigatórios
      */
     public void cadastrarClientes(){
-        persistenciaCliente = new PersistenciaCliente();
+        persistenciaCliente = new PersisteCliente();
         clientes = new Clientes();
         Endereco endereco = new Endereco();
         visaoEndereco = new VisaoEndereco();
@@ -48,7 +48,7 @@ public class VisaoClientes {
         }while(dado.isEmpty());
         
         Valida valida = new Valida();
-        if(!valida.validaCPF(dado)){
+        if(!valida.validarCPF(dado)){
             System.out.println("CPF invalido");
             return;
         }
@@ -62,7 +62,7 @@ public class VisaoClientes {
                 }
                 else{
                     //Codigo será com auto incremento
-                    clientes.setCodigo(PersistenciaCliente.listaClientes.size()+1);
+                    clientes.setCodigo(PersisteCliente.listaClientes.size()+1);
         
                     do{
                         System.out.println("Digite o nome"); 
@@ -80,7 +80,7 @@ public class VisaoClientes {
                     if(dado.isEmpty()){
                           clientes.setTefefone(" - ");
                     }else{
-                        if(valida.validaTelefone(dado)){
+                        if(valida.validarTelefone(dado)){
                             clientes.setTefefone(dado);
                         }else{
                             System.out.println("Telefone invalido");
@@ -103,7 +103,7 @@ public class VisaoClientes {
                     }else{
                         clientes.setEndereco(endereco);
                     }
-                    clientes.setCodigo(PersistenciaCliente.listaClientes.size() + 1);
+                    clientes.setCodigo(PersisteCliente.listaClientes.size() + 1);
                     boolean operacao = persistenciaCliente.salvar(clientes);
                     if (operacao) {
                       System.out.println("Salvo com sucesso");
@@ -136,7 +136,7 @@ public class VisaoClientes {
     
     public void buscaPorNome(){
         Scanner entrada = new Scanner(System.in);
-        persistenciaCliente = new PersistenciaCliente();
+        persistenciaCliente = new PersisteCliente();
         String dado = "";
         do{
             System.out.println("Digite o nome");

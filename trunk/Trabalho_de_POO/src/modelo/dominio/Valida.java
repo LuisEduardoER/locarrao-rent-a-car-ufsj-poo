@@ -9,7 +9,7 @@ package modelo.dominio;
  * @author Thais
  */
 public class Valida {
-public  boolean validaCPF(String CPF) {
+public  boolean validarCPF(String CPF) {
         int digitoVerificador1 = 0;
         int digitoVerificador2 = 0;
         int resto = 0;
@@ -49,7 +49,7 @@ public  boolean validaCPF(String CPF) {
 
     }
     
-public boolean validaCnh( String cnh){
+public boolean validarCnh( String cnh){
          boolean resposta = true;
          if(cnh.length() == 10){
              for(int i=0; i< cnh.length(); i++){
@@ -63,7 +63,7 @@ public boolean validaCnh( String cnh){
          }
          return resposta;
     }
-    public boolean validaCEP(String cep){
+    public boolean validarCEP(String cep){
         boolean resposta = true;
         if(cep.length() == 8){
             for(int i=0; i< cep.length(); i++){
@@ -79,7 +79,7 @@ public boolean validaCnh( String cnh){
         
     }
     
-    public boolean validaTelefone( String  telefone){      
+    public boolean validarTelefone( String  telefone){      
         boolean resposta = true;
         if(telefone.length() == 10){
             for(int i=0; i< telefone.length(); i++){

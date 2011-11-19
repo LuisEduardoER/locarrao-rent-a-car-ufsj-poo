@@ -14,12 +14,12 @@ import modelo.dominio.TipoVeiculo;
 
 //deu erro no commit
 
-public class PersistenciaTipoLocacao {    
+public class PersisteTipoLocacao {    
     public static File arquivo;
     public static List<TipoLocacao> listaTipoLocacao;
     
     //construtor que vai fazer com que a lista seja lida somente uma vez.
-    public PersistenciaTipoLocacao() {
+    public PersisteTipoLocacao() {
         arquivo = new File("src/arquivos/TipoLocacao.txt");
         listaTipoLocacao = new ArrayList<TipoLocacao>();
         retornarTodosTipoLocacao();
