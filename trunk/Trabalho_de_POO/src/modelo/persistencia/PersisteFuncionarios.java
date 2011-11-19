@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Query;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
 import locarrao.visao.VisaoFuncionarios;
@@ -246,13 +247,21 @@ public class PersisteFuncionarios extends DaoBase{
      */
     
     public boolean verificarLogin(Funcionarios funcionario){
-        boolean login = false;
-        Funcionarios f = new Funcionarios();
+        abrirDB();
         
-        f = em.find(Funcionarios.class, f.getUsuario());
+        Query query = em.createQuery("FROM Funcionarios f WHERE f.usuario = :usuario and f.senha = :senha");
+        query.setParameter("usuario", funcionario.getUsuario());
+        query.setParameter("senha", funcionario.getSenha());
         
         
-        return login;
+        if(query.getSingleResult() == null){
+            fecharDB();
+            return false;
+        }else{
+            fecharDB();
+            return true;
+        }
+        
         
     }
 }

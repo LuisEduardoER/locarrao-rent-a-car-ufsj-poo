@@ -29,11 +29,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTxtUsuario" min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="jTxtUsuario" linkSize="1" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTxtSenha" min="-2" pref="111" max="-2" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="jTxtSenha" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
@@ -69,8 +69,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtUsuario">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtSenha">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Senha:"/>
@@ -83,6 +81,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAcessarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="jTxtSenha">
     </Component>
   </SubComponents>
 </Form>
