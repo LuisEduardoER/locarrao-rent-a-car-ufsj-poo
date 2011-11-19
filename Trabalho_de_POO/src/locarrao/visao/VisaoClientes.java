@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
-import modelo.persiste.PersisteCliente;
+import modelo.persistencia.PersisteCliente;
 import modelo.dominio.Valida;
 /**
  *

@@ -15,10 +15,10 @@ import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
-import modelo.persiste.PersisteMarcaVeiculo;
-import modelo.persiste.PersisteModeloVeiculo;
-import modelo.persiste.PersisteTipoVeiculo;
-import modelo.persiste.PersisteVeiculos;
+import modelo.persistencia.PersisteMarcaVeiculo;
+import modelo.persistencia.PersisteModeloVeiculo;
+import modelo.persistencia.PersisteTipoVeiculo;
+import modelo.persistencia.PersisteVeiculos;
 
 /**
  *

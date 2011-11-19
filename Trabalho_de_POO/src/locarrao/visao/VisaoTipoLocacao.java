@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.dominio.TipoLocacao;
-import modelo.persiste.PersisteTipoLocacao;
-import modelo.persiste.PersisteTipoVeiculo;
+import modelo.persistencia.PersisteTipoLocacao;
+import modelo.persistencia.PersisteTipoVeiculo;
 
 public class VisaoTipoLocacao {
     PersisteTipoLocacao persistenciaTipoLocacao;
