@@ -9,9 +9,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import modelo.dominio.TipoVeiculo;
 
-public class PersisteTipoVeiculo {
+public class PersisteTipoVeiculo extends DaoBase{
     public static File arquivo;
     public static List<TipoVeiculo> listaTipoVeiculos;
                         
@@ -115,6 +117,28 @@ public class PersisteTipoVeiculo {
      */
     public TipoVeiculo retornaTipoVeiculo(int indice) throws FileNotFoundException, IOException {
         return listaTipoVeiculos.get(indice - 1);
+    }
+    
+    /*
+     * Codigos referentes à interface gráfica
+     */
+    
+    public List retornarListaTipos(){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM TipoVeiculo");
+        List lista = null;
+        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        tipoVeiculo.setTipo("Padrão");
+        try{
+            lista = query.getResultList();
+        }catch(NoResultException ex){
+            System.out.println("aqui");
+            lista.add(0, tipoVeiculo);
+        }
+        
+        return lista;
+        
     }
    
 }

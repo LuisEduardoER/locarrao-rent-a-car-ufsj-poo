@@ -10,6 +10,10 @@
  */
 package locarrao.visao.grafica;
 
+import java.util.List;
+import modelo.dominio.TipoVeiculo;
+import modelo.persistencia.PersisteTipoVeiculo;
+
 /**
  *
  * @author Magelinha
@@ -19,6 +23,7 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
     /** Creates new form VisaoTipoLocacao */
     public VisaoTipoLocacao() {
         initComponents();
+        preencherCombo();
     }
 
     /** This method is called from within the constructor to
@@ -94,6 +99,11 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         jBSalvar.setText("Salvar");
 
         jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,6 +163,10 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -163,6 +177,17 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
                 new VisaoTipoLocacao().setVisible(true);
             }
         });
+    }
+    
+    public void preencherCombo(){
+        PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
+        List lista = persisteTipoVeiculo.retornarListaTipos();
+        
+        jComboTipoVeiculo.removeAllItems();
+        for(Object item: lista){
+            TipoVeiculo tipoVeiculo = (TipoVeiculo) item;
+            jComboTipoVeiculo.addItem(tipoVeiculo.getTipo());
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
