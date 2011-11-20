@@ -3,6 +3,7 @@ package modelo.dominio;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,15 +34,15 @@ public class Veiculos implements Serializable {
     @Column(length=100)
     private String observacao;
     
-    @OneToOne
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ID_TIPO_VEICULO")
     private TipoVeiculo tipoVeiculo;
     
-    @OneToOne
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ID_MARCA")
     private MarcaVeiculo marcaVeiculo;
 
-    @OneToOne
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ID_MODELO")
     private ModeloVeiculo modeloVeiculo;
     

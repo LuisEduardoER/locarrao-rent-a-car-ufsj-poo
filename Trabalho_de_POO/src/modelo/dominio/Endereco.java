@@ -17,25 +17,25 @@ public class Endereco implements Serializable{
     @Column(name="ID_ENDERECO",nullable=false)
     private Long id;
  
-    @Transient
+    @Column(length=45)
     private String rua;
 
-    @Transient
+    @Column
     private int numero;
 
-    @Transient
+    @Column(length=10)
     private String complemento;
     
-    @Transient
+    @Column(length=45)
     private String bairro;
 
-    @Transient
+    @Column(length=45)
     private String cidade;
 
-    @Transient
+    @Column(length=2)
     private String uf;
 
-    @Transient
+    @Column(length=9)
     private String cep;
     
     

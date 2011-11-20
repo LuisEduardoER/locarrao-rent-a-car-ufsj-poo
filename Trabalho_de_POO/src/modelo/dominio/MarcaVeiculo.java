@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="MarcaVeiculo")
+@Table(name="MARCA_VEICULO")
 public class MarcaVeiculo implements Serializable {
     
     @Column(length=45)
@@ -17,7 +17,7 @@ public class MarcaVeiculo implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idEndereco",nullable=false)
+    @Column(name="ID_MARCA",nullable=false)
     private Long id;
 
     public MarcaVeiculo(){
