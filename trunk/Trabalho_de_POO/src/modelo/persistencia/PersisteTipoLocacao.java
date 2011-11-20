@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import modelo.dominio.Locacao;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
@@ -182,7 +184,19 @@ public class PersisteTipoLocacao extends DaoBase{
     /*
      * Códigos referentes à interface grafica
      */
-    
+    public TipoVeiculo pesquisarTipoVeiculoBD(TipoVeiculo tipoVeiculo){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM TipoVeiculo tipoVeiculo WHERE tipoVeiculo.tipo = :tipo");
+        query.setParameter("tipo", tipoVeiculo.getTipo());
+        try{
+            tipoVeiculo = (TipoVeiculo)query.getSingleResult();
+            return tipoVeiculo;
+        }catch(NoResultException ex){
+            return tipoVeiculo;
+        }
+        
+    }
     
     public void salvarBD(TipoLocacao tipoLocacao){
         abrirDB();
