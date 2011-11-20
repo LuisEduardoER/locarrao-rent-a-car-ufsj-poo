@@ -104,6 +104,11 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         );
 
         jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
         jBCancelar.setText("Cancelar");
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +179,10 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+        salvar();
+    }//GEN-LAST:event_jBSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,7 +236,7 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         
         try{
             numero  = formatador.parse(jTxtTaxaDiarias.getText());
-            tipoLocacao.setTaxaDiarias((Double) numero);
+            tipoLocacao.setTaxaDiarias(numero.doubleValue());
         }catch(ParseException ex){
             JOptionPane.showMessageDialog(null, "O campo Taxas para Diárias so aceito números! Inteiros ou decimais");
             jTxtTaxaDiarias.setBackground(Color.red);
@@ -237,7 +246,7 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         
         try{
             numero  = formatador.parse(jTxtTaxaQuilometragem.getText());
-            tipoLocacao.setTaxaPorKm((Double) numero);
+            tipoLocacao.setTaxaPorKm(numero.doubleValue());
         }catch(ParseException ex){
             JOptionPane.showMessageDialog(null, "O campo Taxas para locação por "
                     + "quilometragem so aceito números! Inteiros ou decimais");
@@ -248,7 +257,7 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         
         try{
             numero  = formatador.parse(jTxtPrecoPorKm.getText());
-            tipoLocacao.setPrecoPorQuilometro((Double) numero);
+            tipoLocacao.setPrecoPorQuilometro(numero.doubleValue());
             
         }catch(ParseException ex){
             JOptionPane.showMessageDialog(null, "O campo Preço por Km"
@@ -263,12 +272,13 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
     public void salvar(){
         TipoLocacao tipoLocacao = new TipoLocacao();
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        PersisteTipoLocacao persisteTipoLocacao = new PersisteTipoLocacao();
+        
         
         tipoVeiculo.setTipo(jComboTipoVeiculo.getSelectedItem().toString());
-        tipoLocacao.setTipoVeiculo(tipoVeiculo);
         
+        tipoLocacao.setTipoVeiculo(persisteTipoLocacao.pesquisarTipoVeiculoBD(tipoVeiculo));
         if(verificaDadosIncorretos(tipoLocacao)){
-            PersisteTipoLocacao persisteTipoLocacao = new PersisteTipoLocacao();
             persisteTipoLocacao.salvarBD(tipoLocacao);
         }
         
