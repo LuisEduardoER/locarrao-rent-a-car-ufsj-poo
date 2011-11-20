@@ -14,7 +14,7 @@ import modelo.dominio.TipoVeiculo;
 
 //deu erro no commit
 
-public class PersisteTipoLocacao {    
+public class PersisteTipoLocacao extends DaoBase{    
     public static File arquivo;
     public static List<TipoLocacao> listaTipoLocacao;
     
@@ -179,4 +179,17 @@ public class PersisteTipoLocacao {
         return preco;
     }
     
+    /*
+     * Códigos referentes à interface grafica
+     */
+    
+    
+    public void salvarBD(TipoLocacao tipoLocacao){
+        abrirDB();
+        
+        em.persist(tipoLocacao);
+        em.getTransaction().commit();
+        
+        fecharDB();
+    }
 }

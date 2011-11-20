@@ -133,7 +133,6 @@ public class PersisteTipoVeiculo extends DaoBase{
         try{
             lista = query.getResultList();
         }catch(NoResultException ex){
-            System.out.println("aqui");
             lista.add(0, tipoVeiculo);
         }
         
