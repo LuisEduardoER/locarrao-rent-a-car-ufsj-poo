@@ -1,10 +1,8 @@
 package modelo.dominio;
 
+
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +14,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+@Table(name="PESSOA")
 @Inheritance(strategy= InheritanceType.JOINED)
 public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(name = "ID_PESSOA",nullable = false)
     private int codigo;
     
     @Column(length=45)

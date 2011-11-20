@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
@@ -248,18 +250,18 @@ public class PersisteFuncionarios extends DaoBase{
     
     public boolean verificarLogin(Funcionarios funcionario){
         abrirDB();
-        
+        Funcionarios f = new Funcionarios();
         Query query = em.createQuery("FROM Funcionarios f WHERE f.usuario = :usuario and f.senha = :senha");
         query.setParameter("usuario", funcionario.getUsuario());
         query.setParameter("senha", funcionario.getSenha());
         
-        
-        if(query.getSingleResult() == null){
-            fecharDB();
-            return false;
-        }else{
-            fecharDB();
+        try{
+            f = (Funcionarios)query.getSingleResult();
             return true;
+        }catch(EntityNotFoundException ex){
+            return false;
+        }catch(NoResultException ex){
+            return false;
         }
         
         

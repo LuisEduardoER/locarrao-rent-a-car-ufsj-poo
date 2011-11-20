@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,19 +48,19 @@ public class Locacao implements Serializable{
     @Column(name="ABERTA")
     private boolean locacaoAberta;
 
-    @OneToOne
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "ID_TIPO_LOCACAO")
     private TipoLocacao tipoLocacao;
     
-    @OneToOne
-    @JoinColumn(name = "CPF_CLIENTE")
+    @OneToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "ID_CLIENTE")
     private Clientes cliente;
 
-    @OneToOne
-    @JoinColumn(name = "CPF_MOTORISTA")
+    @OneToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "ID_MOTORISTA")
     private Motorista motorista;
 
-    @OneToOne
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "ID_VEICULO")
     private Veiculos veiculo;
 
