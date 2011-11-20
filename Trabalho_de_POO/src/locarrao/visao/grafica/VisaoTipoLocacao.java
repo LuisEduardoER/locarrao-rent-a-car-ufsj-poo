@@ -10,8 +10,15 @@
  */
 package locarrao.visao.grafica;
 
+import antlr.MismatchedCharException;
+import java.awt.Color;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.List;
+import javax.swing.JOptionPane;
+import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
+import modelo.persistencia.PersisteTipoLocacao;
 import modelo.persistencia.PersisteTipoVeiculo;
 
 /**
@@ -189,6 +196,86 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
             jComboTipoVeiculo.addItem(tipoVeiculo.getTipo());
         }
     }
+    
+    /*
+     * Verifica se tem algum campo em branco
+     */
+    public boolean validarCamposEmBranco(){
+        if(jTxtTaxaDiarias.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo Taxas Diárias não pode ficar vazio!");
+            jTxtTaxaDiarias.setBackground(Color.red);
+            return false;
+        }
+        else if(jTxtTaxaQuilometragem.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo Taxas por Quilometragem não pode ficar vazio!");
+            jTxtTaxaQuilometragem.setBackground(Color.red);
+            return false;
+        }
+        else if(jTxtPrecoPorKm.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo Preço por Km não pode ficar vazio!");
+            jTxtPrecoPorKm.setBackground(Color.red);
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
+    
+    public boolean verificaDadosIncorretos(TipoLocacao tipoLocacao){
+        DecimalFormat formatador = new DecimalFormat("#,###.00");
+        Number numero;
+        
+        try{
+            numero  = formatador.parse(jTxtTaxaDiarias.getText());
+            tipoLocacao.setTaxaDiarias((Double) numero);
+        }catch(ParseException ex){
+            JOptionPane.showMessageDialog(null, "O campo Taxas para Diárias so aceito números! Inteiros ou decimais");
+            jTxtTaxaDiarias.setBackground(Color.red);
+            return false;
+            
+        }
+        
+        try{
+            numero  = formatador.parse(jTxtTaxaQuilometragem.getText());
+            tipoLocacao.setTaxaPorKm((Double) numero);
+        }catch(ParseException ex){
+            JOptionPane.showMessageDialog(null, "O campo Taxas para locação por "
+                    + "quilometragem so aceito números! Inteiros ou decimais");
+            jTxtTaxaQuilometragem.setBackground(Color.red);
+            return false;
+            
+        }
+        
+        try{
+            numero  = formatador.parse(jTxtPrecoPorKm.getText());
+            tipoLocacao.setPrecoPorQuilometro((Double) numero);
+            
+        }catch(ParseException ex){
+            JOptionPane.showMessageDialog(null, "O campo Preço por Km"
+                    + " so aceita números! Inteiros ou decimais");
+            jTxtPrecoPorKm.setBackground(Color.red);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public void salvar(){
+        TipoLocacao tipoLocacao = new TipoLocacao();
+        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        
+        tipoVeiculo.setTipo(jComboTipoVeiculo.getSelectedItem().toString());
+        tipoLocacao.setTipoVeiculo(tipoVeiculo);
+        
+        if(verificaDadosIncorretos(tipoLocacao)){
+            PersisteTipoLocacao persisteTipoLocacao = new PersisteTipoLocacao();
+            persisteTipoLocacao.salvarBD(tipoLocacao);
+        }
+        
+        
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBSalvar;
