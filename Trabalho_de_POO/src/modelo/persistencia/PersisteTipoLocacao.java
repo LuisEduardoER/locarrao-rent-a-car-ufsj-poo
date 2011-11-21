@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import modelo.dominio.Locacao;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
@@ -184,7 +185,7 @@ public class PersisteTipoLocacao extends DaoBase{
     /*
      * Códigos referentes à interface grafica
      */
-    public TipoVeiculo pesquisarTipoVeiculoBD(TipoVeiculo tipoVeiculo){
+    public TipoVeiculo retornarTipoVeiculoBD(TipoVeiculo tipoVeiculo){
         abrirDB();
         
         Query query = em.createQuery("FROM TipoVeiculo tipoVeiculo WHERE tipoVeiculo.tipo = :tipo");
@@ -206,4 +207,47 @@ public class PersisteTipoLocacao extends DaoBase{
         
         fecharDB();
     }
+    
+    public boolean atualizarBD(TipoLocacao tipoLocacao, TipoVeiculo tipoVeiculo) {
+        tipoVeiculo = retornarTipoVeiculoBD(tipoVeiculo);
+        abrirDB();
+        Query query = em.createQuery("UPDATE TipoLocacao tipoLocacao "
+                + "SET tipoLocacao.precoPorQuilometro = :km, tipoLocacao.taxaDiarias = :diaria, "
+                + "tipoLocacao.taxaPorKm = :taxaKm "
+                + "WHERE tipoLocacao.tipoVeiculo.id = :id");
+        query.setParameter("km", tipoLocacao.getPrecoPorQuilometro());
+        query.setParameter("diaria", tipoLocacao.getTaxaDiarias());
+        query.setParameter("taxaKm", tipoLocacao.getTaxaPorKm());
+        query.setParameter("id", tipoVeiculo.getId());
+        int resultado = query.executeUpdate();
+        fecharDB();
+        
+        if(resultado <= 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+        
+        
+    }
+    
+    public boolean verificarSeExisteCadastro(TipoVeiculo tipoVeiculo){
+        tipoVeiculo = retornarTipoVeiculoBD(tipoVeiculo);
+        
+        abrirDB();
+        
+        Query query = em.createQuery("FROM TipoVeiculo tipoVeiculo WHERE ID_TIPO_VEICULO = :id");
+        query.setParameter("id", tipoVeiculo.getId());
+        
+        try{
+            query.getSingleResult();
+            return true;
+        }catch(NoResultException ex){
+            return false;
+        }
+        
+    }
+    
+    
 }
