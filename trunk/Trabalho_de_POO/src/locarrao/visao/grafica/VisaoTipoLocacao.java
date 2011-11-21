@@ -10,7 +10,6 @@
  */
 package locarrao.visao.grafica;
 
-import antlr.MismatchedCharException;
 import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -274,12 +273,22 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         PersisteTipoLocacao persisteTipoLocacao = new PersisteTipoLocacao();
         
-        
+        //pega a id do veículo
         tipoVeiculo.setTipo(jComboTipoVeiculo.getSelectedItem().toString());
         
-        tipoLocacao.setTipoVeiculo(persisteTipoLocacao.pesquisarTipoVeiculoBD(tipoVeiculo));
         if(verificaDadosIncorretos(tipoLocacao)){
-            persisteTipoLocacao.salvarBD(tipoLocacao);
+            if(persisteTipoLocacao.verificarSeExisteCadastro(tipoVeiculo)){
+                tipoLocacao.setTipoVeiculo(tipoVeiculo);
+                
+                if(persisteTipoLocacao.atualizarBD(tipoLocacao,tipoVeiculo)){
+                    JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados");
+                }
+                
+            }else{
+                persisteTipoLocacao.salvarBD(tipoLocacao);
+            }
         }
         
         
