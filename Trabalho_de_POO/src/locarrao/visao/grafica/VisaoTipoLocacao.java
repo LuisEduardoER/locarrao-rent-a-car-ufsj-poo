@@ -229,7 +229,7 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         
     }
     
-    public boolean verificaDadosIncorretos(TipoLocacao tipoLocacao){
+    public boolean verificarDadosIncorretos(TipoLocacao tipoLocacao){
         DecimalFormat formatador = new DecimalFormat("#,###.00");
         Number numero;
         
@@ -275,23 +275,26 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         
         //pega a id do veículo
         tipoVeiculo.setTipo(jComboTipoVeiculo.getSelectedItem().toString());
+        tipoVeiculo = persisteTipoLocacao.retornarTipoVeiculoBD(tipoVeiculo);
+        JOptionPane.showMessageDialog(null, tipoVeiculo.getId());
         
-        if(verificaDadosIncorretos(tipoLocacao)){
-            if(persisteTipoLocacao.verificarSeExisteCadastro(tipoVeiculo)){
-                tipoLocacao.setTipoVeiculo(tipoVeiculo);
+        
+        if(persisteTipoLocacao.verificarSeExisteCadastro(tipoVeiculo)){
+            tipoLocacao.setTipoVeiculo(tipoVeiculo);
+            tipoLocacao = persisteTipoLocacao.pegarIdTipoLocacao(tipoLocacao);
                 
-                if(persisteTipoLocacao.atualizarBD(tipoLocacao,tipoVeiculo)){
-                    JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados");
-                }
-                
-            }else{
-                persisteTipoLocacao.salvarBD(tipoLocacao);
+            if(verificarDadosIncorretos(tipoLocacao)){
+                persisteTipoLocacao.atualizarBD(tipoLocacao);
+                JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso");
             }
+            
+        }else{
+            if(verificarDadosIncorretos(tipoLocacao)){
+                persisteTipoLocacao.salvarBD(tipoLocacao);
+                JOptionPane.showMessageDialog(null, "Dados salvos com sucesso");
+            }
+            
         }
-        
-        
         
     }
     
