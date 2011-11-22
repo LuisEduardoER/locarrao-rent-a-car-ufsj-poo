@@ -190,13 +190,32 @@ public class PersisteTipoLocacao extends DaoBase{
         
         Query query = em.createQuery("FROM TipoVeiculo tipoVeiculo WHERE tipoVeiculo.tipo = :tipo");
         query.setParameter("tipo", tipoVeiculo.getTipo());
+        
+        fecharDB();
         try{
-            tipoVeiculo = (TipoVeiculo)query.getSingleResult();
+            tipoVeiculo = (TipoVeiculo) query.getSingleResult();
             return tipoVeiculo;
         }catch(NoResultException ex){
             return tipoVeiculo;
         }
         
+    }
+    
+    public TipoLocacao pegarIdTipoLocacao(TipoLocacao tipoLocacao){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM TipoLocacao TipoLocacao WHERE tipoLocacao.tipoVeiculo.id = :id");
+        query.setParameter("id", tipoLocacao.getTipoVeiculo().getId());
+        
+        try{
+            tipoLocacao = (TipoLocacao)query.getSingleResult();
+            fecharDB();
+        
+            return tipoLocacao;
+        }catch(NoResultException ex){
+            fecharDB();
+            return tipoLocacao;
+        }
     }
     
     public void salvarBD(TipoLocacao tipoLocacao){
@@ -208,9 +227,13 @@ public class PersisteTipoLocacao extends DaoBase{
         fecharDB();
     }
     
-    public boolean atualizarBD(TipoLocacao tipoLocacao, TipoVeiculo tipoVeiculo) {
-        tipoVeiculo = retornarTipoVeiculoBD(tipoVeiculo);
+    public void atualizarBD(TipoLocacao tipoLocacao) {
         abrirDB();
+        
+        em.merge(tipoLocacao);
+        em.getTransaction().commit();
+        /*
+                
         Query query = em.createQuery("UPDATE TipoLocacao tipoLocacao "
                 + "SET tipoLocacao.precoPorQuilometro = :km, tipoLocacao.taxaDiarias = :diaria, "
                 + "tipoLocacao.taxaPorKm = :taxaKm "
@@ -220,30 +243,34 @@ public class PersisteTipoLocacao extends DaoBase{
         query.setParameter("taxaKm", tipoLocacao.getTaxaPorKm());
         query.setParameter("id", tipoVeiculo.getId());
         int resultado = query.executeUpdate();
+         * 
+         */
         fecharDB();
-        
-        if(resultado <= 0){
+        /*
+         if(resultado <= 0){
             return false;
         }
         else{
             return true;
         }
         
+         * 
+         */
         
     }
     
     public boolean verificarSeExisteCadastro(TipoVeiculo tipoVeiculo){
-        tipoVeiculo = retornarTipoVeiculoBD(tipoVeiculo);
-        
         abrirDB();
         
-        Query query = em.createQuery("FROM TipoVeiculo tipoVeiculo WHERE ID_TIPO_VEICULO = :id");
+        Query query = em.createQuery("FROM TipoLocacao tipoLocacao WHERE tipoLocacao.tipoVeiculo.id = :id");
         query.setParameter("id", tipoVeiculo.getId());
         
         try{
             query.getSingleResult();
+            fecharDB();
             return true;
         }catch(NoResultException ex){
+            fecharDB();
             return false;
         }
         
