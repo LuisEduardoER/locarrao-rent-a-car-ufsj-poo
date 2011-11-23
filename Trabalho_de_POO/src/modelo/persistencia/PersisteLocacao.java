@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo.persistencia;
 
 import java.io.BufferedReader;
@@ -26,7 +22,7 @@ import modelo.dominio.Veiculos;
  *
  * @author User
  */
-public class PersisteLocacao {
+public class PersisteLocacao extends DaoBase{
     public static File arquivo;
     public static List<Locacao> listaLocacao;
     PersisteTipoLocacao persistenciaTipoLocacao = new PersisteTipoLocacao();
@@ -421,4 +417,8 @@ public class PersisteLocacao {
         }
         return total;
     }
+    
+    /*
+     * Código referente à interface gráfica
+     */
 }

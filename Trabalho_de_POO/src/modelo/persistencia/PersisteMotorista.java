@@ -17,10 +17,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import modelo.dominio.Motorista;
 import modelo.dominio.Endereco;
 
-public class PersisteMotorista{
+public class PersisteMotorista extends DaoBase{
     public static File arquivo;
     public static List<Motorista> listaMotorista;
     
@@ -184,5 +186,18 @@ public class PersisteMotorista{
             retorno = false;
         }
         return retorno;
+    }
+    
+    public boolean pesquisarMotoristaBD(Motorista motorista){
+        abrirDB();
+        Query query = em.createQuery("FROM Mostorista motorista WHERE motorista.cnh = :cnh");
+        query.setParameter("cnh", motorista.getCnh());
+        
+        try{
+            motorista = (Motorista)query.getSingleResult();
+            return true;
+        }catch(NoResultException ex){
+            return false;
+        }
     }
 }
