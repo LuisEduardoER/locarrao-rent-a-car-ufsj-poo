@@ -201,10 +201,10 @@ public class PersisteTipoLocacao extends DaoBase{
         
     }
     
-    public TipoLocacao pegarIdTipoLocacao(TipoLocacao tipoLocacao){
+    public TipoLocacao retornarTipoLocacao(TipoLocacao tipoLocacao){
         abrirDB();
         
-        Query query = em.createQuery("FROM TipoLocacao TipoLocacao WHERE tipoLocacao.tipoVeiculo.id = :id");
+        Query query = em.createQuery("FROM TipoLocacao tipoLocacao WHERE tipoLocacao.tipoVeiculo.id = :id");
         query.setParameter("id", tipoLocacao.getTipoVeiculo().getId());
         
         try{
@@ -232,30 +232,7 @@ public class PersisteTipoLocacao extends DaoBase{
         
         em.merge(tipoLocacao);
         em.getTransaction().commit();
-        /*
-                
-        Query query = em.createQuery("UPDATE TipoLocacao tipoLocacao "
-                + "SET tipoLocacao.precoPorQuilometro = :km, tipoLocacao.taxaDiarias = :diaria, "
-                + "tipoLocacao.taxaPorKm = :taxaKm "
-                + "WHERE tipoLocacao.tipoVeiculo.id = :id");
-        query.setParameter("km", tipoLocacao.getPrecoPorQuilometro());
-        query.setParameter("diaria", tipoLocacao.getTaxaDiarias());
-        query.setParameter("taxaKm", tipoLocacao.getTaxaPorKm());
-        query.setParameter("id", tipoVeiculo.getId());
-        int resultado = query.executeUpdate();
-         * 
-         */
         fecharDB();
-        /*
-         if(resultado <= 0){
-            return false;
-        }
-        else{
-            return true;
-        }
-        
-         * 
-         */
         
     }
     

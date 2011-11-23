@@ -281,7 +281,7 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         
         if(persisteTipoLocacao.verificarSeExisteCadastro(tipoVeiculo)){
             tipoLocacao.setTipoVeiculo(tipoVeiculo);
-            tipoLocacao = persisteTipoLocacao.pegarIdTipoLocacao(tipoLocacao);
+            tipoLocacao = persisteTipoLocacao.retornarTipoLocacao(tipoLocacao);
                 
             if(verificarDadosIncorretos(tipoLocacao)){
                 persisteTipoLocacao.atualizarBD(tipoLocacao);
