@@ -1,7 +1,7 @@
 
 package locarrao.visao.grafica;
 import modelo.dominio.Valida;
-import modelo.persiste.PersisteCliente;
+import modelo.persistencia.PersisteCliente;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
 
@@ -235,7 +235,7 @@ private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
      PersisteCliente persisteCliente = new PersisteCliente();
      Valida valida = new Valida();   
      Endereco endereco = new Endereco();
-    boolean verifica=valida.validaCPF(campoCpf.getText());
+    boolean verifica=valida.validarCPF(campoCpf.getText());
     int verificador =0;
     //primeiro verifica os campos obrigatórios
     if(!verifica){
@@ -249,7 +249,7 @@ private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     if(verificador==1){
         cliente.setCpf(campoCpf.getText());
         cliente.setNome(campoNome.getText());
-        if(campoCep.getText().isEmpty()||!(verifica=valida.validaCEP(campoCep.getText()))){
+        if(campoCep.getText().isEmpty()||!(verifica=valida.validarCEP(campoCep.getText()))){
             endereco.setCep("-");
             endereco.setUf("-");
             endereco.setCidade("-");

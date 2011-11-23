@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import locarrao.visao.VisaoVeiculos;
 import modelo.dominio.Locacao;
 import modelo.dominio.MarcaVeiculo;
@@ -18,7 +20,7 @@ import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 
-public class PersisteVeiculos {
+public class PersisteVeiculos extends DaoBase{
     public static File arquivo;
     public static List<Veiculos> listaVeiculos;
     VisaoVeiculos visaoVeiculo = new VisaoVeiculos();
@@ -339,5 +341,19 @@ public class PersisteVeiculos {
         }
     }
     
+    public boolean pesquisarVeiculoBD(Veiculos veiculo){
+        abrirDB();
+        Query query = em.createQuery("FROM Veiculos veiculo WHERE veiculo.placa = :placa");
+        query.setParameter("placa", veiculo.getPlaca());
+        
+        try{
+            veiculo = (Veiculos)query.getSingleResult();
+            fecharDB();
+            return true;
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }
+    }
 }
 

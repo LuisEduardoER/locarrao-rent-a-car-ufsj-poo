@@ -13,15 +13,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import locarrao.visao.VisaoClientes;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
+import modelo.dominio.Veiculos;
 
 /**
  *
  * @author PATY
  */
-public class PersisteCliente {
+public class PersisteCliente extends DaoBase{
     public static File arquivo;
     public static List<Clientes> listaClientes;
     
@@ -240,6 +243,22 @@ public class PersisteCliente {
         
         
     }
-   
+    
+    /*
+     * intergace grafica
+     */
+    public boolean pesquisarClienteBD(Clientes cliente){
+        abrirDB();
+        
+        try{
+            cliente = em.find(Clientes.class, cliente.getCodigo());
+            fecharDB();
+            return true;
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }
+    }
+    
 }
 
