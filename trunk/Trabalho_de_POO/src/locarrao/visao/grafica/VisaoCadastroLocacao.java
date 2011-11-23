@@ -11,12 +11,14 @@
 package locarrao.visao.grafica;
 
 import java.awt.Color;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersisteCliente;
+import modelo.persistencia.PersisteLocacao;
 import modelo.persistencia.PersisteMotorista;
 import modelo.persistencia.PersisteVeiculos;
 
@@ -31,6 +33,8 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     }
     
     Locacao locacao = new Locacao();
+    PersisteLocacao persisteLocacao = new PersisteLocacao();
+    Veiculos veiculo = new Veiculos();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -62,16 +66,17 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTxtKmSaida = new javax.swing.JTextField();
         jBCadastrarLocacao = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
 
-        jLabel1.setText("Código:");
+        jLabel1.setText("Código* :");
 
         jBPesquisarCliente.setText("Pesquisar");
 
-        jLabel2.setText("Cliente:");
+        jLabel2.setText("Cliente* :");
 
         jTxtCliente.setEditable(false);
 
@@ -79,12 +84,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addComponent(jTxtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -93,7 +98,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addComponent(jTxtCodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBPesquisarCliente)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,11 +119,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Motorista"));
 
-        jLabel3.setText("CNH:");
+        jLabel3.setText("CNH* :");
 
         jBPesquisarMotorista.setText("Pesquisar");
 
-        jLabel4.setText("Motorista:");
+        jLabel4.setText("Motorista* :");
 
         jTxtMotorista.setEditable(false);
 
@@ -126,12 +131,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(jTxtMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -140,7 +145,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addComponent(jTxtCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jBPesquisarMotorista)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +166,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Veiculo"));
 
-        jLabel5.setText("Placa: ");
+        jLabel5.setText("Placa* : ");
 
         jBPesquisarVeiculo.setText("Pesquisar");
 
@@ -176,7 +181,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addComponent(jTxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBPesquisarVeiculo)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +208,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Quilometragem de Saída:");
+        jLabel8.setText("Quilometragem de Saída* :");
 
         jTxtKmSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +236,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel6)))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,42 +254,54 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         );
 
         jBCadastrarLocacao.setText("Cadastrar");
+        jBCadastrarLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadastrarLocacaoActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Os itens marcados com * são obrigatórios");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(279, 279, 279)
+                .addComponent(jBCadastrarLocacao)
+                .addGap(539, 539, 539))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(jBCadastrarLocacao)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addContainerGap(690, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBCadastrarLocacao)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
 
         pack();
@@ -298,6 +315,10 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtKmSaidaActionPerformed
 
+    private void jBCadastrarLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarLocacaoActionPerformed
+        chamarVerificacoes();
+    }//GEN-LAST:event_jBCadastrarLocacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -310,6 +331,14 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         });
     }
     
+    public boolean verificarCamposNumericos(String campo){
+        for(int i=0;i<campo.length();i++){
+            if(!Character.isDigit(campo.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
     public boolean verificarCliente(){
         PersisteCliente persisteCliente = new PersisteCliente();
         Clientes cliente = new Clientes();
@@ -318,6 +347,13 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         if(jTxtCodigoCliente.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Cliente é obrigatório");
             jTxtCodigoCliente.setBackground(Color.red);
+            jTxtCodigoCliente.requestFocus();
+            return false;
+        }
+        else if(!verificarCamposNumericos(jTxtCodigoCliente.getText())){
+            JOptionPane.showMessageDialog(null, "O Campo Código do Cliente so aceita números e inteiros");
+            jTxtCodigoCliente.setBackground(Color.red);
+            jTxtCodigoCliente.requestFocus();
             return false;
         }
         else if(persisteCliente.pesquisarClienteBD(cliente)){
@@ -337,8 +373,15 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         motorista.setCnh(jTxtCnh.getText());
         
         if(jTxtCnh.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "O campo CNH é obrigatório");
+            JOptionPane.showMessageDialog(null, "O campo CNH é obrigatório!");
             jTxtCnh.setBackground(Color.red);
+            jTxtCnh.requestFocus();
+            return false;
+        }
+        else if(!verificarCamposNumericos(jTxtCnh.getText())){
+            JOptionPane.showMessageDialog(null, "O Campo CNH so aceita números!");
+            jTxtCnh.setBackground(Color.red);
+            jTxtCnh.requestFocus();
             return false;
         }
         else if(persisteMotorista.pesquisarMotoristaBD(motorista)){
@@ -347,19 +390,20 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             return true;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Motorista não cadastrado");
+            JOptionPane.showMessageDialog(null, "Motorista não cadastrado!");
             return false;
         }
     }
     
     public boolean verificarVeiculo(){
         PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
-        Veiculos veiculo = new Veiculos();
+        veiculo = new Veiculos();
         veiculo.setPlaca(jTxtCnh.getText());
         
         if(jTxtPlaca.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "O campo Placa é obrigatório");
+            JOptionPane.showMessageDialog(null, "O campo Placa é obrigatório!");
             jTxtPlaca.setBackground(Color.red);
+            jTxtPlaca.requestFocus();
             return false;
         }
         if(persisteVeiculo.pesquisarVeiculoBD(veiculo)){
@@ -367,7 +411,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             return true;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Veículo não cadastrado");
+            JOptionPane.showMessageDialog(null, "Veículo não cadastrado!");
             return false;
         }
     }
@@ -376,14 +420,37 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         if(jTxtKmSaida.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Quilometragem de Saída é obrigatório!");
             jTxtKmSaida.setBackground(Color.red);
+            jTxtKmSaida.requestFocus();
+            return false;
+        }
+        else if(!verificarCamposNumericos(jTxtKmSaida.getText())){
+            JOptionPane.showMessageDialog(null, "O Campo Quilometragem de Saída é só aceita números");
+            jTxtKmSaida.setBackground(Color.red);
+            jTxtKmSaida.requestFocus();
             return false;
         }
         else{
-            
+            if(jTxtPrevisao.getText().isEmpty()){
+                locacao.setPrevisao(0);
+            }else{
+                locacao.setPrevisao(Integer.valueOf(jTxtPrevisao.getText()));
+            }
+            locacao.setQuilometragemDeSaida(Integer.valueOf(jTxtKmSaida.getText()));
+            locacao.setTipo(jCTipoLocacao.getSelectedItem().toString());
         }
         
         return true;
     }
+    
+    public void chamarVerificacoes(){
+        if(verificarCliente() && verificarMotorista() && verificarVeiculo() && verificarOutrosDados()){
+            locacao.setTipoLocacao(persisteLocacao.retornarTipoLocacao(veiculo));
+            locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
+            locacao.setLocacaoAberta(true);
+            persisteLocacao.salvarBD(locacao);
+        }
+    }
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -400,6 +467,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

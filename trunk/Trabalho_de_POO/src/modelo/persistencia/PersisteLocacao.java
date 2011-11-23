@@ -421,4 +421,27 @@ public class PersisteLocacao extends DaoBase{
     /*
      * Código referente à interface gráfica
      */
+    public void salvarBD(Locacao locacao){
+        abrirDB();
+        em.persist(locacao);
+        em.getTransaction().commit();
+        fecharDB();
+    }
+    
+    public TipoLocacao retornarTipoLocacao(Veiculos veiculo){
+        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        TipoLocacao tipoLocacao = new TipoLocacao();
+        
+        abrirDB();
+        tipoVeiculo = em.find(TipoVeiculo.class, veiculo.getTipoVeiculo().getId());
+        fecharDB();
+        
+        tipoLocacao.setTipoVeiculo(tipoVeiculo);
+        
+        persistenciaTipoLocacao.retornarTipoLocacao(tipoLocacao);
+        
+        return tipoLocacao;
+        
+    }
+    
 }

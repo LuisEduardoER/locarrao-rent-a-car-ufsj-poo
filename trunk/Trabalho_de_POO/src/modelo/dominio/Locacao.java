@@ -22,19 +22,19 @@ public class Locacao implements Serializable{
     @Column(name = "ID_LOCACAO", nullable = false)
     private Long id;
     
-    @Column(name = "KM_SAIDA")
+    @Column(name = "KM_SAIDA", nullable = false)
     private long quilometragemDeSaida;
     
     @Column(name = "KM_CHEGADA")
     private long quilometragemDeEntrada;
     
-    @Column(length=45, name="TIPO_VEICULO")
+    @Column(length=45, name="MODO_DE_LOCACAO", nullable = false)
     private String tipo;
     
-    @Column
+    @Column(name = "VALOR")
     private double valor;
     
-    @Column(name = "DATA_SAIDA")
+    @Column(name = "DATA_SAIDA", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataSaida;
     
@@ -42,26 +42,26 @@ public class Locacao implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataDevolucao;
 
-    @Column
+    @Column(name = "PREVISAO")
     private int previsao;
     
-    @Column(name="ABERTA")
+    @Column(name="ABERTA", nullable = false)
     private boolean locacaoAberta;
 
     @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "ID_TIPO_LOCACAO")
+    @JoinColumn(name = "ID_TIPO_LOCACAO", nullable = false)
     private TipoLocacao tipoLocacao;
     
     @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "ID_CLIENTE")
+    @JoinColumn(name = "ID_CLIENTE", nullable = false)
     private Clientes cliente;
 
     @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "ID_MOTORISTA")
+    @JoinColumn(name = "ID_MOTORISTA", nullable = false)
     private Motorista motorista;
 
     @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "ID_VEICULO")
+    @JoinColumn(name = "ID_VEICULO", nullable = false)
     private Veiculos veiculo;
 
     
