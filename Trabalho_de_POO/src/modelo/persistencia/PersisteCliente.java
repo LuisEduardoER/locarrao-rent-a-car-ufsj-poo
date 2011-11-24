@@ -260,5 +260,32 @@ public class PersisteCliente extends DaoBase{
         }
     }
     
+    public boolean verificarClienteJaCadastrado(Clientes cliente){
+        Clientes c = new Clientes();
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Cliente cliente WHERE cliente.cpf = :cpf");
+        query.setParameter("cpf", cliente.getCpf());
+        
+        try{
+            c = (Clientes)query.getSingleResult();
+            fecharDB();
+            return true;
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }
+        
+    }
+    
+    public void salvarBD(Clientes cliente){
+        abrirDB();
+        
+        em.persist(cliente);
+        em.getTransaction().commit();
+        
+        fecharDB();
+    }
+    
 }
 
