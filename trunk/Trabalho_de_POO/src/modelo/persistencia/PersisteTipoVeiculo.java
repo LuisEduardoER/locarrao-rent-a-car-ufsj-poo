@@ -140,5 +140,21 @@ public class PersisteTipoVeiculo extends DaoBase{
         
     }
     
+    public boolean verificarTipoJaCadastrado(TipoVeiculo tipoVeiculo){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM TipoVeiculo tipo WHERE tipo.tipo = :tipo");
+        query.setParameter("tipo", tipoVeiculo.getTipo());
+        
+        try{
+            tipoVeiculo = (TipoVeiculo) query.getSingleResult();
+            fecharDB();
+            return true;
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }
+    }
+    
 }
 

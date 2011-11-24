@@ -1,6 +1,7 @@
 package modelo.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,8 +29,8 @@ public class Veiculos implements Serializable {
     @Column
     private int ano;
 
-    @Column(length=100)
-    private String opcionais;
+    @Column
+    private List<String> opcionais;
     
     @Column(length=100)
     private String observacao;
@@ -76,13 +77,7 @@ public class Veiculos implements Serializable {
         this.ano = ano;
     }
     
-    public String getOpcionais() {
-        return opcionais;
-    }
-
-    public void setOpcionais(String opcionais) {
-        this.opcionais = opcionais;
-    }
+    
 
     public String getObservacao() {
         return observacao;
@@ -138,5 +133,19 @@ public class Veiculos implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the opcionais
+     */
+    public List<String> getOpcionais() {
+        return opcionais;
+    }
+
+    /**
+     * @param opcionais the opcionais to set
+     */
+    public void setOpcionais(List<String> opcionais) {
+        this.opcionais = opcionais;
     }
 }

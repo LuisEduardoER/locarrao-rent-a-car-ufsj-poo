@@ -2,6 +2,7 @@ package locarrao.visao.grafica;
 
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
@@ -15,6 +16,10 @@ import modelo.persistencia.PersisteVeiculos;
 public class VisaoCadastroVeiculo extends javax.swing.JFrame {
 
     Veiculos veiculo = new Veiculos();
+    TipoVeiculo tipoVeiculo = new TipoVeiculo();
+    ModeloVeiculo modelo = new ModeloVeiculo();
+    MarcaVeiculo marca = new MarcaVeiculo();
+    
     PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
     PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
     PersisteModeloVeiculo persisteModeloVeiculo = new PersisteModeloVeiculo();
@@ -386,10 +391,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     }
     
     
-    
-    
-    
-    public boolean verificarDadosObrigatoriosEmBranco(){
+    public boolean verificarCamposObrigatoriosEmBranco(){
         if(jTxtPlaca.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Placa é obrigatório!");
             jTxtPlaca.setBackground(Color.red);
@@ -405,7 +407,105 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         }
     }
     
+    public boolean verificarCombos(){
+        if(jComboTipo.getSelectedIndex()== 0){
+            JOptionPane.showMessageDialog(null, "Selecione o Tipo do Veículo!");
+            jComboTipo.requestFocus();
+            return false;
+        }else if(jComboModelo.getSelectedIndex()== 0){
+            JOptionPane.showMessageDialog(null, "Selecione o Tipo do Veículo!");
+            jComboModelo.requestFocus();
+            return false;
+        }else if(jComboMarca.getSelectedIndex()== 0){
+            JOptionPane.showMessageDialog(null, "Selecione o Tipo do Veículo!");
+            jComboMarca.requestFocus();
+            return false;
+        }else {
+            return true;
+        }
+    }
     
+    
+    public List<String> retornarChecksMarcados(){
+        List<String> lista = null;
+        for(int i=0; i< jPanelOpcionais.getComponentCount();i++){
+            if(jPanelOpcionais.getComponent(i) instanceof JCheckBox){
+                JCheckBox aux = (JCheckBox)jPanelOpcionais.getComponent(i);
+                
+                if(aux.isSelected()){
+                    lista.add(aux.getText());
+                }
+            }
+        }
+        return lista;
+    }
+    
+    public TipoVeiculo retornarTipo(){
+        tipoVeiculo = new TipoVeiculo();
+        tipoVeiculo.setTipo(jComboTipo.getSelectedItem().toString());
+        if(persisteTipoVeiculo.verificarTipoJaCadastrado(tipoVeiculo)){
+            return tipoVeiculo;
+        }else{
+            tipoVeiculo = null;
+            return tipoVeiculo;
+        }
+        
+    }
+    
+    public ModeloVeiculo retornarModelo(){
+        modelo = new ModeloVeiculo();
+        modelo.setModelo(jComboModelo.getSelectedItem().toString());
+        if(persisteModeloVeiculo.verificarModeloJaCadastrado(modelo)){
+            return modelo;
+        }else{
+            modelo = null;
+            return modelo;
+        }
+    }
+    
+    public MarcaVeiculo retornarMarca(){
+        marca = new MarcaVeiculo();
+        marca.setMarca(jComboMarca.getSelectedItem().toString());
+        if(persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
+            return marca;
+        }else{
+            marca = null;
+            return marca;
+        }
+    }
+    
+    public void pegarValores(){
+        veiculo = new Veiculos();
+        
+        veiculo.setPlaca(jTxtPlaca.getText());
+        veiculo.setAno(Integer.valueOf(jTxtAno.getText()));
+        veiculo.setCor(jTxtCor.getText());
+        veiculo.setObservacao(jTxtObservacao.getText());
+        veiculo.setOpcionais(retornarChecksMarcados());
+        veiculo.setTipoVeiculo(retornarTipo());
+        veiculo.setModeloVeiculo(retornarModelo());
+        veiculo.setMarcaVeiculo(retornarMarca());
+    }
+    
+    public boolean verificarCampoNumerico(){
+        for(int i=0; i < jTxtAno.getText().length(); i++){
+            if(!Character.isDigit(jTxtAno.getText().charAt(i))){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    public void salvar(){
+        if(verificarCamposObrigatoriosEmBranco() && verificarCampoNumerico() && verificarCombos()){
+            pegarValores();
+            persisteVeiculo.salvarBD(veiculo);
+            JOptionPane.showMessageDialog(null, "Veículo salvo com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Houve um erro ao salvar o veículo. Tente novamente!");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSair;
     private javax.swing.JButton jBSalvar;
