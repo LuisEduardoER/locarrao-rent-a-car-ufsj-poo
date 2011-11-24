@@ -4,7 +4,7 @@
  */
 
 /*
- * Login.java
+ * VisaoLogin.java
  *
  * Created on 19/11/2011, 16:45:42
  */
@@ -18,10 +18,10 @@ import modelo.persistencia.PersisteFuncionarios;
  *
  * @author Magelinha
  */
-public class Login extends javax.swing.JFrame {
+public class VisaoLogin extends javax.swing.JFrame {
 
-    /** Creates new form Login */
-    public Login() {
+    /** Creates new form VisaoLogin */
+    public VisaoLogin() {
         initComponents();
     }
 
@@ -118,7 +118,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Login().setVisible(true);
+                new VisaoLogin().setVisible(true);
             }
         });
     }
