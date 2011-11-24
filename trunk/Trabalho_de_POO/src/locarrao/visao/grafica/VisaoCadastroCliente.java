@@ -12,13 +12,13 @@ import modelo.persistencia.PersisteEndereco;
  *
  * @author thais
  */
-public class CadastroCliente extends javax.swing.JFrame {
+public class VisaoCadastroCliente extends javax.swing.JFrame {
 
     Clientes cliente = new Clientes();
     Endereco endereco = new Endereco();
     PersisteEndereco persisteEndereco = new PersisteEndereco();
     PersisteCliente persisteCliente = new PersisteCliente();
-    public CadastroCliente() {
+    public VisaoCadastroCliente() {
         initComponents();
     }
     @SuppressWarnings("unchecked")
@@ -274,7 +274,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new CadastroCliente().setVisible(true);
+                new VisaoCadastroCliente().setVisible(true);
             }
         });
     }
