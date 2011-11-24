@@ -134,4 +134,20 @@ public class PersisteModeloVeiculo extends DaoBase{
             return lista;
         }
     }
+    
+    public ModeloVeiculo retornarModeloVeiculoComNome(ModeloVeiculo modelo){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM ModeloVeiculo m WHERE m.modelo = :modelo");
+        query.setParameter("modelo", modelo.getModelo());
+        
+        try{
+            modelo = (ModeloVeiculo)query.getSingleResult();
+            fecharDB();
+            return modelo;
+        }catch(NoResultException ex){
+            fecharDB();
+            return modelo;
+        }
+    }
 }

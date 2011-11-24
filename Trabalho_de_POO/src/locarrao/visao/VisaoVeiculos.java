@@ -6,10 +6,10 @@ package locarrao.visao;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoLocacao;
@@ -95,11 +95,14 @@ public class VisaoVeiculos {
                 }
 
                 System.out.println("Opcionais");
+                List<String> aux = new ArrayList<String>();
                 dado = cadastro.nextLine();
                 if(dado.isEmpty()){
-                    veiculos.setOpcionais(" - ");
+                    aux.add(" - ");
+                    veiculos.setOpcionais(aux);
                 }else{
-                    veiculos.setOpcionais(dado);
+                    aux.add(dado);
+                    veiculos.setOpcionais(aux);
                 }
 
                 System.out.println("Observacao");

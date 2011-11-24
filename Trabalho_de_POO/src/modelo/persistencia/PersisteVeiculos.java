@@ -34,7 +34,7 @@ public class PersisteVeiculos extends DaoBase{
     }
     
     public static void retornarTodosVeiculos () {
-        
+        List<String> lista = new ArrayList<String>();
         if(arquivo.exists()){
             FileReader reader = null;
             try {
@@ -65,7 +65,8 @@ public class PersisteVeiculos extends DaoBase{
                             contador++;
                         }
                         else if (contador == 3){
-                            veiculos.setOpcionais(linha);
+                            lista.add(linha);
+                            veiculos.setOpcionais(lista);
                             contador++;
                         }
                         else if (contador == 4){
@@ -91,6 +92,7 @@ public class PersisteVeiculos extends DaoBase{
                             tipoVeiculo = new TipoVeiculo();
                             marcaVeiculo = new MarcaVeiculo();
                             modeloVeiculo = new ModeloVeiculo();
+                            lista = new ArrayList<String>();
 
                         }
                     }
@@ -354,6 +356,15 @@ public class PersisteVeiculos extends DaoBase{
             fecharDB();
             return false;
         }
+    }
+    
+    public void salvarBD(Veiculos veiculo){
+        abrirDB();
+        
+        em.persist(veiculo);
+        em.getTransaction().commit();
+        
+        fecharDB();
     }
 }
 
