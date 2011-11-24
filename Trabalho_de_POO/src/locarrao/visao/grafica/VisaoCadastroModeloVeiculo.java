@@ -2,9 +2,14 @@ package locarrao.visao.grafica;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import modelo.dominio.ModeloVeiculo;
+import modelo.persistencia.PersisteModeloVeiculo;
 
 public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
 
+    ModeloVeiculo modelo = new ModeloVeiculo();
+    PersisteModeloVeiculo persisteModeloVeiculo = new PersisteModeloVeiculo();
+    
     public VisaoCadastroModeloVeiculo() {
         initComponents();
     }
@@ -26,6 +31,11 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
         jLabel2.setText("* Campo Obrigatório");
 
         jBCadastrar.setText("Cadastrar");
+        jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -43,7 +53,7 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
                         .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addContainerGap(273, Short.MAX_VALUE))))
+                        .addContainerGap(281, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,6 +71,10 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
+        salvar();
+    }//GEN-LAST:event_jBCadastrarActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -72,7 +86,7 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
     
     public boolean verificarCampoEmBranco(){
         if(jTxtModelo.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "O Campo modelo não pode ficar em branco");
+            JOptionPane.showMessageDialog(null, "O Campo modelo é obrigatório!");
             jTxtModelo.setBackground(Color.red);
             jTxtModelo.requestFocus();
             return false;
@@ -80,13 +94,20 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
             return true;
         }
     }
-    /*
-     * 
-     
-    public boolean modeloJaCadastrado(){
-        if(verificarCampoEmBranco())
+    
+    public void pegarValores(){
+        modelo.setModelo(jTxtModelo.getText());
     }
-    */
+    public void salvar(){
+        pegarValores();
+        if(verificarCampoEmBranco() && !persisteModeloVeiculo.verificarModeloJaCadastrado(modelo)){
+            persisteModeloVeiculo.salvarBD(modelo);
+            JOptionPane.showMessageDialog(null, "Modelo Cadastrado com sucesso!");
+        }else if(persisteModeloVeiculo.verificarModeloJaCadastrado(modelo)){
+            JOptionPane.showMessageDialog(null, "Modelo já está cadastrado!");
+        }
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCadastrar;

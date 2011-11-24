@@ -105,10 +105,19 @@ public class PersisteModeloVeiculo extends DaoBase{
         
         try{
             m = (ModeloVeiculo)query.getSingleResult();
-            return false;
+            return true;
         }catch(NoResultException ex){
             fecharDB();
-            return true;
+            return false;
         }
+    }
+    
+    public void salvarBD(ModeloVeiculo modelo){
+        abrirDB();
+        
+        em.persist(modelo);
+        em.getTransaction().commit();
+        
+        fecharDB();
     }
 }
