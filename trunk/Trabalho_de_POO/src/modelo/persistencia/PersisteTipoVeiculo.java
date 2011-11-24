@@ -139,6 +139,6 @@ public class PersisteTipoVeiculo extends DaoBase{
         return lista;
         
     }
-   
+    
 }
 
