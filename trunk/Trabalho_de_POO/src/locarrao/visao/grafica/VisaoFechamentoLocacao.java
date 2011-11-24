@@ -181,6 +181,7 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel)jTableLocacoes.getModel();
         SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
         
+        modelo.setRowCount(0);
         for(Locacao item: lista){
             objeto = new Object[]{persisteCliente.pesquisarClienteBD(item.getCliente()),
                                   persisteMotorista.pesquisarMotoristaBD(item.getMotorista()),
