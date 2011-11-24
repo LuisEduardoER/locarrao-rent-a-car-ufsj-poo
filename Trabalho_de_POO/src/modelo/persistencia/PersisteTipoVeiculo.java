@@ -156,5 +156,14 @@ public class PersisteTipoVeiculo extends DaoBase{
         }
     }
     
+    public void salvarBD(TipoVeiculo tipoVeiculo){
+        abrirDB();
+        
+        em.persist(tipoVeiculo);
+        em.getTransaction().commit();
+        
+        fecharDB();
+    }
+    
 }
 

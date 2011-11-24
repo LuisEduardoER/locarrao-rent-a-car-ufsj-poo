@@ -4,7 +4,7 @@
  */
 
 /*
- * VisaoTipoLocacao.java
+ * VisaoCadastroTipoLocacao.java
  *
  * Created on 19/11/2011, 16:26:51
  */
@@ -24,10 +24,10 @@ import modelo.persistencia.PersisteTipoVeiculo;
  *
  * @author Magelinha
  */
-public class VisaoTipoLocacao extends javax.swing.JFrame {
+public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
 
-    /** Creates new form VisaoTipoLocacao */
-    public VisaoTipoLocacao() {
+    /** Creates new form VisaoCadastroTipoLocacao */
+    public VisaoCadastroTipoLocacao() {
         initComponents();
         preencherCombo();
     }
@@ -189,7 +189,7 @@ public class VisaoTipoLocacao extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new VisaoTipoLocacao().setVisible(true);
+                new VisaoCadastroTipoLocacao().setVisible(true);
             }
         });
     }
