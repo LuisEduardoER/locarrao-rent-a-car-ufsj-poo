@@ -380,7 +380,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             }
         }
         
-        if(contadorCamposEmBranco == 0){
+        if(contadorCamposEmBranco == contadorCampos || contadorCamposEmBranco == 0){
             return true;
         }
         else if(contadorCamposEmBranco == 1 && jTxtComplemento.getText().isEmpty()){
