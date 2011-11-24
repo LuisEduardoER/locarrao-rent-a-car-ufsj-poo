@@ -264,7 +264,7 @@ public class PersisteCliente extends DaoBase{
         Clientes c = new Clientes();
         abrirDB();
         
-        Query query = em.createQuery("FROM Cliente cliente WHERE cliente.cpf = :cpf");
+        Query query = em.createQuery("FROM Clientes cliente WHERE cliente.cpf = :cpf");
         query.setParameter("cpf", cliente.getCpf());
         
         try{
