@@ -266,4 +266,30 @@ public class PersisteFuncionarios extends DaoBase{
         
         
     }
+    
+    public boolean verificarFuncionarioJaCadastrado(Funcionarios funcionario){
+        Funcionarios f = new Funcionarios();
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Funcionarios funcionario WHERE funcionario.cpf = :cpf");
+        query.setParameter("cpf", funcionario.getCpf());
+        
+        try{
+            f = (Funcionarios)query.getSingleResult();
+            fecharDB();
+            return true;
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }
+        
+    }
+    
+    public void salvarBD(Funcionarios funcionario){
+        abrirDB();
+        em.persist(em);
+        em.getTransaction().commit();
+        
+        fecharDB();
+    }
 }
