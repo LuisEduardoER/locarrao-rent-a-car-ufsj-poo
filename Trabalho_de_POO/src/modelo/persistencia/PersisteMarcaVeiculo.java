@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import modelo.dominio.MarcaVeiculo;
 
-public class PersisteMarcaVeiculo {
+public class PersisteMarcaVeiculo extends DaoBase{
     public static File arquivo;
     public static List<MarcaVeiculo> listaMarcaVeiculo;
                         
@@ -88,5 +88,30 @@ public class PersisteMarcaVeiculo {
             return false;
         }
 
+    }
+    
+    public void salvarBD(MarcaVeiculo marca){
+        abrirDB();
+        
+        em.persist(marca);
+        em.getTransaction().commit();
+        
+        fecharDB();
+    }
+    
+    public boolean verificarMarcaJaCadastrado(MarcaVeiculo marca){
+        abrirDB();
+        MarcaVeiculo m = new MarcaVeiculo();
+        
+        Query query = em.createQuery("FROM ModeloVeiculo m WHERE m.modelo = :marca");
+        query.setParameter("marca", marca.getMarca());
+        
+        try{
+            m = (MarcaVeiculo)query.getSingleResult();
+            return true;
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }
     }
 }
