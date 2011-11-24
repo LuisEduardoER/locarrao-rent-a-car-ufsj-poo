@@ -5,10 +5,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
-import modelo.dominio.Motorista;
 import modelo.persistencia.PersisteEndereco;
 import modelo.persistencia.PersisteFuncionarios;
-import modelo.persistencia.PersisteMotorista;
 
 /**
  *
@@ -16,11 +14,10 @@ import modelo.persistencia.PersisteMotorista;
  */
 public class VisaoCadastroFuncionario extends javax.swing.JFrame {
 
-    Motorista motorista = new Motorista();
+    Funcionarios funcionario = new Funcionarios();
     Endereco endereco = new Endereco();
     PersisteEndereco persisteEndereco = new PersisteEndereco();
-    PersisteMotorista persisteMotorista = new PersisteMotorista();
-    
+    PersisteFuncionarios persisteFuncionarios = new PersisteFuncionarios();
     public VisaoCadastroFuncionario() {
         initComponents();
     }
@@ -56,8 +53,14 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTxtCnh = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jTxtUsuario = new javax.swing.JTextField();
+        jComboCargo = new javax.swing.JComboBox();
+        jLabel16 = new javax.swing.JLabel();
+        jPasswordSenha = new javax.swing.JPasswordField();
+        jPasswordConfirmarSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Clientes");
@@ -225,28 +228,62 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("** Caso seja inserido algum dado sobre o endereço, todos os dados deverão ser preenchido, com excessão do campo Complemento");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Empresariais"));
 
-        jLabel14.setText("CNH* :");
+        jLabel13.setText("Cargo: ");
+
+        jLabel14.setText("Usuário* :");
+
+        jLabel15.setText("Senha* :");
+
+        jComboCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Vendedor", "Auxiliar" }));
+
+        jLabel16.setText("Confirmar Senha* :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel14)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel13))
                 .addGap(18, 18, 18)
-                .addComponent(jTxtCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPasswordConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPasswordConfirmarSenha, jPasswordSenha});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTxtCnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPasswordConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,17 +291,13 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(422, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -277,7 +310,11 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
                         .addComponent(salvar)
                         .addGap(35, 35, 35)
                         .addComponent(cancela)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(466, 466, 466))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancela, salvar});
@@ -299,7 +336,7 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cancela))
-                .addGap(115, 115, 115)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -339,27 +376,35 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
     }
     
-    
-    public boolean verificarCnhEmBranco(){
-        if(jTxtCnh.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "O campo CNH é obrigatório!");
-            jTxtCnh.setBackground(Color.red);
-            jTxtCnh.requestFocus();
+    public boolean verificarDadosEmpresariais(){
+        if(jTxtUsuario.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
+            jTxtUsuario.setBackground(Color.red);
+            jTxtUsuario.requestFocus();
             return false;
+        }else if(jPasswordSenha.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo Senha é obrigatório!");
+            jPasswordSenha.setBackground(Color.red);
+            jPasswordSenha.requestFocus();
+            return false;
+        }else if (jPasswordConfirmarSenha.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo Confirmar Senha é obrigatório!");
+            jPasswordSenha.setBackground(Color.red);
+            jPasswordConfirmarSenha.requestFocus();
+            return true;
         }else{
             return true;
         }
     }
     
-    public boolean verificarContemLetraNaCnh(){
-        for(int i=0;i<jTxtCnh.getText().length();i++){
-            if(!Character.isDigit(jTxtCnh.getText().charAt(i))){
-                return false;
-            }
+    public boolean confirmarSenha(){
+        if(jPasswordSenha.getText().equals(jPasswordConfirmarSenha.getText())){
+            return true;
+        }else{
+            return false;
         }
-        return true;
+        
     }
-    
     
     /*
      * Método para verificação dos dados de endereço.
@@ -387,7 +432,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             }
         }
         
-        if(contadorCamposEmBranco == 0){
+        if(contadorCamposEmBranco == contadorCampos || contadorCamposEmBranco == 0){
             return true;
         }
         else if(contadorCamposEmBranco == 1 && jTxtComplemento.getText().isEmpty()){
@@ -402,14 +447,12 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }
     
     public void pegarDados(){
-        motorista = new Motorista();
+        funcionario = new Funcionarios();
         endereco = new Endereco();
         
-        motorista.setNome(jTxtNome.getText());
-        motorista.setCpf(jTxtCpf.getText());
-        motorista.setTefefone(jTxtTelefone.getText());
-        motorista.setCnh(jTxtCnh.getText());
-        
+        funcionario.setNome(jTxtNome.getText());
+        funcionario.setCpf(jTxtCpf.getText());
+        funcionario.setTefefone(jTxtTelefone.getText());
         if(verificarDadosEndereco()){
             /*
              * O método verificarDadosEndereco retorna true se não foi digitado nada, ou foi digitado tudo, ou tudo
@@ -425,7 +468,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 endereco.setCep(jTxtCep.getText());
                 endereco.setUf(jComboEstado.getSelectedItem().toString());
                 persisteEndereco.salvarBD(endereco);
-                motorista.setEndereco(endereco);
+                funcionario.setEndereco(endereco);
             }
             
         }
@@ -433,25 +476,29 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }
     
     public void chamarVerificacoes(){
-        if(verificarDadosPessoaisEmBranco() && verificarContemLetraNaCnh() && verificarContemLetraNaCnh()){
+        if(verificarDadosPessoaisEmBranco() && verificarDadosEmpresariais()){
             pegarDados();
-            if(!persisteMotorista.verificarMotoristaJaCadastrado(motorista)){
-                persisteMotorista.salvarBD(motorista);
+            if(!persisteFuncionarios.verificarFuncionarioJaCadastrado(funcionario)){
+                persisteFuncionarios.salvarBD(funcionario);
             }
             else{
-                JOptionPane.showMessageDialog(null, "Motorista já está cadastrado no sistema!");
+                JOptionPane.showMessageDialog(null, "Funcionario já está cadastrado no sistema!");
             }
         }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancela;
+    private javax.swing.JComboBox jComboCargo;
     private javax.swing.JComboBox jComboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -463,16 +510,18 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelEndereco;
+    private javax.swing.JPasswordField jPasswordConfirmarSenha;
+    private javax.swing.JPasswordField jPasswordSenha;
     private javax.swing.JTextField jTxtBairro;
     private javax.swing.JTextField jTxtCep;
     private javax.swing.JTextField jTxtCidade;
-    private javax.swing.JTextField jTxtCnh;
     private javax.swing.JTextField jTxtComplemento;
     private javax.swing.JTextField jTxtCpf;
     private javax.swing.JTextField jTxtNome;
     private javax.swing.JTextField jTxtNumero;
     private javax.swing.JTextField jTxtRua;
     private javax.swing.JTextField jTxtTelefone;
+    private javax.swing.JTextField jTxtUsuario;
     private javax.swing.JLabel labelErro;
     private javax.swing.JButton salvar;
     // End of variables declaration//GEN-END:variables
