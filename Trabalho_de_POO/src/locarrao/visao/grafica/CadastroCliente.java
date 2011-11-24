@@ -1,10 +1,8 @@
 
 package locarrao.visao.grafica;
 import java.awt.Color;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import modelo.dominio.Valida;
 import modelo.persistencia.PersisteCliente;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
@@ -138,6 +136,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel8.setText("Cidade:");
 
         jLabel9.setText("Estado:");
+
+        jComboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MG", "SP", "RJ" }));
 
         jLabel12.setText("Cep: ");
 
@@ -378,17 +378,9 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     contadorCamposEmBranco++;
                 }
             }
-            else if(jPanelEndereco.getComponent(i) instanceof JComboBox){
-                JComboBox combo = (JComboBox)jPanelEndereco.getComponent(i);
-                contadorCampos++;
-                if(combo.getSelectedItem().toString().isEmpty()){
-                    contadorCamposEmBranco++;
-                }
-                
-            }
         }
         
-        if(contadorCampos == contadorCamposEmBranco){
+        if(contadorCamposEmBranco == 0){
             return true;
         }
         else if(contadorCamposEmBranco == 1 && jTxtComplemento.getText().isEmpty()){
@@ -396,7 +388,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
         else{
             JOptionPane.showMessageDialog(null, "Ao ser inserido algum dado sobre o endereço é necessário que todos "
-                    + "os outros dados sejam também inserido, com exceção do campo Complemento. Por favor, entre com "
+                    + "os outros dados sejam também inserido, com exceção do campo Complemento."+"\n"+ "Por favor, entre com "
                     + "os dados que faltam, ou remova os dados com relação ao endereço inserido e clique em Salvar");
             return false;
         }
@@ -404,6 +396,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     
     public void pegarDados(){
         cliente = new Clientes();
+        endereco = new Endereco();
         
         cliente.setNome(jTxtNome.getText());
         cliente.setCpf(jTxtCpf.getText());
