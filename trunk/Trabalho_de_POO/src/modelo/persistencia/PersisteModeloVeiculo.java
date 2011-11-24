@@ -8,9 +8,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import modelo.dominio.ModeloVeiculo;
 
-public class PersisteModeloVeiculo {
+public class PersisteModeloVeiculo extends DaoBase{
     public static File arquivo;
     public static List<ModeloVeiculo> listaModeloVeiculo;
                         
@@ -92,5 +94,21 @@ public class PersisteModeloVeiculo {
             return false;
         }
 
+    }
+    
+    public boolean verificarModeloJaCadastrado(ModeloVeiculo modelo){
+        abrirDB();
+        ModeloVeiculo m = new ModeloVeiculo();
+        
+        Query query = em.createQuery("FROM ModeloVeiculo m WHERE m.modelo = :modelo");
+        query.setParameter("modelo", modelo.getModelo());
+        
+        try{
+            m = (ModeloVeiculo)query.getSingleResult();
+            return false;
+        }catch(NoResultException ex){
+            fecharDB();
+            return true;
+        }
     }
 }
