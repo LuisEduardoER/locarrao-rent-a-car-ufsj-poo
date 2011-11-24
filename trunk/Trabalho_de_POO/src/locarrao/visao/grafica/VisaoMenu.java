@@ -4,7 +4,7 @@
  */
 
 /*
- * MenuGUI.java
+ * VisaoMenu.java
  *
  * Created on Nov 12, 2011, 10:12:36 PM
  */
@@ -14,10 +14,10 @@ package locarrao.visao.grafica;
  *
  * @author USER
  */
-public class MenuGUI extends javax.swing.JFrame {
+public class VisaoMenu extends javax.swing.JFrame {
 
-    /** Creates new form MenuGUI */
-    public MenuGUI() {
+    /** Creates new form VisaoMenu */
+    public VisaoMenu() {
         initComponents();
     }
 
@@ -145,7 +145,7 @@ public class MenuGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new MenuGUI().setVisible(true);
+                new VisaoMenu().setVisible(true);
               
             }
         });
