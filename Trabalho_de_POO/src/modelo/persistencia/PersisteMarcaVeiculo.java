@@ -114,4 +114,18 @@ public class PersisteMarcaVeiculo extends DaoBase{
             return false;
         }
     }
+    
+    public List retornarTodosModelosBD(){
+        abrirDB();
+        List lista = null;
+        Query query = em.createQuery("FROM MarcaVeiculo");
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
+    }
 }

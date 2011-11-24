@@ -120,4 +120,18 @@ public class PersisteModeloVeiculo extends DaoBase{
         
         fecharDB();
     }
+    
+    public List retornarTodosModelosBD(){
+        abrirDB();
+        List lista = null;
+        Query query = em.createQuery("FROM ModeloVeiculo");
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
+    }
 }
