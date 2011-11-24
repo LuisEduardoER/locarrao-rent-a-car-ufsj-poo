@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import locarrao.visao.VisaoLocacao;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
@@ -441,6 +443,23 @@ public class PersisteLocacao extends DaoBase{
         persistenciaTipoLocacao.retornarTipoLocacao(tipoLocacao);
         
         return tipoLocacao;
+        
+    }
+    
+    public List retornarLocacoesEmAbertoPorCliente(Clientes cliente){
+        List<Locacao> lista = null;
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Locacao locacao WHERE locacao.cliente.id = :id");
+        query.setParameter("id", cliente.getCodigo());
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
         
     }
     
