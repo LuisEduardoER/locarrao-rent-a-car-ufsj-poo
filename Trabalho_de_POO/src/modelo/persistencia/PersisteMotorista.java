@@ -200,4 +200,30 @@ public class PersisteMotorista extends DaoBase{
             return false;
         }
     }
+    
+    public boolean verificarMotoristaJaCadastrado(Motorista motorista){
+        Motorista m = new Motorista();
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Motorista motorista WHERE motorista.cpf = :cpf");
+        query.setParameter("cpf", motorista.getCpf());
+        
+        try{
+            m = (Motorista)query.getSingleResult();
+            fecharDB();
+            return true;
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }
+        
+    }
+    
+    public void salvarBD(Motorista motorista){
+        abrirDB();
+        em.persist(em);
+        em.getTransaction().commit();
+        
+        fecharDB();
+    }
 }
