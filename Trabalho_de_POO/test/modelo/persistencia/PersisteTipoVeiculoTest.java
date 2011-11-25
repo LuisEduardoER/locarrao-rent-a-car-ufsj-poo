@@ -38,46 +38,7 @@ public class PersisteTipoVeiculoTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of retornarTodosTipoVeiculo method, of class PersisteTipoVeiculo.
-     */
-    @Test
-    public void testRetornarTodosTipoVeiculo() {
-        System.out.println("retornarTodosTipoVeiculo");
-        PersisteTipoVeiculo.retornarTodosTipoVeiculo();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of salvar method, of class PersisteTipoVeiculo.
-     */
-    @Test
-    public void testSalvar() {
-        System.out.println("salvar");
-        TipoVeiculo tipoVeiculo = null;
-        boolean expResult = false;
-        boolean result = PersisteTipoVeiculo.salvar(tipoVeiculo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of retornaTipoVeiculo method, of class PersisteTipoVeiculo.
-     */
-    @Test
-    public void testRetornaTipoVeiculo() throws Exception {
-        System.out.println("retornaTipoVeiculo");
-        int indice = 0;
-        PersisteTipoVeiculo instance = new PersisteTipoVeiculo();
-        TipoVeiculo expResult = null;
-        TipoVeiculo result = instance.retornaTipoVeiculo(indice);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of retornarListaTipos method, of class PersisteTipoVeiculo.
      */

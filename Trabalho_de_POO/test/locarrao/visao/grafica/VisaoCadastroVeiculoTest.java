@@ -123,8 +123,8 @@ public class VisaoCadastroVeiculoTest {
     public void testRetornarChecksMarcados() {
         System.out.println("retornarChecksMarcados");
         VisaoCadastroVeiculo instance = new VisaoCadastroVeiculo();
-        List expResult = null;
-        List result = instance.retornarChecksMarcados();
+        String expResult = null;
+        String result = instance.retornarChecksMarcados();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
