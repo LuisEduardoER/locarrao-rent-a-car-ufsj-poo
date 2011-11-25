@@ -1,0 +1,123 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelo.persistencia;
+
+import java.util.List;
+import modelo.dominio.MarcaVeiculo;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Magelinha
+ */
+public class PersisteMarcaVeiculoTest {
+    
+    public PersisteMarcaVeiculoTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of retornarTodasMarcas method, of class PersisteMarcaVeiculo.
+     */
+    @Test
+    public void testRetornarTodasMarcas() {
+        System.out.println("retornarTodasMarcas");
+        PersisteMarcaVeiculo.retornarTodasMarcas();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of salvar method, of class PersisteMarcaVeiculo.
+     */
+    @Test
+    public void testSalvar() {
+        System.out.println("salvar");
+        MarcaVeiculo marcaVeiculo = null;
+        PersisteMarcaVeiculo instance = new PersisteMarcaVeiculo();
+        boolean expResult = false;
+        boolean result = instance.salvar(marcaVeiculo);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of salvarBD method, of class PersisteMarcaVeiculo.
+     */
+    @Test
+    public void testSalvarBD() {
+        System.out.println("salvarBD");
+        MarcaVeiculo marca = null;
+        PersisteMarcaVeiculo instance = new PersisteMarcaVeiculo();
+        instance.salvarBD(marca);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of verificarMarcaJaCadastrado method, of class PersisteMarcaVeiculo.
+     */
+    @Test
+    public void testVerificarMarcaJaCadastrado() {
+        System.out.println("verificarMarcaJaCadastrado");
+        MarcaVeiculo marca = null;
+        PersisteMarcaVeiculo instance = new PersisteMarcaVeiculo();
+        boolean expResult = false;
+        boolean result = instance.verificarMarcaJaCadastrado(marca);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of retornarMarcaVeiculo method, of class PersisteMarcaVeiculo.
+     */
+    @Test
+    public void testRetornarMarcaVeiculo() {
+        System.out.println("retornarMarcaVeiculo");
+        MarcaVeiculo marca = null;
+        PersisteMarcaVeiculo instance = new PersisteMarcaVeiculo();
+        MarcaVeiculo expResult = null;
+        MarcaVeiculo result = instance.retornarMarcaVeiculo(marca);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of retornarTodosModelosBD method, of class PersisteMarcaVeiculo.
+     */
+    @Test
+    public void testRetornarTodosModelosBD() {
+        System.out.println("retornarTodosModelosBD");
+        PersisteMarcaVeiculo instance = new PersisteMarcaVeiculo();
+        List expResult = null;
+        List result = instance.retornarTodosModelosBD();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+}
