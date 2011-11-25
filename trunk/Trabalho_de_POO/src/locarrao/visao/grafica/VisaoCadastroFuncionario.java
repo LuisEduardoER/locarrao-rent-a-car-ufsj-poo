@@ -359,12 +359,12 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_cancelaActionPerformed
 
     public boolean verificarDadosPessoaisEmBranco(){
-        if(jTxtNome.getText().isEmpty()){
+        if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
             jTxtNome.setBackground(Color.red);
             jTxtNome.requestFocus();
             return false;
-        }else if(jTxtCpf.getText().isEmpty()){
+        }else if(jTxtCpf.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CPF é obrigatório!");
             jTxtCpf.setBackground(Color.red);
             jTxtCpf.requestFocus();
@@ -375,17 +375,17 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }
     
     public boolean verificarDadosEmpresariais(){
-        if(jTxtUsuario.getText().isEmpty()){
+        if(jTxtUsuario.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
             jTxtUsuario.setBackground(Color.red);
             jTxtUsuario.requestFocus();
             return false;
-        }else if(jPasswordSenha.getText().isEmpty()){
+        }else if(jPasswordSenha.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Senha é obrigatório!");
             jPasswordSenha.setBackground(Color.red);
             jPasswordSenha.requestFocus();
             return false;
-        }else if (jPasswordConfirmarSenha.getText().isEmpty()){
+        }else if (jPasswordConfirmarSenha.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Confirmar Senha é obrigatório!");
             jPasswordSenha.setBackground(Color.red);
             jPasswordConfirmarSenha.requestFocus();
@@ -424,7 +424,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(jPanelEndereco.getComponent(i) instanceof JTextField){
                 contadorCampos++;
                 JTextField text = (JTextField)jPanelEndereco.getComponent(i);
-                if(text.getText().isEmpty()){
+                if(text.getText().trim().isEmpty()){
                     contadorCamposEmBranco++;
                 }
             }
@@ -448,11 +448,11 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         funcionario = new Funcionarios();
         endereco = new Endereco();
         
-        funcionario.setNome(jTxtNome.getText());
-        funcionario.setCpf(jTxtCpf.getText());
-        funcionario.setTefefone(jTxtTelefone.getText());
-        funcionario.setCargo(jComboCargo.getSelectedItem().toString());
-        funcionario.setUsuario(jTxtUsuario.getText());
+        funcionario.setNome(jTxtNome.getText().trim().toUpperCase());
+        funcionario.setCpf(jTxtCpf.getText().trim());
+        funcionario.setTefefone(jTxtTelefone.getText().trim());
+        funcionario.setCargo(jComboCargo.getSelectedItem().toString().toUpperCase());
+        funcionario.setUsuario(jTxtUsuario.getText().trim().toUpperCase());
         funcionario.setSenha(jPasswordSenha.getText());
         
         if(verificarDadosEndereco()){
@@ -462,12 +462,12 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
              * é porque não foi digitado nada, portando não precisamos salvar o endereço
              */
             if(!jTxtRua.getText().isEmpty()){
-                endereco.setRua(jTxtRua.getText());
-                endereco.setNumero(Integer.valueOf(jTxtNumero.getText()));
-                endereco.setComplemento(jTxtComplemento.getText());
-                endereco.setBairro(jTxtBairro.getText());
-                endereco.setCidade(jTxtCidade.getText());
-                endereco.setCep(jTxtCep.getText());
+                endereco.setRua(jTxtRua.getText().toUpperCase());
+                endereco.setNumero(Integer.valueOf(jTxtNumero.getText().trim()));
+                endereco.setComplemento(jTxtComplemento.getText().trim().toUpperCase());
+                endereco.setBairro(jTxtBairro.getText().trim().toUpperCase());
+                endereco.setCidade(jTxtCidade.getText().trim().toUpperCase());
+                endereco.setCep(jTxtCep.getText().trim());
                 endereco.setUf(jComboEstado.getSelectedItem().toString());
                 persisteEndereco.salvarBD(endereco);
                 funcionario.setEndereco(endereco);

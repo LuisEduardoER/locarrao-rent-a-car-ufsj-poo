@@ -221,7 +221,7 @@ public class PersisteMotorista extends DaoBase{
     
     public void salvarBD(Motorista motorista){
         abrirDB();
-        em.persist(em);
+        em.persist(motorista);
         em.getTransaction().commit();
         
         fecharDB();

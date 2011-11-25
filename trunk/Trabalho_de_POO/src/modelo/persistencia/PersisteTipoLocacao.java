@@ -201,7 +201,7 @@ public class PersisteTipoLocacao extends DaoBase{
         
     }
     
-    public TipoLocacao retornarTipoLocacao(TipoLocacao tipoLocacao){
+    public TipoLocacao retornarTipoLocacaoPorVeiculo(TipoLocacao tipoLocacao){
         abrirDB();
         
         Query query = em.createQuery("FROM TipoLocacao tipoLocacao WHERE tipoLocacao.tipoVeiculo.id = :id");
@@ -213,6 +213,21 @@ public class PersisteTipoLocacao extends DaoBase{
         
             return tipoLocacao;
         }catch(NoResultException ex){
+            fecharDB();
+            return tipoLocacao;
+        }
+    }
+    
+    public TipoLocacao retornarTipoLocacao(TipoLocacao tipoLocacao){
+        abrirDB();
+        
+        try{
+            tipoLocacao = (TipoLocacao) em.find(TipoLocacao.class, tipoLocacao.getId());
+            fecharDB();
+            return tipoLocacao;
+            
+        }catch(NoResultException ex){
+            tipoLocacao = null;
             fecharDB();
             return tipoLocacao;
         }

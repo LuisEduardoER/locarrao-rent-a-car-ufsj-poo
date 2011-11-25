@@ -2,9 +2,7 @@ package locarrao.visao.grafica;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
-import modelo.persistencia.PersisteModeloVeiculo;
 import modelo.persistencia.PersisteTipoVeiculo;
 
 public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
@@ -87,7 +85,7 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
     }
     
     public boolean verificarCampoEmBranco(){
-        if(jTxtTipo.getText().isEmpty()){
+        if(jTxtTipo.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O Campo Tipo é obrigatório!");
             jTxtTipo.setBackground(Color.red);
             jTxtTipo.requestFocus();
@@ -99,7 +97,7 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
     
     public void pegarValores(){
         tipo = new TipoVeiculo();
-        tipo.setTipo(jTxtTipo.getText());
+        tipo.setTipo(jTxtTipo.getText().trim());
     }
     public void salvar(){
         pegarValores();

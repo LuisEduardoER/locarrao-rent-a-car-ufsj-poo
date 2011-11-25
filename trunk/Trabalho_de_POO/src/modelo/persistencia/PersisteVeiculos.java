@@ -358,6 +358,22 @@ public class PersisteVeiculos extends DaoBase{
         }
     }
     
+    public Veiculos retornarVeiculoBD(Veiculos veiculo){
+        abrirDB();
+        
+        try{
+            veiculo = (Veiculos) em.find(Veiculos.class, veiculo.getId());
+            fecharDB();
+            return veiculo;
+        }catch(NoResultException ex){
+            veiculo = null;
+            fecharDB();
+            return veiculo;
+        }
+    }
+    
+    
+    
     public void salvarBD(Veiculos veiculo){
         abrirDB();
         
@@ -367,6 +383,14 @@ public class PersisteVeiculos extends DaoBase{
         fecharDB();
     }
     
+    public void atualizarVeiculoBD(Veiculos veiculo){
+        abrirDB();
+        
+        em.merge(veiculo);
+        em.getTransaction().commit();
+        
+        fecharDB();
+    }
     
     public List retornarVeiculosMaisLocados(){
         List lista = null;
@@ -434,4 +458,3 @@ public class PersisteVeiculos extends DaoBase{
     }
     
 }
-
