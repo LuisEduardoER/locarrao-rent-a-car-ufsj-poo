@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.swing.JOptionPane;
 import modelo.dominio.Locacao;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
@@ -23,10 +22,6 @@ public class PersisteTipoLocacao extends DaoBase{
     
     //construtor que vai fazer com que a lista seja lida somente uma vez.
     public PersisteTipoLocacao() {
-        arquivo = new File("src/arquivos/TipoLocacao.txt");
-        listaTipoLocacao = new ArrayList<TipoLocacao>();
-        retornarTodosTipoLocacao();
-        
     }
     
      
