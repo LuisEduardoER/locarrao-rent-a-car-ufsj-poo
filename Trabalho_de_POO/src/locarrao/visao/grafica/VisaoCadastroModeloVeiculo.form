@@ -28,10 +28,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTxtMarca" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="jTxtModelo" min="-2" pref="155" max="-2" attributes="0"/>
                       <EmptySpace pref="43" max="32767" attributes="0"/>
                       <Component id="jBCadastrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="25" max="32767" attributes="0"/>
@@ -60,7 +60,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Marca* :"/>
+        <Property name="text" type="java.lang.String" value="Modelo* :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -71,7 +71,7 @@
         <Property name="text" type="java.lang.String" value="* Campo Obrigat&#xf3;rio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtMarca">
+    <Component class="javax.swing.JTextField" name="jTxtModelo">
     </Component>
     <Component class="javax.swing.JButton" name="jBCadastrar">
       <Properties>

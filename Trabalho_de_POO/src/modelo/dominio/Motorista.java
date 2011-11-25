@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "ID_MOTORISTA")
 public class Motorista extends Pessoa {
     
-    @Column(length=10)
+    @Column(length=10, nullable=false)
     private String cnh;
 
     

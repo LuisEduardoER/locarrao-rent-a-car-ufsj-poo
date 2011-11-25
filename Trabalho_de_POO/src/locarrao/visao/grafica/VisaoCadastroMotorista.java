@@ -89,21 +89,19 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(26, 26, 26))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTxtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(26, 26, 26))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)))
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,10 +230,11 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel14)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jTxtCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,12 +321,12 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_cancelaActionPerformed
 
     public boolean verificarDadosPessoaisEmBranco(){
-        if(jTxtNome.getText().isEmpty()){
+        if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
             jTxtNome.setBackground(Color.red);
             jTxtNome.requestFocus();
             return false;
-        }else if(jTxtCpf.getText().isEmpty()){
+        }else if(jTxtCpf.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CPF é obrigatório!");
             jTxtCpf.setBackground(Color.red);
             jTxtCpf.requestFocus();
@@ -339,7 +338,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     
     
     public boolean verificarCnhEmBranco(){
-        if(jTxtCnh.getText().isEmpty()){
+        if(jTxtCnh.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CNH é obrigatório!");
             jTxtCnh.setBackground(Color.red);
             jTxtCnh.requestFocus();
@@ -350,8 +349,9 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }
     
     public boolean verificarContemLetraNaCnh(){
-        for(int i=0;i<jTxtCnh.getText().length();i++){
-            if(!Character.isDigit(jTxtCnh.getText().charAt(i))){
+        String cnh = jTxtCnh.getText().trim();
+        for(int i=0;i<cnh.length();i++){
+            if(!Character.isDigit(cnh.charAt(i))){
                 return false;
             }
         }
@@ -379,7 +379,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(jPanelEndereco.getComponent(i) instanceof JTextField){
                 contadorCampos++;
                 JTextField text = (JTextField)jPanelEndereco.getComponent(i);
-                if(text.getText().isEmpty()){
+                if(text.getText().trim().isEmpty()){
                     contadorCamposEmBranco++;
                 }
             }
@@ -388,7 +388,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         if(contadorCamposEmBranco == contadorCampos || contadorCamposEmBranco == 0){
             return true;
         }
-        else if(contadorCamposEmBranco == 1 && jTxtComplemento.getText().isEmpty()){
+        else if(contadorCamposEmBranco == 1 && jTxtComplemento.getText().trim().isEmpty()){
             return true;
         }
         else{
@@ -403,10 +403,10 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         motorista = new Motorista();
         endereco = new Endereco();
         
-        motorista.setNome(jTxtNome.getText());
-        motorista.setCpf(jTxtCpf.getText());
-        motorista.setTefefone(jTxtTelefone.getText());
-        motorista.setCnh(jTxtCnh.getText());
+        motorista.setNome(jTxtNome.getText().trim().toUpperCase());
+        motorista.setCpf(jTxtCpf.getText().trim());
+        motorista.setTefefone(jTxtTelefone.getText().trim());
+        motorista.setCnh(jTxtCnh.getText().trim());
         
         if(verificarDadosEndereco()){
             /*
@@ -415,12 +415,12 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
              * é porque não foi digitado nada, portando não precisamos salvar o endereço
              */
             if(!jTxtRua.getText().isEmpty()){
-                endereco.setRua(jTxtRua.getText());
-                endereco.setNumero(Integer.valueOf(jTxtNumero.getText()));
-                endereco.setComplemento(jTxtComplemento.getText());
-                endereco.setBairro(jTxtBairro.getText());
-                endereco.setCidade(jTxtCidade.getText());
-                endereco.setCep(jTxtCep.getText());
+                endereco.setRua(jTxtRua.getText().trim().toUpperCase());
+                endereco.setNumero(Integer.valueOf(jTxtNumero.getText().trim()));
+                endereco.setComplemento(jTxtComplemento.getText().trim().toUpperCase());
+                endereco.setBairro(jTxtBairro.getText().trim().toUpperCase());
+                endereco.setCidade(jTxtCidade.getText().trim().toUpperCase());
+                endereco.setCep(jTxtCep.getText().trim());
                 endereco.setUf(jComboEstado.getSelectedItem().toString());
                 persisteEndereco.salvarBD(endereco);
                 motorista.setEndereco(endereco);
@@ -435,6 +435,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             pegarDados();
             if(!persisteMotorista.verificarMotoristaJaCadastrado(motorista)){
                 persisteMotorista.salvarBD(motorista);
+                JOptionPane.showMessageDialog(null, "Motorista cadastrado com sucesso!");
             }
             else{
                 JOptionPane.showMessageDialog(null, "Motorista já está cadastrado no sistema!");

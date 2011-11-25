@@ -344,7 +344,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         Clientes cliente = new Clientes();
         cliente.setCodigo(Integer.valueOf(jTxtCodigoCliente.getText()));
         
-        if(jTxtCodigoCliente.getText().isEmpty()){
+        if(jTxtCodigoCliente.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Cliente é obrigatório");
             jTxtCodigoCliente.setBackground(Color.red);
             jTxtCodigoCliente.requestFocus();
@@ -370,15 +370,15 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     public boolean verificarMotorista(){
         PersisteMotorista persisteMotorista = new PersisteMotorista();
         Motorista motorista = new Motorista();
-        motorista.setCnh(jTxtCnh.getText());
+        motorista.setCnh(jTxtCnh.getText().trim().toUpperCase());
         
-        if(jTxtCnh.getText().isEmpty()){
+        if(jTxtCnh.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CNH é obrigatório!");
             jTxtCnh.setBackground(Color.red);
             jTxtCnh.requestFocus();
             return false;
         }
-        else if(!verificarCamposNumericos(jTxtCnh.getText())){
+        else if(!verificarCamposNumericos(jTxtCnh.getText().trim())){
             JOptionPane.showMessageDialog(null, "O Campo CNH so aceita números!");
             jTxtCnh.setBackground(Color.red);
             jTxtCnh.requestFocus();
@@ -398,7 +398,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     public boolean verificarVeiculo(){
         PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
         veiculo = new Veiculos();
-        veiculo.setPlaca(jTxtCnh.getText());
+        veiculo.setPlaca(jTxtCnh.getText().trim());
         
         if(jTxtPlaca.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Placa é obrigatório!");
@@ -417,25 +417,25 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     }
     
     public boolean verificarOutrosDados(){
-        if(jTxtKmSaida.getText().isEmpty()){
+        if(jTxtKmSaida.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Quilometragem de Saída é obrigatório!");
             jTxtKmSaida.setBackground(Color.red);
             jTxtKmSaida.requestFocus();
             return false;
         }
-        else if(!verificarCamposNumericos(jTxtKmSaida.getText())){
+        else if(!verificarCamposNumericos(jTxtKmSaida.getText().trim())){
             JOptionPane.showMessageDialog(null, "O Campo Quilometragem de Saída é só aceita números");
             jTxtKmSaida.setBackground(Color.red);
             jTxtKmSaida.requestFocus();
             return false;
         }
         else{
-            if(jTxtPrevisao.getText().isEmpty()){
+            if(jTxtPrevisao.getText().trim().isEmpty()){
                 locacao.setPrevisao(0);
             }else{
                 locacao.setPrevisao(Integer.valueOf(jTxtPrevisao.getText()));
             }
-            locacao.setQuilometragemDeSaida(Integer.valueOf(jTxtKmSaida.getText()));
+            locacao.setQuilometragemDeSaida(Integer.valueOf(jTxtKmSaida.getText().trim()));
             locacao.setTipo(jCTipoLocacao.getSelectedItem().toString());
         }
         
@@ -448,6 +448,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
             locacao.setLocacaoAberta(true);
             persisteLocacao.salvarBD(locacao);
+            JOptionPane.showMessageDialog(null, "Locação cadastrada com sucesso");
         }
     }
     

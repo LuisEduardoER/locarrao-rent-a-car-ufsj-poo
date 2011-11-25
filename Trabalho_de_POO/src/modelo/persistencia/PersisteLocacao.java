@@ -28,6 +28,7 @@ public class PersisteLocacao extends DaoBase{
     public static File arquivo;
     public static List<Locacao> listaLocacao;
     PersisteTipoLocacao persistenciaTipoLocacao = new PersisteTipoLocacao();
+    PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
     
     
     public PersisteLocacao() {
@@ -249,6 +250,8 @@ public class PersisteLocacao extends DaoBase{
             }
         }
         
+        
+        
         //Salvo a lista no arquivo com os novos valores
         try {
             if(this.salvar()){
@@ -262,6 +265,32 @@ public class PersisteLocacao extends DaoBase{
         }
     }
     
+    
+    public Locacao calcularValorLocacaoDiaria(Locacao locacao){
+        Veiculos veiculo = new Veiculos();
+        double valor = 0;
+        
+        locacao.setTipoLocacao(persistenciaTipoLocacao.retornarTipoLocacao(locacao.getTipoLocacao()));
+        if(locacao.getTipo().equals("QUILOMETRAGEM LIVRE")){
+            valor = diferencaDeDias(locacao.getDataSaida().getTime(),
+                    new Date().getTime()) * locacao.getTipoLocacao().getTaxaDiarias();
+            
+        }else{
+            valor = (locacao.getQuilometragemDeSaida() - locacao.getQuilometragemDeEntrada()) * 
+                    locacao.getTipoLocacao().getPrecoPorQuilometro() + locacao.getTipoLocacao().getTaxaPorKm();
+        }
+        
+        locacao.setValor(valor);
+        veiculo.setId(locacao.getVeiculo().getId());
+        
+        
+        //Atualizando os veículos
+        veiculo = persisteVeiculo.retornarVeiculoBD(veiculo);
+        veiculo.setValorTotalLocacoes(veiculo.getValorTotalLocacoes()+valor);
+        persisteVeiculo.atualizarVeiculoBD(veiculo);
+        
+        return locacao;
+    }
     //calcula o valor, caso seja por quilometro
     public double calculaValorLocacao(long valorDeSaida, long valorDeChegada, 
             TipoLocacao tipoLocacao, Locacao locacao){
@@ -430,6 +459,29 @@ public class PersisteLocacao extends DaoBase{
         fecharDB();
     }
     
+    public Locacao retornarLocacao(Locacao locacao){
+        abrirDB();
+        
+        try{
+            locacao = (Locacao)em.find(Locacao.class, locacao.getId());
+            fecharDB();
+            return locacao;
+        }catch(NoResultException ex){
+            locacao = null;
+            fecharDB();
+            return locacao;
+        }
+    }
+    
+    public void fecharLocacaoBD(Locacao locacao){
+        calcularValorLocacaoDiaria(locacao);
+        
+        abrirDB();
+        em.merge(locacao);
+        em.getTransaction().commit();
+        fecharDB();
+    }
+    
     public TipoLocacao retornarTipoLocacao(Veiculos veiculo){
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         TipoLocacao tipoLocacao = new TipoLocacao();
@@ -440,7 +492,7 @@ public class PersisteLocacao extends DaoBase{
         
         tipoLocacao.setTipoVeiculo(tipoVeiculo);
         
-        persistenciaTipoLocacao.retornarTipoLocacao(tipoLocacao);
+        persistenciaTipoLocacao.retornarTipoLocacaoPorVeiculo(tipoLocacao);
         
         return tipoLocacao;
         

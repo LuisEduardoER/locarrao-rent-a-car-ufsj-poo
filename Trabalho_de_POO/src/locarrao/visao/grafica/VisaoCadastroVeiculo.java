@@ -477,10 +477,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     public void pegarValores(){
         veiculo = new Veiculos();
         
-        veiculo.setPlaca(jTxtPlaca.getText());
-        veiculo.setAno(Integer.valueOf(jTxtAno.getText()));
-        veiculo.setCor(jTxtCor.getText());
-        veiculo.setObservacao(jTxtObservacao.getText());
+        veiculo.setPlaca(jTxtPlaca.getText().trim().toUpperCase());
+        veiculo.setAno(Integer.valueOf(jTxtAno.getText().trim()));
+        veiculo.setCor(jTxtCor.getText().trim().toUpperCase());
+        veiculo.setObservacao(jTxtObservacao.getText().trim().toUpperCase());
         //veiculo.setOpcionais(retornarChecksMarcados());
         veiculo.setTipoVeiculo(retornarTipo());
         veiculo.setModeloVeiculo(retornarModelo());
@@ -488,8 +488,9 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     }
     
     public boolean verificarCampoNumerico(){
-        for(int i=0; i < jTxtAno.getText().length(); i++){
-            if(!Character.isDigit(jTxtAno.getText().charAt(i))){
+        String ano = jTxtAno.getText().trim();
+        for(int i=0; i < ano.length(); i++){
+            if(!Character.isDigit(ano.charAt(i))){
                 return false;
             }
         }

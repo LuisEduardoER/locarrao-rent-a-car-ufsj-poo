@@ -279,58 +279,6 @@ public class VisaoCadastroCliente extends javax.swing.JFrame {
     }
 private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
      chamarVerificacoes();
-    
-    
-    /*Clientes cliente = new Clientes();
-     PersisteCliente persisteCliente = new PersisteCliente();
-     Valida valida = new Valida();   
-     Endereco endereco = new Endereco();
-    boolean verifica=valida.validarCPF(campoCpf.getText());
-    int verificador =0;
-    //primeiro verifica os campos obrigatórios
-    if(!verifica){
-          labelErro.setText("Tente novamente: Cpf inválido");
-    } else if(campoNome.getText().trim().isEmpty()){
-          labelErro.setText("Tente Novamente: Campo nome obrigatório");
-          verificador=1;
-    } 
-    
-    //atribui os campos ao objeto e salva no banco de dados
-    if(verificador==1){
-        cliente.setCpf(campoCpf.getText());
-        cliente.setNome(campoNome.getText());
-        if(campoCep.getText().isEmpty()||!(verifica=valida.validarCEP(campoCep.getText()))){
-            endereco.setCep("-");
-            endereco.setUf("-");
-            endereco.setCidade("-");
-            endereco.setBairro("-");
-            endereco.setComplemento("-");
-            endereco.setNumero(0);
-            endereco.setRua("-");
-            cliente.setEndereco(endereco);
-        }else if(campoUf.getText().isEmpty()||campoCidade.getText().isEmpty()||
-                campoBairro.getText().isEmpty()||campoComplemento.getText().isEmpty()||
-                campoNumero.getText().isEmpty()||campoRua.getText().isEmpty()){
-            labelErro.setText("Digite todos campos do endereço"); 
-        }else{
-            endereco.setCep(campoCep.getText());
-            endereco.setUf(campoUf.getText());
-            endereco.setCidade(campoCidade.getText());
-            endereco.setBairro(campoBairro.getText());
-            endereco.setComplemento(campoComplemento.getText());
-           // endereco.setNumero((campoNumero.getText()));
-            endereco.setRua(campoRua.getText());
-            cliente.setEndereco(endereco);
-        }
-        labelErro.setText(" ");
-        
-       
-       
-      
-       
-    }
-      * 
-      */
 }//GEN-LAST:event_salvarActionPerformed
 
 private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
@@ -338,12 +286,12 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_cancelaActionPerformed
 
     public boolean verificarDadosPessoaisEmBranco(){
-        if(jTxtNome.getText().isEmpty()){
+        if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
             jTxtNome.setBackground(Color.red);
             jTxtNome.requestFocus();
             return false;
-        }else if(jTxtCpf.getText().isEmpty()){
+        }else if(jTxtCpf.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CPF é obrigatório!");
             jTxtCpf.setBackground(Color.red);
             jTxtCpf.requestFocus();
@@ -373,7 +321,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(jPanelEndereco.getComponent(i) instanceof JTextField){
                 contadorCampos++;
                 JTextField text = (JTextField)jPanelEndereco.getComponent(i);
-                if(text.getText().isEmpty()){
+                if(text.getText().trim().isEmpty()){
                     contadorCamposEmBranco++;
                 }
             }
@@ -397,22 +345,22 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         cliente = new Clientes();
         endereco = new Endereco();
         
-        cliente.setNome(jTxtNome.getText());
-        cliente.setCpf(jTxtCpf.getText());
-        cliente.setTefefone(jTxtTelefone.getText());
+        cliente.setNome(jTxtNome.getText().trim().toUpperCase());
+        cliente.setCpf(jTxtCpf.getText().trim().toUpperCase());
+        cliente.setTefefone(jTxtTelefone.getText().trim().toUpperCase());
         if(verificarDadosEndereco()){
             /*
              * O método verificarDadosEndereco retorna true se não foi digitado nada, ou foi digitado tudo, ou tudo
              * menos o complemento. O próximo if verifica se foi digitado tudo ou não. Se o primeiro campo estiver vazio
              * é porque não foi digitado nada, portando não precisamos salvar o endereço
              */
-            if(!jTxtRua.getText().isEmpty()){
-                endereco.setRua(jTxtRua.getText());
-                endereco.setNumero(Integer.valueOf(jTxtNumero.getText()));
-                endereco.setComplemento(jTxtComplemento.getText());
-                endereco.setBairro(jTxtBairro.getText());
-                endereco.setCidade(jTxtCidade.getText());
-                endereco.setCep(jTxtCep.getText());
+            if(!jTxtRua.getText().trim().isEmpty()){
+                endereco.setRua(jTxtRua.getText().trim().toUpperCase());
+                endereco.setNumero(Integer.valueOf(jTxtNumero.getText().trim()));
+                endereco.setComplemento(jTxtComplemento.getText().trim().toUpperCase());
+                endereco.setBairro(jTxtBairro.getText().trim().toUpperCase());
+                endereco.setCidade(jTxtCidade.getText().trim().toUpperCase());
+                endereco.setCep(jTxtCep.getText().trim());
                 endereco.setUf(jComboEstado.getSelectedItem().toString());
                 persisteEndereco.salvarBD(endereco);
                 cliente.setEndereco(endereco);
