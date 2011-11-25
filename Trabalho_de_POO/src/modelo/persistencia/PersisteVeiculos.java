@@ -432,5 +432,6 @@ public class PersisteVeiculos extends DaoBase{
         return listaVeiculosDiponiveis;
         
     }
+    
 }
 

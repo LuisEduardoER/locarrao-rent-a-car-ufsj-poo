@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import modelo.dominio.TipoVeiculo;
+import modelo.dominio.Veiculos;
 
 public class PersisteTipoVeiculo extends DaoBase{
     public static File arquivo;
@@ -177,5 +178,14 @@ public class PersisteTipoVeiculo extends DaoBase{
         fecharDB();
     }
     
+    public List retornarVeiculosDisponiveisPorTipo(List<Veiculos> lista,TipoVeiculo tipoVeiculo){
+        for(Veiculos item:lista){
+            if(item.getTipoVeiculo().getId() != tipoVeiculo.getId()){
+                lista.remove(item);
+            }
+        }
+        
+        return lista;
+    }
 }
 
