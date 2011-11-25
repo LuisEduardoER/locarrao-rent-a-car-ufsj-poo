@@ -367,6 +367,41 @@ public class PersisteVeiculos extends DaoBase{
         fecharDB();
     }
     
+    
+    public List retornarVeiculosMaisLocados(){
+        List lista = null;
+        abrirDB();
+        
+        //ordena em ordem descrescente pelo total de locações
+        Query query = em.createQuery("FROM Veiculos v ORDER BY v.totalLocacoes DESC");
+        
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
+    }
+    
+    public List retornarVeiculosMaisRentaveis(){
+        List lista = null;
+        abrirDB();
+        
+        //ordena em ordem descrescente pelo total de locações
+        Query query = em.createQuery("FROM Veiculos v ORDER BY v.valorTotalLocacoes DESC");
+        
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
+    }
+    
     public List veiculosDisponiveisBD(){
         Locacao locacao = new Locacao();
         

@@ -3,14 +3,13 @@ package locarrao.visao.grafica;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersisteMarcaVeiculo;
 import modelo.persistencia.PersisteModeloVeiculo;
 import modelo.persistencia.PersisteTipoVeiculo;
 import modelo.persistencia.PersisteVeiculos;
 
-public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
+public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
 
     PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
     PersisteModeloVeiculo persisteModeloVeiculo = new PersisteModeloVeiculo();
@@ -18,11 +17,13 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
     PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
     List<Veiculos> lista = null;
     
-    public VisaoRelatorioVeiculosDisponiveis() {
+    public VisaoRelatorioVeiculosMaisLocados() {
         initComponents();
         preencherLista();
         inserirNaTabela(lista);
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,11 +40,11 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Placa", "Tipo", "Modelo", "Marca", "Ano", "Cor"
+                "Placa", "Tipo", "Modelo", "Marca", "Ano", "Cor", "Locações"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -90,18 +91,24 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new VisaoRelatorioVeiculosDisponiveis().setVisible(true);
+                new VisaoRelatorioVeiculosMaisLocados().setVisible(true);
             }
         });
     }
     
-    
     public void preencherLista(){
-        lista = persisteVeiculo.veiculosDisponiveisBD();
+        lista = persisteVeiculo.retornarVeiculosMaisLocados();
+        
+        for(Veiculos item: lista){
+            if(item.getTotalLocacoes() == 0){
+                lista.remove(item);
+            }
+        }
     }
+       
     public void inserirNaTabela(List<Veiculos> lista){
         if(lista == null){
-            JOptionPane.showMessageDialog(null, "Nenhum veículo está disponível!");
+            JOptionPane.showMessageDialog(null, "Nenhum veículo Cadastrado!");
         }else{
             Object[] objeto = null;
             DefaultTableModel modelo = (DefaultTableModel)jTabelaVeiculo.getModel();
@@ -113,7 +120,8 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
                                       persisteModeloVeiculo.retornarModeloVeiculo(item.getModeloVeiculo()),
                                       persisteMarcaVeiculo.retornarMarcaVeiculo(item.getMarcaVeiculo()),
                                       item.getAno(),
-                                      item.getCor()
+                                      item.getCor(),
+                                      item.getTotalLocacoes()
                                       };
 
                 modelo.addRow(objeto);
