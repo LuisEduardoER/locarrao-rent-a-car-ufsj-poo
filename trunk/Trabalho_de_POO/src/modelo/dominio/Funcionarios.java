@@ -10,13 +10,13 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "ID_FUNCIONARIO")
 public class Funcionarios extends Pessoa {
     
-    @Column(length=45)
+    @Column(length=45,nullable=false)
     private String cargo;
     
-    @Column(length=45)
+    @Column(length=45,nullable=false)
     private String usuario;
     
-    @Column(length=100)
+    @Column(length=100,nullable=false)
     private String senha;
 
     public String getCargo() {

@@ -7,13 +7,13 @@ import javax.swing.table.DefaultTableModel;
 import modelo.dominio.Clientes;
 import modelo.persistencia.PersisteCliente;
 
-public class VisaoBuscarClientePorNome extends javax.swing.JFrame {
+public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
 
     Clientes cliente = new Clientes();
     PersisteCliente persisteCliente = new PersisteCliente();
     List<Clientes> lista = null;
     
-    public VisaoBuscarClientePorNome() {
+    public VisaoRelatorioBuscarClientePorNome() {
         initComponents();
     }
 
@@ -125,7 +125,7 @@ public class VisaoBuscarClientePorNome extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new VisaoBuscarClientePorNome().setVisible(true);
+                new VisaoRelatorioBuscarClientePorNome().setVisible(true);
             }
         });
     }

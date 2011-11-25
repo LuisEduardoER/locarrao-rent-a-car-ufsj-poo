@@ -287,7 +287,7 @@ public class PersisteFuncionarios extends DaoBase{
     
     public void salvarBD(Funcionarios funcionario){
         abrirDB();
-        em.persist(em);
+        em.persist(funcionario);
         em.getTransaction().commit();
         
         fecharDB();

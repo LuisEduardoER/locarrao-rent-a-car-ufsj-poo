@@ -481,7 +481,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         veiculo.setAno(Integer.valueOf(jTxtAno.getText()));
         veiculo.setCor(jTxtCor.getText());
         veiculo.setObservacao(jTxtObservacao.getText());
-        veiculo.setOpcionais(retornarChecksMarcados());
+        //veiculo.setOpcionais(retornarChecksMarcados());
         veiculo.setTipoVeiculo(retornarTipo());
         veiculo.setModeloVeiculo(retornarModelo());
         veiculo.setMarcaVeiculo(retornarMarca());
