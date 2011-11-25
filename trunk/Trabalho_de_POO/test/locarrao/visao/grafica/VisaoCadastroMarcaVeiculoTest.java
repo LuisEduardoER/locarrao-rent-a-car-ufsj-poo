@@ -37,24 +37,24 @@ public class VisaoCadastroMarcaVeiculoTest {
     }
 
     /**
-     * Test of main method, of class VisaoCadastroMarcaVeiculo.
+     * Test of main method, of class VisaoCadastroModeloVeiculo.
      */
     @Test
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        VisaoCadastroMarcaVeiculo.main(args);
+        VisaoCadastroModeloVeiculo.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of verificarCampoEmBranco method, of class VisaoCadastroMarcaVeiculo.
+     * Test of verificarCampoEmBranco method, of class VisaoCadastroModeloVeiculo.
      */
     @Test
     public void testVerificarCampoEmBranco() {
         System.out.println("verificarCampoEmBranco");
-        VisaoCadastroMarcaVeiculo instance = new VisaoCadastroMarcaVeiculo();
+        VisaoCadastroModeloVeiculo instance = new VisaoCadastroModeloVeiculo();
         boolean expResult = false;
         boolean result = instance.verificarCampoEmBranco();
         assertEquals(expResult, result);
@@ -63,24 +63,24 @@ public class VisaoCadastroMarcaVeiculoTest {
     }
 
     /**
-     * Test of pegarValores method, of class VisaoCadastroMarcaVeiculo.
+     * Test of pegarValores method, of class VisaoCadastroModeloVeiculo.
      */
     @Test
     public void testPegarValores() {
         System.out.println("pegarValores");
-        VisaoCadastroMarcaVeiculo instance = new VisaoCadastroMarcaVeiculo();
+        VisaoCadastroModeloVeiculo instance = new VisaoCadastroModeloVeiculo();
         instance.pegarValores();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of salvar method, of class VisaoCadastroMarcaVeiculo.
+     * Test of salvar method, of class VisaoCadastroModeloVeiculo.
      */
     @Test
     public void testSalvar() {
         System.out.println("salvar");
-        VisaoCadastroMarcaVeiculo instance = new VisaoCadastroMarcaVeiculo();
+        VisaoCadastroModeloVeiculo instance = new VisaoCadastroModeloVeiculo();
         instance.salvar();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

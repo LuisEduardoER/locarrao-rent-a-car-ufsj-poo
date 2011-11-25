@@ -315,7 +315,7 @@ public class VeiculosTest {
         System.out.println("getOpcionais");
         Veiculos instance = new Veiculos();
         List expResult = null;
-        List result = instance.getOpcionais();
+        String result = instance.getOpcionais();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -327,7 +327,7 @@ public class VeiculosTest {
     @Test
     public void testSetOpcionais() {
         System.out.println("setOpcionais");
-        List<String> opcionais = null;
+        String opcionais = null;
         Veiculos instance = new Veiculos();
         instance.setOpcionais(opcionais);
         // TODO review the generated test code and remove the default call to fail.

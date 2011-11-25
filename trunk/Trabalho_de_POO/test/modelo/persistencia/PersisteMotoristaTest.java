@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo.persistencia;
 
 import modelo.dominio.Motorista;
@@ -12,10 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Magelinha
- */
 public class PersisteMotoristaTest {
     
     public PersisteMotoristaTest() {
@@ -35,62 +27,6 @@ public class PersisteMotoristaTest {
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of retornarMotorista method, of class PersisteMotorista.
-     */
-    @Test
-    public void testRetornarMotorista() {
-        System.out.println("retornarMotorista");
-        PersisteMotorista.retornarMotorista();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of pesquisarMotorista method, of class PersisteMotorista.
-     */
-    @Test
-    public void testPesquisarMotorista() throws Exception {
-        System.out.println("pesquisarMotorista");
-        Motorista motorista = null;
-        PersisteMotorista instance = new PersisteMotorista();
-        boolean expResult = false;
-        boolean result = instance.pesquisarMotorista(motorista);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of salvar method, of class PersisteMotorista.
-     */
-    @Test
-    public void testSalvar() {
-        System.out.println("salvar");
-        Motorista motorista = null;
-        PersisteMotorista instance = new PersisteMotorista();
-        boolean expResult = false;
-        boolean result = instance.salvar(motorista);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of alterarMotorista method, of class PersisteMotorista.
-     */
-    @Test
-    public void testAlterarMotorista() throws Exception {
-        System.out.println("alterarMotorista");
-        Motorista motorista = null;
-        PersisteMotorista instance = new PersisteMotorista();
-        boolean expResult = false;
-        boolean result = instance.alterarMotorista(motorista);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

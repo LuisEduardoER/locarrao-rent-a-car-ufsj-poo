@@ -125,7 +125,7 @@ public class PersisteTipoLocacaoTest {
     }
 
     /**
-     * Test of retornarTipoLocacao method, of class PersisteTipoLocacao.
+     * Test of retornarTipoLocacaoPorVeiculo method, of class PersisteTipoLocacao.
      */
     @Test
     public void testRetornarTipoLocacao() {
@@ -133,7 +133,7 @@ public class PersisteTipoLocacaoTest {
         TipoLocacao tipoLocacao = null;
         PersisteTipoLocacao instance = new PersisteTipoLocacao();
         TipoLocacao expResult = null;
-        TipoLocacao result = instance.retornarTipoLocacao(tipoLocacao);
+        TipoLocacao result = instance.retornarTipoLocacaoPorVeiculo(tipoLocacao);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

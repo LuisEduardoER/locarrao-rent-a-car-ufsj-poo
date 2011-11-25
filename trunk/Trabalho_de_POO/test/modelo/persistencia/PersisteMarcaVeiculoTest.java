@@ -38,32 +38,7 @@ public class PersisteMarcaVeiculoTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of retornarTodasMarcas method, of class PersisteMarcaVeiculo.
-     */
-    @Test
-    public void testRetornarTodasMarcas() {
-        System.out.println("retornarTodasMarcas");
-        PersisteMarcaVeiculo.retornarTodasMarcas();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of salvar method, of class PersisteMarcaVeiculo.
-     */
-    @Test
-    public void testSalvar() {
-        System.out.println("salvar");
-        MarcaVeiculo marcaVeiculo = null;
-        PersisteMarcaVeiculo instance = new PersisteMarcaVeiculo();
-        boolean expResult = false;
-        boolean result = instance.salvar(marcaVeiculo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of salvarBD method, of class PersisteMarcaVeiculo.
      */
