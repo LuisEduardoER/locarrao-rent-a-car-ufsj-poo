@@ -1,6 +1,5 @@
 package modelo.persistencia;
 
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.NoResultException;
@@ -12,12 +11,8 @@ import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 
 public class PersisteLocacao extends DaoBase{
-    public static File arquivo;
-    public static List<Locacao> listaLocacao;
     PersisteTipoLocacao persistenciaTipoLocacao = new PersisteTipoLocacao();
     PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
-    
-    
     
     public Locacao calcularValorLocacaoDiaria(Locacao locacao){
         Veiculos veiculo = new Veiculos();
@@ -44,31 +39,6 @@ public class PersisteLocacao extends DaoBase{
         
         return locacao;
     }
-    //calcula o valor, caso seja por quilometro
-    public double calculaValorLocacao(long valorDeSaida, long valorDeChegada, 
-            TipoLocacao tipoLocacao, Locacao locacao){
-        
-        double valor = 0;
-        double taxa = persistenciaTipoLocacao.retornarTaxa(tipoLocacao, locacao);
-        double precoPorKm = persistenciaTipoLocacao.retornarPrecoPorKm(tipoLocacao);
-        
-        valor = ((valorDeChegada - valorDeSaida) * precoPorKm) + taxa;
-        return valor;
-    }
-    
-    //calcula o valor, caso seja por quilometragem livre
-    public double calculaValorLocacao(Date dataDeSaida, Date dataDeChegada, 
-            TipoLocacao tipoLocacao, Locacao locacao){
-        
-        double valor = 0;
-        long diferenca = 0;
-        double taxa = persistenciaTipoLocacao.retornarTaxa(tipoLocacao, locacao);
-        
-        diferenca = diferencaDeDias(dataDeSaida.getTime(), dataDeChegada.getTime());
-        valor = diferenca * taxa;
-        return valor;
-    }
-    
     
     
     //calcula o valor, caso seja por quilometragem livre

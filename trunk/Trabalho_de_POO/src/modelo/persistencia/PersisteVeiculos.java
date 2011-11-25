@@ -8,9 +8,6 @@ import modelo.dominio.Veiculos;
 
 public class PersisteVeiculos extends DaoBase{
     
-    PersisteLocacao persistenciaLocacao = new PersisteLocacao();
-    
-    
     public boolean pesquisarVeiculoBD(Veiculos veiculo){
         abrirDB();
         Query query = em.createQuery("FROM Veiculos veiculo WHERE veiculo.placa = :placa");

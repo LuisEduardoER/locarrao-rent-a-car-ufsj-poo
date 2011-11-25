@@ -45,42 +45,6 @@ public class PersisteLocacaoTest {
 
 
     /**
-     * Test of calculaValorLocacao method, of class PersisteLocacao.
-     */
-    @Test
-    public void testCalculaValorLocacao_4args_1() {
-        System.out.println("calculaValorLocacao");
-        long valorDeSaida = 0L;
-        long valorDeChegada = 0L;
-        TipoLocacao tipoLocacao = null;
-        Locacao locacao = null;
-        PersisteLocacao instance = new PersisteLocacao();
-        double expResult = 0.0;
-        double result = instance.calculaValorLocacao(valorDeSaida, valorDeChegada, tipoLocacao, locacao);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of calculaValorLocacao method, of class PersisteLocacao.
-     */
-    @Test
-    public void testCalculaValorLocacao_4args_2() {
-        System.out.println("calculaValorLocacao");
-        Date dataDeSaida = null;
-        Date dataDeChegada = null;
-        TipoLocacao tipoLocacao = null;
-        Locacao locacao = null;
-        PersisteLocacao instance = new PersisteLocacao();
-        double expResult = 0.0;
-        double result = instance.calculaValorLocacao(dataDeSaida, dataDeChegada, tipoLocacao, locacao);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of diferencaDeDias method, of class PersisteLocacao.
      */
     @Test

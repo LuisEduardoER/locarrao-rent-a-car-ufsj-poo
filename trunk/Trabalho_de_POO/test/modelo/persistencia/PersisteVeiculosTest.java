@@ -39,9 +39,6 @@ public class PersisteVeiculosTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of retornarTodosVeiculos method, of class PersisteVeiculos.
-     */
     
     /**
      * Test of pesquisarVeiculoBD method, of class PersisteVeiculos.
