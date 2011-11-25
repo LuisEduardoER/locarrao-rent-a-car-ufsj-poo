@@ -140,6 +140,18 @@ public class PersisteTipoVeiculo extends DaoBase{
         
     }
     
+    public TipoVeiculo retornarTipoVeiculo(TipoVeiculo tipoVeiculo){
+        abrirDB();
+        
+        try{
+            tipoVeiculo = (TipoVeiculo)em.find(TipoVeiculo.class, tipoVeiculo.getId());
+            fecharDB();
+            return tipoVeiculo;
+        }catch(NoResultException ex){
+            fecharDB();
+            return tipoVeiculo;
+        }
+    }
     public boolean verificarTipoJaCadastrado(TipoVeiculo tipoVeiculo){
         abrirDB();
         

@@ -96,6 +96,19 @@ public class PersisteModeloVeiculo extends DaoBase{
 
     }
     
+    public ModeloVeiculo retornarModeloVeiculo(ModeloVeiculo modelo){
+        abrirDB();
+        
+        try{
+            modelo = (ModeloVeiculo) em.find(ModeloVeiculo.class, modelo.getId());
+            fecharDB();
+            return modelo;
+        }catch(NoResultException ex){
+            fecharDB();
+            return modelo;
+        }
+    }
+    
     public boolean verificarModeloJaCadastrado(ModeloVeiculo modelo){
         abrirDB();
         ModeloVeiculo m = new ModeloVeiculo();
