@@ -2,6 +2,7 @@ package modelo.dominio;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,9 +31,14 @@ public class Veiculos implements Serializable {
     
     @Column
     private int ano;
-
+    
     @Column
-    private List<String> opcionais;
+    private String opcionais;
+    /*
+    private List<Opcionais> opcionais;
+    
+     * 
+     */
     
     @Column(length=100)
     private String observacao;
@@ -138,14 +146,14 @@ public class Veiculos implements Serializable {
     /**
      * @return the opcionais
      */
-    public List<String> getOpcionais() {
+    public String getOpcionais() {
         return opcionais;
     }
 
     /**
      * @param opcionais the opcionais to set
      */
-    public void setOpcionais(List<String> opcionais) {
+    public void setOpcionais(String opcionais) {
         this.opcionais = opcionais;
     }
 }

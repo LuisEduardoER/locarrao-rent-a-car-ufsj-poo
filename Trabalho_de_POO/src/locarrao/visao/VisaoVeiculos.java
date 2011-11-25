@@ -93,7 +93,7 @@ public class VisaoVeiculos {
                         System.out.println("No campo Ano é numérico e inteiro");
                     }
                 }
-
+                /*
                 System.out.println("Opcionais");
                 List<String> aux = new ArrayList<String>();
                 dado = cadastro.nextLine();
@@ -105,6 +105,8 @@ public class VisaoVeiculos {
                     veiculos.setOpcionais(aux);
                 }
 
+                 * 
+                 */
                 System.out.println("Observacao");
                 dado = cadastro.nextLine();
                 if(dado.isEmpty()){

@@ -65,8 +65,8 @@ public class PersisteVeiculos extends DaoBase{
                             contador++;
                         }
                         else if (contador == 3){
-                            lista.add(linha);
-                            veiculos.setOpcionais(lista);
+                            //lista.add(linha);
+                            veiculos.setOpcionais(linha);
                             contador++;
                         }
                         else if (contador == 4){
