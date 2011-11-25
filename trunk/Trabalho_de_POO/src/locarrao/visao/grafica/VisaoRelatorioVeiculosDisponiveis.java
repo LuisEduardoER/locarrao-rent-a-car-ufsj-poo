@@ -3,6 +3,7 @@ package locarrao.visao.grafica;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersisteMarcaVeiculo;
 import modelo.persistencia.PersisteModeloVeiculo;
@@ -13,9 +14,11 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
     PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
     PersisteModeloVeiculo persisteModeloVeiculo = new PersisteModeloVeiculo();
     PersisteMarcaVeiculo persisteMarcaVeiculo = new PersisteMarcaVeiculo();
+    List<Veiculos> lista = null;
     
     public VisaoRelatorioVeiculosDisponiveis() {
         initComponents();
+        inserirNaTabela(lista);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,6 +27,7 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabelaVeiculo = new javax.swing.JTable();
+        jBAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,19 +49,38 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTabelaVeiculo);
 
+        jBAtualizar.setText("Atualizar");
+        jBAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(412, Short.MAX_VALUE)
+                .addComponent(jBAtualizar)
+                .addGap(313, 313, 313))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBAtualizar)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
+        inserirNaTabela(lista);
+    }//GEN-LAST:event_jBAtualizarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -91,6 +114,7 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAtualizar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTabelaVeiculo;
     // End of variables declaration//GEN-END:variables
