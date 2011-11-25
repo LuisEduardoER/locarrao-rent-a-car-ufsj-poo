@@ -426,18 +426,18 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     }
     
     
-    public List<String> retornarChecksMarcados(){
-        List<String> lista = null;
+    public String retornarChecksMarcados(){
+        String opcionais = "";
         for(int i=0; i< jPanelOpcionais.getComponentCount();i++){
             if(jPanelOpcionais.getComponent(i) instanceof JCheckBox){
                 JCheckBox aux = (JCheckBox)jPanelOpcionais.getComponent(i);
                 
                 if(aux.isSelected()){
-                    lista.add(aux.getText());
+                    opcionais+=aux.getText() + "\n";
                 }
             }
         }
-        return lista;
+        return opcionais;
     }
     
     public TipoVeiculo retornarTipo(){
@@ -481,7 +481,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         veiculo.setAno(Integer.valueOf(jTxtAno.getText().trim()));
         veiculo.setCor(jTxtCor.getText().trim().toUpperCase());
         veiculo.setObservacao(jTxtObservacao.getText().trim().toUpperCase());
-        //veiculo.setOpcionais(retornarChecksMarcados());
+        veiculo.setOpcionais(retornarChecksMarcados());
         veiculo.setTipoVeiculo(retornarTipo());
         veiculo.setModeloVeiculo(retornarModelo());
         veiculo.setMarcaVeiculo(retornarMarca());
