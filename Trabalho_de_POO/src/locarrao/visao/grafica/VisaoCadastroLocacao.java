@@ -34,6 +34,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     
     Locacao locacao = new Locacao();
     PersisteLocacao persisteLocacao = new PersisteLocacao();
+    PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
     Veiculos veiculo = new Veiculos();
 
     @SuppressWarnings("unchecked")
@@ -444,14 +445,24 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     
     public void chamarVerificacoes(){
         if(verificarCliente() && verificarMotorista() && verificarVeiculo() && verificarOutrosDados()){
-            locacao.setTipoLocacao(persisteLocacao.retornarTipoLocacao(veiculo));
-            locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
-            locacao.setLocacaoAberta(true);
-            persisteLocacao.salvarBD(locacao);
-            JOptionPane.showMessageDialog(null, "Locação cadastrada com sucesso");
+            pegarDados();
+            incrementarQuantidadeLocacoes();
         }
     }
     
+    public void pegarDados(){
+        locacao.setTipoLocacao(persisteLocacao.retornarTipoLocacao(veiculo));
+        locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
+        locacao.setValor(0);
+        locacao.setLocacaoAberta(true);
+        persisteLocacao.salvarBD(locacao);
+        JOptionPane.showMessageDialog(null, "Locação cadastrada com sucesso");
+    }
+    
+    public void incrementarQuantidadeLocacoes(){
+        veiculo = persisteVeiculo.retornarVeiculoBD(locacao.getVeiculo());
+        veiculo.setTotalLocacoes(veiculo.getTotalLocacoes()+1);
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

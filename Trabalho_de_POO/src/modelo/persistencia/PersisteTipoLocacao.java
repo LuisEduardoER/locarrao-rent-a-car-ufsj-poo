@@ -29,7 +29,7 @@ public class PersisteTipoLocacao extends DaoBase{
         
     }
     
-        
+     
     public static void retornarTodosTipoLocacao() {
         
         //Verifico se o arquivo existe, se existir faz as ações
