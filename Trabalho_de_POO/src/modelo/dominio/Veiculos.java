@@ -47,10 +47,10 @@ public class Veiculos implements Serializable {
     @JoinColumn(name="ID_MODELO")
     private ModeloVeiculo modeloVeiculo;
     
-    @Column
+    @Column(name="TOTAL_LOCACOES")
     private int totalLocacoes;
     
-    @Column
+    @Column(name="VALOR_TOTAL_LOCACOES")
     private double valorTotalLocacoes;
 
     public String getPlaca() {
