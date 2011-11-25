@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import modelo.dominio.MarcaVeiculo;
+import modelo.dominio.ModeloVeiculo;
 
 public class PersisteMarcaVeiculo extends DaoBase{
     public static File arquivo;
@@ -115,6 +116,18 @@ public class PersisteMarcaVeiculo extends DaoBase{
         }
     }
     
+    public MarcaVeiculo retornarMarcaVeiculo(MarcaVeiculo marca){
+        abrirDB();
+        
+        try{
+            marca = (MarcaVeiculo) em.find(MarcaVeiculo.class, marca.getId());
+            fecharDB();
+            return marca;
+        }catch(NoResultException ex){
+            fecharDB();
+            return marca;
+        }
+    }
     public List retornarTodosModelosBD(){
         abrirDB();
         List lista = null;

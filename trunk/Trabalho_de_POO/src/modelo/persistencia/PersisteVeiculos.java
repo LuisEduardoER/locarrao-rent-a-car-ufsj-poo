@@ -366,5 +366,36 @@ public class PersisteVeiculos extends DaoBase{
         
         fecharDB();
     }
+    
+    public List veiculosDisponiveisBD(){
+        Locacao locacao = new Locacao();
+        
+        abrirDB();
+        
+        List<Veiculos> listaTodosVeiculos = null;
+        List<Veiculos> listaVeiculosDiponiveis = null;
+        
+        Query query = em.createQuery("FROM Veiculos");
+        
+        try{
+            listaTodosVeiculos = query.getResultList();
+        }catch(NoResultException ex){
+            return listaVeiculosDiponiveis; 
+        }
+        
+        for(Veiculos item: listaTodosVeiculos){
+            query = em.createQuery("FROM Locacao l WHERE l.veiculo.id = :id");
+            query.setParameter("id", item.getId());
+            
+            try{
+                locacao = (Locacao) query.getSingleResult();
+            }catch(NoResultException ex){
+                listaVeiculosDiponiveis.add(item);
+            }
+        }
+        
+        return listaVeiculosDiponiveis;
+        
+    }
 }
 
