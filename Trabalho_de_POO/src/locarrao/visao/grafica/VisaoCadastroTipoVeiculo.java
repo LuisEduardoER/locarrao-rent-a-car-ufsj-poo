@@ -105,9 +105,9 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
         pegarValores();
         if(verificarCampoEmBranco() && !persisteTipo.verificarTipoJaCadastrado(tipo)){
             persisteTipo.salvarBD(tipo);
-            JOptionPane.showMessageDialog(null, "Modelo Cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Tipo Cadastrado com sucesso!");
         }else if(persisteTipo.verificarTipoJaCadastrado(tipo)){
-            JOptionPane.showMessageDialog(null, "Modelo já está cadastrado!");
+            JOptionPane.showMessageDialog(null, "Tipo já está cadastrado!");
         }
     }
     
