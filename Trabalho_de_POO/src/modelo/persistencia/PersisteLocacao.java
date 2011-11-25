@@ -463,4 +463,42 @@ public class PersisteLocacao extends DaoBase{
         
     }
     
+    public List retornarLocacoesFinalizadasDB(Date dataInicial, Date dataFinal){
+        List lista = null;
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Locacao l WHERE l.dataDevolucao BETWEEN :dataIncial AND :dataFinal "
+                + "AND l.locacaoAberta = :aberta");
+        
+        query.setParameter("dataIncial", dataInicial);
+        query.setParameter("dataFinal", dataFinal);
+        query.setParameter("aberta", false);
+        
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
+    }
+    
+    public List retornarLocacoesFinalizadasDB(){
+        List lista = null;
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Locacao l WHERE l.locacaoAberta = :aberta");
+        
+        query.setParameter("aberta", false);
+        
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
+    }
 }
