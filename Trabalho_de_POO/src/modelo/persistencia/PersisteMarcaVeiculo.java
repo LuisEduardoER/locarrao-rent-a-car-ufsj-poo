@@ -20,7 +20,7 @@ public class PersisteMarcaVeiculo extends DaoBase{
         abrirDB();
         MarcaVeiculo m = new MarcaVeiculo();
         
-        Query query = em.createQuery("FROM ModeloVeiculo m WHERE m.modelo = :marca");
+        Query query = em.createQuery("FROM MarcaVeiculo m WHERE m.marca = :marca");
         query.setParameter("marca", marca.getMarca());
         
         try{

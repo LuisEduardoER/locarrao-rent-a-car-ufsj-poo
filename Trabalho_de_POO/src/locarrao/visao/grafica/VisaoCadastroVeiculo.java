@@ -28,6 +28,9 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     
     public VisaoCadastroVeiculo() {
         initComponents();
+        preencherComboTipo();
+        preencherComboModelo();
+        preencherComboMarca();
     }
 
     @SuppressWarnings("unchecked")
