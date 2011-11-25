@@ -18,7 +18,6 @@ import javax.persistence.Query;
 import locarrao.visao.VisaoClientes;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
-import modelo.dominio.Veiculos;
 
 /**
  *
@@ -260,6 +259,25 @@ public class PersisteCliente extends DaoBase{
         }
     }
     
+    
+    public List pesquisarClientePorNome(Clientes cliente){
+        List lista = null;
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Clientes c WHERE c.nome LIKE :nome");
+        query.setParameter("nome", cliente.getNome());
+        
+        try{
+            lista = query.getResultList();
+            fecharDB();
+            return lista;
+        }catch(NoResultException ex){
+            fecharDB();
+            return lista;
+        }
+        
+    }
+        
     public boolean verificarClienteJaCadastrado(Clientes cliente){
         Clientes c = new Clientes();
         abrirDB();
