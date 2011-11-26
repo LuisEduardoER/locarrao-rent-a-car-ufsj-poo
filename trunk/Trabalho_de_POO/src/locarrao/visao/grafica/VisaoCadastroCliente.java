@@ -289,7 +289,11 @@ private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
    this.dispose();
 }//GEN-LAST:event_cancelaActionPerformed
-
+    
+    /**
+ * Verifica se tem algum campo obrigatório em branco
+ * @return 
+ */
     public boolean verificarDadosPessoaisEmBranco(){
         if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
@@ -306,11 +310,11 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
     }
     
-    /*
+    /**
      * Método para verificação dos dados de endereço.
-     * O for é responsavel por verificar quantos componentes estão contidos dentro do jPanelEndereco
-     * A variavel contadorCampos conta a quantidade de campos, seja ele um TextField ou Combobox
-     * é verificado quantos dados ficaram em branco. Se a quantidade de dados que ficaram em branco for igual
+     * O for é responsavel por verificar quantos componentes estão contidos dentro do jPanelEndereco.
+     * A variavel contadorCampos conta a quantidade de campos.
+     * É verificado quantos dados ficaram em branco. Se a quantidade de dados que ficaram em branco for igual
      * a quantidade de campos é porque não foi inserido nenhum dado sobre o endereço. Senão, se a quantidade
      * de itens em branco igual ao 1 é porque apenas um campo ficou em branco. Se esse campo
      * for o complemento, então a entrada de dados é aceita, caso contrario é emitida uma mensagem de erro para o 
@@ -319,6 +323,10 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
      * Qualquer dúvida é so entrar em contato.
      */
     
+    /**
+     * Verifica se foi digitado o endereço ou não. Se todos 
+     * @return 
+     */
     public boolean verificarDadosEndereco(){
         int contadorCampos = 0, contadorCamposEmBranco = 0;
         
@@ -346,6 +354,9 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
     }
     
+    /**
+     * Insere no atributo cliente os dados digitados
+     */
     public void pegarDados(){
         cliente = new Clientes();
         endereco = new Endereco();
@@ -375,6 +386,10 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         
     }
     
+    /**
+     * Verifica se não foi digitado valores incorreto.
+     * @return 
+     */
     public boolean validarCampos(){
         Valida validacao = new Valida();
         
@@ -397,6 +412,10 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             return true;
         }
     }
+    
+    /**
+     * chama os métodos de verificação para determinar se vai ser salvo ou não no banco de dados. 
+     */
     public void chamarVerificacoes(){
         if(verificarDadosPessoaisEmBranco() && validarCampos()){
             pegarDados();

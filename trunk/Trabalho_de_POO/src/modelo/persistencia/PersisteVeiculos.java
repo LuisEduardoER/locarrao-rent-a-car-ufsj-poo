@@ -8,6 +8,11 @@ import modelo.dominio.Veiculos;
 
 public class PersisteVeiculos extends DaoBase{
     
+    /**
+     * Retorna o veiculo de acordo com a id.
+     * @param veiculo
+     * @return 
+     */
     public Veiculos retornarVeiculoBD(Veiculos veiculo){
         abrirDB();
         
@@ -20,6 +25,12 @@ public class PersisteVeiculos extends DaoBase{
             return veiculo;
         }
     }
+    
+    /**
+     * Verifica se um veiculo com uma determinada placa está cadastrada no banco de dados.
+     * @param veiculo
+     * @return 
+     */
     public boolean pesquisarVeiculoPelaPlacaBD(Veiculos veiculo){
         abrirDB();
         Query query = em.createQuery("FROM Veiculos veiculo WHERE veiculo.placa = :placa");
@@ -35,6 +46,10 @@ public class PersisteVeiculos extends DaoBase{
         }
     }
     
+    /**
+     * salva o veículo no banco de dados
+     * @param veiculo 
+     */
     public void salvarBD(Veiculos veiculo){
         abrirDB();
         
@@ -44,6 +59,10 @@ public class PersisteVeiculos extends DaoBase{
         fecharDB();
     }
     
+    /**
+     * Atualiza o veiculo no banco de dados
+     * @param veiculo 
+     */
     public void atualizarVeiculoBD(Veiculos veiculo){
         abrirDB();
         
@@ -53,6 +72,10 @@ public class PersisteVeiculos extends DaoBase{
         fecharDB();
     }
     
+    /**
+     * Faz uma busca de todos os veículos no banco de dados e ordena de forma decrescente pelo total de locações 
+     * @return 
+     */
     public List retornarVeiculosMaisLocados(){
         List lista = null;
         abrirDB();
@@ -70,6 +93,10 @@ public class PersisteVeiculos extends DaoBase{
         }
     }
     
+    /**
+     * Faz uma busca de todos os veículos no banco de dados e ordena de forma decrescente pelo valor das locações 
+     * @return 
+     */
     public List retornarVeiculosMaisRentaveis(){
         List lista = null;
         abrirDB();
@@ -87,6 +114,10 @@ public class PersisteVeiculos extends DaoBase{
         }
     }
     
+    /**
+     * Retorna uma lista com todos os veículos que estão disponíveis
+     * @return 
+     */
     public List veiculosDisponiveisBD(){
         Locacao locacao = new Locacao();
         
