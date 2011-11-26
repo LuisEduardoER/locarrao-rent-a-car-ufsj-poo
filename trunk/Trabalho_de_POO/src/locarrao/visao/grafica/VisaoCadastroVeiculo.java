@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoCadastroVeiculo extends javax.swing.JFrame {
-    private final static Logger log = Logger.getLogger(VisaoCadastroTipoVeiculo.class);
+    private final static Logger log = Logger.getLogger(VisaoCadastroVeiculo.class);
     SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
     Funcionarios funcionario = VisaoMenu.funcionario;
     
@@ -498,6 +498,8 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         veiculo.setTipoVeiculo(retornarTipo());
         veiculo.setModeloVeiculo(retornarModelo());
         veiculo.setMarcaVeiculo(retornarMarca());
+        veiculo.setValorTotalLocacoes(0);
+        veiculo.setTotalLocacoes(0);
     }
     
     public boolean verificarCampoNumerico(){
@@ -517,7 +519,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
             persisteVeiculo.salvarBD(veiculo);
             
             log.info(formatarData.format(new Date()) + " - Veículo de placa " + veiculo.getPlaca() 
-                    + " cadastrado pelo funcionário " + funcionario.getNome());
+                    + " cadastrado pelo funcionário " + funcionario.getUsuario());
             JOptionPane.showMessageDialog(null, "Veículo salvo com sucesso!");
         }else{
             JOptionPane.showMessageDialog(null, "Houve um erro ao salvar o veículo. Tente novamente!");

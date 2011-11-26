@@ -114,7 +114,7 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
             persisteMarcaVeiculo.salvarBD(marca);
             
             log.info(formatador.format(new Date()) + " - Marca " + marca.getMarca() 
-                    + " cadastrada pelo funcionário " + funcionario.getNome());
+                    + " cadastrada pelo funcionário " + funcionario.getUsuario());
             
             JOptionPane.showMessageDialog(null, "Marca Cadastrada com sucesso!");
         }else if(persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
