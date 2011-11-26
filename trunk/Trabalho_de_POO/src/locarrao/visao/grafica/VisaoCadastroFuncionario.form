@@ -182,10 +182,19 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtNome">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtNomeKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtCpf">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtCpfKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtTelefone">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtTelefoneKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -304,12 +313,24 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtRua">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtRuaKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtNumero">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtNumeroKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtComplemento">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtComplementoKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtBairro">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtBairroKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -317,6 +338,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtCidade">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtCidadeKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -340,6 +364,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtCep">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtCepKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
@@ -444,6 +471,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtUsuario">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtUsuarioKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboCargo">
           <Properties>
@@ -462,8 +492,15 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordSenha">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordSenhaActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPasswordSenhaKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordConfirmarSenha">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPasswordConfirmarSenhaKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

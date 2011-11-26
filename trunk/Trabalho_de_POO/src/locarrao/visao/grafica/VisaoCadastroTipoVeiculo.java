@@ -39,6 +39,12 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("* Campo Obrigatório");
 
+        jTxtTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTipoActionPerformed(evt);
+            }
+        });
+
         jBCadastrar.setText("Cadastrar");
         jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +89,10 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
     private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
         salvar();
     }//GEN-LAST:event_jBCadastrarActionPerformed
+
+private void jTxtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTipoActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jTxtTipoActionPerformed
 
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
