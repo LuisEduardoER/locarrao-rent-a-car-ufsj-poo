@@ -29,6 +29,11 @@ public class PersisteTipoLocacao extends DaoBase{
         
     }
     
+    /**
+     * Retornar o tipo de locação de acordo com a id do veículo
+     * @param tipoLocacao
+     * @return 
+     */
     public TipoLocacao retornarTipoLocacaoPorVeiculo(TipoLocacao tipoLocacao){
         abrirDB();
         
@@ -46,6 +51,12 @@ public class PersisteTipoLocacao extends DaoBase{
         }
     }
     
+    /**
+     * retorna o tipo de locação de acordo com sua id
+     * @param tipoLocacao
+     * @return 
+     */
+    
     public TipoLocacao retornarTipoLocacao(TipoLocacao tipoLocacao){
         abrirDB();
         
@@ -61,6 +72,10 @@ public class PersisteTipoLocacao extends DaoBase{
         }
     }
     
+    /**
+     * salva o tipo de locação no banco de dados
+     * @param tipoLocacao 
+     */
     public void salvarBD(TipoLocacao tipoLocacao){
         abrirDB();
         
@@ -70,6 +85,11 @@ public class PersisteTipoLocacao extends DaoBase{
         fecharDB();
     }
     
+    
+    /**
+     * Atualiza os valores do tipo de locação no banco de dados
+     * @param tipoLocacao 
+     */
     public void atualizarBD(TipoLocacao tipoLocacao) {
         abrirDB();
         
@@ -79,6 +99,11 @@ public class PersisteTipoLocacao extends DaoBase{
         
     }
     
+    /**
+     * Verifica se ja existe o cadastro dos valores das taxas de locação para um determinado veículo.
+     * @param tipoVeiculo
+     * @return 
+     */
     public boolean verificarSeExisteCadastro(TipoVeiculo tipoVeiculo){
         abrirDB();
         
