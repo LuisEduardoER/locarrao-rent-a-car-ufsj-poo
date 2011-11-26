@@ -1,12 +1,21 @@
 package locarrao.visao.grafica;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.MarcaVeiculo;
 import modelo.persistencia.PersisteMarcaVeiculo;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
-
+    private final static Logger log = Logger.getLogger(VisaoCadastroMarcaVeiculo.class);
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    
+    
     MarcaVeiculo marca = new MarcaVeiculo();
     PersisteMarcaVeiculo persisteMarcaVeiculo = new PersisteMarcaVeiculo();
     
@@ -76,6 +85,7 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -102,6 +112,10 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
         pegarValores();
         if(verificarCampoEmBranco() && !persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
             persisteMarcaVeiculo.salvarBD(marca);
+            
+            log.info(formatador.format(new Date()) + " - Marca " + marca.getMarca() 
+                    + " cadastrada pelo funcionário " + funcionario.getNome());
+            
             JOptionPane.showMessageDialog(null, "Marca Cadastrada com sucesso!");
         }else if(persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
             JOptionPane.showMessageDialog(null, "Marca já está cadastrado!");

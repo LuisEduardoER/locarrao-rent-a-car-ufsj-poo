@@ -1,12 +1,16 @@
 
 package locarrao.visao.grafica;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
 import modelo.persistencia.PersisteEndereco;
 import modelo.persistencia.PersisteFuncionarios;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -14,6 +18,10 @@ import modelo.persistencia.PersisteFuncionarios;
  */
 public class VisaoCadastroFuncionario extends javax.swing.JFrame {
 
+    private final static Logger log = Logger.getLogger(VisaoCadastroFuncionario.class);
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    
+    
     Funcionarios funcionario = new Funcionarios();
     Endereco endereco = new Endereco();
     PersisteEndereco persisteEndereco = new PersisteEndereco();
@@ -343,6 +351,7 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -482,6 +491,8 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             pegarDados();
             if(!persisteFuncionarios.verificarFuncionarioJaCadastrado(funcionario)){
                 persisteFuncionarios.salvarBD(funcionario);
+                log.info(formatador.format(new Date()) + " Funcionário " + funcionario.getNome() 
+                        + " cadastrado por " + VisaoMenu.funcionario.getNome());
                 JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso!");
             }
             else{

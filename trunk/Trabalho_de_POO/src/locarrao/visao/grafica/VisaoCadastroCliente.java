@@ -11,6 +11,7 @@ import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
 import modelo.persistencia.PersisteEndereco;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -19,7 +20,7 @@ import org.apache.log4j.Logger;
 public class VisaoCadastroCliente extends javax.swing.JFrame {
     private final static Logger log = Logger.getLogger(VisaoCadastroCliente.class);
     SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-    Funcionarios funcionario;
+    Funcionarios funcionario = VisaoMenu.funcionario;
     
     Clientes cliente = new Clientes();
     Endereco endereco = new Endereco();
@@ -272,6 +273,7 @@ public class VisaoCadastroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
