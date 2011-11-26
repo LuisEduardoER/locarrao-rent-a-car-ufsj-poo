@@ -338,10 +338,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
    this.dispose();
 }//GEN-LAST:event_cancelaActionPerformed
     
-    /**
- * Verifica se tem algum campo obrigatório em branco
- * @return 
- */
+    
 private void jTxtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCepKeyPressed
     jTxtCep.setBackground(Color.white);
 }//GEN-LAST:event_jTxtCepKeyPressed
@@ -373,7 +370,11 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCpfKeyPressed
    jTxtCpf.setBackground(Color.white);
 }//GEN-LAST:event_jTxtCpfKeyPressed
-
+    
+    /**
+ * Verifica se tem algum campo obrigatório em branco
+ * @return 
+ */
     public boolean verificarDadosPessoaisEmBranco(){
         if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
@@ -390,6 +391,7 @@ private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_j
         }
     }
     
+    
     /**
      * Método para verificação dos dados de endereço.
      * O for é responsavel por verificar quantos componentes estão contidos dentro do jPanelEndereco.
@@ -401,10 +403,6 @@ private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_j
      * usuário.
      */
     
-    /**
-     * Verifica se foi digitado o endereço ou não. Se todos 
-     * @return 
-     */
     public boolean verificarDadosEndereco(){
         int contadorCampos = 0, contadorCamposEmBranco = 0;
         
@@ -465,7 +463,7 @@ private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_j
     }
     
     /**
-     * Verifica se não foi digitado valores incorreto.
+     * Verifica se foi digitado valores incorreto.
      * @return 
      */
     public boolean validarCampos(){
