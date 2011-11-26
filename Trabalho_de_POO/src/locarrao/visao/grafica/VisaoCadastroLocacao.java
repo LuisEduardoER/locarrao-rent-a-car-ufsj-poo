@@ -417,7 +417,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             jTxtPlaca.requestFocus();
             return false;
         }
-        if(persisteVeiculo.pesquisarVeiculoBD(veiculo)){
+        if(persisteVeiculo.pesquisarVeiculoPelaPlacaBD(veiculo)){
             locacao.setVeiculo(veiculo);
             return true;
         }

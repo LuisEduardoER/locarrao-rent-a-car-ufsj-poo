@@ -2,13 +2,16 @@
 package locarrao.visao.grafica;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.dominio.Endereco;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.Motorista;
 import modelo.persistencia.PersisteEndereco;
 import modelo.persistencia.PersisteMotorista;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -16,8 +19,9 @@ import org.apache.log4j.Logger;
  */
 public class VisaoCadastroMotorista extends javax.swing.JFrame {
 
-    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    private final static Logger log = Logger.getLogger(VisaoCadastroMotorista.class);
     SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
     
     
     
@@ -312,6 +316,7 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -442,6 +447,10 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             pegarDados();
             if(!persisteMotorista.verificarMotoristaJaCadastrado(motorista)){
                 persisteMotorista.salvarBD(motorista);
+                
+                log.info(formatador.format(new Date()) + " - Motorista " + motorista.getNome() + 
+                            " cadastrado pelo funcionario " + funcionario.getNome());
+                
                 JOptionPane.showMessageDialog(null, "Motorista cadastrado com sucesso!");
             }
             else{

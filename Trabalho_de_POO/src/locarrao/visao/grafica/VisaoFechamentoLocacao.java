@@ -1,17 +1,26 @@
 package locarrao.visao.grafica;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.dominio.Clientes;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.Locacao;
+import modelo.dominio.Veiculos;
 import modelo.persistencia.PersisteCliente;
 import modelo.persistencia.PersisteLocacao;
 import modelo.persistencia.PersisteMotorista;
 import modelo.persistencia.PersisteVeiculos;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoFechamentoLocacao extends javax.swing.JFrame {
+    private final static Logger log = Logger.getLogger(VisaoCadastroTipoVeiculo.class);
+    SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    Veiculos veiculo = new Veiculos();
     
     Clientes cliente = new Clientes(); 
     Locacao locacao = new Locacao();
@@ -137,6 +146,7 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -164,7 +174,7 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
             objeto = new Object[]{item.getId(),
                                   persisteCliente.pesquisarClienteBD(item.getCliente()),
                                   persisteMotorista.pesquisarMotoristaBD(item.getMotorista()),
-                                  persisteVeiculo.pesquisarVeiculoBD(item.getVeiculo()),
+                                  persisteVeiculo.pesquisarVeiculoPelaPlacaBD(item.getVeiculo()),
                                   item.getQuilometragemDeSaida(),
                                   formataData.format(item.getDataSaida())};
             
@@ -211,8 +221,11 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         locacao.setLocacaoAberta(false);
         persisteLocacao.fecharLocacaoBD(locacao);
         
+        veiculo = persisteVeiculo.retornarVeiculoBD(locacao.getVeiculo());
+        log.info(formatarData.format(new Date()) + " - Locação do veículo de placa " +
+                veiculo.getPlaca() + " finalizada pelo funcionário " + funcionario.getNome());
         
-        
+        JOptionPane.showMessageDialog(null, "Locação fechada com sucesso!");
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

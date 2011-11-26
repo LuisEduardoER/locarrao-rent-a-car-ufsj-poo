@@ -3,16 +3,24 @@ package locarrao.visao.grafica;
 import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 import modelo.persistencia.PersisteTipoLocacao;
 import modelo.persistencia.PersisteTipoVeiculo;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
 
-    /** Creates new form VisaoCadastroTipoLocacao */
+    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    
     public VisaoCadastroTipoLocacao() {
         initComponents();
         preencherCombo();
@@ -163,10 +171,8 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
         salvar();
     }//GEN-LAST:event_jBSalvarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -266,12 +272,18 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
                 
             if(verificarDadosIncorretos(tipoLocacao)){
                 persisteTipoLocacao.atualizarBD(tipoLocacao);
+                
+                log.info(formatarData.format(new Date()) + " - Atualização do Tipo de Locação para o tipo de veículo " 
+                        + tipoVeiculo.getTipo() + " feito pelo funcionário " + funcionario.getNome());
                 JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso");
             }
             
         }else{
             if(verificarDadosIncorretos(tipoLocacao)){
                 persisteTipoLocacao.salvarBD(tipoLocacao);
+                
+                log.info(formatarData.format(new Date()) + " - Cadastro do Tipo de Locação para o tipo de veículo " 
+                        + tipoVeiculo.getTipo() + " feito pelo funcionário " + funcionario.getNome());
                 JOptionPane.showMessageDialog(null, "Dados salvos com sucesso");
             }
             
