@@ -7,7 +7,11 @@ import modelo.dominio.ModeloVeiculo;
 
 public class PersisteModeloVeiculo extends DaoBase{
     
-    
+    /**
+     * Retorna o modelo do veículo, de acordo com sua id
+     * @param modelo
+     * @return ModeloVeiculo modelo
+     */
     public ModeloVeiculo retornarModeloVeiculo(ModeloVeiculo modelo){
         abrirDB();
         
@@ -17,10 +21,16 @@ public class PersisteModeloVeiculo extends DaoBase{
             return modelo;
         }catch(NoResultException ex){
             fecharDB();
+            modelo = null;
             return modelo;
         }
     }
     
+    /**
+     * Verifica se o modelo já está cadastrado no banco de dados.
+     * @param modelo
+     * @return boolean 
+     */
     public boolean verificarModeloJaCadastrado(ModeloVeiculo modelo){
         abrirDB();
         ModeloVeiculo m = new ModeloVeiculo();
@@ -37,6 +47,10 @@ public class PersisteModeloVeiculo extends DaoBase{
         }
     }
     
+    /**
+     * Salva o modelo no banco de dados.
+     * @param modelo 
+     */
     public void salvarBD(ModeloVeiculo modelo){
         abrirDB();
         
@@ -46,6 +60,10 @@ public class PersisteModeloVeiculo extends DaoBase{
         fecharDB();
     }
     
+    /**
+     * Retorna todos os modelos contidos no banco de dados.
+     * @return 
+     */
     public List retornarTodosModelosBD(){
         abrirDB();
         List lista = null;
@@ -60,6 +78,11 @@ public class PersisteModeloVeiculo extends DaoBase{
         }
     }
     
+    /**
+     * retorno o modelo de acordo com seu nome
+     * @param modelo
+     * @return ModeloVeiculo modelo
+     */
     public ModeloVeiculo retornarModeloVeiculoComNome(ModeloVeiculo modelo){
         abrirDB();
         

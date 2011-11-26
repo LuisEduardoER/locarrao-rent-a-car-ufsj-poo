@@ -389,7 +389,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     }
     
     public void preencherComboMarca(){
-        List<MarcaVeiculo> lista = persisteMarcaVeiculo.retornarTodosModelosBD();
+        List<MarcaVeiculo> lista = persisteMarcaVeiculo.retornarTodasMarcasBD();
         jComboMarca.removeAllItems();
         jComboMarca.addItem("Selecione um Tipo");
         

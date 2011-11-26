@@ -128,12 +128,17 @@ public class PersisteLocacao extends DaoBase{
         
     }
     
+    /** retorna uma lista com todas locações que estão em aberto de um determinado cliente.
+     * @return List lista
+     */
     public List retornarLocacoesEmAbertoPorCliente(Clientes cliente){
         List<Locacao> lista = null;
         abrirDB();
         
-        Query query = em.createQuery("FROM Locacao locacao WHERE locacao.cliente.id = :id");
+        Query query = em.createQuery("FROM Locacao locacao WHERE locacao.cliente.id = :id "
+                + "AND locacao.locacaoAberta = :aberta");
         query.setParameter("id", cliente.getCodigo());
+        query.setParameter("aberta", true);
         try{
             lista = query.getResultList();
             fecharDB();
@@ -145,6 +150,9 @@ public class PersisteLocacao extends DaoBase{
         
     }
     
+    /** Retorna todas as locações finaliza num determinado tempo. 
+     * @param Date dataInicial, Date dataFinal
+     */
     public List retornarLocacoesFinalizadasDB(Date dataInicial, Date dataFinal){
         List lista = null;
         abrirDB();
@@ -166,6 +174,9 @@ public class PersisteLocacao extends DaoBase{
         }
     }
     
+    /** Retorna todas as locações finalizads do banco de dados.
+     * @return List lista
+     */
     public List retornarLocacoesFinalizadasDB(){
         List lista = null;
         abrirDB();
@@ -184,6 +195,9 @@ public class PersisteLocacao extends DaoBase{
         }
     }
     
+    /** Retorna as locações abertas num determinado período de tempo.
+     * 
+     */
     public List retornarLocacoesAbertasDB(Date dataInicial, Date dataFinal){
         List lista = null;
         abrirDB();
@@ -205,6 +219,9 @@ public class PersisteLocacao extends DaoBase{
         }
     }
     
+    /** Retorna todas as locações abertas do banco de dados
+     * 
+     */
     public List retornarLocacoesAbertasDB(){
         List lista = null;
         abrirDB();

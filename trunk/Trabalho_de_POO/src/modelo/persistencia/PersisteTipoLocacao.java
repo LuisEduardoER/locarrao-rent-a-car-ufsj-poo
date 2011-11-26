@@ -8,6 +8,11 @@ import modelo.dominio.TipoVeiculo;
 
 public class PersisteTipoLocacao extends DaoBase{    
     
+    /**
+     * retorna o tipo de veiculo de acordo com seu nome.
+     * @param tipoVeiculo
+     * @return 
+     */
     public TipoVeiculo retornarTipoVeiculoBD(TipoVeiculo tipoVeiculo){
         abrirDB();
         
