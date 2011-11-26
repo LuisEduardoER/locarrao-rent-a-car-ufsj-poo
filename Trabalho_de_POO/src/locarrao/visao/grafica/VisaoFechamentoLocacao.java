@@ -172,7 +172,7 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         modelo.setRowCount(0);
         for(Locacao item: lista){
             objeto = new Object[]{item.getId(),
-                                  persisteCliente.pesquisarClienteBD(item.getCliente()),
+                                  persisteCliente.retornarClienteBD(item.getCliente()),
                                   persisteMotorista.pesquisarMotoristaBD(item.getMotorista()),
                                   persisteVeiculo.pesquisarVeiculoPelaPlacaBD(item.getVeiculo()),
                                   item.getQuilometragemDeSaida(),

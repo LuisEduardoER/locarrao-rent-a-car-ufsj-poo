@@ -367,7 +367,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             jTxtCodigoCliente.requestFocus();
             return false;
         }
-        else if(persisteCliente.pesquisarClienteBD(cliente)){
+        else if((cliente = persisteCliente.retornarClienteBD(cliente)) != null){
             jTxtCliente.setText(cliente.getNome());
             locacao.setCliente(cliente);
             return true;

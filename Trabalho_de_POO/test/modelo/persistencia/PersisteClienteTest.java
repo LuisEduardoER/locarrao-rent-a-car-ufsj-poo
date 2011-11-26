@@ -43,7 +43,7 @@ public class PersisteClienteTest {
     
 
     /**
-     * Test of pesquisarClienteBD method, of class PersisteCliente.
+     * Test of retornarClienteBD method, of class PersisteCliente.
      */
     @Test
     public void testPesquisarClienteBD() {
@@ -51,7 +51,7 @@ public class PersisteClienteTest {
         Clientes cliente = null;
         PersisteCliente instance = new PersisteCliente();
         boolean expResult = false;
-        boolean result = instance.pesquisarClienteBD(cliente);
+        Clientes result = instance.retornarClienteBD(cliente);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
