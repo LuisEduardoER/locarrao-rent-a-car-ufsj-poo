@@ -342,6 +342,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Verifica se foram inseridos números nos campos numéricos
+     * @param campo
+     * @return 
+     */
     public boolean verificarCamposNumericos(String campo){
         for(int i=0;i<campo.length();i++){
             if(!Character.isDigit(campo.charAt(i))){
@@ -350,6 +355,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         }
         return true;
     }
+    
+    /**
+     * Verifica se o dado referente ao cliente foi inserido corretamente
+     * @return 
+     */
     public boolean verificarCliente(){
         PersisteCliente persisteCliente = new PersisteCliente();
         Clientes cliente = new Clientes();
@@ -377,6 +387,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             return false;
         }
     }
+    
+    /**
+     * Verifica se o dado referente ao motorista foi inserido corretamente
+     * @return 
+     */
     
     public boolean verificarMotorista(){
         PersisteMotorista persisteMotorista = new PersisteMotorista();
@@ -406,8 +421,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Verifica se o dado referente ao veículo foi inserido corretamente
+     * @return 
+     */
+    
     public boolean verificarVeiculo(){
-        PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
         veiculo = new Veiculos();
         veiculo.setPlaca(jTxtCnh.getText().trim());
         
@@ -427,6 +446,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Verifica se os dados referente a previsão e km de saída foram digitados corretamente.
+     * @return 
+     */
+    
     public boolean verificarOutrosDados(){
         if(jTxtKmSaida.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Quilometragem de Saída é obrigatório!");
@@ -438,6 +462,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O Campo Quilometragem de Saída é só aceita números");
             jTxtKmSaida.setBackground(Color.red);
             jTxtKmSaida.requestFocus();
+            return false;
+        }
+        else if(!jTxtPrevisao.getText().trim().isEmpty() && verificarCamposNumericos(jTxtPrevisao.getText())){
+            JOptionPane.showMessageDialog(null, "O campo Previsão é só aceita números");
+            jTxtPrevisao.setBackground(Color.red);
+            jTxtPrevisao.requestFocus();
             return false;
         }
         else{
@@ -453,12 +483,21 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         return true;
     }
     
+    /**
+     * chama os métodos de verificação para determinar se vai ser salvo ou não no banco de dados. 
+     */
+    
     public void chamarVerificacoes(){
         if(verificarCliente() && verificarMotorista() && verificarVeiculo() && verificarOutrosDados()){
             pegarDados();
             incrementarQuantidadeLocacoes();
         }
     }
+    
+    
+    /**
+     * Insere no atributo locacao os dados digitados
+     */
     
     public void pegarDados(){
         locacao.setTipoLocacao(persisteLocacao.retornarTipoLocacao(veiculo));

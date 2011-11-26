@@ -399,8 +399,6 @@ private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_j
      * de itens em branco igual ao 1 é porque apenas um campo ficou em branco. Se esse campo
      * for o complemento, então a entrada de dados é aceita, caso contrario é emitida uma mensagem de erro para o 
      * usuário.
-     * 
-     * Qualquer dúvida é so entrar em contato.
      */
     
     /**
