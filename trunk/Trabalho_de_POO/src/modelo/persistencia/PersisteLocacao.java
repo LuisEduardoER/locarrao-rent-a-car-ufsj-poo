@@ -14,6 +14,15 @@ public class PersisteLocacao extends DaoBase{
     PersisteTipoLocacao persistenciaTipoLocacao = new PersisteTipoLocacao();
     PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
     
+    /** Calcula o valor da locação de acordo com o tipo de locação. Se for por diárias, irá fazer 
+     * Diferença de dias * taxa. 
+     * 
+     * Caso contrário, irá fazer (Quantidade de km * preço por km) + taxa;
+     * 
+     * No final é somado no cadastro do veículo o valor da locação
+     * @param Locacao locacao
+     */
+    
     public Locacao calcularValorLocacaoDiaria(Locacao locacao){
         Veiculos veiculo = new Veiculos();
         double valor = 0;
@@ -41,7 +50,12 @@ public class PersisteLocacao extends DaoBase{
     }
     
     
-    //calcula o valor, caso seja por quilometragem livre
+    /** Calcula a diferença de dias entre duas datas. Caso essa diferença seja 0, então o retorno será 1.
+     * 
+     * Fazendo assim, o valor da locação por diárias nunca será 0.
+     * 
+     * @return Long diferencaDeDias
+     */
     public long diferencaDeDias(long dataDeSaida, long dataDeChegada){
         //total de milissegundos em 1 dia
         long dia = 1000 * 60 * 60 * 24;
@@ -56,8 +70,8 @@ public class PersisteLocacao extends DaoBase{
     }
     
     
-    /*
-     * Código referente à interface gráfica
+    /**
+     * salvar a locação no banco de dados.
      */
     public void salvarBD(Locacao locacao){
         abrirDB();
@@ -66,6 +80,9 @@ public class PersisteLocacao extends DaoBase{
         fecharDB();
     }
     
+    /** Retorna a locação de acordo com sua id. Caso não seja encontrado, então retornará uma locação nula.
+     * @return Locacao locacao
+     */
     public Locacao retornarLocacao(Locacao locacao){
         abrirDB();
         
@@ -80,6 +97,9 @@ public class PersisteLocacao extends DaoBase{
         }
     }
     
+    /** É feito o cálculo da locação e depois é atualizado os dados da mesma no banco de dados.
+     * 
+     */
     public void fecharLocacaoBD(Locacao locacao){
         calcularValorLocacaoDiaria(locacao);
         
@@ -89,6 +109,9 @@ public class PersisteLocacao extends DaoBase{
         fecharDB();
     }
     
+    /** 
+     * 
+     */
     public TipoLocacao retornarTipoLocacao(Veiculos veiculo){
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
         TipoLocacao tipoLocacao = new TipoLocacao();
