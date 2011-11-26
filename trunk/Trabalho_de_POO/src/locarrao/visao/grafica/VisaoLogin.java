@@ -1,26 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * VisaoLogin.java
- *
- * Created on 19/11/2011, 16:45:42
- */
 package locarrao.visao.grafica;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.dominio.Funcionarios;
 import modelo.persistencia.PersisteFuncionarios;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
-/**
- *
- * @author Magelinha
- */
 public class VisaoLogin extends javax.swing.JFrame {
-
-    /** Creates new form VisaoLogin */
+    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    
     public VisaoLogin() {
         initComponents();
     }
@@ -111,10 +102,8 @@ public class VisaoLogin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBSairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -133,7 +122,8 @@ public class VisaoLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Dados incorretos. Verifique o usuario e a senha");
         }
         else{
-            
+            log.info(formatador.format(new Date()) + " " + funcionario.getCpf() + 
+                    " logou-se como "+ funcionario.getCargo() );
         }
         
         

@@ -1,19 +1,26 @@
 
 package locarrao.visao.grafica;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.persistencia.PersisteCliente;
 import modelo.dominio.Clientes;
 import modelo.dominio.Endereco;
+import modelo.dominio.Funcionarios;
 import modelo.persistencia.PersisteEndereco;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author thais
  */
 public class VisaoCadastroCliente extends javax.swing.JFrame {
-
+    private final static Logger log = Logger.getLogger(VisaoCadastroCliente.class);
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario;
+    
     Clientes cliente = new Clientes();
     Endereco endereco = new Endereco();
     PersisteEndereco persisteEndereco = new PersisteEndereco();
@@ -370,6 +377,8 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             pegarDados();
             if(!persisteCliente.verificarClienteJaCadastrado(cliente)){
                 persisteCliente.salvarBD(cliente);
+                log.info(formatador.format(new Date()) + " Cliente " + cliente.getNome() + " cadastrado por " + 
+                        funcionario.getNome());
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
             }
             else{
