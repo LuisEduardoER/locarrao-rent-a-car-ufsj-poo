@@ -7,6 +7,10 @@ import modelo.dominio.MarcaVeiculo;
 
 public class PersisteMarcaVeiculo extends DaoBase{
     
+    /**
+     * Salva a marca no banco de dados
+     * @param marca 
+     */
     public void salvarBD(MarcaVeiculo marca){
         abrirDB();
         
@@ -16,6 +20,11 @@ public class PersisteMarcaVeiculo extends DaoBase{
         fecharDB();
     }
     
+    /**
+     * Verifica se a marca ja está cadastrada, de acordo com seu nome.
+     * @param marca
+     * @return Boolean
+     */
     public boolean verificarMarcaJaCadastrado(MarcaVeiculo marca){
         abrirDB();
         MarcaVeiculo m = new MarcaVeiculo();
@@ -32,6 +41,11 @@ public class PersisteMarcaVeiculo extends DaoBase{
         }
     }
     
+    /**
+     * Retorna a marca do veículo.
+     * @param marca
+     * @return marca
+     */
     public MarcaVeiculo retornarMarcaVeiculo(MarcaVeiculo marca){
         abrirDB();
         
@@ -40,11 +54,17 @@ public class PersisteMarcaVeiculo extends DaoBase{
             fecharDB();
             return marca;
         }catch(NoResultException ex){
+            marca = null;
             fecharDB();
             return marca;
         }
     }
-    public List retornarTodosModelosBD(){
+    
+    /**
+     * Retorna todas as marcas contidas no banco de dados.
+     * @return List lista
+     */
+    public List retornarTodasMarcasBD(){
         abrirDB();
         List lista = null;
         Query query = em.createQuery("FROM MarcaVeiculo");

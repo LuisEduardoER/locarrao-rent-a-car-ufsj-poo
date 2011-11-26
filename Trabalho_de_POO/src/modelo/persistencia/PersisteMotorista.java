@@ -6,7 +6,11 @@ import modelo.dominio.Motorista;
 
 public class PersisteMotorista extends DaoBase{
     
-    
+    /**
+     * Pesquisa o motorista de acordo com sua CNH.
+     * @param motorista
+     * @return 
+     */
     public boolean pesquisarMotoristaBD(Motorista motorista){
         abrirDB();
         Query query = em.createQuery("FROM Mostorista motorista WHERE motorista.cnh = :cnh");
@@ -20,6 +24,11 @@ public class PersisteMotorista extends DaoBase{
         }
     }
     
+    /**
+     * Verifica se o motorista já está cadastrado, para evitar que tenha dois motorista iguais no banco de dados.
+     * @param motorista
+     * @return 
+     */
     public boolean verificarMotoristaJaCadastrado(Motorista motorista){
         Motorista m = new Motorista();
         abrirDB();
@@ -38,6 +47,10 @@ public class PersisteMotorista extends DaoBase{
         
     }
     
+    /**
+     * Salva o motorista no banco de dados
+     * @param motorista 
+     */
     public void salvarBD(Motorista motorista){
         abrirDB();
         em.persist(motorista);
