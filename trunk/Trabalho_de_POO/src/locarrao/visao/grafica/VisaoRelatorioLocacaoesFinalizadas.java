@@ -11,21 +11,29 @@
 package locarrao.visao.grafica;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.Locacao;
 import modelo.persistencia.PersisteCliente;
 import modelo.persistencia.PersisteLocacao;
 import modelo.persistencia.PersisteMotorista;
 import modelo.persistencia.PersisteVeiculos;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
  * @author Magelinha
  */
 public class VisaoRelatorioLocacaoesFinalizadas extends javax.swing.JFrame {
-
+    private final static Logger log = Logger.getLogger(VisaoRelatorioLocacaoesFinalizadas.class);
+    SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    
+    
     PersisteLocacao persisteLocacao = new PersisteLocacao();
     PersisteCliente persisteCliente = new PersisteCliente();
     PersisteMotorista persisteMotorista = new PersisteMotorista();
@@ -149,6 +157,7 @@ public class VisaoRelatorioLocacaoesFinalizadas extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -221,6 +230,9 @@ public class VisaoRelatorioLocacaoesFinalizadas extends javax.swing.JFrame {
                         jDateFinal.getDate());
             }
             inserirNaTabela(lista);
+            
+            log.info(formatarData.format(new Date()) + " - Relatório de locações finalizadas realizado pelo funcionario"
+                    + funcionario.getUsuario());
         }
     }
     

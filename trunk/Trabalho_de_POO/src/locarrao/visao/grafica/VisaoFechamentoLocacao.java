@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoFechamentoLocacao extends javax.swing.JFrame {
-    private final static Logger log = Logger.getLogger(VisaoCadastroTipoVeiculo.class);
+    private final static Logger log = Logger.getLogger(VisaoFechamentoLocacao.class);
     SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
     Funcionarios funcionario = VisaoMenu.funcionario;
     Veiculos veiculo = new Veiculos();

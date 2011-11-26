@@ -1,14 +1,22 @@
 package locarrao.visao.grafica;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.dominio.Clientes;
+import modelo.dominio.Funcionarios;
 import modelo.persistencia.PersisteCliente;
+import org.apache.log4j.Logger;
 
 public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
 
+    private final static Logger log = Logger.getLogger(VisaoRelatorioBuscarClientePorNome.class);
+    SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    
     Clientes cliente = new Clientes();
     PersisteCliente persisteCliente = new PersisteCliente();
     List<Clientes> lista = null;
@@ -166,6 +174,9 @@ public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
                 modelo.addRow(objeto);
              
             }
+            
+            log.info(formatarData.format(new Date()) + " - Listagem de clientes com nome " + cliente.getNome() + 
+                    "realizado pelo funcionário " + funcionario.getUsuario());
         }
     }
     

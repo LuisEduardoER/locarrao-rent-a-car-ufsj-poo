@@ -1,17 +1,25 @@
 package locarrao.visao.grafica;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.dominio.TipoVeiculo;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersisteMarcaVeiculo;
 import modelo.persistencia.PersisteModeloVeiculo;
 import modelo.persistencia.PersisteTipoVeiculo;
 import modelo.persistencia.PersisteVeiculos;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
-
+    private final static Logger log = Logger.getLogger(VisaoRelatorioVeiculosDisponiveis.class);
+    SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    
+    
     PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
     PersisteModeloVeiculo persisteModeloVeiculo = new PersisteModeloVeiculo();
     PersisteMarcaVeiculo persisteMarcaVeiculo = new PersisteMarcaVeiculo();
@@ -87,6 +95,7 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAtualizarActionPerformed
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -119,6 +128,9 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
                 modelo.addRow(objeto);
              
             }
+            
+            log.info(formatarData.format(new Date()) + " - Relatório de Veículos Disponíveis feito pelo funcionário " +
+                    funcionario.getUsuario());
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
