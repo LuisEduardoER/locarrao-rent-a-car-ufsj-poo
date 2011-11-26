@@ -1,9 +1,12 @@
 package locarrao.visao.grafica;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.MarcaVeiculo;
 import modelo.dominio.ModeloVeiculo;
 import modelo.dominio.TipoVeiculo;
@@ -12,9 +15,15 @@ import modelo.persistencia.PersisteMarcaVeiculo;
 import modelo.persistencia.PersisteModeloVeiculo;
 import modelo.persistencia.PersisteTipoVeiculo;
 import modelo.persistencia.PersisteVeiculos;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoCadastroVeiculo extends javax.swing.JFrame {
-
+    private final static Logger log = Logger.getLogger(VisaoCadastroTipoVeiculo.class);
+    SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    
+    
     Veiculos veiculo = new Veiculos();
     TipoVeiculo tipoVeiculo = new TipoVeiculo();
     ModeloVeiculo modelo = new ModeloVeiculo();
@@ -341,6 +350,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox7ActionPerformed
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -505,6 +515,9 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         if(verificarCamposObrigatoriosEmBranco() && verificarCampoNumerico() && verificarCombos()){
             pegarValores();
             persisteVeiculo.salvarBD(veiculo);
+            
+            log.info(formatarData.format(new Date()) + " - Veículo de placa " + veiculo.getPlaca() 
+                    + " cadastrado pelo funcionário " + funcionario.getNome());
             JOptionPane.showMessageDialog(null, "Veículo salvo com sucesso!");
         }else{
             JOptionPane.showMessageDialog(null, "Houve um erro ao salvar o veículo. Tente novamente!");

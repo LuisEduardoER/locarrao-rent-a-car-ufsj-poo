@@ -8,7 +8,19 @@ import modelo.dominio.Veiculos;
 
 public class PersisteVeiculos extends DaoBase{
     
-    public boolean pesquisarVeiculoBD(Veiculos veiculo){
+    public Veiculos retornarVeiculoBD(Veiculos veiculo){
+        abrirDB();
+        
+        try{
+            veiculo = em.find(Veiculos.class, veiculo.getId());
+            fecharDB();
+            return veiculo;
+        }catch(NoResultException ex){
+            fecharDB();
+            return veiculo;
+        }
+    }
+    public boolean pesquisarVeiculoPelaPlacaBD(Veiculos veiculo){
         abrirDB();
         Query query = em.createQuery("FROM Veiculos veiculo WHERE veiculo.placa = :placa");
         query.setParameter("placa", veiculo.getPlaca());
@@ -22,22 +34,6 @@ public class PersisteVeiculos extends DaoBase{
             return false;
         }
     }
-    
-    public Veiculos retornarVeiculoBD(Veiculos veiculo){
-        abrirDB();
-        
-        try{
-            veiculo = (Veiculos) em.find(Veiculos.class, veiculo.getId());
-            fecharDB();
-            return veiculo;
-        }catch(NoResultException ex){
-            veiculo = null;
-            fecharDB();
-            return veiculo;
-        }
-    }
-    
-    
     
     public void salvarBD(Veiculos veiculo){
         abrirDB();

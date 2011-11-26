@@ -150,7 +150,7 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
             for(Locacao item: lista){
                 objeto = new Object[]{persisteCliente.pesquisarClienteBD(item.getCliente()),
                                       persisteMotorista.pesquisarMotoristaBD(item.getMotorista()),
-                                      persisteVeiculo.pesquisarVeiculoBD(item.getVeiculo()),
+                                      persisteVeiculo.pesquisarVeiculoPelaPlacaBD(item.getVeiculo()),
                                       item.getQuilometragemDeSaida(),
                                       item.getQuilometragemDeEntrada(),
                                       formataData.format(item.getDataSaida()),

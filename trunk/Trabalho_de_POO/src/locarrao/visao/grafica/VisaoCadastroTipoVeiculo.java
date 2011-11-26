@@ -1,12 +1,21 @@
 package locarrao.visao.grafica;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.TipoVeiculo;
 import modelo.persistencia.PersisteTipoVeiculo;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
-
+    private final static Logger log = Logger.getLogger(VisaoCadastroTipoVeiculo.class);
+    SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
+    
+    
     TipoVeiculo tipo = new TipoVeiculo();
     PersisteTipoVeiculo persisteTipo = new PersisteTipoVeiculo();
     
@@ -76,6 +85,7 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -103,6 +113,9 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
         pegarValores();
         if(verificarCampoEmBranco() && !persisteTipo.verificarTipoJaCadastrado(tipo)){
             persisteTipo.salvarBD(tipo);
+            
+            log.info(formatarData.format(new Date()) + " - Tipo de veículo " + tipo.getTipo() 
+                    + " cadastrado pelo funcinário " + funcionario.getNome());
             JOptionPane.showMessageDialog(null, "Tipo Cadastrado com sucesso!");
         }else if(persisteTipo.verificarTipoJaCadastrado(tipo)){
             JOptionPane.showMessageDialog(null, "Tipo já está cadastrado!");
