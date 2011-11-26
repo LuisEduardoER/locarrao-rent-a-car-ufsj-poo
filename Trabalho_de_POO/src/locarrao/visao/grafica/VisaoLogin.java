@@ -124,6 +124,7 @@ public class VisaoLogin extends javax.swing.JFrame {
         else{
             log.info(formatador.format(new Date()) + " " + funcionario.getCpf() + 
                     " logou-se como "+ funcionario.getCargo() );
+            VisaoMenu.funcionario = funcionario;
         }
         
         
