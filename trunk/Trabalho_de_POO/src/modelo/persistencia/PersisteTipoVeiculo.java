@@ -8,6 +8,10 @@ import modelo.dominio.Veiculos;
 
 public class PersisteTipoVeiculo extends DaoBase{
     
+    /**
+     * Retorna todas os tipos de veículos cadastrados no banco de dados.
+     * @return 
+     */
     public List retornarListaTipos(){
         abrirDB();
         
@@ -25,6 +29,11 @@ public class PersisteTipoVeiculo extends DaoBase{
         
     }
     
+    /**
+     * retorna um tipo de veículo de acordo com sua id.
+     * @param tipoVeiculo
+     * @return 
+     */
     public TipoVeiculo retornarTipoVeiculo(TipoVeiculo tipoVeiculo){
         abrirDB();
         
@@ -37,6 +46,12 @@ public class PersisteTipoVeiculo extends DaoBase{
             return tipoVeiculo;
         }
     }
+    
+    /**
+     * Verifica se o tipo de veículo já está cadastrado no banco de dados, de acordo com seu nome.
+     * @param tipoVeiculo
+     * @return 
+     */
     public boolean verificarTipoJaCadastrado(TipoVeiculo tipoVeiculo){
         abrirDB();
         
@@ -53,6 +68,10 @@ public class PersisteTipoVeiculo extends DaoBase{
         }
     }
     
+    /**
+     * Salva o tipo de veículo no banco de dados.
+     * @param tipoVeiculo 
+     */
     public void salvarBD(TipoVeiculo tipoVeiculo){
         abrirDB();
         
@@ -62,6 +81,12 @@ public class PersisteTipoVeiculo extends DaoBase{
         fecharDB();
     }
     
+    /**
+     * Retorna todos os veiculos de um determinado tipo que estão disponíveis
+     * @param lista
+     * @param tipoVeiculo
+     * @return 
+     */
     public List retornarVeiculosDisponiveisPorTipo(List<Veiculos> lista,TipoVeiculo tipoVeiculo){
         for(Veiculos item:lista){
             if(item.getTipoVeiculo().getId() != tipoVeiculo.getId()){
