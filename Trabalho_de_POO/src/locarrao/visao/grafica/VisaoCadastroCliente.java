@@ -87,6 +87,24 @@ public class VisaoCadastroCliente extends javax.swing.JFrame {
 
         jLabel3.setText("Telefone :");
 
+        jTxtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtNomeKeyPressed(evt);
+            }
+        });
+
+        jTxtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCpfKeyPressed(evt);
+            }
+        });
+
+        jTxtTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtTelefoneKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -134,13 +152,43 @@ public class VisaoCadastroCliente extends javax.swing.JFrame {
 
         jLabel6.setText("Complemento :");
 
+        jTxtRua.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtRuaKeyPressed(evt);
+            }
+        });
+
+        jTxtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtNumeroKeyPressed(evt);
+            }
+        });
+
+        jTxtBairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtBairroKeyPressed(evt);
+            }
+        });
+
         jLabel7.setText("Bairro:");
+
+        jTxtCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCidadeKeyPressed(evt);
+            }
+        });
 
         jLabel8.setText("Cidade:");
 
         jLabel9.setText("Estado:");
 
         jComboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MG", "SP", "RJ" }));
+
+        jTxtCep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCepKeyPressed(evt);
+            }
+        });
 
         jLabel12.setText("Cep: ");
 
@@ -294,6 +342,38 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
  * Verifica se tem algum campo obrigatório em branco
  * @return 
  */
+private void jTxtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCepKeyPressed
+    jTxtCep.setBackground(Color.white);
+}//GEN-LAST:event_jTxtCepKeyPressed
+
+private void jTxtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtNomeKeyPressed
+   jTxtNome.setBackground(Color.white);
+}//GEN-LAST:event_jTxtNomeKeyPressed
+
+private void jTxtTelefoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtTelefoneKeyPressed
+   jTxtTelefone.setBackground(Color.white);
+}//GEN-LAST:event_jTxtTelefoneKeyPressed
+
+private void jTxtRuaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtRuaKeyPressed
+   jTxtRua.setBackground(Color.white);
+}//GEN-LAST:event_jTxtRuaKeyPressed
+
+private void jTxtNumeroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtNumeroKeyPressed
+   jTxtNumero.setBackground(Color.white);
+}//GEN-LAST:event_jTxtNumeroKeyPressed
+
+private void jTxtBairroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtBairroKeyPressed
+   jTxtBairro.setBackground(Color.white);
+}//GEN-LAST:event_jTxtBairroKeyPressed
+
+private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCidadeKeyPressed
+   jTxtCidade.setBackground(Color.white);
+}//GEN-LAST:event_jTxtCidadeKeyPressed
+
+private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCpfKeyPressed
+   jTxtCpf.setBackground(Color.white);
+}//GEN-LAST:event_jTxtCpfKeyPressed
+
     public boolean verificarDadosPessoaisEmBranco(){
         if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");

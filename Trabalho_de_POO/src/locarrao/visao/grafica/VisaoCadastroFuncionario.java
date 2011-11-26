@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
+import modelo.dominio.Valida;
 import modelo.persistencia.PersisteEndereco;
 import modelo.persistencia.PersisteFuncionarios;
 import org.apache.log4j.Logger;
@@ -95,6 +96,24 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
 
         jLabel3.setText("Telefone :");
 
+        jTxtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtNomeKeyPressed(evt);
+            }
+        });
+
+        jTxtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCpfKeyPressed(evt);
+            }
+        });
+
+        jTxtTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtTelefoneKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,9 +125,7 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(26, 26, 26))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)))
+                        .addComponent(jLabel1))
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,13 +163,49 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
 
         jLabel6.setText("Complemento :");
 
+        jTxtRua.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtRuaKeyPressed(evt);
+            }
+        });
+
+        jTxtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtNumeroKeyPressed(evt);
+            }
+        });
+
+        jTxtComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtComplementoKeyPressed(evt);
+            }
+        });
+
+        jTxtBairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtBairroKeyPressed(evt);
+            }
+        });
+
         jLabel7.setText("Bairro:");
+
+        jTxtCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCidadeKeyPressed(evt);
+            }
+        });
 
         jLabel8.setText("Cidade:");
 
         jLabel9.setText("Estado:");
 
         jComboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MG", "SP", "RJ" }));
+
+        jTxtCep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCepKeyPressed(evt);
+            }
+        });
 
         jLabel12.setText("Cep: ");
 
@@ -242,9 +295,32 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
 
         jLabel15.setText("Senha* :");
 
+        jTxtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtUsuarioKeyPressed(evt);
+            }
+        });
+
         jComboCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Vendedor", "Auxiliar" }));
 
         jLabel16.setText("Confirmar Senha* :");
+
+        jPasswordSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordSenhaActionPerformed(evt);
+            }
+        });
+        jPasswordSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordSenhaKeyPressed(evt);
+            }
+        });
+
+        jPasswordConfirmarSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordConfirmarSenhaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -263,7 +339,7 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPasswordConfirmarSenha, jPasswordSenha});
@@ -366,6 +442,58 @@ private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
     this.dispose();
 }//GEN-LAST:event_cancelaActionPerformed
+
+private void jPasswordSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordSenhaActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jPasswordSenhaActionPerformed
+
+private void jTxtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCepKeyPressed
+       jTxtCep.setBackground(Color.white);
+}//GEN-LAST:event_jTxtCepKeyPressed
+
+private void jTxtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtNomeKeyPressed
+   jTxtNome.setBackground(Color.white);
+}//GEN-LAST:event_jTxtNomeKeyPressed
+
+private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCpfKeyPressed
+   jTxtCpf.setBackground(Color.white);
+}//GEN-LAST:event_jTxtCpfKeyPressed
+
+private void jTxtTelefoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtTelefoneKeyPressed
+   jTxtTelefone.setBackground(Color.white);
+}//GEN-LAST:event_jTxtTelefoneKeyPressed
+
+private void jTxtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtUsuarioKeyPressed
+   jTxtUsuario.setBackground(Color.white);
+}//GEN-LAST:event_jTxtUsuarioKeyPressed
+
+private void jPasswordSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordSenhaKeyPressed
+   jPasswordSenha.setBackground(Color.white);
+}//GEN-LAST:event_jPasswordSenhaKeyPressed
+
+private void jPasswordConfirmarSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordConfirmarSenhaKeyPressed
+   jPasswordConfirmarSenha.setBackground(Color.white);
+}//GEN-LAST:event_jPasswordConfirmarSenhaKeyPressed
+
+private void jTxtRuaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtRuaKeyPressed
+   jTxtRua.setBackground(Color.white);
+}//GEN-LAST:event_jTxtRuaKeyPressed
+
+private void jTxtNumeroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtNumeroKeyPressed
+   jTxtNumero.setBackground(Color.white);
+}//GEN-LAST:event_jTxtNumeroKeyPressed
+
+private void jTxtBairroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtBairroKeyPressed
+   jTxtBairro.setBackground(Color.white);
+}//GEN-LAST:event_jTxtBairroKeyPressed
+
+private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCidadeKeyPressed
+   jTxtCidade.setBackground(Color.white);
+}//GEN-LAST:event_jTxtCidadeKeyPressed
+
+private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtComplementoKeyPressed
+   jTxtComplemento.setBackground(Color.white);
+}//GEN-LAST:event_jTxtComplementoKeyPressed
 
     public boolean verificarDadosPessoaisEmBranco(){
         if(jTxtNome.getText().trim().isEmpty()){
@@ -484,6 +612,29 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             
         }
         
+    }
+    
+    public boolean validarCampos(){
+        Valida validacao = new Valida();
+        
+        if(validacao.validarCPF(jTxtCpf.getText())){
+            JOptionPane.showMessageDialog(null, "CPF inválido!");
+            jTxtCpf.setBackground(Color.red);
+            jTxtCpf.requestFocus();
+            return false;
+        }else if(validacao.validarTelefone(jTxtTelefone.getText())){
+            JOptionPane.showMessageDialog(null, "Telefone inválido!");
+            jTxtTelefone.setBackground(Color.red);
+            jTxtTelefone.requestFocus();
+            return false;
+        }else if(!jTxtCep.getText().isEmpty() && validacao.validarCEP(jTxtCep.getText())){
+            JOptionPane.showMessageDialog(null, "CEP inválido!");
+            jTxtCep.setBackground(Color.red);
+            jTxtCep.requestFocus();
+            return false;
+        }else{
+            return true;
+        }
     }
     
     public void chamarVerificacoes(){
