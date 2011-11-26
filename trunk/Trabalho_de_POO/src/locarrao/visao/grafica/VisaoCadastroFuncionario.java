@@ -495,6 +495,10 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
    jTxtComplemento.setBackground(Color.white);
 }//GEN-LAST:event_jTxtComplementoKeyPressed
 
+    /**
+ * 
+ * @return 
+ */
     public boolean verificarDadosPessoaisEmBranco(){
         if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
