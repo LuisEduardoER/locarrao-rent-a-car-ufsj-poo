@@ -11,9 +11,12 @@
 package locarrao.visao.grafica;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import modelo.dominio.Clientes;
+import modelo.dominio.Funcionarios;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
 import modelo.dominio.Veiculos;
@@ -21,12 +24,18 @@ import modelo.persistencia.PersisteCliente;
 import modelo.persistencia.PersisteLocacao;
 import modelo.persistencia.PersisteMotorista;
 import modelo.persistencia.PersisteVeiculos;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
  * @author Magelinha
  */
 public class VisaoCadastroLocacao extends javax.swing.JFrame {
+    
+    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    Funcionarios funcionario = VisaoMenu.funcionario;
     
     public VisaoCadastroLocacao() {
         initComponents();
@@ -77,7 +86,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
 
         jBPesquisarCliente.setText("Pesquisar");
 
-        jLabel2.setText("Cliente* :");
+        jLabel2.setText("Cliente :");
 
         jTxtCliente.setEditable(false);
 
@@ -90,7 +99,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addComponent(jTxtCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -124,7 +133,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
 
         jBPesquisarMotorista.setText("Pesquisar");
 
-        jLabel4.setText("Motorista* :");
+        jLabel4.setText("Motorista :");
 
         jTxtMotorista.setEditable(false);
 
@@ -137,7 +146,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addComponent(jTxtMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -324,6 +333,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
@@ -456,6 +466,10 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         locacao.setValor(0);
         locacao.setLocacaoAberta(true);
         persisteLocacao.salvarBD(locacao);
+        
+        log.info(formatador.format(new Date()) + " - Locação do veiculo " + veiculo.getPlaca() 
+                + " aberta pelo funcionário " + funcionario.getNome());
+        
         JOptionPane.showMessageDialog(null, "Locação cadastrada com sucesso");
     }
     

@@ -1,12 +1,14 @@
 
 package locarrao.visao.grafica;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.dominio.Endereco;
 import modelo.dominio.Motorista;
 import modelo.persistencia.PersisteEndereco;
 import modelo.persistencia.PersisteMotorista;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -14,6 +16,11 @@ import modelo.persistencia.PersisteMotorista;
  */
 public class VisaoCadastroMotorista extends javax.swing.JFrame {
 
+    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    
+    
+    
     Motorista motorista = new Motorista();
     Endereco endereco = new Endereco();
     PersisteEndereco persisteEndereco = new PersisteEndereco();
