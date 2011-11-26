@@ -1,23 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * VisaoMenu.java
- *
- * Created on Nov 12, 2011, 10:12:36 PM
- */
 package locarrao.visao.grafica;
 
-import javax.swing.JFrame;
+import modelo.dominio.Funcionarios;
 
-/**
- *
- * @author USER
- */
 public class VisaoMenu extends javax.swing.JFrame {
-
+    
+    public static Funcionarios funcionario;
+    
+    
     public VisaoMenu() {
         initComponents();
     }
