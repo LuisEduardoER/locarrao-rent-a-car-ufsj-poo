@@ -33,7 +33,7 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class VisaoCadastroLocacao extends javax.swing.JFrame {
     
-    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    private final static Logger log = Logger.getLogger(VisaoCadastroLocacao.class);
     SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
     Funcionarios funcionario = VisaoMenu.funcionario;
     
@@ -468,7 +468,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         persisteLocacao.salvarBD(locacao);
         
         log.info(formatador.format(new Date()) + " - Locação do veiculo " + veiculo.getPlaca() 
-                + " aberta pelo funcionário " + funcionario.getNome());
+                + " aberta pelo funcionário " + funcionario.getUsuario());
         
         JOptionPane.showMessageDialog(null, "Locação cadastrada com sucesso");
     }

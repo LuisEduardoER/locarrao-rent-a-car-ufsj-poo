@@ -55,7 +55,7 @@
                       <Component id="cancela" linkSize="2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="153" max="32767" attributes="0"/>
+              <EmptySpace pref="162" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -382,7 +382,7 @@
                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="jTxtCnh" min="-2" pref="137" max="-2" attributes="0"/>
-                  <EmptySpace pref="239" max="32767" attributes="0"/>
+                  <EmptySpace pref="248" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

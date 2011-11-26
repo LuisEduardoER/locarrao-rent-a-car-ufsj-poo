@@ -380,7 +380,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(!persisteCliente.verificarClienteJaCadastrado(cliente)){
                 persisteCliente.salvarBD(cliente);
                 log.info(formatador.format(new Date()) + " Cliente " + cliente.getNome() + " cadastrado por " + 
-                        funcionario.getNome());
+                        funcionario.getUsuario());
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
             }
             else{

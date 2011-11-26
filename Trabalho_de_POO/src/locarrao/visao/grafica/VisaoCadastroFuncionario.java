@@ -492,7 +492,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             if(!persisteFuncionarios.verificarFuncionarioJaCadastrado(funcionario)){
                 persisteFuncionarios.salvarBD(funcionario);
                 log.info(formatador.format(new Date()) + " Funcionário " + funcionario.getNome() 
-                        + " cadastrado por " + VisaoMenu.funcionario.getNome());
+                        + " cadastrado por " + VisaoMenu.funcionario.getUsuario());
                 JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso!");
             }
             else{

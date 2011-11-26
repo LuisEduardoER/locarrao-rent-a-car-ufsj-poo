@@ -449,7 +449,7 @@ private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 persisteMotorista.salvarBD(motorista);
                 
                 log.info(formatador.format(new Date()) + " - Motorista " + motorista.getNome() + 
-                            " cadastrado pelo funcionario " + funcionario.getNome());
+                            " cadastrado pelo funcionario " + funcionario.getUsuario());
                 
                 JOptionPane.showMessageDialog(null, "Motorista cadastrado com sucesso!");
             }

@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
-    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    private final static Logger log = Logger.getLogger(VisaoCadastroModeloVeiculo.class);
     SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
     Funcionarios funcionario = VisaoMenu.funcionario;
     
@@ -113,7 +113,7 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
             persisteModeloVeiculo.salvarBD(modelo);
             
             log.info(formatador.format(new Date()) + " - Modelo " + modelo.getModelo() + 
-                    " cadastrado pelo funcionário " + funcionario.getNome());
+                    " cadastrado pelo funcionário " + funcionario.getUsuario());
             JOptionPane.showMessageDialog(null, "Modelo cadastrado com sucesso!");
         }else if(persisteModeloVeiculo.verificarModeloJaCadastrado(modelo)){
             JOptionPane.showMessageDialog(null, "Modelo já está cadastrado!");

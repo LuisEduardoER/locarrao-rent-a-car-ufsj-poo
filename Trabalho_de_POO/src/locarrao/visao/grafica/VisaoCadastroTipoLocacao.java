@@ -17,7 +17,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
 
-    private final static Logger log = Logger.getLogger(VisaoLogin.class);
+    private final static Logger log = Logger.getLogger(VisaoCadastroTipoLocacao.class);
     SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
     Funcionarios funcionario = VisaoMenu.funcionario;
     
@@ -274,7 +274,7 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
                 persisteTipoLocacao.atualizarBD(tipoLocacao);
                 
                 log.info(formatarData.format(new Date()) + " - Atualização do Tipo de Locação para o tipo de veículo " 
-                        + tipoVeiculo.getTipo() + " feito pelo funcionário " + funcionario.getNome());
+                        + tipoVeiculo.getTipo() + " feito pelo funcionário " + funcionario.getUsuario());
                 JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso");
             }
             

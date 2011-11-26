@@ -115,7 +115,7 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
             persisteTipo.salvarBD(tipo);
             
             log.info(formatarData.format(new Date()) + " - Tipo de veículo " + tipo.getTipo() 
-                    + " cadastrado pelo funcinário " + funcionario.getNome());
+                    + " cadastrado pelo funcinário " + funcionario.getUsuario());
             JOptionPane.showMessageDialog(null, "Tipo Cadastrado com sucesso!");
         }else if(persisteTipo.verificarTipoJaCadastrado(tipo)){
             JOptionPane.showMessageDialog(null, "Tipo já está cadastrado!");
