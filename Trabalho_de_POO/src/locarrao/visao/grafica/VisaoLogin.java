@@ -112,7 +112,9 @@ public class VisaoLogin extends javax.swing.JFrame {
         });
     }
     
-    
+    /**
+     * Verifica se o login foi feito corretamente
+     */
     public void verificarLogin(){
         PersisteFuncionarios persisteFuncionario = new PersisteFuncionarios();
         Funcionarios funcionario = new Funcionarios();
