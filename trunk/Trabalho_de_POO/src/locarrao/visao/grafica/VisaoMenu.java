@@ -25,10 +25,10 @@ public class VisaoMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        locacao = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        relatorios = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -73,40 +73,40 @@ public class VisaoMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(cadastro);
 
-        jMenu2.setText("Locação");
+        locacao.setText("Locação");
 
         jMenuItem8.setText("Cadastrar");
-        jMenu2.add(jMenuItem8);
+        locacao.add(jMenuItem8);
 
         jMenuItem9.setText("Alterar");
-        jMenu2.add(jMenuItem9);
+        locacao.add(jMenuItem9);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(locacao);
 
-        jMenu3.setText("Relatórios");
+        relatorios.setText("Relatórios");
 
         jMenuItem10.setText("Locações em aberto");
-        jMenu3.add(jMenuItem10);
+        relatorios.add(jMenuItem10);
 
         jMenuItem11.setText("Locações finalizadas");
-        jMenu3.add(jMenuItem11);
+        relatorios.add(jMenuItem11);
 
         jMenuItem12.setText("Veículos disponiveis");
-        jMenu3.add(jMenuItem12);
+        relatorios.add(jMenuItem12);
 
         jMenuItem13.setText("Veículos mais procurados");
-        jMenu3.add(jMenuItem13);
+        relatorios.add(jMenuItem13);
 
         jMenuItem14.setText("Veículos mais rentáveis");
-        jMenu3.add(jMenuItem14);
+        relatorios.add(jMenuItem14);
 
         jMenuItem15.setText("Busca de clientes por nome");
-        jMenu3.add(jMenuItem15);
+        relatorios.add(jMenuItem15);
 
         jMenuItem16.setText("Disponibilidade por tipo de veículo");
-        jMenu3.add(jMenuItem16);
+        relatorios.add(jMenuItem16);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(relatorios);
 
         setJMenuBar(jMenuBar1);
 
@@ -149,8 +149,6 @@ public class VisaoMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu cadastro;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuClientes;
     private javax.swing.JMenuItem jMenuItem10;
@@ -168,5 +166,7 @@ public class VisaoMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenu locacao;
+    private javax.swing.JMenu relatorios;
     // End of variables declaration//GEN-END:variables
 }
