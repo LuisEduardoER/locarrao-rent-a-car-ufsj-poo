@@ -104,6 +104,10 @@ private void jTxtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         });
     }
     
+    /**
+     * Verifica se o campo Tipo está vazio
+     * @return 
+     */
     public boolean verificarCampoEmBranco(){
         if(jTxtTipo.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O Campo Tipo é obrigatório!");
@@ -115,10 +119,17 @@ private void jTxtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }
     
+    /**
+     * Pega o valor digitado no campo Tipo e insere na variavel tipo
+     */
     public void pegarValores(){
         tipo = new TipoVeiculo();
         tipo.setTipo(jTxtTipo.getText().trim());
     }
+    
+    /**
+     * Verifica se o campos está vazio e se o tipo ja está cadastro. Caso contrário, é salvo no banco de dados
+     */
     public void salvar(){
         pegarValores();
         if(verificarCampoEmBranco() && !persisteTipo.verificarTipoJaCadastrado(tipo)){

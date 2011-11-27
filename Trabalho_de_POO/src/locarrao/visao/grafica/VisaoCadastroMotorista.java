@@ -431,6 +431,10 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
    jTxtCidade.setBackground(Color.white);
 }//GEN-LAST:event_jTxtCidadeKeyPressed
 
+    /**
+ * Verifica se os campos Nome ou CPF está em branco
+ * @return 
+ */
     public boolean verificarDadosPessoaisEmBranco(){
         if(jTxtNome.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
@@ -447,7 +451,10 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         }
     }
     
-    
+    /**
+     * Verifica se o campo CNH está em branco
+     * @return 
+     */
     public boolean verificarCnhEmBranco(){
         if(jTxtCnh.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CNH é obrigatório!");
@@ -459,6 +466,10 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         }
     }
     
+    /**
+     * Verifica se a cnh é válida
+     * @return 
+     */
     public boolean verificarContemLetraNaCnh(){
         String cnh = jTxtCnh.getText().trim();
         for(int i=0;i<cnh.length();i++){
@@ -473,14 +484,13 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     /*
      * Método para verificação dos dados de endereço.
      * O for é responsavel por verificar quantos componentes estão contidos dentro do jPanelEndereco
-     * A variavel contadorCampos conta a quantidade de campos, seja ele um TextField ou Combobox
+     * A variavel contadorCampos conta a quantidade de campos.
      * é verificado quantos dados ficaram em branco. Se a quantidade de dados que ficaram em branco for igual
      * a quantidade de campos é porque não foi inserido nenhum dado sobre o endereço. Senão, se a quantidade
      * de itens em branco igual ao 1 é porque apenas um campo ficou em branco. Se esse campo
      * for o complemento, então a entrada de dados é aceita, caso contrario é emitida uma mensagem de erro para o 
      * usuário.
      * 
-     * Qualquer dúvida é so entrar em contato.
      */
     
     public boolean verificarDadosEndereco(){
@@ -510,6 +520,9 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         }
     }
     
+    /**
+     * Pega os dados e insere na variável motorista
+     */
     public void pegarDados(){
         motorista = new Motorista();
         endereco = new Endereco();
@@ -541,6 +554,10 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         
     }
     
+    /**
+     * Verifica se os dados digitados são válidos
+     * @return 
+     */
     public boolean validarCampos(){
         Valida validacao = new Valida();
         
@@ -569,7 +586,9 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         }
     }
     
-    
+    /**
+     * Faz todas a verificações. Se todos os dados são válido, então eles são salvos no banco de dados
+     */
     public void chamarVerificacoes(){
         if(verificarDadosPessoaisEmBranco() && verificarContemLetraNaCnh() && verificarContemLetraNaCnh()){
             pegarDados();

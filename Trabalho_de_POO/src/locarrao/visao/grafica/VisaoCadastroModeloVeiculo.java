@@ -93,6 +93,10 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Verifica se o campo Modelo está vazio
+     * @return 
+     */
     public boolean verificarCampoEmBranco(){
         if(jTxtModelo.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Modelo é obrigatório!");
@@ -104,9 +108,16 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Insere o valor digitado no campo na variável modelo
+     */
     public void pegarValores(){
         modelo.setModelo(jTxtModelo.getText().trim().toUpperCase());
     }
+    
+    /**
+     * Salva o modelo no banco de dados, verificando antes se o campo está vazio ou se o modelo ja está cadastrado
+     */
     public void salvar(){
         pegarValores();
         if(verificarCampoEmBranco() && !persisteModeloVeiculo.verificarModeloJaCadastrado(modelo)){

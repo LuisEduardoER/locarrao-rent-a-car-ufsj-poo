@@ -121,18 +121,15 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(26, 26, 26))
-                        .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,14 +370,9 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(423, Short.MAX_VALUE))
+                .addGap(131, 131, 131)
+                .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(643, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,9 +385,11 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(cancela)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(466, 466, 466))
         );
 
@@ -495,8 +489,8 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
    jTxtComplemento.setBackground(Color.white);
 }//GEN-LAST:event_jTxtComplementoKeyPressed
 
-    /**
- * 
+ /**
+ * Verifica se tem algum campo obrigatório em branco
  * @return 
  */
     public boolean verificarDadosPessoaisEmBranco(){
@@ -515,6 +509,10 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
         }
     }
     
+    /**
+     * Verifica se os campos Usuário, Senha ou Confirmar Senha estão em branco
+     * @return 
+     */
     public boolean verificarDadosEmpresariais(){
         if(jTxtUsuario.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!");
@@ -536,6 +534,10 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
         }
     }
     
+    /**
+     * Verifica se a senha digita é igual a do campo Confirmar Senha
+     * @return 
+     */
     public boolean confirmarSenha(){
         if(jPasswordSenha.getText().equals(jPasswordConfirmarSenha.getText())){
             return true;
@@ -585,6 +587,9 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
         }
     }
     
+    /**
+     * Pega o dado dos campos referente ao funcionário 
+     */
     public void pegarDados(){
         funcionario = new Funcionarios();
         endereco = new Endereco();
@@ -618,6 +623,10 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
         
     }
     
+    /**
+     * Verifica se os dados foram digitados corretamente
+     * @return 
+     */
     public boolean validarCampos(){
         Valida validacao = new Valida();
         
@@ -641,6 +650,10 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
         }
     }
     
+    
+    /**
+     * Chama todas as verificações de segurança para verificar se é possível inserir os dados no banco de dados
+     */
     public void chamarVerificacoes(){
         if(verificarDadosPessoaisEmBranco() && verificarDadosEmpresariais()){
             pegarDados();
