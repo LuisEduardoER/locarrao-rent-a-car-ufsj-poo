@@ -181,6 +181,9 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Busca todos os tipo de veículos e insere no ComboBox
+     */
     public void preencherCombo(){
         PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
         List lista = persisteTipoVeiculo.retornarListaTipos();
@@ -216,6 +219,11 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Verifica se os dados digitados foram digitados corretamente
+     * @param tipoLocacao
+     * @return 
+     */
     public boolean verificarDadosIncorretos(TipoLocacao tipoLocacao){
         DecimalFormat formatador = new DecimalFormat("#,###.00");
         Number numero;

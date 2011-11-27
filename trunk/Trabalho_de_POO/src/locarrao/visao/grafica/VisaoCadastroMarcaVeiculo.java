@@ -94,6 +94,10 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Verifica se o campo marca está vazio
+     * @return 
+     */
     public boolean verificarCampoEmBranco(){
         if(jTxtMarca.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O Campo Marca é obrigatório!");
@@ -105,9 +109,18 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
         }
     }
     
+    
+    /**
+     * Pega a valor digitado e insere na variável marca
+     */
     public void pegarValores(){
         marca.setMarca(jTxtMarca.getText().trim().toUpperCase());
     }
+    
+    /**
+     * Faz as verificações de segurança saber se é possível salvar no banco de dados. Caso seja possível, 
+     * é feita a operação
+     */
     public void salvar(){
         pegarValores();
         if(verificarCampoEmBranco() && !persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
