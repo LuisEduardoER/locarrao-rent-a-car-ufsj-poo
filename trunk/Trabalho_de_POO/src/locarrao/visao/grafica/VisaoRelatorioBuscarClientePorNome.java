@@ -138,6 +138,10 @@ public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Verifica se o campo nome está vazio
+     * @return 
+     */
     public boolean verificarCamposEmBranco(){
         if(jTxtNome.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo nome é obrigatório!");
@@ -149,16 +153,22 @@ public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Pesquisa no banco de dados todas as pessoas com o nome digitado no campo Nome
+     */
     public void pesquisar(){
         cliente = new Clientes();
         if(verificarCamposEmBranco()){
             cliente.setNome(jTxtNome.getText().trim());
             lista = persisteCliente.pesquisarClientePorNome(cliente);
-            inserirNaLista();
+            inserirNaTabela();
         }
     }
     
-    public void inserirNaLista(){
+    /**
+     * Insere na tabelas os dados a lista de pessoas com um determminado nome
+     */
+    public void inserirNaTabela(){
         if(lista == null){
             JOptionPane.showMessageDialog(null, "Nenhum Cliente cadastrado com o nome " + jTxtNome.getText() + " !");
         }else{

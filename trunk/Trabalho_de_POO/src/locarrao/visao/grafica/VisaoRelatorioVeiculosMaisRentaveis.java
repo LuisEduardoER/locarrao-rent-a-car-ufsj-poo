@@ -107,6 +107,10 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Primeiro é gerado uma lista ordenada de forma decrescente pelo valor total de locaçoes 
+     * e depois é retirado da lista os veículos que tem valor total igual à 0
+     */
     public void preencherLista(){
         lista = persisteVeiculo.retornarVeiculosMaisLocados();
         
@@ -117,6 +121,11 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
         }
     }
        
+    /**
+     * Insere os dados da lista de veículos mais rentáveis na tabela
+     * @param lista 
+     */
+    
     public void inserirNaTabela(List<Veiculos> lista){
         if(lista == null){
             JOptionPane.showMessageDialog(null, "Nenhum veículo Cadastrado!");
