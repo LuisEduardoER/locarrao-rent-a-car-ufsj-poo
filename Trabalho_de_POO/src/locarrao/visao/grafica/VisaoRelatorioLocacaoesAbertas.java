@@ -147,6 +147,10 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Insere na tabela os valores da lista de locações aberta
+     * @param lista 
+     */
     public void inserirNaTabela(List<Locacao> lista){
         if(lista == null){
             JOptionPane.showMessageDialog(null, "Nenhum locação foi encontrada!");
@@ -175,6 +179,10 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
     }
     
     
+    /**
+     * Verifica se foi inserida somente uma das datas
+     * @return 
+     */
     public boolean verificarCamposEmBranco(){
         if(jDateInicial.getDate() == null && jDateFinal.getDate() != null){
             JOptionPane.showMessageDialog(null, "Você preencheu somente o campo Data Final! \n"
@@ -191,6 +199,11 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
         }
     
     }
+    
+    /**
+     * Verifica se as datas foram digitadas ou não
+     * @return 
+     */
     public boolean verificarCamposDatas(){
         if(jDateInicial.getDate() == null && jDateFinal.getDate() == null){
             return true;
@@ -199,6 +212,9 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Gera o relatório, fazendo antes as verificações necessárias
+     */
     public void criarRelatorio(){
         List<Locacao> lista = null;
         

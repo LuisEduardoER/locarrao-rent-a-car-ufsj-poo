@@ -104,10 +104,17 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
         });
     }
     
-    
+    /**
+     * faz uma busca de veículos disponíveis e insere na lista
+     */
     public void preencherLista(){
         lista = persisteVeiculo.veiculosDisponiveisBD();
     }
+    
+    /**
+     * Insere os dados da lista de veículos disponíveis na tabela
+     * @param lista 
+     */
     public void inserirNaTabela(List<Veiculos> lista){
         if(lista == null){
             JOptionPane.showMessageDialog(null, "Nenhum veículo está disponível!");
