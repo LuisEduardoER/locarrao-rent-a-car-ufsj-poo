@@ -6,6 +6,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import modelo.dominio.Clientes;
 import modelo.dominio.Locacao;
+import modelo.dominio.Motorista;
 import modelo.dominio.TipoLocacao;
 import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Veiculos;
@@ -239,4 +240,28 @@ public class PersisteLocacao extends DaoBase{
             return lista;
         }
     }
+    
+    /**
+     * Verifica se motorista já esta em alguma locaçao aberta
+     */
+    public boolean verificarMotoristaLocacaoAberta(Motorista motorista){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Locacao l WHERE l.locacaoAberta = :aberta "
+                + "AND l.motorista.codigo = :id");
+        
+        query.setParameter("aberta", true);
+        query.setParameter("id", motorista.getCodigo());
+        
+        try{
+            List lista = query.getResultList();
+            fecharDB();
+            return true;
+            
+        }catch(NoResultException ex){
+            fecharDB();
+            return false;
+        }    
+    }
+    
 }

@@ -22,8 +22,10 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
     Funcionarios funcionario = VisaoMenu.funcionario;
     Veiculos veiculo = new Veiculos();
     
+    //Tem que ser public static, porque será pedido a Km de chegada, que estará e outra classe
+    public static Locacao locacao = new Locacao();
+    
     Clientes cliente = new Clientes(); 
-    Locacao locacao = new Locacao();
     PersisteLocacao persisteLocacao = new PersisteLocacao();
     PersisteCliente persisteCliente = new PersisteCliente();
     PersisteMotorista persisteMotorista = new PersisteMotorista();
@@ -250,6 +252,7 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         persisteLocacao.fecharLocacaoBD(locacao);
         
         veiculo = persisteVeiculo.retornarVeiculoBD(locacao.getVeiculo());
+        veiculo.setValorTotalLocacoes(veiculo.getValorTotalLocacoes() + locacao.getValor());
         log.info(formatarData.format(new Date()) + " - Locação do veículo de placa " +
                 veiculo.getPlaca() + " finalizada pelo funcionário " + funcionario.getNome());
         

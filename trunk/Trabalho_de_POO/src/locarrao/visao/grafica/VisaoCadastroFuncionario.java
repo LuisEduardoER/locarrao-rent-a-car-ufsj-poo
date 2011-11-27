@@ -655,7 +655,7 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
      * Chama todas as verificações de segurança para verificar se é possível inserir os dados no banco de dados
      */
     public void chamarVerificacoes(){
-        if(verificarDadosPessoaisEmBranco() && verificarDadosEmpresariais()){
+        if(verificarDadosPessoaisEmBranco() && verificarDadosEmpresariais() && validarCampos()){
             pegarDados();
             if(!persisteFuncionarios.verificarFuncionarioJaCadastrado(funcionario)){
                 persisteFuncionarios.salvarBD(funcionario);

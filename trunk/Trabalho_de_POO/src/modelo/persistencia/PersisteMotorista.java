@@ -58,4 +58,6 @@ public class PersisteMotorista extends DaoBase{
         
         fecharDB();
     }
+    
+    
 }
