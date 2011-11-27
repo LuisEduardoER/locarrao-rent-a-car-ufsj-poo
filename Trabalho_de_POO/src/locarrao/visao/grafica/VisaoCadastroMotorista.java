@@ -590,7 +590,8 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
      * Faz todas a verificações. Se todos os dados são válido, então eles são salvos no banco de dados
      */
     public void chamarVerificacoes(){
-        if(verificarDadosPessoaisEmBranco() && verificarContemLetraNaCnh() && verificarContemLetraNaCnh()){
+        if(verificarDadosPessoaisEmBranco() && verificarContemLetraNaCnh() && 
+                verificarContemLetraNaCnh() && validarCampos()){
             pegarDados();
             if(!persisteMotorista.verificarMotoristaJaCadastrado(motorista)){
                 persisteMotorista.salvarBD(motorista);

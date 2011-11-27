@@ -41,6 +41,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         initComponents();
     }
     
+    
     Locacao locacao = new Locacao();
     PersisteLocacao persisteLocacao = new PersisteLocacao();
     PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
@@ -410,6 +411,10 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             jTxtCnh.requestFocus();
             return false;
         }
+        else if(!persisteLocacao.verificarMotoristaLocacaoAberta(motorista)){
+            JOptionPane.showMessageDialog(null, "Motorista ja está cadastrado em outra locação em aberto");
+            return false;
+        }
         else if(persisteMotorista.pesquisarMotoristaBD(motorista)){
             jTxtMotorista.setText(motorista.getNome());
             locacao.setMotorista(motorista);
@@ -429,14 +434,19 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     public boolean verificarVeiculo(){
         veiculo = new Veiculos();
         veiculo.setPlaca(jTxtCnh.getText().trim());
+        veiculo = persisteVeiculo.pesquisarVeiculoPelaPlacaBD(veiculo);
         
-        if(jTxtPlaca.getText().isEmpty()){
+        if(jTxtPlaca.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Placa é obrigatório!");
             jTxtPlaca.setBackground(Color.red);
             jTxtPlaca.requestFocus();
             return false;
         }
-        if(persisteVeiculo.pesquisarVeiculoPelaPlacaBD(veiculo)){
+        else if(!persisteVeiculo.veiculosDisponiveisBD().contains(veiculo)){
+            JOptionPane.showMessageDialog(null, "Veículo já está alugado!");
+            return false;
+        }
+        else if((persisteVeiculo.pesquisarVeiculoPelaPlacaBD(veiculo)) == null){
             locacao.setVeiculo(veiculo);
             return true;
         }

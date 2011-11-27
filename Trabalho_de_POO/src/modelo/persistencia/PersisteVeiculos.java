@@ -31,7 +31,7 @@ public class PersisteVeiculos extends DaoBase{
      * @param veiculo
      * @return 
      */
-    public boolean pesquisarVeiculoPelaPlacaBD(Veiculos veiculo){
+    public Veiculos pesquisarVeiculoPelaPlacaBD(Veiculos veiculo){
         abrirDB();
         Query query = em.createQuery("FROM Veiculos veiculo WHERE veiculo.placa = :placa");
         query.setParameter("placa", veiculo.getPlaca());
@@ -39,10 +39,11 @@ public class PersisteVeiculos extends DaoBase{
         try{
             veiculo = (Veiculos)query.getSingleResult();
             fecharDB();
-            return true;
+            return veiculo;
         }catch(NoResultException ex){
+            veiculo = null;
             fecharDB();
-            return false;
+            return veiculo;
         }
     }
     
