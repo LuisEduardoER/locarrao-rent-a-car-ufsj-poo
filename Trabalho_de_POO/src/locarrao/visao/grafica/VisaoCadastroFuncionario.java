@@ -71,7 +71,7 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
         jPasswordSenha = new javax.swing.JPasswordField();
         jPasswordConfirmarSenha = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
 
         salvar.setText("Salvar");

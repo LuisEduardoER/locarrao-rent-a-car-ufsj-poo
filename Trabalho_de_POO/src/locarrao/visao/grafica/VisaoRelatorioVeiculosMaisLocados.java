@@ -42,7 +42,7 @@ public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
         jTabelaVeiculo = new javax.swing.JTable();
         jBAtualizar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTabelaVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

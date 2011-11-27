@@ -32,7 +32,7 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
         jTxtMarca = new javax.swing.JTextField();
         jBCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Marca* :");
 

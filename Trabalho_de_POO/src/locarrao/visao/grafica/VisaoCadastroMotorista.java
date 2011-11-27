@@ -69,7 +69,7 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTxtCnh = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
 
         salvar.setText("Salvar");
@@ -304,7 +304,7 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addGap(26, 26, 26)
                 .addComponent(jTxtCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +332,7 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(426, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +344,7 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
                         .addComponent(salvar)
                         .addGap(35, 35, 35)
                         .addComponent(cancela)))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancela, salvar});

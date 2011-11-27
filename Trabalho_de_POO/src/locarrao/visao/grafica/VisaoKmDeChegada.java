@@ -41,7 +41,7 @@ public class VisaoKmDeChegada extends javax.swing.JFrame {
         jTxtKmDeSaida = new javax.swing.JTextField();
         jBCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Quilometragem de Chegada*: ");
 
@@ -79,7 +79,7 @@ public class VisaoKmDeChegada extends javax.swing.JFrame {
                         .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addContainerGap(357, Short.MAX_VALUE))))
+                        .addContainerGap(365, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
