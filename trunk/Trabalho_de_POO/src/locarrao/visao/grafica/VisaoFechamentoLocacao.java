@@ -155,15 +155,27 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Pesquisa o cliente e insere na tabela a lista de locações abertas desse determinado cliente
+     */
     public void exibirResultado(){
         pegarValor();
         buscarListaLocacoes(cliente);
     }
+    
+    /**
+     * Faz uma busca e todas a locações 
+     * @param cliente 
+     */
     public void buscarListaLocacoes(Clientes cliente){
         List<Locacao> lista = persisteLocacao.retornarLocacoesEmAbertoPorCliente(cliente);
         inserirNaTabela(lista);
     }
     
+    /**
+     * Pega o modelo da tabela e insere na mesma a lista de loçações em aberto cliente desejado
+     * @param lista 
+     */
     public void inserirNaTabela(List<Locacao> lista){
         Object[] objeto = null;
         modelo = (DefaultTableModel)jTableLocacoes.getModel();
@@ -181,6 +193,10 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
             modelo.addRow(objeto);
         }
     }
+    
+    /**
+     * pega o código do cliente digitado no campo Código do Cliente
+     */
     public void pegarValor(){
         if(chamarVerificacoes()){
             cliente = new Clientes();
@@ -188,6 +204,10 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Verifica se o campo está vazio ou se o dado digitado é inválido
+     * @return 
+     */
     public boolean chamarVerificacoes(){
         if(jTxtCodigo.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo código é obrigatório!");
@@ -202,6 +222,11 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Verifica se a entrada é válida
+     * @return 
+     */
+    
     public boolean verificarEntrada(){
         String codigo = jTxtCodigo.getText().trim();
         for(int i = 0; i < codigo.length();i++){
@@ -212,6 +237,9 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         return true;
     }
     
+    /**
+     * Fecha locação atualizando o valor e somando o valor no cadastro do veículo
+     */
     public void fecharLocacao(){
         locacao = new Locacao();
         

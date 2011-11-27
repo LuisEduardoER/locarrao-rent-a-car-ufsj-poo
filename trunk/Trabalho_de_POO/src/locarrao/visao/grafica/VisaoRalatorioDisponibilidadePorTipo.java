@@ -141,6 +141,9 @@ public class VisaoRalatorioDisponibilidadePorTipo extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Pega todos os tipos de veículo cadastrando no banco de dados e insere no ComboBox
+     */
     public void preencherCombo(){
         listaTipoVeiculo = persisteTipoVeiculo.retornarListaTipos();
         
@@ -151,6 +154,10 @@ public class VisaoRalatorioDisponibilidadePorTipo extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Verifica se o indice do item selecionado não é 0. Se for é pq não foi selecionado um tipo de veículo
+     * @return 
+     */
     public boolean verificarComboTipo(){
         if(jComboTipo.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(null, "Selecione o Tipo desejado e clique em Pesquisar!");
@@ -160,6 +167,10 @@ public class VisaoRalatorioDisponibilidadePorTipo extends javax.swing.JFrame {
             return true;
         }
     }
+    
+    /**
+     * Pega a lista de veículos disponíveis
+     */
     public void preencherLista(){
         tipoVeiculo.setTipo(jComboTipo.getSelectedItem().toString());
         tipoVeiculo = persisteTipoVeiculo.retornarTipoVeiculo(tipoVeiculo);
@@ -169,6 +180,10 @@ public class VisaoRalatorioDisponibilidadePorTipo extends javax.swing.JFrame {
     }
     
     
+    /**
+     * Insere a lista de veículos disponíveis na tabela
+     * @param lista 
+     */
     public void inserirNaTabela(List<Veiculos> lista){
         if(lista == null){
             JOptionPane.showMessageDialog(null, "Nenhum veículo do tipo "+jComboTipo.getSelectedItem().toString() + 
@@ -197,11 +212,13 @@ public class VisaoRalatorioDisponibilidadePorTipo extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Verifica se foi seleciado um tipo de veículo. Se foi então é gerado o relatório.
+     */
     public void gerarRelatorio(){
         if(verificarComboTipo()){
             preencherLista();
             inserirNaTabela(lista);
-            
             
         }
     }

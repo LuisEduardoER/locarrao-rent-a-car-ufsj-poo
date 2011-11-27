@@ -359,7 +359,9 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         });
     }
     
-    
+    /**
+     * Pega todos os tipos de veículo cadastrado no banco de dados e exibe no Combo Box
+     */
     public void preencherComboTipo(){
         List<TipoVeiculo> lista = persisteTipoVeiculo.retornarListaTipos();
         jComboTipo.removeAllItems();
@@ -374,6 +376,9 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Pega todos os modelos de veículo cadastrado no banco de dados e insere Combo Box
+     */
     public void preencherComboModelo(){
         List<ModeloVeiculo> lista = persisteModeloVeiculo.retornarTodosModelosBD();
         jComboModelo.removeAllItems();
@@ -388,6 +393,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         }
     }
     
+      /**
+     * Pega todas as marcas de veículo cadastrado no banco de dados e insere Combo Box
+     */
+  
     public void preencherComboMarca(){
         List<MarcaVeiculo> lista = persisteMarcaVeiculo.retornarTodasMarcasBD();
         jComboMarca.removeAllItems();
@@ -403,7 +412,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         
     }
     
-    
+    /**
+     * Verifica se nenhum campo obrigatório está em branco
+     * @return 
+     */
     public boolean verificarCamposObrigatoriosEmBranco(){
         if(jTxtPlaca.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Placa é obrigatório!");
@@ -420,6 +432,11 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Verifica se foi selecionado algum tipo, modelo e marca. Se quando for feita a verificação o item selecionado do
+     * for o de índice 0, será mostrada uma mensagem para o usuário.
+     * @return 
+     */
     public boolean verificarCombos(){
         if(jComboTipo.getSelectedIndex()== 0){
             JOptionPane.showMessageDialog(null, "Selecione o Tipo do Veículo!");
@@ -438,6 +455,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Concatena todos os checks marcados 
+     * @return 
+     */
     
     public String retornarChecksMarcados(){
         String opcionais = "";
@@ -453,6 +474,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         return opcionais;
     }
     
+    /**
+     * Retorna o tipo de veículo selecionado no combo
+     * @return 
+     */
     public TipoVeiculo retornarTipo(){
         tipoVeiculo = new TipoVeiculo();
         tipoVeiculo.setTipo(jComboTipo.getSelectedItem().toString());
@@ -465,6 +490,11 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Retorna o modelo  selecionado no combo
+     * @return 
+     */
+    
     public ModeloVeiculo retornarModelo(){
         modelo = new ModeloVeiculo();
         modelo.setModelo(jComboModelo.getSelectedItem().toString());
@@ -475,6 +505,11 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
             return modelo;
         }
     }
+    
+    /**
+     * Retorna a marca selecionada no combo
+     * @return 
+     */
     
     public MarcaVeiculo retornarMarca(){
         marca = new MarcaVeiculo();
@@ -487,6 +522,9 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * pega os valores dos campos e insere na variável veiculo
+     */
     public void pegarValores(){
         veiculo = new Veiculos();
         
@@ -502,6 +540,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         veiculo.setTotalLocacoes(0);
     }
     
+    /**
+     * Verifica se nos campos numéricos não foi inserido letras
+     * @return 
+     */
     public boolean verificarCampoNumerico(){
         String ano = jTxtAno.getText().trim();
         for(int i=0; i < ano.length(); i++){
@@ -513,6 +555,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         return true;
     }
     
+    /**
+     * Salva o veículo no banco de dados, verificando antes se os campos obrigatórios não estão em branco, se não foi
+     * inserido letra nos campos numéricos e se foi selecionado algum valor válido nos combo box
+     */
     public void salvar(){
         if(verificarCamposObrigatoriosEmBranco() && verificarCampoNumerico() && verificarCombos()){
             pegarValores();
