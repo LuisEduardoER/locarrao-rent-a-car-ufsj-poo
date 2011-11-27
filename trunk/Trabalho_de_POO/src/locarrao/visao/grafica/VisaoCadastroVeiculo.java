@@ -76,7 +76,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jComboMarca = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -218,6 +218,11 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         jBSalvar.setText("Salvar");
 
         jBSair.setText("Sair");
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSairActionPerformed(evt);
+            }
+        });
 
         jLabel4.setForeground(new java.awt.Color(255, 51, 0));
         jLabel4.setText("* Campo Obrigatório");
@@ -348,6 +353,10 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBSairActionPerformed
 
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");

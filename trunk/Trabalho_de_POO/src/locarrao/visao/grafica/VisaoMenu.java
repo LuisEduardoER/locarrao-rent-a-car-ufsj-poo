@@ -19,27 +19,27 @@ public class VisaoMenu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         cadastro = new javax.swing.JMenu();
         jMenuClientes = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        cadastroVeiculo = new javax.swing.JMenuItem();
+        cadastroMotorista = new javax.swing.JMenuItem();
+        tipoVeiculo = new javax.swing.JMenuItem();
+        marcaVeiculo = new javax.swing.JMenuItem();
+        modeloVeiculo = new javax.swing.JMenuItem();
+        tipoLocacao = new javax.swing.JMenuItem();
         locacao = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        cadastroLocacao = new javax.swing.JMenuItem();
+        finalizaLocacao = new javax.swing.JMenuItem();
         relatorios = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
+        locacoesAberto = new javax.swing.JMenuItem();
+        locacaoFinalizadas = new javax.swing.JMenuItem();
+        veiculosDisponiveis = new javax.swing.JMenuItem();
+        veiculosMaisProcurados = new javax.swing.JMenuItem();
+        veiculosMaisRentaveis = new javax.swing.JMenuItem();
+        buscaClientePorNome = new javax.swing.JMenuItem();
+        disponibilidadePorTipoDeVeiculo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("OCR A Extended", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("OCR A Extended", 0, 48));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOCARRÃO RENT A CAR");
 
@@ -53,58 +53,138 @@ public class VisaoMenu extends javax.swing.JFrame {
         });
         cadastro.add(jMenuClientes);
 
-        jMenuItem2.setText("Veículo");
-        cadastro.add(jMenuItem2);
+        cadastroVeiculo.setText("Veículo");
+        cadastroVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroVeiculoActionPerformed(evt);
+            }
+        });
+        cadastro.add(cadastroVeiculo);
 
-        jMenuItem3.setText("Motorista");
-        cadastro.add(jMenuItem3);
+        cadastroMotorista.setText("Motorista");
+        cadastroMotorista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroMotoristaActionPerformed(evt);
+            }
+        });
+        cadastro.add(cadastroMotorista);
 
-        jMenuItem4.setText("Tipo de veículo");
-        cadastro.add(jMenuItem4);
+        tipoVeiculo.setText("Tipo de veículo");
+        tipoVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoVeiculoActionPerformed(evt);
+            }
+        });
+        cadastro.add(tipoVeiculo);
 
-        jMenuItem5.setText("Marca de veículo");
-        cadastro.add(jMenuItem5);
+        marcaVeiculo.setText("Marca de veículo");
+        marcaVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcaVeiculoActionPerformed(evt);
+            }
+        });
+        cadastro.add(marcaVeiculo);
 
-        jMenuItem6.setText("Modelo de veículo");
-        cadastro.add(jMenuItem6);
+        modeloVeiculo.setText("Modelo de veículo");
+        modeloVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeloVeiculoActionPerformed(evt);
+            }
+        });
+        cadastro.add(modeloVeiculo);
 
-        jMenuItem7.setText("Tipo de locação");
-        cadastro.add(jMenuItem7);
+        tipoLocacao.setText("Tipo de locação");
+        tipoLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoLocacaoActionPerformed(evt);
+            }
+        });
+        cadastro.add(tipoLocacao);
 
         jMenuBar1.add(cadastro);
 
         locacao.setText("Locação");
 
-        jMenuItem8.setText("Cadastrar");
-        locacao.add(jMenuItem8);
+        cadastroLocacao.setText("Cadastrar");
+        cadastroLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroLocacaoActionPerformed(evt);
+            }
+        });
+        locacao.add(cadastroLocacao);
 
-        jMenuItem9.setText("Alterar");
-        locacao.add(jMenuItem9);
+        finalizaLocacao.setText("Finalizar");
+        finalizaLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizaLocacaoActionPerformed(evt);
+            }
+        });
+        locacao.add(finalizaLocacao);
 
         jMenuBar1.add(locacao);
 
         relatorios.setText("Relatórios");
+        relatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatoriosActionPerformed(evt);
+            }
+        });
 
-        jMenuItem10.setText("Locações em aberto");
-        relatorios.add(jMenuItem10);
+        locacoesAberto.setText("Locações em aberto");
+        locacoesAberto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locacoesAbertoActionPerformed(evt);
+            }
+        });
+        relatorios.add(locacoesAberto);
 
-        jMenuItem11.setText("Locações finalizadas");
-        relatorios.add(jMenuItem11);
+        locacaoFinalizadas.setText("Locações finalizadas");
+        locacaoFinalizadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locacaoFinalizadasActionPerformed(evt);
+            }
+        });
+        relatorios.add(locacaoFinalizadas);
 
-        jMenuItem12.setText("Veículos disponiveis");
-        relatorios.add(jMenuItem12);
+        veiculosDisponiveis.setText("Veículos disponiveis");
+        veiculosDisponiveis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                veiculosDisponiveisActionPerformed(evt);
+            }
+        });
+        relatorios.add(veiculosDisponiveis);
 
-        jMenuItem13.setText("Veículos mais procurados");
-        relatorios.add(jMenuItem13);
+        veiculosMaisProcurados.setText("Veículos mais procurados");
+        veiculosMaisProcurados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                veiculosMaisProcuradosActionPerformed(evt);
+            }
+        });
+        relatorios.add(veiculosMaisProcurados);
 
-        jMenuItem14.setText("Veículos mais rentáveis");
-        relatorios.add(jMenuItem14);
+        veiculosMaisRentaveis.setText("Veículos mais rentáveis");
+        veiculosMaisRentaveis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                veiculosMaisRentaveisActionPerformed(evt);
+            }
+        });
+        relatorios.add(veiculosMaisRentaveis);
 
-        jMenuItem15.setText("Busca de clientes por nome");
-        relatorios.add(jMenuItem15);
+        buscaClientePorNome.setText("Busca de clientes por nome");
+        buscaClientePorNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaClientePorNomeActionPerformed(evt);
+            }
+        });
+        relatorios.add(buscaClientePorNome);
 
-        jMenuItem16.setText("Disponibilidade por tipo de veículo");
-        relatorios.add(jMenuItem16);
+        disponibilidadePorTipoDeVeiculo.setText("Disponibilidade por tipo de veículo");
+        disponibilidadePorTipoDeVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disponibilidadePorTipoDeVeiculoActionPerformed(evt);
+            }
+        });
+        relatorios.add(disponibilidadePorTipoDeVeiculo);
 
         jMenuBar1.add(relatorios);
 
@@ -135,6 +215,85 @@ public class VisaoMenu extends javax.swing.JFrame {
         visao.setVisible(true);
     }//GEN-LAST:event_jMenuClientesActionPerformed
 
+    private void cadastroVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroVeiculoActionPerformed
+        VisaoCadastroVeiculo visao = new VisaoCadastroVeiculo();
+        visao.setVisible(true);
+    }//GEN-LAST:event_cadastroVeiculoActionPerformed
+
+    private void cadastroMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroMotoristaActionPerformed
+        VisaoCadastroMotorista visao = new VisaoCadastroMotorista();
+        visao.setVisible(true);
+    }//GEN-LAST:event_cadastroMotoristaActionPerformed
+
+    private void tipoVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoVeiculoActionPerformed
+        VisaoCadastroTipoVeiculo visao = new VisaoCadastroTipoVeiculo();
+        visao.setVisible(true);
+    }//GEN-LAST:event_tipoVeiculoActionPerformed
+
+    private void marcaVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaVeiculoActionPerformed
+        VisaoCadastroMarcaVeiculo visao = new VisaoCadastroMarcaVeiculo();
+        visao.setVisible(true);
+    }//GEN-LAST:event_marcaVeiculoActionPerformed
+
+    private void modeloVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloVeiculoActionPerformed
+        VisaoCadastroModeloVeiculo visao = new VisaoCadastroModeloVeiculo();
+        visao.setVisible(true);
+    }//GEN-LAST:event_modeloVeiculoActionPerformed
+
+    private void tipoLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoLocacaoActionPerformed
+        VisaoCadastroTipoLocacao visao = new VisaoCadastroTipoLocacao();
+        visao.setVisible(true);
+    }//GEN-LAST:event_tipoLocacaoActionPerformed
+
+    private void cadastroLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroLocacaoActionPerformed
+        VisaoCadastroLocacao visao = new VisaoCadastroLocacao();
+        visao.setVisible(true);
+    }//GEN-LAST:event_cadastroLocacaoActionPerformed
+
+    private void finalizaLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizaLocacaoActionPerformed
+        VisaoFechamentoLocacao visao = new VisaoFechamentoLocacao();
+        visao.setVisible(true);
+    }//GEN-LAST:event_finalizaLocacaoActionPerformed
+
+    private void relatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatoriosActionPerformed
+        
+    }//GEN-LAST:event_relatoriosActionPerformed
+
+    private void locacaoFinalizadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locacaoFinalizadasActionPerformed
+       VisaoRelatorioLocacaoesFinalizadas visao = new VisaoRelatorioLocacaoesFinalizadas();
+       visao.setVisible(true);
+    }//GEN-LAST:event_locacaoFinalizadasActionPerformed
+
+    private void locacoesAbertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locacoesAbertoActionPerformed
+        VisaoRelatorioLocacaoesAbertas visao = new VisaoRelatorioLocacaoesAbertas();
+        visao.setVisible(true);
+    }//GEN-LAST:event_locacoesAbertoActionPerformed
+
+    private void veiculosDisponiveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veiculosDisponiveisActionPerformed
+        VisaoRelatorioVeiculosDisponiveis visao = new VisaoRelatorioVeiculosDisponiveis();
+        visao.setVisible(true);
+    }//GEN-LAST:event_veiculosDisponiveisActionPerformed
+
+    private void veiculosMaisProcuradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veiculosMaisProcuradosActionPerformed
+        VisaoRelatorioVeiculosMaisLocados visao = new VisaoRelatorioVeiculosMaisLocados();
+        visao.setVisible(true);
+    }//GEN-LAST:event_veiculosMaisProcuradosActionPerformed
+
+    private void veiculosMaisRentaveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_veiculosMaisRentaveisActionPerformed
+       VisaoRelatorioVeiculosMaisRentaveis visao = new VisaoRelatorioVeiculosMaisRentaveis();
+       visao.setVisible(true);
+    }//GEN-LAST:event_veiculosMaisRentaveisActionPerformed
+
+    private void buscaClientePorNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClientePorNomeActionPerformed
+       VisaoRelatorioBuscarClientePorNome visao = new VisaoRelatorioBuscarClientePorNome();
+       visao.setVisible(true);
+    }//GEN-LAST:event_buscaClientePorNomeActionPerformed
+
+    private void disponibilidadePorTipoDeVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disponibilidadePorTipoDeVeiculoActionPerformed
+       VisaoRalatorioDisponibilidadePorTipo visao = new VisaoRalatorioDisponibilidadePorTipo();
+       visao.setVisible(true);
+    }//GEN-LAST:event_disponibilidadePorTipoDeVeiculoActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -147,26 +306,26 @@ public class VisaoMenu extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem buscaClientePorNome;
     private javax.swing.JMenu cadastro;
+    private javax.swing.JMenuItem cadastroLocacao;
+    private javax.swing.JMenuItem cadastroMotorista;
+    private javax.swing.JMenuItem cadastroVeiculo;
+    private javax.swing.JMenuItem disponibilidadePorTipoDeVeiculo;
+    private javax.swing.JMenuItem finalizaLocacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuClientes;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu locacao;
+    private javax.swing.JMenuItem locacaoFinalizadas;
+    private javax.swing.JMenuItem locacoesAberto;
+    private javax.swing.JMenuItem marcaVeiculo;
+    private javax.swing.JMenuItem modeloVeiculo;
     private javax.swing.JMenu relatorios;
+    private javax.swing.JMenuItem tipoLocacao;
+    private javax.swing.JMenuItem tipoVeiculo;
+    private javax.swing.JMenuItem veiculosDisponiveis;
+    private javax.swing.JMenuItem veiculosMaisProcurados;
+    private javax.swing.JMenuItem veiculosMaisRentaveis;
     // End of variables declaration//GEN-END:variables
 }
