@@ -240,15 +240,33 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
     }
     
     /**
-     * Fecha locação atualizando o valor e somando o valor no cadastro do veículo
+     * pega a id da locaçao selecionada na tabela
      */
-    public void fecharLocacao(){
+    public void pegarDadosLocacao(){
         locacao = new Locacao();
         
         int linha = jTableLocacoes.getSelectedRow();
         locacao.setId((Long)jTableLocacoes.getValueAt(linha, 0));
         locacao = persisteLocacao.retornarLocacao(locacao);
         locacao.setLocacaoAberta(false);
+    }
+    
+    /**
+     * Pega o valor digitado na tela de cadastro de Km de Chegada
+     */
+    public void digitarKmDeChegada(){
+        VisaoKmDeChegada visao = new VisaoKmDeChegada();
+        visao.setVisible(true);
+    }
+    
+    public void pegarOutrosDados(){
+        
+    }
+    
+    /**
+     * Fecha locação atualizando o valor e somando o valor no cadastro do veículo
+     */
+    public void fecharLocacao(){
         persisteLocacao.fecharLocacaoBD(locacao);
         
         veiculo = persisteVeiculo.retornarVeiculoBD(locacao.getVeiculo());
