@@ -133,7 +133,7 @@ private void jTxtTipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
      */
     public void pegarValores(){
         tipo = new TipoVeiculo();
-        tipo.setTipo(jTxtTipo.getText().trim());
+        tipo.setTipo(jTxtTipo.getText().trim().toUpperCase());
     }
     
     /**
@@ -150,8 +150,13 @@ private void jTxtTipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }else if(persisteTipo.verificarTipoJaCadastrado(tipo)){
             JOptionPane.showMessageDialog(null, "Tipo já está cadastrado!");
         }
+        limparCampos();
     }
     
+    public void limparCampos(){
+        jTxtTipo.setText("");
+        jTxtTipo.requestFocus();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCadastrar;

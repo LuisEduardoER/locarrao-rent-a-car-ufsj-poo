@@ -271,7 +271,6 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
         //pega a id do veículo
         tipoVeiculo.setTipo(jComboTipoVeiculo.getSelectedItem().toString());
         tipoVeiculo = persisteTipoLocacao.retornarTipoVeiculoBD(tipoVeiculo);
-        JOptionPane.showMessageDialog(null, tipoVeiculo.getId());
         
         
         if(persisteTipoLocacao.verificarSeExisteCadastro(tipoVeiculo)){

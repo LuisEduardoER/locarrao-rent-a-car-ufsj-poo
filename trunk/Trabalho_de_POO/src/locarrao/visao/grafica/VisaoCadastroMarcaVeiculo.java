@@ -39,6 +39,12 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("* Campo Obrigatório");
 
+        jTxtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtMarcaKeyPressed(evt);
+            }
+        });
+
         jBCadastrar.setText("Cadastrar");
         jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +90,10 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
         salvar();
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
+    private void jTxtMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtMarcaKeyPressed
+        jTxtMarca.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtMarcaKeyPressed
+
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -114,6 +124,7 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
      * Pega a valor digitado e insere na variável marca
      */
     public void pegarValores(){
+        marca = new MarcaVeiculo();
         marca.setMarca(jTxtMarca.getText().trim().toUpperCase());
     }
     
@@ -133,6 +144,16 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
         }else if(persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
             JOptionPane.showMessageDialog(null, "Marca já está cadastrado!");
         }
+        
+        limparCampo();
+    }
+    
+    /**
+     * Limpa o campo texto e o focaliza
+     */
+    public void limparCampo(){
+        jTxtMarca.setText("");
+        jTxtMarca.requestFocus();
     }
     
     
