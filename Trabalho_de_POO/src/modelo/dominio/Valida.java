@@ -101,7 +101,7 @@ public boolean validarCnh( String cnh){
             for(int i=0; i< placa.length(); i++){
                 if(i < 3 && !Character.isLetter(placa.charAt(i))){
                     return false;
-                }else if(!Character.isDigit(placa.charAt(i))){
+                }else if(i >= 3 && !Character.isDigit(placa.charAt(i))){
                     return false;
                 }
             }

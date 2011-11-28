@@ -134,14 +134,14 @@ public class VisaoCadastroMarcaVeiculo extends javax.swing.JFrame {
      */
     public void salvar(){
         pegarValores();
-        if(verificarCampoEmBranco() && !persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
+        if(verificarCampoEmBranco() && !persisteMarcaVeiculo.verificarMarcaJaCadastrada(marca)){
             persisteMarcaVeiculo.salvarBD(marca);
             
             log.info(formatador.format(new Date()) + " - Marca " + marca.getMarca() 
                     + " cadastrada pelo funcionário " + funcionario.getUsuario());
             
             JOptionPane.showMessageDialog(null, "Marca Cadastrada com sucesso!");
-        }else if(persisteMarcaVeiculo.verificarMarcaJaCadastrado(marca)){
+        }else if(persisteMarcaVeiculo.verificarMarcaJaCadastrada(marca)){
             JOptionPane.showMessageDialog(null, "Marca já está cadastrado!");
         }
         
