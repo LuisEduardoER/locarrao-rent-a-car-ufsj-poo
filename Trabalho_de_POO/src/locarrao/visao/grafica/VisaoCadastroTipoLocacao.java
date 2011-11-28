@@ -21,6 +21,9 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
     SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy");
     Funcionarios funcionario = VisaoMenu.funcionario;
     
+    PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
+    PersisteTipoLocacao persisteTipoLocacao = new PersisteTipoLocacao();
+        
     public VisaoCadastroTipoLocacao() {
         initComponents();
         preencherCombo();
@@ -185,7 +188,6 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
      * Busca todos os tipo de veículos e insere no ComboBox
      */
     public void preencherCombo(){
-        PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
         List lista = persisteTipoVeiculo.retornarListaTipos();
         
         jComboTipoVeiculo.removeAllItems();
@@ -266,16 +268,16 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
     public void salvar(){
         TipoLocacao tipoLocacao = new TipoLocacao();
         TipoVeiculo tipoVeiculo = new TipoVeiculo();
-        PersisteTipoLocacao persisteTipoLocacao = new PersisteTipoLocacao();
         
         //pega a id do veículo
         tipoVeiculo.setTipo(jComboTipoVeiculo.getSelectedItem().toString());
-        tipoVeiculo = persisteTipoLocacao.retornarTipoVeiculoBD(tipoVeiculo);
+        tipoVeiculo = persisteTipoVeiculo.retornarTipoVeiculoPeloTipo(tipoVeiculo);
+        
         
         
         if(persisteTipoLocacao.verificarSeExisteCadastro(tipoVeiculo)){
-            tipoLocacao.setTipoVeiculo(tipoVeiculo);
-            tipoLocacao = persisteTipoLocacao.retornarTipoLocacaoPorVeiculo(tipoLocacao);
+            
+            tipoLocacao = persisteTipoLocacao.retornarTipoLocacaoPorTipoVeiculo(tipoVeiculo);
                 
             if(verificarDadosIncorretos(tipoLocacao)){
                 persisteTipoLocacao.atualizarBD(tipoLocacao);
@@ -287,6 +289,7 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
             
         }else{
             if(verificarDadosIncorretos(tipoLocacao)){
+                tipoLocacao.setTipoVeiculo(tipoVeiculo);
                 persisteTipoLocacao.salvarBD(tipoLocacao);
                 
                 log.info(formatarData.format(new Date()) + " - Cadastro do Tipo de Locação para o tipo de veículo " 

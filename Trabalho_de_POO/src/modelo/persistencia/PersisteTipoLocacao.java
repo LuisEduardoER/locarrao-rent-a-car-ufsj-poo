@@ -8,46 +8,28 @@ import modelo.dominio.TipoVeiculo;
 
 public class PersisteTipoLocacao extends DaoBase{    
     
-    /**
-     * retorna o tipo de veiculo de acordo com seu nome.
-     * @param tipoVeiculo
-     * @return 
-     */
-    public TipoVeiculo retornarTipoVeiculoBD(TipoVeiculo tipoVeiculo){
-        abrirDB();
-        
-        Query query = em.createQuery("FROM TipoVeiculo tipoVeiculo WHERE tipoVeiculo.tipo = :tipo");
-        query.setParameter("tipo", tipoVeiculo.getTipo());
-        
-        fecharDB();
-        try{
-            tipoVeiculo = (TipoVeiculo) query.getSingleResult();
-            return tipoVeiculo;
-        }catch(NoResultException ex){
-            return tipoVeiculo;
-        }
-        
-    }
+    
     
     /**
      * Retornar o tipo de locação de acordo com a id do veículo
      * @param tipoLocacao
      * @return 
      */
-    public TipoLocacao retornarTipoLocacaoPorVeiculo(TipoLocacao tipoLocacao){
+    public TipoLocacao retornarTipoLocacaoPorTipoVeiculo(TipoVeiculo tipoVeiculo){
         abrirDB();
         
+        TipoLocacao tipo = new TipoLocacao();
         Query query = em.createQuery("FROM TipoLocacao tipoLocacao WHERE tipoLocacao.tipoVeiculo.id = :id");
-        query.setParameter("id", tipoLocacao.getTipoVeiculo().getId());
+        query.setParameter("id", tipoVeiculo.getId());
         
         try{
-            tipoLocacao = (TipoLocacao)query.getSingleResult();
+            tipo = (TipoLocacao)query.getSingleResult();
             fecharDB();
         
-            return tipoLocacao;
+            return tipo;
         }catch(NoResultException ex){
             fecharDB();
-            return tipoLocacao;
+            return tipo;
         }
     }
     

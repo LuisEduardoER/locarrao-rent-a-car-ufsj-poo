@@ -1,5 +1,6 @@
 package modelo.persistencia;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -35,7 +36,7 @@ public class PersisteVeiculos extends DaoBase{
         abrirDB();
         Query query = em.createQuery("FROM Veiculos veiculo WHERE veiculo.placa = :placa");
         query.setParameter("placa", veiculo.getPlaca());
-        
+        System.out.println("placa que veio: " + veiculo.getPlaca());
         try{
             veiculo = (Veiculos)query.getSingleResult();
             fecharDB();
@@ -125,7 +126,7 @@ public class PersisteVeiculos extends DaoBase{
         abrirDB();
         
         List<Veiculos> listaTodosVeiculos = null;
-        List<Veiculos> listaVeiculosDiponiveis = null;
+        List<Veiculos> listaVeiculosDiponiveis = new ArrayList<Veiculos>();
         
         Query query = em.createQuery("FROM Veiculos");
         
@@ -136,8 +137,9 @@ public class PersisteVeiculos extends DaoBase{
         }
         
         for(Veiculos item: listaTodosVeiculos){
-            query = em.createQuery("FROM Locacao l WHERE l.veiculo.id = :id");
+            query = em.createQuery("FROM Locacao l WHERE l.veiculo.id = :id AND l.locacaoAberta = :aberta");
             query.setParameter("id", item.getId());
+            query.setParameter("aberta", true);
             
             try{
                 locacao = (Locacao) query.getSingleResult();

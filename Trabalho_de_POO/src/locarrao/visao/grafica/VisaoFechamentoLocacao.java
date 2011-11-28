@@ -257,10 +257,11 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         
         modelo.setRowCount(0);
         for(Locacao item: lista){
+            
             objeto = new Object[]{item.getId(),
-                                  persisteCliente.retornarClienteBD(item.getCliente()),
-                                  persisteMotorista.pesquisarMotoristaBD(item.getMotorista()),
-                                  persisteVeiculo.pesquisarVeiculoPelaPlacaBD(item.getVeiculo()),
+                                  persisteCliente.retornarClienteBD(item.getCliente()).getNome(),
+                                  persisteMotorista.retornarMotoristaBD(item.getMotorista()).getNome(),
+                                  persisteVeiculo.retornarVeiculoBD(item.getVeiculo()).getPlaca(),
                                   item.getQuilometragemDeSaida(),
                                   formataData.format(item.getDataSaida())};
             
@@ -332,8 +333,14 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
      */
     public void pegarDadosLocacao(){
         locacao = new Locacao();
+        int linha = 0;
         
-        int linha = jTableLocacoes.getSelectedRow();
+        if(jTableLocacoes.getSelectedRow() == -1){
+             linha = 0;
+        }else{
+            linha = jTableLocacoes.getSelectedRow();
+        }
+        
         locacao.setId((Long)jTableLocacoes.getValueAt(linha, 0));
         locacao = persisteLocacao.retornarLocacao(locacao);
     }
@@ -344,7 +351,9 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
      */
     public void fecharLocacao(){
         locacao.setQuilometragemDeEntrada(Long.valueOf(jTxtKmDeChegada.getText().trim()));
+        locacao.setDataDevolucao(new Date().getTime());
         persisteLocacao.fecharLocacaoBD(locacao);
+        
         
         veiculo = persisteVeiculo.retornarVeiculoBD(locacao.getVeiculo());
         veiculo.setValorTotalLocacoes(veiculo.getValorTotalLocacoes() + locacao.getValor());

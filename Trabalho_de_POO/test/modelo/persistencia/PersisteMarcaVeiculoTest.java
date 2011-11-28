@@ -53,7 +53,7 @@ public class PersisteMarcaVeiculoTest {
     }
 
     /**
-     * Test of verificarMarcaJaCadastrado method, of class PersisteMarcaVeiculo.
+     * Test of verificarMarcaJaCadastrada method, of class PersisteMarcaVeiculo.
      */
     @Test
     public void testVerificarMarcaJaCadastrado() {
@@ -61,7 +61,7 @@ public class PersisteMarcaVeiculoTest {
         MarcaVeiculo marca = null;
         PersisteMarcaVeiculo instance = new PersisteMarcaVeiculo();
         boolean expResult = false;
-        boolean result = instance.verificarMarcaJaCadastrado(marca);
+        boolean result = instance.verificarMarcaJaCadastrada(marca);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

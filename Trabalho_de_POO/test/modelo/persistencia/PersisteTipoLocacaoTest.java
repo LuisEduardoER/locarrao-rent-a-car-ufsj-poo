@@ -40,30 +40,15 @@ public class PersisteTipoLocacaoTest {
     }
 
     /**
-     * Test of retornarTipoVeiculoBD method, of class PersisteTipoLocacao.
-     */
-    @Test
-    public void testRetornarTipoVeiculoBD() {
-        System.out.println("retornarTipoVeiculoBD");
-        TipoVeiculo tipoVeiculo = null;
-        PersisteTipoLocacao instance = new PersisteTipoLocacao();
-        TipoVeiculo expResult = null;
-        TipoVeiculo result = instance.retornarTipoVeiculoBD(tipoVeiculo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of retornarTipoLocacaoPorVeiculo method, of class PersisteTipoLocacao.
+     * Test of retornarTipoLocacaoPorTipoVeiculo method, of class PersisteTipoLocacao.
      */
     @Test
     public void testRetornarTipoLocacao() {
         System.out.println("retornarTipoLocacao");
-        TipoLocacao tipoLocacao = null;
+        TipoVeiculo tipoVeiculo = null;
         PersisteTipoLocacao instance = new PersisteTipoLocacao();
         TipoLocacao expResult = null;
-        TipoLocacao result = instance.retornarTipoLocacaoPorVeiculo(tipoLocacao);
+        TipoLocacao result = instance.retornarTipoLocacaoPorTipoVeiculo(tipoVeiculo);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -31,10 +31,10 @@ public class PersisteLocacao extends DaoBase{
         locacao.setTipoLocacao(persistenciaTipoLocacao.retornarTipoLocacao(locacao.getTipoLocacao()));
         if(locacao.getTipo().equals("QUILOMETRAGEM LIVRE")){
             valor = diferencaDeDias(locacao.getDataSaida().getTime(),
-                    new Date().getTime()) * locacao.getTipoLocacao().getTaxaDiarias();
+                    locacao.getDataDevolucao().getTime()) * locacao.getTipoLocacao().getTaxaDiarias();
             
         }else{
-            valor = (locacao.getQuilometragemDeSaida() - locacao.getQuilometragemDeEntrada()) * 
+            valor = (locacao.getQuilometragemDeEntrada() - locacao.getQuilometragemDeSaida()) * 
                     locacao.getTipoLocacao().getPrecoPorQuilometro() + locacao.getTipoLocacao().getTaxaPorKm();
         }
         
@@ -120,13 +120,19 @@ public class PersisteLocacao extends DaoBase{
         TipoLocacao tipoLocacao = new TipoLocacao();
         
         abrirDB();
-        tipoVeiculo = em.find(TipoVeiculo.class, veiculo.getTipoVeiculo().getId());
-        fecharDB();
+        try{
+            tipoVeiculo = em.find(TipoVeiculo.class, veiculo.getTipoVeiculo().getId());
+            fecharDB();
+        }catch(NoResultException ex){
+            tipoVeiculo = null;
+            fecharDB();
+            
+        }
         
-        tipoLocacao.setTipoVeiculo(tipoVeiculo);
         
-        persistenciaTipoLocacao.retornarTipoLocacaoPorVeiculo(tipoLocacao);
+        tipoLocacao = persistenciaTipoLocacao.retornarTipoLocacaoPorTipoVeiculo(tipoVeiculo);
         
+        System.out.println("tipoLocacao.id "+ tipoLocacao.getId());
         return tipoLocacao;
         
     }
@@ -264,6 +270,24 @@ public class PersisteLocacao extends DaoBase{
             fecharDB();
             return false;
         }    
+    }
+    
+    public boolean verificarVeiculoDisponivel(Veiculos veiculo){
+        abrirDB();
+        Veiculos v = new Veiculos();
+        
+        Query query = em.createQuery("FROM Locacao l WHERE l.locacaoAberta = :aberta AND l.veiculo.id = :id");
+        
+        query.setParameter("aberta", true);
+        query.setParameter("id", veiculo.getId());
+        try{
+            v = (Veiculos)query.getSingleResult();
+            fecharDB();
+            return false;
+        }catch(NoResultException ex){
+            fecharDB();
+            return true;
+        }
     }
     
 }
