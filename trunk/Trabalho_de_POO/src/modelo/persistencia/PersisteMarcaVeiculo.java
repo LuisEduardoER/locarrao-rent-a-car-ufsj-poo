@@ -26,18 +26,38 @@ public class PersisteMarcaVeiculo extends DaoBase{
      * @return Boolean
      */
     public boolean verificarMarcaJaCadastrada(MarcaVeiculo marca){
-        MarcaVeiculo m = new MarcaVeiculo();
         abrirDB();
         
         Query query = em.createQuery("FROM MarcaVeiculo m WHERE m.marca = :marca");
         query.setParameter("marca", marca.getMarca());
         
         try{
-            m = (MarcaVeiculo)query.getSingleResult();
+            marca = (MarcaVeiculo)query.getSingleResult();
+            System.out.println("retorno true " + "id: " + marca.getId());
             return true;
+            
         }catch(NoResultException ex){
             fecharDB();
+            System.out.println("retorno false");
             return false;
+        }
+    }
+    
+    public MarcaVeiculo retornarMarcaPeloNome(MarcaVeiculo marca){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM MarcaVeiculo m WHERE m.marca = :marca");
+        query.setParameter("marca", marca.getMarca());
+        
+        try{
+            marca = (MarcaVeiculo)query.getSingleResult();
+            System.out.println("retorno true " + "id: " + marca.getId());
+            return marca;
+            
+        }catch(NoResultException ex){
+            fecharDB();
+            System.out.println("retorno false");
+            return marca;
         }
     }
     

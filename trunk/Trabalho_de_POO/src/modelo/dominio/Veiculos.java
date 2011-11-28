@@ -40,21 +40,21 @@ public class Veiculos implements Serializable {
     private String observacao;
     
     @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="ID_TIPO_VEICULO")
+    @JoinColumn(name="ID_TIPO_VEICULO",nullable=false)
     private TipoVeiculo tipoVeiculo;
     
     @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="ID_MARCA")
+    @JoinColumn(name="ID_MARCA",nullable=false)
     private MarcaVeiculo marcaVeiculo;
 
     @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="ID_MODELO")
+    @JoinColumn(name="ID_MODELO",nullable=false)
     private ModeloVeiculo modeloVeiculo;
     
-    @Column(name="TOTAL_LOCACOES")
+    @Column(name="TOTAL_LOCACOES",nullable=false)
     private int totalLocacoes;
     
-    @Column(name="VALOR_TOTAL_LOCACOES")
+    @Column(name="VALOR_TOTAL_LOCACOES",nullable=false)
     private double valorTotalLocacoes;
 
     public String getPlaca() {
