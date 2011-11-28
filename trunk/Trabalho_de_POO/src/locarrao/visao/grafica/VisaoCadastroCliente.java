@@ -27,8 +27,10 @@ public class VisaoCadastroCliente extends javax.swing.JFrame {
     Endereco endereco = new Endereco();
     PersisteEndereco persisteEndereco = new PersisteEndereco();
     PersisteCliente persisteCliente = new PersisteCliente();
+    
     public VisaoCadastroCliente() {
         initComponents();
+        persisteEndereco.preencherComboEstados(jComboEstado);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -469,22 +471,33 @@ private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_j
     public boolean validarCampos(){
         Valida validacao = new Valida();
         
-        if(validacao.validarCPF(jTxtCpf.getText())){
+        if(!validacao.validarCPF(jTxtCpf.getText())){
             JOptionPane.showMessageDialog(null, "CPF inválido!");
             jTxtCpf.setBackground(Color.red);
             jTxtCpf.requestFocus();
             return false;
-        }else if(validacao.validarTelefone(jTxtTelefone.getText())){
+        }else if(!jTxtTelefone.getText().isEmpty() && !validacao.validarTelefone(jTxtTelefone.getText())){
             JOptionPane.showMessageDialog(null, "Telefone inválido!");
             jTxtTelefone.setBackground(Color.red);
             jTxtTelefone.requestFocus();
             return false;
-        }else if(!jTxtCep.getText().isEmpty() && validacao.validarCEP(jTxtCep.getText())){
+        }else if(!jTxtCep.getText().isEmpty() && !validacao.validarCEP(jTxtCep.getText())){
             JOptionPane.showMessageDialog(null, "CEP inválido!");
             jTxtCep.setBackground(Color.red);
             jTxtCep.requestFocus();
             return false;
         }else{
+            return true;
+        }
+    }
+    
+    public boolean verificarClienteJaExiste(){
+        
+        if(persisteCliente.verificarClienteJaCadastrado(cliente)){
+            JOptionPane.showMessageDialog(null, "Cliente já cadastrado!");
+            return false;
+        }
+        else{
             return true;
         }
     }

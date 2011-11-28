@@ -3,7 +3,6 @@ package locarrao.visao.grafica;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import locarrao.visao.grafica.VisaoMenu;
 import modelo.dominio.Funcionarios;
 import modelo.persistencia.PersisteFuncionarios;
 import org.apache.log4j.Logger;
@@ -61,26 +60,25 @@ public class VisaoLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jBAcessar)
-                        .addGap(76, 76, 76)
-                        .addComponent(jBSair))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addGap(10, 10, 10)
-                        .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(10, 10, 10)
+                .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(136, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(134, 134, 134))
+                .addGap(157, 157, 157))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addComponent(jBAcessar)
+                .addGap(76, 76, 76)
+                .addComponent(jBSair)
+                .addGap(80, 80, 80))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTxtSenha, jTxtUsuario});
@@ -98,11 +96,11 @@ public class VisaoLogin extends javax.swing.JFrame {
                     .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAcessar)
                     .addComponent(jBSair))
-                .addGap(28, 28, 28))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -117,10 +115,10 @@ public class VisaoLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSairActionPerformed
 
     public static void main(String args[]) {
-        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            
             public void run() {
+                PropertyConfigurator.configure("log4j.properties");
                 new VisaoLogin().setVisible(true);
             }
         });
@@ -133,7 +131,7 @@ public class VisaoLogin extends javax.swing.JFrame {
         funcionario.setUsuario(jTxtUsuario.getText().toUpperCase());
         funcionario.setSenha(String.valueOf(jTxtSenha.getPassword()));
         if(!persisteFuncionario.verificarLogin(funcionario)){
-            JOptionPane.showMessageDialog(null, "Dados incorretos. Verifique o usuario e a senha");
+            JOptionPane.showMessageDialog(null, "Dados incorretos! Verifique o usuário e a senha.");
             return false;
         }
         else{
@@ -147,6 +145,7 @@ public class VisaoLogin extends javax.swing.JFrame {
     public void chamarFrameMenu(){
         VisaoMenu visao = new VisaoMenu();
         VisaoMenu.funcionario = funcionario;
+        visao.jLabelUsuario.setText(funcionario.getUsuario());
         visao.setVisible(true);
         
     }
