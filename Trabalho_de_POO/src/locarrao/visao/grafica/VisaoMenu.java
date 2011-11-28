@@ -28,6 +28,7 @@ public class VisaoMenu extends javax.swing.JFrame {
         marcaVeiculo = new javax.swing.JMenuItem();
         modeloVeiculo = new javax.swing.JMenuItem();
         tipoLocacao = new javax.swing.JMenuItem();
+        cadastraFuncionarios = new javax.swing.JMenuItem();
         locacao = new javax.swing.JMenu();
         cadastroLocacao = new javax.swing.JMenuItem();
         finalizaLocacao = new javax.swing.JMenuItem();
@@ -117,6 +118,14 @@ public class VisaoMenu extends javax.swing.JFrame {
             }
         });
         cadastro.add(tipoLocacao);
+
+        cadastraFuncionarios.setText("Funcionários");
+        cadastraFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastraFuncionariosActionPerformed(evt);
+            }
+        });
+        cadastro.add(cadastraFuncionarios);
 
         jMenuBar1.add(cadastro);
 
@@ -329,6 +338,11 @@ public class VisaoMenu extends javax.swing.JFrame {
         visao.setVisible(true);
     }//GEN-LAST:event_jBTrocarUsuarioActionPerformed
 
+    private void cadastraFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastraFuncionariosActionPerformed
+       VisaoCadastroFuncionario visao = new VisaoCadastroFuncionario();
+        visao.setVisible(true);
+    }//GEN-LAST:event_cadastraFuncionariosActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -342,6 +356,7 @@ public class VisaoMenu extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem buscaClientePorNome;
+    private javax.swing.JMenuItem cadastraFuncionarios;
     private javax.swing.JMenu cadastro;
     private javax.swing.JMenuItem cadastroLocacao;
     private javax.swing.JMenuItem cadastroMotorista;
