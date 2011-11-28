@@ -50,6 +50,7 @@ public class VisaoMenu extends javax.swing.JFrame {
 
         jLabel2.setText("Usuário: ");
 
+        jLabelUsuario.setForeground(new java.awt.Color(0, 0, 255));
         jLabelUsuario.setText("usuario");
 
         jBTrocarUsuario.setText("Trocar Usuário");

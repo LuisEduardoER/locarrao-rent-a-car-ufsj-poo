@@ -38,6 +38,12 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("* Campo Obrigatório");
 
+        jTxtModelo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtModeloKeyPressed(evt);
+            }
+        });
+
         jBCadastrar.setText("Cadastrar");
         jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +89,10 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
         salvar();
     }//GEN-LAST:event_jBCadastrarActionPerformed
 
+    private void jTxtModeloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtModeloKeyPressed
+        jTxtModelo.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtModeloKeyPressed
+
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -112,6 +122,7 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
      * Insere o valor digitado no campo na variável modelo
      */
     public void pegarValores(){
+        modelo = new ModeloVeiculo();
         modelo.setModelo(jTxtModelo.getText().trim().toUpperCase());
     }
     
@@ -129,8 +140,17 @@ public class VisaoCadastroModeloVeiculo extends javax.swing.JFrame {
         }else if(persisteModeloVeiculo.verificarModeloJaCadastrado(modelo)){
             JOptionPane.showMessageDialog(null, "Modelo já está cadastrado!");
         }
+        
+        limpaCampo();
     }
     
+    /**
+     * Limpa o campo e focaliza-o
+     */
+    public void limpaCampo(){
+        jTxtModelo.setText("");
+        jTxtModelo.requestFocus();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCadastrar;
