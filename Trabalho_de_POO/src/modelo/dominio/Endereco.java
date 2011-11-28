@@ -101,6 +101,5 @@ public class Endereco implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    	 
 }
  

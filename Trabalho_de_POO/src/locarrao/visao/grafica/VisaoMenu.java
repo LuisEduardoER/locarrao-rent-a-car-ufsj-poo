@@ -16,6 +16,9 @@ public class VisaoMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
+        jBTrocarUsuario = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         cadastro = new javax.swing.JMenu();
         jMenuClientes = new javax.swing.JMenuItem();
@@ -38,10 +41,23 @@ public class VisaoMenu extends javax.swing.JFrame {
         disponibilidadePorTipoDeVeiculo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Locarrão Rent a Car");
+        setExtendedState(MAXIMIZED_BOTH);
 
         jLabel1.setFont(new java.awt.Font("OCR A Extended", 0, 48));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOCARRÃO RENT A CAR");
+
+        jLabel2.setText("Usuário: ");
+
+        jLabelUsuario.setText("usuario");
+
+        jBTrocarUsuario.setText("Trocar Usuário");
+        jBTrocarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTrocarUsuarioActionPerformed(evt);
+            }
+        });
 
         cadastro.setText("Cadastro");
 
@@ -196,13 +212,26 @@ public class VisaoMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(117, 117, 117)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabelUsuario))
+                        .addComponent(jBTrocarUsuario))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(205, 205, 205)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelUsuario))
+                .addGap(11, 11, 11)
+                .addComponent(jBTrocarUsuario)
+                .addGap(146, 146, 146)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(238, Short.MAX_VALUE))
         );
@@ -294,6 +323,11 @@ public class VisaoMenu extends javax.swing.JFrame {
        visao.setVisible(true);
     }//GEN-LAST:event_disponibilidadePorTipoDeVeiculoActionPerformed
 
+    private void jBTrocarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTrocarUsuarioActionPerformed
+        VisaoLogin visao = new VisaoLogin();
+        visao.setVisible(true);
+    }//GEN-LAST:event_jBTrocarUsuarioActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -313,7 +347,10 @@ public class VisaoMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastroVeiculo;
     private javax.swing.JMenuItem disponibilidadePorTipoDeVeiculo;
     private javax.swing.JMenuItem finalizaLocacao;
+    private javax.swing.JButton jBTrocarUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuClientes;
     private javax.swing.JMenu locacao;

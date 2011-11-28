@@ -44,6 +44,11 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
                 jTxtTipoActionPerformed(evt);
             }
         });
+        jTxtTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtTipoKeyPressed(evt);
+            }
+        });
 
         jBCadastrar.setText("Cadastrar");
         jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +98,10 @@ public class VisaoCadastroTipoVeiculo extends javax.swing.JFrame {
 private void jTxtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTipoActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jTxtTipoActionPerformed
+
+private void jTxtTipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtTipoKeyPressed
+    jTxtTipo.setBackground(Color.white);
+}//GEN-LAST:event_jTxtTipoKeyPressed
 
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
