@@ -569,7 +569,7 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             jTxtTelefone.setBackground(Color.red);
             jTxtTelefone.requestFocus();
             return false;
-        }else if(!jTxtCep.getText().isEmpty() && validacao.validarCEP(jTxtCep.getText())){
+        }else if(!jTxtCep.getText().isEmpty() && !validacao.validarCEP(jTxtCep.getText())){
             JOptionPane.showMessageDialog(null, "CEP inválido!");
             jTxtCep.setBackground(Color.red);
             jTxtCep.requestFocus();
