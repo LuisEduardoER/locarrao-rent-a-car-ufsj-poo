@@ -29,6 +29,8 @@ public class VisaoCadastroFuncionario extends javax.swing.JFrame {
     PersisteFuncionarios persisteFuncionarios = new PersisteFuncionarios();
     public VisaoCadastroFuncionario() {
         initComponents();
+        preencherComboCargo();
+        persisteEndereco.preencherComboEstados(jComboEstado);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -488,6 +490,23 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtComplementoKeyPressed
    jTxtComplemento.setBackground(Color.white);
 }//GEN-LAST:event_jTxtComplementoKeyPressed
+
+
+    /**
+     * Preenche o combo cargo com os valores ADMINISTRADOR, VENDEDOR, AUXILIAR
+     * 
+     */
+    public void preencherComboCargo(){
+        Object[] objeto = new Object[]{
+            "ADMINISTRADOR","VENDEDOR","AUXILIAR"
+        };
+        
+        jComboCargo.removeAllItems();
+        for(int i=0;i<objeto.length;i++){
+            jComboCargo.addItem(objeto[i]);
+        }
+    }
+
 
  /**
  * Verifica se tem algum campo obrigatório em branco
