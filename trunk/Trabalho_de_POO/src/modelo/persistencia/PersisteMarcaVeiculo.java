@@ -25,9 +25,9 @@ public class PersisteMarcaVeiculo extends DaoBase{
      * @param marca
      * @return Boolean
      */
-    public boolean verificarMarcaJaCadastrado(MarcaVeiculo marca){
-        abrirDB();
+    public boolean verificarMarcaJaCadastrada(MarcaVeiculo marca){
         MarcaVeiculo m = new MarcaVeiculo();
+        abrirDB();
         
         Query query = em.createQuery("FROM MarcaVeiculo m WHERE m.marca = :marca");
         query.setParameter("marca", marca.getMarca());
