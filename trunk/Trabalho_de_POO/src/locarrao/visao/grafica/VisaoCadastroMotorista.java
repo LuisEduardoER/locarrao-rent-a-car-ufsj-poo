@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
@@ -42,8 +40,8 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        salvar = new javax.swing.JButton();
-        cancela = new javax.swing.JButton();
+        jBSalvar = new javax.swing.JButton();
+        jBCancelar = new javax.swing.JButton();
         labelErro = new javax.swing.JLabel();
         jPanelDadosPessoais = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -76,17 +74,17 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
 
-        salvar.setText("Salvar");
-        salvar.addActionListener(new java.awt.event.ActionListener() {
+        jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salvarActionPerformed(evt);
+                jBSalvarActionPerformed(evt);
             }
         });
 
-        cancela.setText("Cancelar");
-        cancela.addActionListener(new java.awt.event.ActionListener() {
+        jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelaActionPerformed(evt);
+                jBCancelarActionPerformed(evt);
             }
         });
 
@@ -342,13 +340,13 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
                 .addContainerGap(63, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(345, Short.MAX_VALUE)
-                .addComponent(salvar)
+                .addComponent(jBSalvar)
                 .addGap(35, 35, 35)
-                .addComponent(cancela)
+                .addComponent(jBCancelar)
                 .addGap(270, 270, 270))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancela, salvar});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBCancelar, jBSalvar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,8 +363,8 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cancela))
+                    .addComponent(jBSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBCancelar))
                 .addGap(25, 25, 25)
                 .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -384,13 +382,13 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
             }
         });
     }
-private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
     chamarVerificacoes();
-}//GEN-LAST:event_salvarActionPerformed
+}//GEN-LAST:event_jBSalvarActionPerformed
 
-private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
+private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
     this.dispose();
-}//GEN-LAST:event_cancelaActionPerformed
+}//GEN-LAST:event_jBCancelarActionPerformed
 
 private void jTxtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCepKeyPressed
        jTxtCep.setBackground(Color.white);
@@ -652,7 +650,8 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
          persisteEndereco.preencherComboEstados(jComboEstado);
      }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancela;
+    public javax.swing.JButton jBCancelar;
+    public javax.swing.JButton jBSalvar;
     public javax.swing.JComboBox jComboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -681,6 +680,5 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     public javax.swing.JTextField jTxtRua;
     public javax.swing.JTextField jTxtTelefone;
     private javax.swing.JLabel labelErro;
-    private javax.swing.JButton salvar;
     // End of variables declaration//GEN-END:variables
 }

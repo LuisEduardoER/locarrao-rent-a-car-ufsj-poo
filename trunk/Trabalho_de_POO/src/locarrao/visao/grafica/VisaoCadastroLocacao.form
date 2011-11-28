@@ -28,12 +28,12 @@
                   <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="345" max="32767" attributes="0"/>
+              <EmptySpace pref="444" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="591" max="32767" attributes="0"/>
+              <EmptySpace pref="690" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -43,14 +43,14 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="138" max="32767" attributes="0"/>
+              <EmptySpace pref="237" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
               <Component id="jBCadastrarLocacao" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jBCancelar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="296" max="32767" attributes="0"/>
+              <EmptySpace pref="395" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -145,6 +145,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPesquisarClienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
