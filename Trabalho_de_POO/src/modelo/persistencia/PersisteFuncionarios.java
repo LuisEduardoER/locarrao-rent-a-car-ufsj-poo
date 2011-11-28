@@ -20,13 +20,12 @@ public class PersisteFuncionarios extends DaoBase{
     
     public boolean verificarLogin(Funcionarios funcionario){
         abrirDB();
-        Funcionarios f = new Funcionarios();
         Query query = em.createQuery("FROM Funcionarios f WHERE f.usuario = :usuario and f.senha = :senha");
         query.setParameter("usuario", funcionario.getUsuario());
         query.setParameter("senha", funcionario.getSenha());
         
         try{
-            f = (Funcionarios)query.getSingleResult();
+            funcionario = (Funcionarios)query.getSingleResult();
             return true;
         }catch(EntityNotFoundException ex){
             return false;
