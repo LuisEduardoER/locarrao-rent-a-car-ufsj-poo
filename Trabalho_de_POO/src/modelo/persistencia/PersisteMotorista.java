@@ -48,19 +48,20 @@ public class PersisteMotorista extends DaoBase{
     }
     
     public Motorista retornarMotoristaPeloCpf(String cpf){
-        Motorista m = new Motorista();
+        Motorista motorista = new Motorista();
         abrirDB();
         
         Query query = em.createQuery("FROM Motorista motorista WHERE motorista.cpf = :cpf");
         query.setParameter("cpf", cpf);
         
         try{
-            m = (Motorista)query.getSingleResult();
+            motorista = (Motorista)query.getSingleResult();
             fecharDB();
-            return m;
+            return motorista;
         }catch(NoResultException ex){
+            motorista = null;
             fecharDB();
-            return m;
+            return motorista;
         }
         
     }

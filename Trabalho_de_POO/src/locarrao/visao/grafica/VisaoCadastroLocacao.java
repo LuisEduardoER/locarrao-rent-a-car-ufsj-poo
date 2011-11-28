@@ -47,6 +47,8 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     Veiculos veiculo = new Veiculos();
     Motorista motorista = new Motorista();
     
+    VisaoCadastroMotorista visao = new VisaoCadastroMotorista();    
+    
     public VisaoCadastroLocacao() {
         initComponents();
     }
@@ -99,6 +101,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         });
 
         jBPesquisarCliente.setText("Pesquisar");
+        jBPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarClienteActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Cliente :");
 
@@ -403,6 +410,13 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jTxtCodigoCliente.setBackground(Color.white);
     }//GEN-LAST:event_jTxtCodigoClienteKeyPressed
 
+    private void jBPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarClienteActionPerformed
+        if(verificarCliente()){
+            jTxtCliente.setText(cliente.getNome());
+            determinarMotoristaDaLocacao();
+        }
+    }//GEN-LAST:event_jBPesquisarClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -429,20 +443,21 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         if(n==0){
             motorista = persisteMotorista.retornarMotoristaPeloCpf(cliente.getCpf());
             if(motorista != null){
+                jTxtCnh.setText(motorista.getCnh());
                 jTxtMotorista.setText(motorista.getNome());
-                preencherCadastroDeMotorista();
+                
             }else{
-                VisaoCadastroMotorista visao = new VisaoCadastroMotorista();
-                visao.setVisible(true);
+                clienteSeraOMotorista();
             }
+        }else{
+            
         }
     }
     
     /**
      * Insere os valores do cliente no frame de cadastro de motorista.
      */
-    public void preencherCadastroDeMotorista(){
-        VisaoCadastroMotorista visao = new VisaoCadastroMotorista();
+    public void clienteSeraOMotorista(){
         visao.jTxtNome.setText(cliente.getNome());
         visao.jTxtCpf.setText(cliente.getCpf());
         
@@ -462,12 +477,49 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         }
         
         //Desabilitando os campos onde foram inseridos os dados
-        visao.jPanelDadosPessoais.setEnabled(false);
-        visao.jPanelEndereco.setEnabled(false);
+        visao.jPanelDadosPessoais.setVisible(false);
+        visao.jPanelEndereco.setVisible(false);
         
+        //Alterando o texto do botão e dando a acão de fechar a janela e inserir o dado no campo CNH
+        visao.jBCancelar.setText("Fechar");
+        
+        visao.jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCnh.setText(visao.jTxtCnh.getText());
+                jTxtMotorista.setText(cliente.getNome());
+                jTxtPlaca.requestFocus();
+            }
+        });
+        
+        
+        
+        visao.setSize(800, 400);
         visao.setVisible(true);
     }
     
+    /**
+     * Cadastra um novo motorista para ser inserido no cadastro da locação
+     */
+    
+    public void clienteNaoSeraOMotorista(){
+        visao = new VisaoCadastroMotorista();
+        
+        //Alterando o texto do botão e dando a acão de fechar a janela e inserir o dado no campo CNH
+        visao.jBCancelar.setText("Fechar");
+        
+        visao.jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCnh.setText(visao.jTxtCnh.getText());
+                jTxtMotorista.setText(cliente.getNome());
+                jTxtPlaca.requestFocus();
+            }
+        });
+        
+        
+        
+        visao.setSize(800, 400);
+        visao.setVisible(true);
+    }
     
     /**
      * Verifica se foram inseridos números nos campos numéricos

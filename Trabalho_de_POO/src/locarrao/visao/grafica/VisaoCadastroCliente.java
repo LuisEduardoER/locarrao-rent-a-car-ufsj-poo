@@ -3,6 +3,7 @@ package locarrao.visao.grafica;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.persistencia.PersisteCliente;
@@ -519,6 +520,34 @@ private void jTxtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_j
             }
         }
     }
+    
+    /**
+     * Limpa os campos referentes ao dados pessoais (nome, cpf, telefone)
+     */
+    public void limparCamposDadosPessoais(){
+        jTxtNome.setText("");
+        jTxtCpf.setText("");
+        jTxtTelefone.setText("");
+    }
+    
+     
+     /**
+      * Limpa os campos referente ao endereço e o combo box vai pro indice 0.
+      * 
+      */
+     
+     public void limparCamposEndereco(){
+         for(int i=0; i< jPanelEndereco.getComponentCount();i++){
+             if(jPanelEndereco.getComponent(i) instanceof JTextField){
+                 JTextField aux = (JTextField)jPanelEndereco.getComponent(i);
+                 aux.setText("");
+             }else if(jPanelEndereco.getComponent(i) instanceof JComboBox){
+                 JComboBox aux = (JComboBox) jPanelEndereco.getComponent(i);
+                 aux.setSelectedIndex(0);
+             }
+         }
+     }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancela;

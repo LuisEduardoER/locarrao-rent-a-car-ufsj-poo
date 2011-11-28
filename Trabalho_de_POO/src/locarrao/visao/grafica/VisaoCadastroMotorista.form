@@ -52,9 +52,9 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="345" max="32767" attributes="0"/>
-              <Component id="salvar" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <Component id="jBSalvar" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="cancela" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <Component id="jBCancelar" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -74,8 +74,8 @@
               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="salvar" alignment="3" max="32767" attributes="1"/>
-                  <Component id="cancela" alignment="3" min="-2" max="-2" attributes="1"/>
+                  <Component id="jBSalvar" alignment="3" max="32767" attributes="1"/>
+                  <Component id="jBCancelar" alignment="3" min="-2" max="-2" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="labelErro" min="-2" pref="14" max="-2" attributes="1"/>
@@ -85,21 +85,27 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="salvar">
+    <Component class="javax.swing.JButton" name="jBSalvar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salvarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalvarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="cancela">
+    <Component class="javax.swing.JButton" name="jBCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCancelarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="labelErro">
     </Component>
