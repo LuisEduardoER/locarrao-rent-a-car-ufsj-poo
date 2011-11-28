@@ -103,6 +103,8 @@ public class PersisteLocacao extends DaoBase{
      */
     public void fecharLocacaoBD(Locacao locacao){
         calcularValorLocacaoDiaria(locacao);
+        locacao.setLocacaoAberta(false);
+        
         
         abrirDB();
         em.merge(locacao);

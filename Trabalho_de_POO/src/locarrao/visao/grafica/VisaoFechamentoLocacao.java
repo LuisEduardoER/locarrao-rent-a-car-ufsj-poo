@@ -1,5 +1,6 @@
 package locarrao.visao.grafica;
 
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +48,12 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         jTxtCodigo = new javax.swing.JTextField();
         jBPesquisar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jPanelKmDeChegada = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jTxtKmDeChegada = new javax.swing.JTextField();
+        jBFecharLocacao = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTxtKmDeSaida = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fechamento de Locação");
@@ -92,11 +99,11 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(27, 27, 27)
                 .addComponent(jBPesquisar)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,13 +111,64 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBPesquisar))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jBPesquisar)
+                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("* O campo código é obrigatório!");
+
+        jPanelKmDeChegada.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanelKmDeChegada.setEnabled(false);
+
+        jLabel3.setText("Quilometragem de Chegada*: ");
+
+        jBFecharLocacao.setText("Fechar Locação");
+        jBFecharLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFecharLocacaoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Quilometragem de saída: ");
+
+        jTxtKmDeSaida.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelKmDeChegadaLayout = new javax.swing.GroupLayout(jPanelKmDeChegada);
+        jPanelKmDeChegada.setLayout(jPanelKmDeChegadaLayout);
+        jPanelKmDeChegadaLayout.setHorizontalGroup(
+            jPanelKmDeChegadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelKmDeChegadaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelKmDeChegadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelKmDeChegadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTxtKmDeSaida)
+                    .addComponent(jTxtKmDeChegada, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jBFecharLocacao)
+                .addGap(30, 30, 30))
+        );
+        jPanelKmDeChegadaLayout.setVerticalGroup(
+            jPanelKmDeChegadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelKmDeChegadaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelKmDeChegadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtKmDeChegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelKmDeChegadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTxtKmDeSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelKmDeChegadaLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jBFecharLocacao)
+                .addGap(23, 23, 23))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,33 +177,47 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addGap(466, 466, 466))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(140, 140, 140))))
+                        .addContainerGap(792, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelKmDeChegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(36, 36, 36)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jPanelKmDeChegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        exibirResultado();
+        if(chamarVerificacoesCliente()){
+            exibirResultado();
+            exibirPanelKmDeCehgada();
+        }
+        
     }//GEN-LAST:event_jBPesquisarActionPerformed
+
+    private void jBFecharLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharLocacaoActionPerformed
+        if(validarCampoKmDeChegada()){
+            fecharLocacao();
+        }
+    }//GEN-LAST:event_jBFecharLocacaoActionPerformed
 
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
@@ -200,22 +272,38 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
      * pega o código do cliente digitado no campo Código do Cliente
      */
     public void pegarValor(){
-        if(chamarVerificacoes()){
             cliente = new Clientes();
             cliente.setCodigo(Integer.valueOf(jTxtCodigo.getText().trim()));
-        }
     }
     
     /**
-     * Verifica se o campo está vazio ou se o dado digitado é inválido
+     * Verifica se o campo código do cliente está vazio ou se o dado digitado é inválido
      * @return 
      */
-    public boolean chamarVerificacoes(){
+    public boolean chamarVerificacoesCliente(){
         if(jTxtCodigo.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo código é obrigatório!");
             return false;
         }
-        else if(!verificarEntrada()){
+        else if(!verificarCampoNumerico(jTxtCodigo.getText().trim())){
+            JOptionPane.showMessageDialog(null, "O campo código so pode conter números");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    /**
+     * Verifica se o campo código do cliente está vazio ou se o dado digitado é inválido
+     * @return 
+     */
+    public boolean chamarVerificacoesKmDeChegada(){
+        if(jTxtCodigo.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo código é obrigatório!");
+            return false;
+        }
+        else if(!verificarCampoNumerico(jTxtKmDeChegada.getText().trim())){
             JOptionPane.showMessageDialog(null, "O campo código so pode conter números");
             return false;
         }
@@ -248,25 +336,14 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         int linha = jTableLocacoes.getSelectedRow();
         locacao.setId((Long)jTableLocacoes.getValueAt(linha, 0));
         locacao = persisteLocacao.retornarLocacao(locacao);
-        locacao.setLocacaoAberta(false);
     }
     
-    /**
-     * Pega o valor digitado na tela de cadastro de Km de Chegada
-     */
-    public void digitarKmDeChegada(){
-        VisaoKmDeChegada visao = new VisaoKmDeChegada();
-        visao.setVisible(true);
-    }
-    
-    public void pegarOutrosDados(){
-        
-    }
     
     /**
      * Fecha locação atualizando o valor e somando o valor no cadastro do veículo
      */
     public void fecharLocacao(){
+        locacao.setQuilometragemDeEntrada(Long.valueOf(jTxtKmDeChegada.getText().trim()));
         persisteLocacao.fecharLocacaoBD(locacao);
         
         veiculo = persisteVeiculo.retornarVeiculoBD(locacao.getVeiculo());
@@ -277,13 +354,62 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Locação fechada com sucesso!");
         
     }
+    
+    /**
+     * Exibe o painel para digitação da Quilometragem de Chegada do Veículo da locação selecionado
+     */
+    public void exibirPanelKmDeCehgada(){
+        jPanelKmDeChegada.setEnabled(true);
+        pegarDadosLocacao();
+        jTxtKmDeSaida.setText(String.valueOf(locacao.getQuilometragemDeSaida()));
+    }
+    
+    /**
+     * Verifica se no campo numérico foi digitado alguma letra. Se foi, o método retornará false. Caso contrário
+     * retornará true.
+     * 
+     * @param campo
+     * @return r
+     */
+    public boolean verificarCampoNumerico(String campo){
+        for(int i=0;i < campo.length(); i++){
+            if(!Character.isDigit(campo.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean validarCampoKmDeChegada(){
+        if(jTxtKmDeChegada.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "O campo Quilometragem de Chegada é obrigatório");
+            jTxtKmDeChegada.setBackground(Color.red);
+            jTxtKmDeChegada.requestFocus();
+            return false;
+            
+        }else if(!verificarCampoNumerico(jTxtKmDeChegada.getText().trim())){
+            JOptionPane.showMessageDialog(null, "O campo Quilometragem de Chegada é do tipo numérico! "
+                    + "Não pode conter letras");
+            jTxtKmDeChegada.setBackground(Color.red);
+            jTxtKmDeChegada.requestFocus();
+            return false;
+        }else{
+            return true;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBFecharLocacao;
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelKmDeChegada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableLocacoes;
     private javax.swing.JTextField jTxtCodigo;
+    private javax.swing.JTextField jTxtKmDeChegada;
+    private javax.swing.JTextField jTxtKmDeSaida;
     // End of variables declaration//GEN-END:variables
 }

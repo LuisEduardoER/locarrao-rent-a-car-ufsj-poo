@@ -102,14 +102,14 @@ public class VisaoFechamentoLocacaoTest {
     }
 
     /**
-     * Test of chamarVerificacoes method, of class VisaoFechamentoLocacao.
+     * Test of chamarVerificacoesCliente method, of class VisaoFechamentoLocacao.
      */
     @Test
     public void testChamarVerificacoes() {
         System.out.println("chamarVerificacoes");
         VisaoFechamentoLocacao instance = new VisaoFechamentoLocacao();
         boolean expResult = false;
-        boolean result = instance.chamarVerificacoes();
+        boolean result = instance.chamarVerificacoesCliente();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -83,7 +83,7 @@ public class PersisteMarcaVeiculoTest {
     }
 
     /**
-     * Test of retornarTodosModelosBD method, of class PersisteMarcaVeiculo.
+     * Test of retornarTodasMarcasBD method, of class PersisteMarcaVeiculo.
      */
     @Test
     public void testRetornarTodosModelosBD() {
