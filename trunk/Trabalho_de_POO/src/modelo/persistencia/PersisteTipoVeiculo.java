@@ -30,6 +30,31 @@ public class PersisteTipoVeiculo extends DaoBase{
     }
     
     /**
+     * retorna o tipo de veiculo de acordo com seu nome.
+     * @param tipoVeiculo
+     * @return 
+     */
+    public TipoVeiculo retornarTipoVeiculoPeloTipo(TipoVeiculo tipoVeiculo){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM TipoVeiculo tipoVeiculo WHERE tipoVeiculo.tipo = :tipo");
+        query.setParameter("tipo", tipoVeiculo.getTipo());
+        
+        
+        try{
+            tipoVeiculo = (TipoVeiculo) query.getSingleResult();
+            fecharDB();
+            return tipoVeiculo;
+            
+        }catch(NoResultException ex){
+            tipoVeiculo = null;
+            fecharDB();
+            return tipoVeiculo;
+        }
+        
+    }
+    
+    /**
      * retorna um tipo de veículo de acordo com sua id.
      * @param tipoVeiculo
      * @return 

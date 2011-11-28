@@ -19,6 +19,8 @@ import modelo.dominio.Clientes;
 import modelo.dominio.Funcionarios;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
+import modelo.dominio.TipoLocacao;
+import modelo.dominio.Valida;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersisteCliente;
 import modelo.persistencia.PersisteLocacao;
@@ -46,11 +48,13 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     Locacao locacao = new Locacao();
     Veiculos veiculo = new Veiculos();
     Motorista motorista = new Motorista();
+    TipoLocacao tipoLocacao =  new TipoLocacao();
     
     VisaoCadastroMotorista visao = new VisaoCadastroMotorista();    
     
     public VisaoCadastroLocacao() {
         initComponents();
+        preencherComboTipo();
     }
     
     
@@ -212,6 +216,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         });
 
         jBPesquisarVeiculo.setText("Pesquisar");
+        jBPesquisarVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarVeiculoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -273,23 +282,22 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCTipoLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(4, 4, 4)
+                .addComponent(jTxtKmSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jCTipoLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel8)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTxtKmSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtPrevisao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6)
+                .addContainerGap(673, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,6 +321,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
         jLabel9.setText("Os itens marcados com * são obrigatórios");
 
         jBCancelar.setText("Cancelar");
@@ -331,25 +340,25 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(384, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(591, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(579, 579, 579))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(330, 330, 330)
                 .addComponent(jBCadastrarLocacao)
                 .addGap(18, 18, 18)
                 .addComponent(jBCancelar)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(335, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,6 +426,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBPesquisarClienteActionPerformed
 
+    private void jBPesquisarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarVeiculoActionPerformed
+        if(verificarVeiculo()){
+            jCTipoLocacao.requestFocus();
+        }
+    }//GEN-LAST:event_jBPesquisarVeiculoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -428,6 +443,20 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 new VisaoCadastroLocacao().setVisible(true);
             }
         });
+    }
+    
+    /**
+     * Inicia o combo box com os valores POR QUILOMETRO e QUILOMETRAGEM LIVRE
+     */
+    public void preencherComboTipo(){
+        Object[] objeto = new Object[]{
+            "POR QUILOMETRO","QUILOMETRAGEM LIVRE"
+        };
+        
+        jCTipoLocacao.removeAllItems();
+        for(int i=0; i< objeto.length; i++){
+            jCTipoLocacao.addItem(objeto[i]);
+        }
     }
     
     /**
@@ -449,8 +478,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             }else{
                 clienteSeraOMotorista();
             }
-        }else{
-            
+            locacao.setMotorista(motorista);
         }
     }
     
@@ -481,9 +509,9 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         visao.jPanelEndereco.setVisible(false);
         
         //Alterando o texto do botão e dando a acão de fechar a janela e inserir o dado no campo CNH
-        visao.jBCancelar.setText("Fechar");
+        visao.jBCancelar.setVisible(false);
         
-        visao.jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        visao.jBSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtCnh.setText(visao.jTxtCnh.getText());
                 jTxtMotorista.setText(cliente.getNome());
@@ -497,29 +525,6 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         visao.setVisible(true);
     }
     
-    /**
-     * Cadastra um novo motorista para ser inserido no cadastro da locação
-     */
-    
-    public void clienteNaoSeraOMotorista(){
-        visao = new VisaoCadastroMotorista();
-        
-        //Alterando o texto do botão e dando a acão de fechar a janela e inserir o dado no campo CNH
-        visao.jBCancelar.setText("Fechar");
-        
-        visao.jBCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCnh.setText(visao.jTxtCnh.getText());
-                jTxtMotorista.setText(cliente.getNome());
-                jTxtPlaca.requestFocus();
-            }
-        });
-        
-        
-        
-        visao.setSize(800, 400);
-        visao.setVisible(true);
-    }
     
     /**
      * Verifica se foram inseridos números nos campos numéricos
@@ -589,7 +594,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Motorista ja está cadastrado em outra locação em aberto");
             return false;
         }
-        else if(persisteMotorista.pesquisarMotoristaBD(motorista)){
+        else if(persisteMotorista.pesquisarMotoristaPelaCnh(motorista)){
             jTxtMotorista.setText(motorista.getNome());
             locacao.setMotorista(motorista);
             return true;
@@ -606,9 +611,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      */
     
     public boolean verificarVeiculo(){
+        Valida valida = new Valida();
         veiculo = new Veiculos();
-        veiculo.setPlaca(jTxtCnh.getText().trim());
+        veiculo.setPlaca(jTxtPlaca.getText().trim().toUpperCase());
         veiculo = persisteVeiculo.pesquisarVeiculoPelaPlacaBD(veiculo);
+        
         
         if(jTxtPlaca.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo Placa é obrigatório!");
@@ -616,18 +623,37 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             jTxtPlaca.requestFocus();
             return false;
         }
-        else if(!persisteVeiculo.veiculosDisponiveisBD().contains(veiculo)){
-            JOptionPane.showMessageDialog(null, "Veículo já está alugado!");
+        else if(!valida.validarPlaca(jTxtPlaca.getText())){
+            JOptionPane.showMessageDialog(null, "Placa digitada é inválida!");
             return false;
         }
-        else if((persisteVeiculo.pesquisarVeiculoPelaPlacaBD(veiculo)) == null){
-            locacao.setVeiculo(veiculo);
-            return true;
-        }
-        else{
+        else if(veiculo == null){
             JOptionPane.showMessageDialog(null, "Veículo não cadastrado!");
             return false;
         }
+        else if(!verificarVeiculoDisponivel()){
+            JOptionPane.showMessageDialog(null, "Veículo já está alugado!");
+            return false;
+        }
+        else{
+            tipoLocacao = persisteLocacao.retornarTipoLocacao(veiculo);
+            locacao.setVeiculo(veiculo);
+            locacao.setTipoLocacao(tipoLocacao);
+            
+            return true;
+        }
+    }
+    
+    /**
+     * Verifica se o veiculo está disponivel
+     */
+    public boolean verificarVeiculoDisponivel(){
+        if(veiculo == null){
+            return false;
+        }else{
+            return persisteLocacao.verificarVeiculoDisponivel(veiculo);
+        }
+        
     }
     
     /**
@@ -648,7 +674,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             jTxtKmSaida.requestFocus();
             return false;
         }
-        else if(!jTxtPrevisao.getText().trim().isEmpty() && verificarCamposNumericos(jTxtPrevisao.getText())){
+        else if(!jTxtPrevisao.getText().trim().isEmpty() && !verificarCamposNumericos(jTxtPrevisao.getText())){
             JOptionPane.showMessageDialog(null, "O campo Previsão é só aceita números");
             jTxtPrevisao.setBackground(Color.red);
             jTxtPrevisao.requestFocus();
@@ -672,8 +698,8 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      */
     
     public void chamarVerificacoes(){
-        if(verificarCliente() && verificarMotorista() && verificarVeiculo() && verificarOutrosDados()){
-            pegarDados();
+        if(verificarOutrosDados()){
+            salvar();
             incrementarQuantidadeLocacoes();
         }
     }
@@ -683,11 +709,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      * Insere no atributo locacao os dados digitados
      */
     
-    public void pegarDados(){
-        locacao.setTipoLocacao(persisteLocacao.retornarTipoLocacao(veiculo));
+    public void salvar(){
         locacao.setDataSaida(new GregorianCalendar().getTimeInMillis());
         locacao.setValor(0);
         locacao.setLocacaoAberta(true);
+        
         persisteLocacao.salvarBD(locacao);
         
         log.info(formatador.format(new Date()) + " - Locação do veiculo " + veiculo.getPlaca() 
@@ -699,6 +725,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     public void incrementarQuantidadeLocacoes(){
         veiculo = persisteVeiculo.retornarVeiculoBD(locacao.getVeiculo());
         veiculo.setTotalLocacoes(veiculo.getTotalLocacoes()+1);
+        persisteVeiculo.atualizarVeiculoBD(veiculo);
     }
     
     

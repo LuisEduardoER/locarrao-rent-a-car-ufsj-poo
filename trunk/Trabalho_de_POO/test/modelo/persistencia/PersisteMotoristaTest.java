@@ -30,7 +30,7 @@ public class PersisteMotoristaTest {
     }
 
     /**
-     * Test of pesquisarMotoristaBD method, of class PersisteMotorista.
+     * Test of pesquisarMotoristaPelaCnh method, of class PersisteMotorista.
      */
     @Test
     public void testPesquisarMotoristaBD() {
@@ -38,7 +38,7 @@ public class PersisteMotoristaTest {
         Motorista motorista = null;
         PersisteMotorista instance = new PersisteMotorista();
         boolean expResult = false;
-        boolean result = instance.pesquisarMotoristaBD(motorista);
+        boolean result = instance.pesquisarMotoristaPelaCnh(motorista);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

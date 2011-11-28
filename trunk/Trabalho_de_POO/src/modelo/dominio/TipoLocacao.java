@@ -18,17 +18,17 @@ public class TipoLocacao implements Serializable {
     @Column(name="ID_TIPO_LOCACAO",nullable=false)
     private Long id;
     
-    @Column(name = "TAXA_DIARIAS")
+    @Column(name = "TAXA_DIARIAS",nullable=false)
     private double taxaDiarias;
     
-    @Column(name = "TAXA_POR_KM")
+    @Column(name = "TAXA_POR_KM",nullable=false)
     private double taxaPorKm;
 
-    @Column(name="PRECO_POR_KM")
+    @Column(name="PRECO_POR_KM",nullable=false)
     private double precoPorQuilometro;
 
     @OneToOne
-    @JoinColumn(name="ID_TIPO_VEICULO")
+    @JoinColumn(name="ID_TIPO_VEICULO",nullable=false)
     private TipoVeiculo tipoVeiculo;
 
     

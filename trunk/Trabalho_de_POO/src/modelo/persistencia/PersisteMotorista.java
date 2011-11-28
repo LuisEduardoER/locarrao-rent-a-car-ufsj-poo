@@ -7,19 +7,38 @@ import modelo.dominio.Motorista;
 public class PersisteMotorista extends DaoBase{
     
     /**
+     * Retorna o motorista pela sua id
+     */
+    public Motorista retornarMotoristaBD(Motorista motorista){
+        abrirDB();
+        
+        try{
+            motorista = em.find(Motorista.class, motorista.getCodigo());
+            fecharDB();
+            return motorista;
+        }catch(NoResultException ex){
+            motorista = null;
+            fecharDB();
+            return motorista;
+        }
+    }
+    
+    /**
      * Pesquisa o motorista de acordo com sua CNH.
      * @param motorista
      * @return 
      */
-    public boolean pesquisarMotoristaBD(Motorista motorista){
+    public boolean pesquisarMotoristaPelaCnh (Motorista motorista){
         abrirDB();
-        Query query = em.createQuery("FROM Mostorista motorista WHERE motorista.cnh = :cnh");
+        Query query = em.createQuery("FROM Motorista motorista WHERE motorista.cnh = :cnh");
         query.setParameter("cnh", motorista.getCnh());
         
         try{
             motorista = (Motorista)query.getSingleResult();
+            fecharDB();
             return true;
         }catch(NoResultException ex){
+            fecharDB();
             return false;
         }
     }
