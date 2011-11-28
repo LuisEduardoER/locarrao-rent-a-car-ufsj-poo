@@ -37,16 +37,22 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
     Funcionarios funcionario = VisaoMenu.funcionario;
     
+    PersisteMotorista persisteMotorista = new PersisteMotorista();
+    PersisteCliente persisteCliente = new PersisteCliente();
+    PersisteLocacao persisteLocacao = new PersisteLocacao();
+    PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
+    
+    Clientes cliente = new Clientes();
+    Locacao locacao = new Locacao();
+    Veiculos veiculo = new Veiculos();
+    Motorista motorista = new Motorista();
+    
     public VisaoCadastroLocacao() {
         initComponents();
     }
     
     
-    Locacao locacao = new Locacao();
-    PersisteLocacao persisteLocacao = new PersisteLocacao();
-    PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
-    Veiculos veiculo = new Veiculos();
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,12 +84,19 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jTxtKmSaida = new javax.swing.JTextField();
         jBCadastrarLocacao = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        jBCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
 
         jLabel1.setText("Código* :");
+
+        jTxtCodigoCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCodigoClienteKeyPressed(evt);
+            }
+        });
 
         jBPesquisarCliente.setText("Pesquisar");
 
@@ -132,6 +145,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
 
         jLabel3.setText("CNH* :");
 
+        jTxtCnh.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtCnhKeyPressed(evt);
+            }
+        });
+
         jBPesquisarMotorista.setText("Pesquisar");
 
         jLabel4.setText("Motorista :");
@@ -142,12 +161,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(jTxtMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -156,7 +175,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addComponent(jTxtCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jBPesquisarMotorista)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +198,12 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
 
         jLabel5.setText("Placa* : ");
 
+        jTxtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtPlacaKeyPressed(evt);
+            }
+        });
+
         jBPesquisarVeiculo.setText("Pesquisar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -192,7 +217,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addComponent(jTxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBPesquisarVeiculo)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,12 +243,22 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 jTxtPrevisaoActionPerformed(evt);
             }
         });
+        jTxtPrevisao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtPrevisaoKeyPressed(evt);
+            }
+        });
 
         jLabel8.setText("Quilometragem de Saída* :");
 
         jTxtKmSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtKmSaidaActionPerformed(evt);
+            }
+        });
+        jTxtKmSaida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtKmSaidaKeyPressed(evt);
             }
         });
 
@@ -247,7 +282,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel6)))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,45 +308,59 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
 
         jLabel9.setText("Os itens marcados com * são obrigatórios");
 
+        jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(279, 279, 279)
-                .addComponent(jBCadastrarLocacao)
-                .addGap(539, 539, 539))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(690, Short.MAX_VALUE))
+                .addContainerGap(591, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(579, 579, 579))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(jBCadastrarLocacao)
+                .addGap(18, 18, 18)
+                .addComponent(jBCancelar)
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBCadastrarLocacao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBCadastrarLocacao)
+                    .addComponent(jBCancelar))
                 .addContainerGap())
         );
 
@@ -330,6 +379,30 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         chamarVerificacoes();
     }//GEN-LAST:event_jBCadastrarLocacaoActionPerformed
 
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jTxtPlacaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtPlacaKeyPressed
+        jTxtPlaca.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtPlacaKeyPressed
+
+    private void jTxtKmSaidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtKmSaidaKeyPressed
+        jTxtKmSaida.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtKmSaidaKeyPressed
+
+    private void jTxtPrevisaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtPrevisaoKeyPressed
+        jTxtPrevisao.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtPrevisaoKeyPressed
+
+    private void jTxtCnhKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCnhKeyPressed
+        jTxtCnh.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtCnhKeyPressed
+
+    private void jTxtCodigoClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCodigoClienteKeyPressed
+        jTxtCodigoCliente.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtCodigoClienteKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -342,6 +415,59 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             }
         });
     }
+    
+    /**
+     * Pergunta ao usuário se o cliente é o motorista do veículo alugado. Se for, será verificado se a cnh do cliente ja
+     * consta no banco de dados. Se não constar, então será feito o cadastro
+     */
+    public void determinarMotoristaDaLocacao(){
+        Object[] opcoes = new Object[]{"Sim","Não"};
+        
+        int n = JOptionPane.showOptionDialog(null, "O cliente será o motorista do veículo a ser alugado?", 
+                "Pergunta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+        
+        if(n==0){
+            motorista = persisteMotorista.retornarMotoristaPeloCpf(cliente.getCpf());
+            if(motorista != null){
+                jTxtMotorista.setText(motorista.getNome());
+                preencherCadastroDeMotorista();
+            }else{
+                VisaoCadastroMotorista visao = new VisaoCadastroMotorista();
+                visao.setVisible(true);
+            }
+        }
+    }
+    
+    /**
+     * Insere os valores do cliente no frame de cadastro de motorista.
+     */
+    public void preencherCadastroDeMotorista(){
+        VisaoCadastroMotorista visao = new VisaoCadastroMotorista();
+        visao.jTxtNome.setText(cliente.getNome());
+        visao.jTxtCpf.setText(cliente.getCpf());
+        
+        if(cliente.getTefefone() != null){
+            visao.jTxtTelefone.setText(cliente.getTefefone());
+        }
+        
+        visao.jTxtCnh.requestFocus();
+        
+        if(cliente.getEndereco() != null){
+            visao.jTxtRua.setText(cliente.getEndereco().getRua());
+            visao.jTxtNumero.setText(String.valueOf(cliente.getEndereco().getNumero()));
+            visao.jTxtComplemento.setText(cliente.getEndereco().getComplemento());
+            visao.jTxtBairro.setText(cliente.getEndereco().getBairro());
+            visao.jTxtCidade.setText(cliente.getEndereco().getCidade());
+            visao.jComboEstado.setSelectedItem(cliente.getEndereco().getUf());
+        }
+        
+        //Desabilitando os campos onde foram inseridos os dados
+        visao.jPanelDadosPessoais.setEnabled(false);
+        visao.jPanelEndereco.setEnabled(false);
+        
+        visao.setVisible(true);
+    }
+    
     
     /**
      * Verifica se foram inseridos números nos campos numéricos
@@ -362,8 +488,6 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      * @return 
      */
     public boolean verificarCliente(){
-        PersisteCliente persisteCliente = new PersisteCliente();
-        Clientes cliente = new Clientes();
         cliente.setCodigo(Integer.valueOf(jTxtCodigoCliente.getText()));
         
         if(jTxtCodigoCliente.getText().trim().isEmpty()){
@@ -395,8 +519,6 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      */
     
     public boolean verificarMotorista(){
-        PersisteMotorista persisteMotorista = new PersisteMotorista();
-        Motorista motorista = new Motorista();
         motorista.setCnh(jTxtCnh.getText().trim().toUpperCase());
         
         if(jTxtCnh.getText().trim().isEmpty()){
@@ -530,6 +652,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCadastrarLocacao;
+    private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBPesquisarCliente;
     private javax.swing.JButton jBPesquisarMotorista;
     private javax.swing.JButton jBPesquisarVeiculo;
