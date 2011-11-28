@@ -3,6 +3,7 @@ package locarrao.visao.grafica;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import locarrao.visao.grafica.VisaoMenu;
 import modelo.dominio.Funcionarios;
 import modelo.persistencia.PersisteFuncionarios;
 import org.apache.log4j.Logger;
@@ -11,6 +12,8 @@ import org.apache.log4j.PropertyConfigurator;
 public class VisaoLogin extends javax.swing.JFrame {
     private final static Logger log = Logger.getLogger(VisaoLogin.class);
     SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    PersisteFuncionarios persisteFuncionario = new PersisteFuncionarios();    
+    public static Funcionarios funcionario = new Funcionarios(); 
     
     public VisaoLogin() {
         initComponents();
@@ -31,6 +34,7 @@ public class VisaoLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setResizable(false);
 
         jLabel1.setText("Usuário: ");
 
@@ -71,11 +75,12 @@ public class VisaoLogin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addGap(10, 10, 10)
-                        .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(jLabel3)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(134, 134, 134))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTxtSenha, jTxtUsuario});
@@ -85,9 +90,9 @@ public class VisaoLogin extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,7 +109,7 @@ public class VisaoLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAcessarActionPerformed
-        verificarLogin();
+        fazerLogin();
     }//GEN-LAST:event_jBAcessarActionPerformed
     
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
@@ -124,22 +129,38 @@ public class VisaoLogin extends javax.swing.JFrame {
     /**
      * Verifica se o login foi feito corretamente
      */
-    public void verificarLogin(){
-        PersisteFuncionarios persisteFuncionario = new PersisteFuncionarios();
-        Funcionarios funcionario = new Funcionarios();
-        funcionario.setUsuario(jTxtUsuario.getText());
-        funcionario.setSenha(jTxtSenha.getText());
+    public boolean verificarLogin(){
+        funcionario.setUsuario(jTxtUsuario.getText().toUpperCase());
+        funcionario.setSenha(String.valueOf(jTxtSenha.getPassword()));
         if(!persisteFuncionario.verificarLogin(funcionario)){
             JOptionPane.showMessageDialog(null, "Dados incorretos. Verifique o usuario e a senha");
+            return false;
         }
         else{
+            return true;
+        }
+      
+        
+    }
+    
+    
+    public void chamarFrameMenu(){
+        VisaoMenu visao = new VisaoMenu();
+        VisaoMenu.funcionario = funcionario;
+        visao.setVisible(true);
+        
+    }
+    /**
+     * Chama o frame menu após fazer as verificações de login.
+     */
+    public void fazerLogin(){
+        if(verificarLogin()){
             log.info(formatador.format(new Date()) + " " + funcionario.getCpf() + 
                     " logou-se como "+ funcionario.getCargo() );
-            VisaoMenu.funcionario = funcionario;
+            
+            chamarFrameMenu();
             this.dispose();
         }
-        
-        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAcessar;
