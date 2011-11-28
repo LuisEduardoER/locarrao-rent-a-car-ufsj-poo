@@ -45,6 +45,11 @@ public class VisaoLogin extends javax.swing.JFrame {
                 jBAcessarActionPerformed(evt);
             }
         });
+        jBAcessar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jBAcessarKeyPressed(evt);
+            }
+        });
 
         jBSair.setText("Sair");
         jBSair.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +118,10 @@ public class VisaoLogin extends javax.swing.JFrame {
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBSairActionPerformed
+
+    private void jBAcessarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBAcessarKeyPressed
+       fazerLogin();
+    }//GEN-LAST:event_jBAcessarKeyPressed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
