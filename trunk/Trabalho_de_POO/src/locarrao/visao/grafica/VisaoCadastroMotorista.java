@@ -3,7 +3,10 @@ package locarrao.visao.grafica;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import modelo.dominio.Endereco;
 import modelo.dominio.Funcionarios;
@@ -33,6 +36,7 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
     
     public VisaoCadastroMotorista() {
         initComponents();
+        preencherComboEstados();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -119,13 +123,10 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(26, 26, 26))
-                        .addComponent(jLabel1))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,9 +303,9 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jTxtCnh, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,30 +322,30 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(131, 131, 131)
                             .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(426, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(317, 317, 317)
-                        .addComponent(salvar)
-                        .addGap(35, 35, 35)
-                        .addComponent(cancela)))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addComponent(salvar)
+                .addGap(35, 35, 35)
+                .addComponent(cancela)
+                .addGap(270, 270, 270))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancela, salvar});
@@ -362,11 +363,11 @@ public class VisaoCadastroMotorista extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
-                .addGap(18, 18, 18)
+                .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cancela))
-                .addGap(115, 115, 115)
+                .addGap(25, 25, 25)
                 .addComponent(labelErro, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -561,12 +562,12 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     public boolean validarCampos(){
         Valida validacao = new Valida();
         
-        if(validacao.validarCPF(jTxtCpf.getText())){
+        if(!validacao.validarCPF(jTxtCpf.getText())){
             JOptionPane.showMessageDialog(null, "CPF inválido!");
             jTxtCpf.setBackground(Color.red);
             jTxtCpf.requestFocus();
             return false;
-        }else if(validacao.validarTelefone(jTxtTelefone.getText())){
+        }else if(!jTxtTelefone.getText().trim().isEmpty() && !validacao.validarTelefone(jTxtTelefone.getText())){
             JOptionPane.showMessageDialog(null, "Telefone inválido!");
             jTxtTelefone.setBackground(Color.red);
             jTxtTelefone.requestFocus();
@@ -576,7 +577,7 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             jTxtCep.setBackground(Color.red);
             jTxtCep.requestFocus();
             return false;
-        }else if(validacao.validarCnh(jTxtCnh.getText())){
+        }else if(!validacao.validarCnh(jTxtCnh.getText())){
             JOptionPane.showMessageDialog(null, "Cnh inválida!");
             jTxtCep.setBackground(Color.red);
             jTxtCep.requestFocus();
@@ -590,11 +591,14 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
      * Faz todas a verificações. Se todos os dados são válido, então eles são salvos no banco de dados
      */
     public void chamarVerificacoes(){
-        if(verificarDadosPessoaisEmBranco() && verificarContemLetraNaCnh() && 
-                verificarContemLetraNaCnh() && validarCampos()){
+        if(verificarDadosPessoaisEmBranco() && verificarContemLetraNaCnh() && validarCampos()){
             pegarDados();
             if(!persisteMotorista.verificarMotoristaJaCadastrado(motorista)){
                 persisteMotorista.salvarBD(motorista);
+                limparCamposDadosPessoais();
+                limparCnh();
+                limparCamposEndereco();
+                jTxtNome.requestFocus();
                 
                 log.info(formatador.format(new Date()) + " - Motorista " + motorista.getNome() + 
                             " cadastrado pelo funcionario " + funcionario.getUsuario());
@@ -607,6 +611,46 @@ private void jTxtCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         }
     }
     
+    /**
+     * Limpa os campos referentes ao dados pessoais (nome, cpf, telefone)
+     */
+    public void limparCamposDadosPessoais(){
+        jTxtNome.setText("");
+        jTxtCpf.setText("");
+        jTxtTelefone.setText("");
+    }
+    
+    /**
+     * limpa o campo cnh
+     */
+     public void limparCnh(){
+         jTxtCnh.setText("");
+     }
+     
+     /**
+      * Limpa os campos referente ao endereço e o combo box vai pro indice 0.
+      * 
+      */
+     
+     public void limparCamposEndereco(){
+         for(int i=0; i< jPanelEndereco.getComponentCount();i++){
+             if(jPanelEndereco.getComponent(i) instanceof JTextField){
+                 JTextField aux = (JTextField)jPanelEndereco.getComponent(i);
+                 aux.setText("");
+             }else if(jPanelEndereco.getComponent(i) instanceof JComboBox){
+                 JComboBox aux = (JComboBox) jPanelEndereco.getComponent(i);
+                 aux.setSelectedIndex(0);
+             }
+         }
+     }
+     
+     /**
+      * Preenche o combo referente aos estados
+      */
+             
+     public void preencherComboEstados(){
+         persisteEndereco.preencherComboEstados(jComboEstado);
+     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancela;
     private javax.swing.JComboBox jComboEstado;
