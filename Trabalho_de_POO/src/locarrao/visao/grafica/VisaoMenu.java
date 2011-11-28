@@ -19,7 +19,7 @@ public class VisaoMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
         jBTrocarUsuario = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         cadastro = new javax.swing.JMenu();
         jMenuClientes = new javax.swing.JMenuItem();
@@ -46,7 +46,7 @@ public class VisaoMenu extends javax.swing.JFrame {
         setTitle("Locarrão Rent a Car");
         setExtendedState(MAXIMIZED_BOTH);
 
-        jLabel1.setFont(new java.awt.Font("OCR A Extended", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("OCR A Extended", 0, 48));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOCARRÃO RENT A CAR");
 
@@ -62,10 +62,10 @@ public class VisaoMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Sair");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBSair.setText("Sair");
+        jBSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBSairActionPerformed(evt);
             }
         });
 
@@ -236,7 +236,7 @@ public class VisaoMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(383, 383, 383)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
@@ -245,7 +245,7 @@ public class VisaoMenu extends javax.swing.JFrame {
                 .addContainerGap(190, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBTrocarUsuario, jButton1});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBSair, jBTrocarUsuario});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +257,7 @@ public class VisaoMenu extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jBTrocarUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jBSair)
                 .addGap(76, 76, 76)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(240, Short.MAX_VALUE))
@@ -360,9 +360,9 @@ public class VisaoMenu extends javax.swing.JFrame {
         visao.setVisible(true);
     }//GEN-LAST:event_cadastraFuncionariosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jBSairActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -384,8 +384,8 @@ public class VisaoMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastroVeiculo;
     private javax.swing.JMenuItem disponibilidadePorTipoDeVeiculo;
     private javax.swing.JMenuItem finalizaLocacao;
+    private javax.swing.JButton jBSair;
     private javax.swing.JButton jBTrocarUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabelUsuario;
