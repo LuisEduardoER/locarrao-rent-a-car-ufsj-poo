@@ -33,13 +33,12 @@ public class PersisteModeloVeiculo extends DaoBase{
      */
     public boolean verificarModeloJaCadastrado(ModeloVeiculo modelo){
         abrirDB();
-        ModeloVeiculo m = new ModeloVeiculo();
         
         Query query = em.createQuery("FROM ModeloVeiculo m WHERE m.modelo = :modelo");
         query.setParameter("modelo", modelo.getModelo());
         
         try{
-            m = (ModeloVeiculo)query.getSingleResult();
+            modelo = (ModeloVeiculo)query.getSingleResult();
             return true;
         }catch(NoResultException ex){
             fecharDB();
@@ -47,6 +46,21 @@ public class PersisteModeloVeiculo extends DaoBase{
         }
     }
     
+    public ModeloVeiculo retornarModeloPeloNome(ModeloVeiculo modelo){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM ModeloVeiculo m WHERE m.modelo = :modelo");
+        query.setParameter("modelo", modelo.getModelo());
+        
+        try{
+            modelo = (ModeloVeiculo)query.getSingleResult();
+            return modelo;
+        }catch(NoResultException ex){
+            fecharDB();
+            return modelo;
+                    
+        }
+    }
     /**
      * Salva o modelo no banco de dados.
      * @param modelo 

@@ -473,7 +473,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     public void preencherComboMarca(){
         List<MarcaVeiculo> lista = persisteMarcaVeiculo.retornarTodasMarcasBD();
         jComboMarca.removeAllItems();
-        jComboMarca.addItem("Selecione um Tipo");
+        jComboMarca.addItem("Selecione uma marca");
         
         if(lista == null){
             JOptionPane.showMessageDialog(null, "Não foi possível conectar com o banco de dados!");
@@ -554,12 +554,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     public TipoVeiculo retornarTipo(){
         tipoVeiculo = new TipoVeiculo();
         tipoVeiculo.setTipo(jComboTipo.getSelectedItem().toString());
-        if(persisteTipoVeiculo.verificarTipoJaCadastrado(tipoVeiculo)){
-            return tipoVeiculo;
-        }else{
-            tipoVeiculo = null;
-            return tipoVeiculo;
-        }
+        return persisteTipoVeiculo.retornarTipoPeloNome(tipoVeiculo);
         
     }
     
@@ -571,12 +566,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     public ModeloVeiculo retornarModelo(){
         modelo = new ModeloVeiculo();
         modelo.setModelo(jComboModelo.getSelectedItem().toString());
-        if(persisteModeloVeiculo.verificarModeloJaCadastrado(modelo)){
-            return modelo;
-        }else{
-            modelo = null;
-            return modelo;
-        }
+        return persisteModeloVeiculo.retornarModeloPeloNome(modelo);
     }
     
     /**
@@ -587,12 +577,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
     public MarcaVeiculo retornarMarca(){
         marca = new MarcaVeiculo();
         marca.setMarca(jComboMarca.getSelectedItem().toString());
-        if(persisteMarcaVeiculo.verificarMarcaJaCadastrada(marca)){
-            return marca;
-        }else{
-            marca = null;
-            return marca;
-        }
+        return persisteMarcaVeiculo.retornarMarcaPeloNome(marca);
     }
     
     /**
@@ -611,6 +596,7 @@ public class VisaoCadastroVeiculo extends javax.swing.JFrame {
         veiculo.setMarcaVeiculo(retornarMarca());
         veiculo.setValorTotalLocacoes(0);
         veiculo.setTotalLocacoes(0);
+        System.out.println("marca: " + veiculo.getMarcaVeiculo().getId());
     }
     
     /**
