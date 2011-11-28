@@ -630,17 +630,17 @@ private void jTxtComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST
     public boolean validarCampos(){
         Valida validacao = new Valida();
         
-        if(validacao.validarCPF(jTxtCpf.getText())){
+        if(!validacao.validarCPF(jTxtCpf.getText())){
             JOptionPane.showMessageDialog(null, "CPF inválido!");
             jTxtCpf.setBackground(Color.red);
             jTxtCpf.requestFocus();
             return false;
-        }else if(validacao.validarTelefone(jTxtTelefone.getText())){
+        }else if(!validacao.validarTelefone(jTxtTelefone.getText())){
             JOptionPane.showMessageDialog(null, "Telefone inválido!");
             jTxtTelefone.setBackground(Color.red);
             jTxtTelefone.requestFocus();
             return false;
-        }else if(!jTxtCep.getText().isEmpty() && validacao.validarCEP(jTxtCep.getText())){
+        }else if(!jTxtCep.getText().isEmpty() && !validacao.validarCEP(jTxtCep.getText())){
             JOptionPane.showMessageDialog(null, "CEP inválido!");
             jTxtCep.setBackground(Color.red);
             jTxtCep.requestFocus();
