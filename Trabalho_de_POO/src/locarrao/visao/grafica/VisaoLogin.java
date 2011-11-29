@@ -183,6 +183,9 @@ public class VisaoLogin extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Determina o menu de acordo com seu cargo
+     */
     public void determinarMenu(){
         if(funcionario.getCargo().equals("VENDEDOR")){
             visao.jMenuFuncionario.setVisible(false);
