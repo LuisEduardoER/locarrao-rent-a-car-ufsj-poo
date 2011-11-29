@@ -1,0 +1,357 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.5.18
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema locarrao
+--
+
+CREATE DATABASE IF NOT EXISTS locarrao;
+USE locarrao;
+
+--
+-- Definition of table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE `clientes` (
+  `ID_CLIENTE` int(11) NOT NULL,
+  PRIMARY KEY (`ID_CLIENTE`),
+  KEY `FK64CB29B968424AE6` (`ID_CLIENTE`),
+  CONSTRAINT `FK64CB29B968424AE6` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `pessoa` (`ID_PESSOA`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `clientes`
+--
+
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` (`ID_CLIENTE`) VALUES 
+ (3),
+ (5),
+ (13),
+ (14),
+ (15);
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+
+
+--
+-- Definition of table `endereco`
+--
+
+DROP TABLE IF EXISTS `endereco`;
+CREATE TABLE `endereco` (
+  `ID_ENDERECO` bigint(20) NOT NULL AUTO_INCREMENT,
+  `bairro` varchar(45) DEFAULT NULL,
+  `cep` varchar(9) DEFAULT NULL,
+  `cidade` varchar(45) DEFAULT NULL,
+  `complemento` varchar(10) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `rua` varchar(45) DEFAULT NULL,
+  `uf` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`ID_ENDERECO`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `endereco`
+--
+
+/*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+INSERT INTO `endereco` (`ID_ENDERECO`,`bairro`,`cep`,`cidade`,`complemento`,`numero`,`rua`,`uf`) VALUES 
+ (1,'asdalsdjalksdjalsdj','898989','alsjdalsdjalsjdalsdjask','fa',10,'askajsdasd','MG'),
+ (2,'asdasda','23456','asdasdasdada','ad',10,'asdasd','MG'),
+ (3,'CENTRO','36300000','AQUI','NAO SEI',51,'BECO','MG'),
+ (4,'CENTRO','36300000','SJ','ALI',58,'AQUI','MG'),
+ (5,'CENR','36987123','SAL','ALO',63,'AQUI','AC'),
+ (6,'CENR','36987123','SAL','ALO',63,'AQUI','AC'),
+ (7,'ALI','25879364','LOL','OI',52,'AQUII','AP'),
+ (8,'CENTRO','36300002','SJDR','PERTO',51,'RUA','MG');
+/*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
+
+
+--
+-- Definition of table `funcionarios`
+--
+
+DROP TABLE IF EXISTS `funcionarios`;
+CREATE TABLE `funcionarios` (
+  `cargo` varchar(45) DEFAULT NULL,
+  `senha` varchar(100) DEFAULT NULL,
+  `usuario` varchar(45) DEFAULT NULL,
+  `ID_FUNCIONARIO` int(11) NOT NULL,
+  PRIMARY KEY (`ID_FUNCIONARIO`),
+  KEY `FK41E285F885DF14C7` (`ID_FUNCIONARIO`),
+  CONSTRAINT `FK41E285F885DF14C7` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `pessoa` (`ID_PESSOA`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `funcionarios`
+--
+
+/*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
+INSERT INTO `funcionarios` (`cargo`,`senha`,`usuario`,`ID_FUNCIONARIO`) VALUES 
+ ('ADMINISTRADOR','admin','ADMIN',1),
+ ('VENDEDOR','vend','VEND',7);
+/*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
+
+
+--
+-- Definition of table `locacao`
+--
+
+DROP TABLE IF EXISTS `locacao`;
+CREATE TABLE `locacao` (
+  `ID_LOCACAO` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DATA_CHEGADA` date DEFAULT NULL,
+  `DATA_SAIDA` date DEFAULT NULL,
+  `ABERTA` bit(1) DEFAULT NULL,
+  `previsao` int(11) DEFAULT NULL,
+  `KM_CHEGADA` bigint(20) DEFAULT NULL,
+  `KM_SAIDA` bigint(20) DEFAULT NULL,
+  `valor` double DEFAULT NULL,
+  `ID_CLIENTE` int(11) DEFAULT NULL,
+  `ID_MOTORISTA` int(11) DEFAULT NULL,
+  `ID_TIPO_LOCACAO` bigint(20) DEFAULT NULL,
+  `ID_VEICULO` bigint(20) DEFAULT NULL,
+  `MODO_DE_LOCACAO` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID_LOCACAO`),
+  KEY `FK776432F080A18C1C` (`ID_TIPO_LOCACAO`),
+  KEY `FK776432F0C37C6EEB` (`ID_MOTORISTA`),
+  KEY `FK776432F0F5174158` (`ID_VEICULO`),
+  KEY `FK776432F0D0A1FEB8` (`ID_CLIENTE`),
+  CONSTRAINT `FK776432F080A18C1C` FOREIGN KEY (`ID_TIPO_LOCACAO`) REFERENCES `tipo_locacao` (`ID_TIPO_LOCACAO`),
+  CONSTRAINT `FK776432F0C37C6EEB` FOREIGN KEY (`ID_MOTORISTA`) REFERENCES `motorista` (`ID_MOTORISTA`),
+  CONSTRAINT `FK776432F0D0A1FEB8` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `clientes` (`ID_CLIENTE`),
+  CONSTRAINT `FK776432F0F5174158` FOREIGN KEY (`ID_VEICULO`) REFERENCES `veiculos` (`ID_VEICULO`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `locacao`
+--
+
+/*!40000 ALTER TABLE `locacao` DISABLE KEYS */;
+INSERT INTO `locacao` (`ID_LOCACAO`,`DATA_CHEGADA`,`DATA_SAIDA`,`ABERTA`,`previsao`,`KM_CHEGADA`,`KM_SAIDA`,`valor`,`ID_CLIENTE`,`ID_MOTORISTA`,`ID_TIPO_LOCACAO`,`ID_VEICULO`,`MODO_DE_LOCACAO`) VALUES 
+ (1,NULL,'2011-11-28',0x00,5,1100,1000,-29800,3,4,1,1,'Por Quilômetro');
+/*!40000 ALTER TABLE `locacao` ENABLE KEYS */;
+
+
+--
+-- Definition of table `marca_veiculo`
+--
+
+DROP TABLE IF EXISTS `marca_veiculo`;
+CREATE TABLE `marca_veiculo` (
+  `ID_MARCA` bigint(20) NOT NULL AUTO_INCREMENT,
+  `marca` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID_MARCA`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `marca_veiculo`
+--
+
+/*!40000 ALTER TABLE `marca_veiculo` DISABLE KEYS */;
+INSERT INTO `marca_veiculo` (`ID_MARCA`,`marca`) VALUES 
+ (1,'GOL'),
+ (2,'FIAT'),
+ (3,'WOLKS');
+/*!40000 ALTER TABLE `marca_veiculo` ENABLE KEYS */;
+
+
+--
+-- Definition of table `modelo_veiculo`
+--
+
+DROP TABLE IF EXISTS `modelo_veiculo`;
+CREATE TABLE `modelo_veiculo` (
+  `ID_MODELO` bigint(20) NOT NULL AUTO_INCREMENT,
+  `modelo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID_MODELO`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modelo_veiculo`
+--
+
+/*!40000 ALTER TABLE `modelo_veiculo` DISABLE KEYS */;
+INSERT INTO `modelo_veiculo` (`ID_MODELO`,`modelo`) VALUES 
+ (1,'marca teste'),
+ (2,'UNO'),
+ (3,'PALIO');
+/*!40000 ALTER TABLE `modelo_veiculo` ENABLE KEYS */;
+
+
+--
+-- Definition of table `motorista`
+--
+
+DROP TABLE IF EXISTS `motorista`;
+CREATE TABLE `motorista` (
+  `cnh` varchar(10) DEFAULT NULL,
+  `ID_MOTORISTA` int(11) NOT NULL,
+  PRIMARY KEY (`ID_MOTORISTA`),
+  KEY `FK8E127EEC6BFA6CF8` (`ID_MOTORISTA`),
+  CONSTRAINT `FK8E127EEC6BFA6CF8` FOREIGN KEY (`ID_MOTORISTA`) REFERENCES `pessoa` (`ID_PESSOA`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `motorista`
+--
+
+/*!40000 ALTER TABLE `motorista` DISABLE KEYS */;
+INSERT INTO `motorista` (`cnh`,`ID_MOTORISTA`) VALUES 
+ ('0123456789',2),
+ ('1234567890',4),
+ ('1234567890',8),
+ ('1234567899',9),
+ ('2581473690',10),
+ ('4567891230',11),
+ ('0123456789',12);
+/*!40000 ALTER TABLE `motorista` ENABLE KEYS */;
+
+
+--
+-- Definition of table `pessoa`
+--
+
+DROP TABLE IF EXISTS `pessoa`;
+CREATE TABLE `pessoa` (
+  `ID_PESSOA` int(11) NOT NULL AUTO_INCREMENT,
+  `cpf` varchar(11) DEFAULT NULL,
+  `nome` varchar(45) DEFAULT NULL,
+  `tefefone` varchar(10) DEFAULT NULL,
+  `ID_ENDERECO` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID_PESSOA`),
+  KEY `FK8C7703A71004585F` (`ID_ENDERECO`),
+  CONSTRAINT `FK8C7703A71004585F` FOREIGN KEY (`ID_ENDERECO`) REFERENCES `endereco` (`ID_ENDERECO`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pessoa`
+--
+
+/*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
+INSERT INTO `pessoa` (`ID_PESSOA`,`cpf`,`nome`,`tefefone`,`ID_ENDERECO`) VALUES 
+ (1,'09231263684','JOAO VICTOR MAGELA',NULL,NULL),
+ (2,'65954865981','JOSE','',NULL),
+ (3,'23366540087','TESTE','',NULL),
+ (4,'23366540087','TESTE','',NULL),
+ (5,'10270938680','THAIS SANDIM','3288554785',NULL),
+ (6,'10270938680','THAIS SANDIM','3233333928',3),
+ (7,'10270938680','VENDEDOR 1','3233713928',NULL),
+ (8,'10270938680','MOTORISTA1','3288888888',4),
+ (9,'53947777485','MOTORISTA2','',6),
+ (10,'24645928384','MOTORISTA2','',7),
+ (11,'71607221594','MOTORISTA3','',8),
+ (12,'62666019314','CLIENTE 1','',NULL),
+ (13,'62666019314','CLIENTE1','',NULL),
+ (14,'35713397033','CLIENTE2','',NULL),
+ (15,'37375314390','CLIENTE3','',NULL);
+/*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tipo_locacao`
+--
+
+DROP TABLE IF EXISTS `tipo_locacao`;
+CREATE TABLE `tipo_locacao` (
+  `ID_TIPO_LOCACAO` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PRECO_POR_KM` double DEFAULT NULL,
+  `TAXA_DIARIAS` double DEFAULT NULL,
+  `TAXA_POR_KM` double DEFAULT NULL,
+  `ID_TIPO_VEICULO` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID_TIPO_LOCACAO`),
+  KEY `FKDF19A4E58128B61A` (`ID_TIPO_VEICULO`),
+  CONSTRAINT `FKDF19A4E58128B61A` FOREIGN KEY (`ID_TIPO_VEICULO`) REFERENCES `tipo_veiculo` (`ID_TIPO_VEICULO`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tipo_locacao`
+--
+
+/*!40000 ALTER TABLE `tipo_locacao` DISABLE KEYS */;
+INSERT INTO `tipo_locacao` (`ID_TIPO_LOCACAO`,`PRECO_POR_KM`,`TAXA_DIARIAS`,`TAXA_POR_KM`,`ID_TIPO_VEICULO`) VALUES 
+ (1,300,100,200,1);
+/*!40000 ALTER TABLE `tipo_locacao` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tipo_veiculo`
+--
+
+DROP TABLE IF EXISTS `tipo_veiculo`;
+CREATE TABLE `tipo_veiculo` (
+  `ID_TIPO_VEICULO` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID_TIPO_VEICULO`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tipo_veiculo`
+--
+
+/*!40000 ALTER TABLE `tipo_veiculo` DISABLE KEYS */;
+INSERT INTO `tipo_veiculo` (`ID_TIPO_VEICULO`,`tipo`) VALUES 
+ (1,'PADRÃO'),
+ (2,'PASSEIO');
+/*!40000 ALTER TABLE `tipo_veiculo` ENABLE KEYS */;
+
+
+--
+-- Definition of table `veiculos`
+--
+
+DROP TABLE IF EXISTS `veiculos`;
+CREATE TABLE `veiculos` (
+  `ID_VEICULO` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ano` int(11) DEFAULT NULL,
+  `cor` varchar(20) DEFAULT NULL,
+  `observacao` varchar(100) DEFAULT NULL,
+  `opcionais` varchar(100) DEFAULT NULL,
+  `placa` varchar(7) DEFAULT NULL,
+  `ID_MARCA` bigint(20) DEFAULT NULL,
+  `ID_MODELO` bigint(20) DEFAULT NULL,
+  `ID_TIPO_VEICULO` bigint(20) DEFAULT NULL,
+  `TOTAL_LOCACOES` int(11) DEFAULT NULL,
+  `VALOR_TOTAL_LOCACOES` double DEFAULT NULL,
+  PRIMARY KEY (`ID_VEICULO`),
+  KEY `FK7D5136648128B61A` (`ID_TIPO_VEICULO`),
+  KEY `FK7D513664A411104A` (`ID_MODELO`),
+  KEY `FK7D513664C6B295F4` (`ID_MARCA`),
+  CONSTRAINT `FK7D5136648128B61A` FOREIGN KEY (`ID_TIPO_VEICULO`) REFERENCES `tipo_veiculo` (`ID_TIPO_VEICULO`),
+  CONSTRAINT `FK7D513664A411104A` FOREIGN KEY (`ID_MODELO`) REFERENCES `modelo_veiculo` (`ID_MODELO`),
+  CONSTRAINT `FK7D513664C6B295F4` FOREIGN KEY (`ID_MARCA`) REFERENCES `marca_veiculo` (`ID_MARCA`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `veiculos`
+--
+
+/*!40000 ALTER TABLE `veiculos` DISABLE KEYS */;
+INSERT INTO `veiculos` (`ID_VEICULO`,`ano`,`cor`,`observacao`,`opcionais`,`placa`,`ID_MARCA`,`ID_MODELO`,`ID_TIPO_VEICULO`,`TOTAL_LOCACOES`,`VALOR_TOTAL_LOCACOES`) VALUES 
+ (1,2011,'','','','AAA1111',2,2,1,0,-29800);
+/*!40000 ALTER TABLE `veiculos` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
