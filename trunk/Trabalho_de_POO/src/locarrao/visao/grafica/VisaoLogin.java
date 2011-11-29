@@ -1,8 +1,5 @@
 package locarrao.visao.grafica;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -147,8 +144,6 @@ public class VisaoLogin extends javax.swing.JFrame {
      * Verifica se o login foi feito corretamente
      */
     public boolean verificarLogin(){
-        funcionario.setUsuario(jTxtUsuario.getText().toUpperCase());
-        funcionario.setSenha(String.valueOf(jTxtSenha.getPassword()));
         if(!persisteFuncionario.verificarLogin(funcionario)){
             JOptionPane.showMessageDialog(null, "Dados incorretos! Verifique o usuário e a senha.");
             return false;
@@ -175,6 +170,10 @@ public class VisaoLogin extends javax.swing.JFrame {
      * Chama o frame menu após fazer as verificações de login.
      */
     public void fazerLogin(){
+        funcionario.setUsuario(jTxtUsuario.getText().toUpperCase());
+        funcionario.setSenha(String.valueOf(jTxtSenha.getPassword()));
+        
+        funcionario = persisteFuncionario.retornarFuncionarioPeloUsuario(funcionario);
         if(verificarLogin()){
             log.info(formatador.format(new Date()) + " " + funcionario.getCpf() + 
                     " logou-se como "+ funcionario.getCargo() );
