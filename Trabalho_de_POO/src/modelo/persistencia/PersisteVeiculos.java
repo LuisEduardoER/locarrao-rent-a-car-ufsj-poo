@@ -36,7 +36,7 @@ public class PersisteVeiculos extends DaoBase{
         abrirDB();
         Query query = em.createQuery("FROM Veiculos veiculo WHERE veiculo.placa = :placa");
         query.setParameter("placa", veiculo.getPlaca());
-        System.out.println("placa que veio: " + veiculo.getPlaca());
+        
         try{
             veiculo = (Veiculos)query.getSingleResult();
             fecharDB();
