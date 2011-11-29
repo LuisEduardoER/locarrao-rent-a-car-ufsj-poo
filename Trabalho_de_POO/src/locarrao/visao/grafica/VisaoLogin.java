@@ -164,6 +164,7 @@ public class VisaoLogin extends javax.swing.JFrame {
      */
     public void chamarFrameMenu(){
         funcionario = persisteFuncionario.retornarFuncionarioPeloUsuario(funcionario);
+        determinarMenu();
         VisaoMenu.funcionario = funcionario;
         visao.jLabelUsuario.setText(funcionario.getUsuario());
         visao.setVisible(true);
@@ -184,7 +185,10 @@ public class VisaoLogin extends javax.swing.JFrame {
     
     public void determinarMenu(){
         if(funcionario.getCargo().equals("VENDEDOR")){
-            
+            visao.jMenuFuncionario.setVisible(false);
+        }else if(funcionario.getCargo().equals("AUXILIAR")){
+            visao.locacao.setVisible(false);
+            visao.jMenuFuncionario.setVisible(false);
         }
     }
         
