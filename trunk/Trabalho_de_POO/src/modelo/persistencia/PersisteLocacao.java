@@ -132,7 +132,6 @@ public class PersisteLocacao extends DaoBase{
         
         tipoLocacao = persistenciaTipoLocacao.retornarTipoLocacaoPorTipoVeiculo(tipoVeiculo);
         
-        System.out.println("tipoLocacao.id "+ tipoLocacao.getId());
         return tipoLocacao;
         
     }

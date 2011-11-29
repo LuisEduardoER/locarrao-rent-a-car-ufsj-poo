@@ -438,7 +438,9 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     }//GEN-LAST:event_jBPesquisarVeiculoActionPerformed
 
     private void jBPesquisarMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarMotoristaActionPerformed
-        
+        if (verificarMotorista()) {
+            jTxtPlaca.requestFocus();
+        }
     }//GEN-LAST:event_jBPesquisarMotoristaActionPerformed
 
     /**
@@ -488,6 +490,8 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 clienteSeraOMotorista();
             }
             locacao.setMotorista(motorista);
+        }else{
+            jTxtCnh.requestFocus();
         }
     }
     
@@ -554,6 +558,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      * @return 
      */
     public boolean verificarCliente(){
+        cliente = new Clientes();
         cliente.setCodigo(Integer.valueOf(jTxtCodigoCliente.getText()));
         
         if(jTxtCodigoCliente.getText().trim().isEmpty()){
@@ -585,7 +590,9 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      */
     
     public boolean verificarMotorista(){
+        motorista = new Motorista();
         motorista.setCnh(jTxtCnh.getText().trim().toUpperCase());
+        motorista = persisteMotorista.pesquisarMotoristaPelaCnh(motorista);
         
         if(jTxtCnh.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "O campo CNH é obrigatório!");
@@ -603,7 +610,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Motorista ja está cadastrado em outra locação em aberto");
             return false;
         }
-        else if(persisteMotorista.pesquisarMotoristaPelaCnh(motorista)){
+        else if(motorista != null){
             jTxtMotorista.setText(motorista.getNome());
             locacao.setMotorista(motorista);
             return true;

@@ -28,7 +28,7 @@ public class PersisteMotorista extends DaoBase{
      * @param motorista
      * @return 
      */
-    public boolean pesquisarMotoristaPelaCnh (Motorista motorista){
+    public Motorista pesquisarMotoristaPelaCnh (Motorista motorista){
         abrirDB();
         Query query = em.createQuery("FROM Motorista motorista WHERE motorista.cnh = :cnh");
         query.setParameter("cnh", motorista.getCnh());
@@ -36,10 +36,11 @@ public class PersisteMotorista extends DaoBase{
         try{
             motorista = (Motorista)query.getSingleResult();
             fecharDB();
-            return true;
+            return motorista;
         }catch(NoResultException ex){
             fecharDB();
-            return false;
+            motorista = null;
+            return motorista;
         }
     }
     
