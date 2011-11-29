@@ -43,6 +43,7 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
         jTableLocacoes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Locações Abertas");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -51,6 +52,11 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
         jLabel2.setText("Data Inicial");
 
         jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,6 +140,10 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        criarRelatorio();
+    }//GEN-LAST:event_jBPesquisarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -152,8 +162,8 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
      * @param lista 
      */
     public void inserirNaTabela(List<Locacao> lista){
-        if(lista == null){
-            JOptionPane.showMessageDialog(null, "Nenhum locação foi encontrada!");
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhuma locação foi encontrada!");
         }else{
             Object[] objeto = null;
             DefaultTableModel modelo = (DefaultTableModel)jTableLocacoes.getModel();
