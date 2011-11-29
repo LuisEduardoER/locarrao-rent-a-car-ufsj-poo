@@ -353,6 +353,7 @@ public class VisaoMenu extends javax.swing.JFrame {
 
     private void jBTrocarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTrocarUsuarioActionPerformed
         VisaoLogin visao = new VisaoLogin();
+        this.dispose();
         visao.setVisible(true);
     }//GEN-LAST:event_jBTrocarUsuarioActionPerformed
 

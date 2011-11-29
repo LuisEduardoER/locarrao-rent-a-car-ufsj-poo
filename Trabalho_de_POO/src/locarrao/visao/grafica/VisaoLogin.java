@@ -124,7 +124,7 @@ public class VisaoLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAcessarActionPerformed
     
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
-        this.dispose();
+       System.exit(0);
     }//GEN-LAST:event_jBSairActionPerformed
 
     private void jBAcessarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBAcessarKeyPressed
