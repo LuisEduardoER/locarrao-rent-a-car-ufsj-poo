@@ -9,16 +9,25 @@ package modelo.dominio;
  * @author Thais
  */
 public class Valida {
-public  boolean validarCPF(String CPF) {
+    
+    /**
+     * Valida o CPF digitado
+     * @param CPF
+     * @return true - Valido
+     */
+    public  boolean validarCPF(String CPF) {
+        if(CPF.length() !=  11){
+            return false;
+        }
         int digitoVerificador1 = 0;
         int digitoVerificador2 = 0;
         int resto = 0;
 
         StringBuilder resultado = new StringBuilder();
-           
+
         //pega os digitos verificadores 
         String digitoVerificadorCPF = CPF.substring((CPF.length() - 2),CPF.length());
-        
+
         //primeiro calculo dos dois digitos verificadoresa
         digitoVerificador1=0;
         digitoVerificador2=0;
@@ -36,7 +45,7 @@ public  boolean validarCPF(String CPF) {
               digitoVerificador2 += 2 * (11 - resto);
               resultado.append((11 - resto));
          }
-         
+
          //acaba de calcular o segundo digito verificador
          resto = digitoVerificador2 % 11;
          if (resto < 2) {
@@ -49,7 +58,12 @@ public  boolean validarCPF(String CPF) {
 
     }
     
-public boolean validarCnh( String cnh){
+    /**
+     * Valida a CNH
+     * @param cnh
+     * @return true - Valida
+     */
+    public boolean validarCnh( String cnh){
          boolean resposta = true;
          if(cnh.length() == 10){
              for(int i=0; i< cnh.length(); i++){
@@ -63,6 +77,12 @@ public boolean validarCnh( String cnh){
          }
          return resposta;
     }
+    
+    /**
+     * Valida o CEP
+     * @param cep
+     * @return 
+     */
     public boolean validarCEP(String cep){
         boolean resposta = true;
         if(cep.length() == 8){
@@ -79,6 +99,11 @@ public boolean validarCnh( String cnh){
         
     }
     
+    /**
+     * Valida o telefone
+     * @param telefone
+     * @return 
+     */
     public boolean validarTelefone( String  telefone){      
         boolean resposta = true;
         if(telefone.length() == 10){
@@ -94,6 +119,11 @@ public boolean validarCnh( String cnh){
         return resposta;
     }
     
+    /**
+     * Valida a placa do veículo
+     * @param placa
+     * @return 
+     */
     public boolean validarPlaca(String placa){
         if(placa.length() < 7){
             return false;
