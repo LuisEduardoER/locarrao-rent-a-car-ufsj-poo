@@ -136,7 +136,7 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
      * @param lista 
      */
     public void inserirNaTabela(List<Veiculos> lista){
-        if(lista == null){
+        if(lista.isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum veículo está disponível!");
         }else{
             Object[] objeto = null;

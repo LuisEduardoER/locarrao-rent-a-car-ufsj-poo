@@ -41,8 +41,10 @@ public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabelaVeiculo = new javax.swing.JTable();
         jBAtualizar = new javax.swing.JButton();
+        jBFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Veículos Mais Locaso");
 
         jTabelaVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,22 +71,33 @@ public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
             }
         });
 
+        jBFechar.setText("Fechar");
+        jBFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFecharActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(412, Short.MAX_VALUE)
+                .addContainerGap(377, Short.MAX_VALUE)
                 .addComponent(jBAtualizar)
-                .addGap(313, 313, 313))
+                .addGap(18, 18, 18)
+                .addComponent(jBFechar)
+                .addGap(265, 265, 265))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBAtualizar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAtualizar)
+                    .addComponent(jBFechar))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -95,6 +108,10 @@ public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
         preencherLista();
         inserirNaTabela(lista);
     }//GEN-LAST:event_jBAtualizarActionPerformed
+
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
+        this.dispose();
+}//GEN-LAST:event_jBFecharActionPerformed
 
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
@@ -125,8 +142,8 @@ public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
      * @param lista 
      */
     public void inserirNaTabela(List<Veiculos> lista){
-        if(lista == null){
-            JOptionPane.showMessageDialog(null, "Nenhum veículo Cadastrado!");
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum veículo foi alugado!");
         }else{
             Object[] objeto = null;
             DefaultTableModel modelo = (DefaultTableModel)jTabelaVeiculo.getModel();
@@ -152,6 +169,7 @@ public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizar;
+    private javax.swing.JButton jBFechar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTabelaVeiculo;
     // End of variables declaration//GEN-END:variables
