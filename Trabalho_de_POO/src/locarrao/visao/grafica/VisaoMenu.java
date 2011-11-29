@@ -2,6 +2,7 @@ package locarrao.visao.grafica;
 import javax.swing.JOptionPane;
 
 import modelo.dominio.Funcionarios;
+import org.apache.log4j.PropertyConfigurator;
 
 public class VisaoMenu extends javax.swing.JFrame {
     
@@ -371,6 +372,7 @@ public class VisaoMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBSairActionPerformed
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
