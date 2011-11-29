@@ -39,8 +39,10 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabelaVeiculo = new javax.swing.JTable();
         jBAtualizar = new javax.swing.JButton();
+        jBFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Veículos Disponíveis");
 
         jTabelaVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,22 +69,36 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
             }
         });
 
+        jBFechar.setText("Fechar");
+        jBFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFecharActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(412, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(317, 317, 317)
                 .addComponent(jBAtualizar)
-                .addGap(313, 313, 313))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBFechar)
+                .addContainerGap(323, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBAtualizar, jBFechar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBAtualizar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAtualizar)
+                    .addComponent(jBFechar))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -93,6 +109,10 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
         preencherLista();
         inserirNaTabela(lista);
     }//GEN-LAST:event_jBAtualizarActionPerformed
+
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBFecharActionPerformed
 
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
@@ -125,9 +145,11 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
             modelo.setRowCount(0);
             for(Veiculos item: lista){
                 objeto = new Object[]{item.getPlaca(),
-                                      persisteTipoVeiculo.retornarTipoVeiculo(item.getTipoVeiculo()),
-                                      persisteModeloVeiculo.retornarModeloVeiculo(item.getModeloVeiculo()),
-                                      persisteMarcaVeiculo.retornarMarcaVeiculo(item.getMarcaVeiculo()),
+                                      persisteTipoVeiculo.
+                        retornarTipoVeiculo(item.getTipoVeiculo()).getTipo(),
+                                      persisteModeloVeiculo.
+                        retornarModeloVeiculo(item.getModeloVeiculo()).getModelo(),
+                                      persisteMarcaVeiculo.retornarMarcaVeiculo(item.getMarcaVeiculo()).getMarca(),
                                       item.getAno(),
                                       item.getCor()
                                       };
@@ -142,6 +164,7 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizar;
+    private javax.swing.JButton jBFechar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTabelaVeiculo;
     // End of variables declaration//GEN-END:variables
