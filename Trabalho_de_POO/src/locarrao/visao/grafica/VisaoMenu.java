@@ -21,7 +21,7 @@ public class VisaoMenu extends javax.swing.JFrame {
         jLabelUsuario = new javax.swing.JLabel();
         jBTrocarUsuario = new javax.swing.JButton();
         jBSair = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenuBar();
         cadastro = new javax.swing.JMenu();
         jMenuClientes = new javax.swing.JMenuItem();
         cadastroVeiculo = new javax.swing.JMenuItem();
@@ -136,7 +136,7 @@ public class VisaoMenu extends javax.swing.JFrame {
         });
         cadastro.add(cadastraFuncionarios);
 
-        jMenuBar1.add(cadastro);
+        jMenu.add(cadastro);
 
         locacao.setText("Locação");
 
@@ -156,7 +156,7 @@ public class VisaoMenu extends javax.swing.JFrame {
         });
         locacao.add(finalizaLocacao);
 
-        jMenuBar1.add(locacao);
+        jMenu.add(locacao);
 
         relatorios.setText("Relatórios");
         relatorios.addActionListener(new java.awt.event.ActionListener() {
@@ -221,9 +221,9 @@ public class VisaoMenu extends javax.swing.JFrame {
         });
         relatorios.add(disponibilidadePorTipoDeVeiculo);
 
-        jMenuBar1.add(relatorios);
+        jMenu.add(relatorios);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -383,7 +383,7 @@ public class VisaoMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem buscaClientePorNome;
     private javax.swing.JMenuItem cadastraFuncionarios;
-    private javax.swing.JMenu cadastro;
+    public javax.swing.JMenu cadastro;
     private javax.swing.JMenuItem cadastroLocacao;
     private javax.swing.JMenuItem cadastroMotorista;
     private javax.swing.JMenuItem cadastroVeiculo;
@@ -394,14 +394,14 @@ public class VisaoMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JMenuBar jMenu;
     private javax.swing.JMenuItem jMenuClientes;
-    private javax.swing.JMenu locacao;
+    public javax.swing.JMenu locacao;
     private javax.swing.JMenuItem locacaoFinalizadas;
     private javax.swing.JMenuItem locacoesAberto;
     private javax.swing.JMenuItem marcaVeiculo;
     private javax.swing.JMenuItem modeloVeiculo;
-    private javax.swing.JMenu relatorios;
+    public javax.swing.JMenu relatorios;
     private javax.swing.JMenuItem tipoLocacao;
     private javax.swing.JMenuItem tipoVeiculo;
     private javax.swing.JMenuItem veiculosDisponiveis;
