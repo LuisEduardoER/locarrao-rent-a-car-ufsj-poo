@@ -52,8 +52,8 @@ public class PersisteMotorista extends DaoBase{
         Motorista m = new Motorista();
         abrirDB();
         
-        Query query = em.createQuery("FROM Motorista motorista WHERE motorista.cpf = :cpf");
-        query.setParameter("cpf", motorista.getCpf());
+        Query query = em.createQuery("FROM Motorista motorista WHERE motorista.cnh = :cnh");
+        query.setParameter("cnh", motorista.getCnh());
         
         try{
             m = (Motorista)query.getSingleResult();
