@@ -1,4 +1,5 @@
 package locarrao.visao.grafica;
+import javax.swing.JOptionPane;
 
 import modelo.dominio.Funcionarios;
 
@@ -356,8 +357,17 @@ public class VisaoMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBTrocarUsuarioActionPerformed
 
     private void cadastraFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastraFuncionariosActionPerformed
-       VisaoCadastroFuncionario visao = new VisaoCadastroFuncionario();
+       if(funcionario.getCargo()==null){
+            JOptionPane.showMessageDialog(null,"nulo");
+       }
+        if(funcionario.getCargo().equals("Vendedor")){
+           JOptionPane.showMessageDialog(null,"Não permitido");
+       }else{
+        VisaoCadastroFuncionario visao = new VisaoCadastroFuncionario();
         visao.setVisible(true);
+       }
+           
+        
     }//GEN-LAST:event_cadastraFuncionariosActionPerformed
 
     private void jBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSairActionPerformed
