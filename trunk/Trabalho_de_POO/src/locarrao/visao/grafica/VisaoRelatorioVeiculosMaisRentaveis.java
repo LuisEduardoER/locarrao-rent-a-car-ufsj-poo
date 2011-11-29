@@ -109,7 +109,6 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtualizarActionPerformed
-        preencherLista();
         inserirNaTabela(lista);
     }//GEN-LAST:event_jBAtualizarActionPerformed
 
@@ -132,7 +131,7 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
      * e depois é retirado da lista os veículos que tem valor total igual à 0
      */
     public void preencherLista(){
-        lista = persisteVeiculo.retornarVeiculosMaisLocados();
+        lista = persisteVeiculo.retornarVeiculosMaisRentaveis();
         
         for(Veiculos item: lista){
             if(item.getValorTotalLocacoes() == 0){
@@ -147,6 +146,8 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
      */
     
     public void inserirNaTabela(List<Veiculos> lista){
+        preencherLista();
+        
         if(lista.isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum veículo Cadastrado!");
         }else{
