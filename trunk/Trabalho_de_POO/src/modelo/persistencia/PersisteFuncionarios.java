@@ -41,7 +41,7 @@ public class PersisteFuncionarios extends DaoBase{
      * @param funcionario
      * @return 
      */
-    public Funcionarios retornarClientePeloUsuario(Funcionarios funcionario){
+    public Funcionarios retornarFuncionarioPeloUsuario(Funcionarios funcionario){
         abrirDB();
         
         Query query = em.createQuery("FROM Funcionarios funcionario WHERE funcionario.usuario = :usuario");
