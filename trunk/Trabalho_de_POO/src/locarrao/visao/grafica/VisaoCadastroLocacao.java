@@ -698,7 +698,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      */
     
     public void chamarVerificacoes(){
-        if(verificarOutrosDados()){
+        if(verificarCliente() && verificarMotorista() && verificarVeiculo() && verificarOutrosDados()){
             salvar();
             incrementarQuantidadeLocacoes();
         }
