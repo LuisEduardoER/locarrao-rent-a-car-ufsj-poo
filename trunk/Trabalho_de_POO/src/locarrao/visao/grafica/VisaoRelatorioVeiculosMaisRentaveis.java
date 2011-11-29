@@ -147,7 +147,7 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
      */
     
     public void inserirNaTabela(List<Veiculos> lista){
-        if(lista == null){
+        if(lista.isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum veículo Cadastrado!");
         }else{
             Object[] objeto = null;
@@ -156,9 +156,12 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
             modelo.setRowCount(0);
             for(Veiculos item: lista){
                 objeto = new Object[]{item.getPlaca(),
-                                      persisteTipoVeiculo.retornarTipoVeiculo(item.getTipoVeiculo()),
-                                      persisteModeloVeiculo.retornarModeloVeiculo(item.getModeloVeiculo()),
-                                      persisteMarcaVeiculo.retornarMarcaVeiculo(item.getMarcaVeiculo()),
+                                      persisteTipoVeiculo.
+                        retornarTipoVeiculo(item.getTipoVeiculo()).getTipo(),
+                                      persisteModeloVeiculo.
+                        retornarModeloVeiculo(item.getModeloVeiculo()).getModelo(),
+                                      persisteMarcaVeiculo.
+                        retornarMarcaVeiculo(item.getMarcaVeiculo()).getMarca(),
                                       item.getAno(),
                                       item.getCor(),
                                       item.getValorTotalLocacoes()

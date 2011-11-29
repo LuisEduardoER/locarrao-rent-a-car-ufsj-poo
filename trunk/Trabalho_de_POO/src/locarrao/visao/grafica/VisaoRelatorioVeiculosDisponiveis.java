@@ -149,7 +149,8 @@ public class VisaoRelatorioVeiculosDisponiveis extends javax.swing.JFrame {
                         retornarTipoVeiculo(item.getTipoVeiculo()).getTipo(),
                                       persisteModeloVeiculo.
                         retornarModeloVeiculo(item.getModeloVeiculo()).getModelo(),
-                                      persisteMarcaVeiculo.retornarMarcaVeiculo(item.getMarcaVeiculo()).getMarca(),
+                                      persisteMarcaVeiculo.
+                        retornarMarcaVeiculo(item.getMarcaVeiculo()).getMarca(),
                                       item.getAno(),
                                       item.getCor()
                                       };

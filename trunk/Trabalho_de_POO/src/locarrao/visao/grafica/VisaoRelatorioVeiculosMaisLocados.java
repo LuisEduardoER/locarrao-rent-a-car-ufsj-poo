@@ -154,9 +154,12 @@ public class VisaoRelatorioVeiculosMaisLocados extends javax.swing.JFrame {
             modelo.setRowCount(0);
             for(Veiculos item: lista){
                 objeto = new Object[]{item.getPlaca(),
-                                      persisteTipoVeiculo.retornarTipoVeiculo(item.getTipoVeiculo()),
-                                      persisteModeloVeiculo.retornarModeloVeiculo(item.getModeloVeiculo()),
-                                      persisteMarcaVeiculo.retornarMarcaVeiculo(item.getMarcaVeiculo()),
+                                      persisteTipoVeiculo.
+                        retornarTipoVeiculo(item.getTipoVeiculo()).getTipo(),
+                                      persisteModeloVeiculo.
+                        retornarModeloVeiculo(item.getModeloVeiculo()).getModelo(),
+                                      persisteMarcaVeiculo.
+                        retornarMarcaVeiculo(item.getMarcaVeiculo()).getMarca(),
                                       item.getAno(),
                                       item.getCor(),
                                       item.getTotalLocacoes()
