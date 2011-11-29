@@ -173,7 +173,7 @@ public class VisaoRalatorioDisponibilidadePorTipo extends javax.swing.JFrame {
      */
     public void preencherLista(){
         tipoVeiculo.setTipo(jComboTipo.getSelectedItem().toString());
-        tipoVeiculo = persisteTipoVeiculo.retornarTipoVeiculo(tipoVeiculo);
+        tipoVeiculo = persisteTipoVeiculo.retornarTipoPeloNome(tipoVeiculo);
         
         lista = persisteVeiculo.veiculosDisponiveisBD();
         lista = persisteTipoVeiculo.retornarVeiculosDisponiveisPorTipo(lista, tipoVeiculo);
@@ -185,7 +185,7 @@ public class VisaoRalatorioDisponibilidadePorTipo extends javax.swing.JFrame {
      * @param lista 
      */
     public void inserirNaTabela(List<Veiculos> lista){
-        if(lista == null){
+        if(lista.isEmpty()){
             JOptionPane.showMessageDialog(null, "Nenhum veículo do tipo "+jComboTipo.getSelectedItem().toString() + 
                     " está disponível!");
         }else{

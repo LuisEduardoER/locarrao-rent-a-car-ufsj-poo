@@ -156,7 +156,9 @@ public class VisaoLogin extends javax.swing.JFrame {
         
     }
     
-    
+    /**
+     * Abre o Frame com a tela principal
+     */
     public void chamarFrameMenu(){
         VisaoMenu visao = new VisaoMenu();
         funcionario = persisteFuncionario.retornarFuncionarioPeloUsuario(funcionario);
