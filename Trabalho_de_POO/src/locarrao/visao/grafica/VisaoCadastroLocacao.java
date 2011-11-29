@@ -20,11 +20,14 @@ import modelo.dominio.Funcionarios;
 import modelo.dominio.Locacao;
 import modelo.dominio.Motorista;
 import modelo.dominio.TipoLocacao;
+import modelo.dominio.TipoVeiculo;
 import modelo.dominio.Valida;
 import modelo.dominio.Veiculos;
 import modelo.persistencia.PersisteCliente;
 import modelo.persistencia.PersisteLocacao;
 import modelo.persistencia.PersisteMotorista;
+import modelo.persistencia.PersisteTipoLocacao;
+import modelo.persistencia.PersisteTipoVeiculo;
 import modelo.persistencia.PersisteVeiculos;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -43,6 +46,8 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     PersisteCliente persisteCliente = new PersisteCliente();
     PersisteLocacao persisteLocacao = new PersisteLocacao();
     PersisteVeiculos persisteVeiculo = new PersisteVeiculos();
+    PersisteTipoLocacao persisteTipoLocacao = new PersisteTipoLocacao();
+    PersisteTipoVeiculo persisteTipoVeiculo = new PersisteTipoVeiculo();
     
     Clientes cliente = new Clientes();
     Locacao locacao = new Locacao();
@@ -51,6 +56,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     TipoLocacao tipoLocacao =  new TipoLocacao();
     
     VisaoCadastroMotorista visao = new VisaoCadastroMotorista();    
+    VisaoCadastroTipoLocacao visaoTipoLocacao = new VisaoCadastroTipoLocacao();
     
     public VisaoCadastroLocacao() {
         initComponents();
@@ -93,6 +99,7 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         jBCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Locação");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
 
@@ -471,11 +478,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
     }
     
     /**
-     * Pergunta ao usuário se o cliente é o motorista do veículo alugado. Se for, será verificado se a cnh do cliente ja
-     * consta no banco de dados. Se não constar, então será feito o cadastro
+     * Verifica se o usuário quer cadastrar o tipo de locação para o tipo de veiculo
      */
     public void determinarMotoristaDaLocacao(){
         Object[] opcoes = new Object[]{"Sim","Não"};
+        
         
         int n = JOptionPane.showOptionDialog(null, "O cliente será o motorista do veículo a ser alugado?", 
                 "Pergunta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
@@ -495,6 +502,34 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Pergunta ao usuário se o cliente é o motorista do veículo alugado. Se for, será verificado se a cnh do cliente ja
+     * consta no banco de dados. Se não constar, então será feito o cadastro
+     */
+    public void determinarTipoLocacao(){
+        Object[] opcoes = new Object[]{"Sim","Não"};
+        
+        int n = JOptionPane.showOptionDialog(null, "As taxas para esse tipo de veículo "
+                + "não estão cadastradas. Deseja cadastrar", 
+                "Pergunta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
+        
+        if(n==0){
+            criarTelaCadastroTipoLocacao();
+        }
+    }
+    
+    /**
+     * Cria a tela para o cadastro do tipo de Locacao
+     */
+    public void criarTelaCadastroTipoLocacao(){
+        TipoVeiculo tipoVeiculo = new TipoVeiculo();
+        tipoVeiculo = persisteTipoVeiculo.retornarTipoVeiculo(veiculo.getTipoVeiculo());
+        visaoTipoLocacao.jComboTipoVeiculo.setSelectedItem(tipoVeiculo.getTipo().toUpperCase());
+        visaoTipoLocacao.jComboTipoVeiculo.setEditable(false);
+        visaoTipoLocacao.jBCancelar.setVisible(false);
+
+        visaoTipoLocacao.setVisible(true);
+    }
     /**
      * Insere os valores do cliente no frame de cadastro de motorista.
      */
@@ -654,8 +689,21 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         else{
             tipoLocacao = persisteLocacao.retornarTipoLocacao(veiculo);
             locacao.setVeiculo(veiculo);
-            locacao.setTipoLocacao(tipoLocacao);
             
+            return true;
+        }
+    }
+    
+    /**
+     * verifica se o tipo de locação está cadastrado para um determinado tipo de veículo
+     */
+    public boolean verificarTipoLocacao(){
+        if((pesquisarTipoLocacao())== null){
+            JOptionPane.showMessageDialog(null, "Tipo de locação não está cadastrado para "
+                    + "o tipo de veículo desejado!");
+            return false;
+        }else{
+            locacao.setTipoLocacao(pesquisarTipoLocacao());
             return true;
         }
     }
@@ -704,9 +752,25 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             }
             locacao.setQuilometragemDeSaida(Integer.valueOf(jTxtKmSaida.getText().trim()));
             locacao.setTipo(jCTipoLocacao.getSelectedItem().toString());
+            
         }
         
         return true;
+    }
+    
+    /**
+     * Verifica se o tipo de locação ja foi cadastrado para o tipo de veículo
+     */
+    public TipoLocacao pesquisarTipoLocacao(){
+        tipoLocacao = persisteTipoLocacao.retornarTipoLocacaoPorTipoVeiculo(veiculo.getTipoVeiculo());
+        
+        if(tipoLocacao == null){
+            determinarTipoLocacao();
+            tipoLocacao = persisteTipoLocacao.retornarTipoLocacaoPorTipoVeiculo(veiculo.getTipoVeiculo());
+            return tipoLocacao;
+        }else{
+            return tipoLocacao;
+        }
     }
     
     /**
@@ -714,7 +778,8 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
      */
     
     public void chamarVerificacoes(){
-        if(verificarCliente() && verificarMotorista() && verificarVeiculo() && verificarOutrosDados()){
+        if(verificarCliente() && verificarMotorista() && verificarVeiculo() && verificarTipoLocacao() &&
+                verificarOutrosDados()){
             salvar();
             incrementarQuantidadeLocacoes();
         }

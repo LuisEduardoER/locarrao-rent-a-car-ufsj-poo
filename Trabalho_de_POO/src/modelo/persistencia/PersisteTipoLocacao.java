@@ -28,6 +28,7 @@ public class PersisteTipoLocacao extends DaoBase{
         
             return tipo;
         }catch(NoResultException ex){
+            tipo = null;
             fecharDB();
             return tipo;
         }

@@ -302,9 +302,9 @@ public class VisaoCadastroTipoLocacao extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCancelar;
+    public javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBSalvar;
-    private javax.swing.JComboBox jComboTipoVeiculo;
+    public javax.swing.JComboBox jComboTipoVeiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
