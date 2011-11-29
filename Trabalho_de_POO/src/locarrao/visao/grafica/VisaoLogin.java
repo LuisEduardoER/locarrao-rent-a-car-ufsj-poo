@@ -15,7 +15,10 @@ public class VisaoLogin extends javax.swing.JFrame {
     private final static Logger log = Logger.getLogger(VisaoLogin.class);
     SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
     PersisteFuncionarios persisteFuncionario = new PersisteFuncionarios();    
-    public static Funcionarios funcionario = new Funcionarios(); 
+    public Funcionarios funcionario = new Funcionarios(); 
+    
+    VisaoMenu visao = new VisaoMenu();
+        
     
     public VisaoLogin() {
         initComponents();
@@ -160,7 +163,6 @@ public class VisaoLogin extends javax.swing.JFrame {
      * Abre o Frame com a tela principal
      */
     public void chamarFrameMenu(){
-        VisaoMenu visao = new VisaoMenu();
         funcionario = persisteFuncionario.retornarFuncionarioPeloUsuario(funcionario);
         VisaoMenu.funcionario = funcionario;
         visao.jLabelUsuario.setText(funcionario.getUsuario());
@@ -179,6 +181,13 @@ public class VisaoLogin extends javax.swing.JFrame {
             this.dispose();
         }
     }
+    
+    public void determinarMenu(){
+        if(funcionario.getCargo().equals("VENDEDOR")){
+            
+        }
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAcessar;
     private javax.swing.JButton jBSair;
