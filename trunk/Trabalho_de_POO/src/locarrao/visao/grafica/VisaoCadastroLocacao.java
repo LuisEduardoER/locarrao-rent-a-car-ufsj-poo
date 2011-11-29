@@ -163,6 +163,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
         });
 
         jBPesquisarMotorista.setText("Pesquisar");
+        jBPesquisarMotorista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarMotoristaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Motorista :");
 
@@ -340,11 +345,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(690, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -354,11 +359,11 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
                 .addComponent(jBCadastrarLocacao)
                 .addGap(18, 18, 18)
                 .addComponent(jBCancelar)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(395, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,6 +436,10 @@ public class VisaoCadastroLocacao extends javax.swing.JFrame {
             jCTipoLocacao.requestFocus();
         }
     }//GEN-LAST:event_jBPesquisarVeiculoActionPerformed
+
+    private void jBPesquisarMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarMotoristaActionPerformed
+        
+    }//GEN-LAST:event_jBPesquisarMotoristaActionPerformed
 
     /**
      * @param args the command line arguments

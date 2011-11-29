@@ -9,11 +9,6 @@ public class VisaoMenu extends javax.swing.JFrame {
     
     
     public VisaoMenu() {
-        if(funcionario.getCargo().equals("VENDEDOR")){  
-            cadastraFuncionarios.setVisible(false);
-        }else if(funcionario.getCargo().equals("AUXILIAR")){
-            
-        }
         initComponents();
     }
 
