@@ -1,5 +1,8 @@
 package locarrao.visao.grafica;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -16,6 +19,7 @@ public class VisaoLogin extends javax.swing.JFrame {
     
     public VisaoLogin() {
         initComponents();
+        
     }
 
     
@@ -33,6 +37,7 @@ public class VisaoLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setIconImage(getToolkit().getImage("locarrao.ico"));
         setResizable(false);
 
         jLabel1.setText("Usuário: ");
@@ -132,6 +137,7 @@ public class VisaoLogin extends javax.swing.JFrame {
             }
         });
     }
+    
     
     /**
      * Verifica se o login foi feito corretamente
