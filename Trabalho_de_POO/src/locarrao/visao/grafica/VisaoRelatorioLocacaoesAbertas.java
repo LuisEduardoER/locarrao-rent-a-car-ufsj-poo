@@ -171,9 +171,11 @@ public class VisaoRelatorioLocacaoesAbertas extends javax.swing.JFrame {
 
             modelo.setRowCount(0);
             for(Locacao item: lista){
-                objeto = new Object[]{persisteCliente.retornarClienteBD(item.getCliente()),
-                                      persisteMotorista.pesquisarMotoristaPelaCnh(item.getMotorista()),
-                                      persisteVeiculo.pesquisarVeiculoPelaPlacaBD(item.getVeiculo()),
+                objeto = new Object[]{persisteCliente.retornarClienteBD(item.getCliente()).getNome(),
+                                      persisteMotorista.
+                        pesquisarMotoristaPelaCnh(item.getMotorista()).getNome(),
+                                      persisteVeiculo.
+                        pesquisarVeiculoPelaPlacaBD(item.getVeiculo()).getPlaca(),
                                       item.getQuilometragemDeSaida(),
                                       item.getQuilometragemDeEntrada(),
                                       formataData.format(item.getDataSaida()),
