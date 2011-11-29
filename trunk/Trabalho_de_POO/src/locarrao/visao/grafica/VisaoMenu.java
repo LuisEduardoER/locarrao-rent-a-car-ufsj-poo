@@ -9,6 +9,11 @@ public class VisaoMenu extends javax.swing.JFrame {
     
     
     public VisaoMenu() {
+        if(funcionario.getCargo().equals("VENDEDOR")){  
+            cadastraFuncionarios.setVisible(false);
+        }else if(funcionario.getCargo().equals("AUXILIAR")){
+            
+        }
         initComponents();
     }
 
@@ -357,15 +362,10 @@ public class VisaoMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBTrocarUsuarioActionPerformed
 
     private void cadastraFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastraFuncionariosActionPerformed
-       if(funcionario.getCargo()==null){
-            JOptionPane.showMessageDialog(null,"nulo");
-       }
-        if(funcionario.getCargo().equals("VENDEDOR")){
-           JOptionPane.showMessageDialog(null,"Não permitido");
-       }else{
+       
         VisaoCadastroFuncionario visao = new VisaoCadastroFuncionario();
         visao.setVisible(true);
-       }
+       
            
         
     }//GEN-LAST:event_cadastraFuncionariosActionPerformed
