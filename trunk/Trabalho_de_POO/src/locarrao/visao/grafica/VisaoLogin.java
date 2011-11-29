@@ -132,10 +132,11 @@ public class VisaoLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAcessarKeyPressed
 
     public static void main(String args[]) {
+        PropertyConfigurator.configure("log4j.properties");
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {
-                PropertyConfigurator.configure("log4j.properties");
+                
                 new VisaoLogin().setVisible(true);
             }
         });
