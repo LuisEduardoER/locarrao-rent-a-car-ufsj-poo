@@ -42,6 +42,7 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabelaVeiculo = new javax.swing.JTable();
         jBAtualizar = new javax.swing.JButton();
+        jBFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,27 +71,39 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
             }
         });
 
+        jBFechar.setText("Fechar");
+        jBFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBFecharActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBAtualizar)
-                        .addGap(313, 313, 313))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(362, 362, 362)
+                .addComponent(jBAtualizar)
+                .addGap(18, 18, 18)
+                .addComponent(jBFechar)
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBAtualizar)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAtualizar)
+                    .addComponent(jBFechar))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBAtualizar, jBFechar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,6 +112,10 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
         preencherLista();
         inserirNaTabela(lista);
     }//GEN-LAST:event_jBAtualizarActionPerformed
+
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBFecharActionPerformed
 
     public static void main(String args[]) {
         PropertyConfigurator.configure("log4j.properties");
@@ -159,6 +176,7 @@ public class VisaoRelatorioVeiculosMaisRentaveis extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtualizar;
+    private javax.swing.JButton jBFechar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTabelaVeiculo;
     // End of variables declaration//GEN-END:variables
