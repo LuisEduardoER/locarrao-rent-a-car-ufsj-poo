@@ -68,7 +68,7 @@ public class VisaoRelatorioLocacaoesFinalizadas extends javax.swing.JFrame {
 
         jLabel1.setText("Data Inicial");
 
-        jLabel2.setText("Data Inicial");
+        jLabel2.setText("Data Final");
 
         jBPesquisar.setText("Pesquisar");
         jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
