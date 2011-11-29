@@ -216,6 +216,7 @@ public class VisaoFechamentoLocacao extends javax.swing.JFrame {
     private void jBFecharLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharLocacaoActionPerformed
         if(validarCampoKmDeChegada()){
             fecharLocacao();
+            buscarListaLocacoes(cliente);
         }
     }//GEN-LAST:event_jBFecharLocacaoActionPerformed
 

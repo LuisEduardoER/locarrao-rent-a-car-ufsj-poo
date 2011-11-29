@@ -360,7 +360,7 @@ public class VisaoMenu extends javax.swing.JFrame {
        if(funcionario.getCargo()==null){
             JOptionPane.showMessageDialog(null,"nulo");
        }
-        if(funcionario.getCargo().equals("Vendedor")){
+        if(funcionario.getCargo().equals("VENDEDOR")){
            JOptionPane.showMessageDialog(null,"Não permitido");
        }else{
         VisaoCadastroFuncionario visao = new VisaoCadastroFuncionario();

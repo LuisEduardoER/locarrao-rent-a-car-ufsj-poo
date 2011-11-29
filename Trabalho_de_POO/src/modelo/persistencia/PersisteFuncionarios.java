@@ -36,6 +36,34 @@ public class PersisteFuncionarios extends DaoBase{
         
     }
     
+    /**
+     * retorna os dados do funcionário através do seu usuário
+     * @param funcionario
+     * @return 
+     */
+    public Funcionarios retornarClientePeloUsuario(Funcionarios funcionario){
+        abrirDB();
+        
+        Query query = em.createQuery("FROM Funcionarios funcionario WHERE funcionario.usuario = :usuario");
+        query.setParameter("usuario", funcionario.getUsuario());
+        
+        try{
+            funcionario = (Funcionarios)query.getSingleResult();
+            fecharDB();
+            return funcionario;
+        }catch(NoResultException ex){
+            funcionario = null;
+            fecharDB();
+            return funcionario;
+        }
+        
+    }
+    
+    /**
+     * Verifica se o funcionario ja esta cadastrado no sistema
+     * @param funcionario
+     * @return 
+     */
     public boolean verificarFuncionarioJaCadastrado(Funcionarios funcionario){
         Funcionarios f = new Funcionarios();
         abrirDB();
