@@ -159,8 +159,10 @@ public class VisaoLogin extends javax.swing.JFrame {
     
     public void chamarFrameMenu(){
         VisaoMenu visao = new VisaoMenu();
+        funcionario = persisteFuncionario.retornarClientePeloUsuario(funcionario);
         VisaoMenu.funcionario = funcionario;
         visao.jLabelUsuario.setText(funcionario.getUsuario());
+        
         visao.setVisible(true);
         
     }

@@ -38,7 +38,7 @@ public class PersisteCliente extends DaoBase{
         abrirDB();
         
         Query query = em.createQuery("FROM Clientes c WHERE c.nome LIKE :nome");
-        query.setParameter("nome", cliente.getNome());
+        query.setParameter("nome", "%"+cliente.getNome()+"%");
         
         try{
             lista = query.getResultList();

@@ -38,10 +38,17 @@ public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
         jTabelaCliente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Buscar cliente por nome");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("Nome* :");
+
+        jTxtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtNomeKeyPressed(evt);
+            }
+        });
 
         jBPesquisar.setText("Pesquisar");
         jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +136,10 @@ public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
         pesquisar();
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
+    private void jTxtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtNomeKeyPressed
+        jTxtNome.setBackground(Color.white);
+    }//GEN-LAST:event_jTxtNomeKeyPressed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -159,16 +170,16 @@ public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
     public void pesquisar(){
         cliente = new Clientes();
         if(verificarCamposEmBranco()){
-            cliente.setNome(jTxtNome.getText().trim());
+            cliente.setNome(jTxtNome.getText().trim().toUpperCase());
             lista = persisteCliente.pesquisarClientePorNome(cliente);
-            inserirNaTabela();
+            inserirNaTabela(lista);
         }
     }
     
     /**
      * Insere na tabelas os dados a lista de pessoas com um determminado nome
      */
-    public void inserirNaTabela(){
+    public void inserirNaTabela(List<Clientes> lista){
         if(lista == null){
             JOptionPane.showMessageDialog(null, "Nenhum Cliente cadastrado com o nome " + jTxtNome.getText() + " !");
         }else{
@@ -188,6 +199,8 @@ public class VisaoRelatorioBuscarClientePorNome extends javax.swing.JFrame {
             log.info(formatarData.format(new Date()) + " - Listagem de clientes com nome " + cliente.getNome() + 
                     "realizado pelo funcionário " + funcionario.getUsuario());
         }
+        
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
